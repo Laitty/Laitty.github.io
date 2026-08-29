@@ -54,4 +54,12 @@ I am Tianyou Lai, an MS student in Artificial Intelligence Systems Management at
 
 ## Skills and Honors
 
-Technical skills: Python, PyTorch, TensorFlow, Java, SQL, C/C++, HTML, CSS, JavaScript, Tableau, ECharts, Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, and Spark. Languages: English and Mandarin. Honors: Three-time University Basketball Championship (2022-23, 2023-24, 2024-25).
+- **Technical skills:** Python, PyTorch, TensorFlow, Java, SQL, C/C++, HTML, CSS, JavaScript, Tableau, ECharts, Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, and Spark.
+- **Languages:** English and Mandarin.
+- **Honors:** Three-time University Basketball Championship (2022-23, 2023-24, 2024-25).
+
+## Interests
+
+- **Basketball:** currently taking a break from playing while recovering from knee surgery.
+- **Billiards:** enjoying both the hot streaks and the cold spells.
+- **Travel:** I have visited nearly every province in China and taken two half-month trips across Europe. My goal is to explore the world.
