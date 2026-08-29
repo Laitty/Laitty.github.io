@@ -2,8 +2,7 @@
 layout: about
 title: About
 permalink: /
-nav: true
-nav_order: 1
+nav: false
 subtitle: >
   MS in Artificial Intelligence Systems Management at Carnegie Mellon University
 
@@ -28,7 +27,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am Tianyou Lai, an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University. I work on machine learning methods for time-series forecasting, signal detection, federated learning, and intelligent diagnostic systems. My research spans nuclear energy, industrial monitoring, healthcare, and financial time-series analysis.
+I am Tianyou Lai, an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University. My interests include machine learning, large language models, time-series forecasting, signal detection, federated learning, and AI for Science. I have worked on applications in energy systems, industrial intelligence, healthcare, neuroscience, and financial time-series analysis.
 
 ## Education
 
@@ -36,15 +35,23 @@ I am Tianyou Lai, an MS student in Artificial Intelligence Systems Management at
 - **Lanzhou University** - BS in Data Science & Big Data Technology, Sep. 2021 - Jul. 2025; GPA: 87.34/100
 - **The University of Texas at Austin** - International Academy Exchange Program in Software Engineering, Jan. 2024 - Feb. 2024; GPA: 4.0/4.0
 
-## Research Experience
+## Publications
 
-- **Research Assistant, Shenzhen University** (Oct. 2025 - Present): developed an Informer-based forecasting method for intelligent operation and maintenance of advanced nuclear energy systems.
-- **Algorithm Lead, Real-Time Spike and EEG Signal Detection** (Jul. 2025 - Present): developed real-time electrophysiological signal detection methods for symptom analysis in rat models.
-- **Independent Researcher, LLM-Driven TCM Symptom Text Augmentation** (Nov. 2024 - May 2025): built a TCM dataset and applied prompt engineering and fine-tuning, reducing text length by up to 44.1% and improving diagnostic accuracy by up to 28.4%.
-- **Researcher, Federated Learning Under Data Heterogeneity** (Sep. 2024 - Dec. 2025): worked on federated learning surveys and frequency-adaptive semantic distillation.
+- **TRACE: Training-time Report-guided and Clinically Ordered Concept Editing**. ACMMM 2026, to appear.
+- **FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection**. ICASSP 2026.
+- **A Review of Federated Learning under Data Heterogeneity**. Expert Systems, 2026.
+- **ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting**. arXiv, 2026.
+- **Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter**. AIP Advances, 2025.
+- **A Modularity-Enhanced Echo State Network for Nonlinear Wind Energy Predicting**. Energies, 2025.
 
-## Professional Experience and Skills
+## Professional Experience
 
-My industry experience includes data science at Sichuan DeepGraph Intelligent Technology, data engineering at Lanzhou Bronze Ding Intelligent Technology, quantitative research at Guotai Junan Futures, tax and business consulting at Zhongzheng Tiantong CPA Tax Department, and product data engineering at Feitian Technologies.
+- **Data Science Intern, Sichuan DeepGraph Intelligent Technology** (Sep. 2024 - Feb. 2025): cleaned and preprocessed data in Python, queried complex datasets with Ultipa XAI, and assisted with data-analysis algorithm optimization.
+- **Data Engineer Intern, Lanzhou Bronze Ding Intelligent Technology** (Mar. 2024 - Sep. 2024): organized 20+ datasets and labeled 10k+ entries using Python and SQL; deployed MySQL and Hadoop; produced seven analysis reports with Matplotlib and Seaborn.
+- **Quantitative Research PTA, Guotai Junan Futures** (Mar. 2024 - Apr. 2024): developed a Python futures trading system, debugged C++ and Python CTP-API implementations with Simnow, and implemented TWAP and VWAP algorithms with TA-Lib.
+- **Tax and Business Consulting Intern, Zhongzheng Tiantong CPA Tax Department** (Jul. 2023 - Sep. 2023): processed data with Python and SQL, prepared Tableau reports, and analyzed client financials, risks, and market trends.
+- **Product Data Engineer Intern, Feitian Technologies** (Jul. 2022 - Jan. 2023): supported product databases and intelligent password-system testing with Python, SQL, and C/C++; completed 30+ performance tests and prepared 10+ blockchain report summaries.
 
-Technical skills: Python, PyTorch, TensorFlow, Java, SQL, C/C++, Tableau, ECharts, Linux, Docker, Kubernetes, Hadoop, Hive, and Spark.
+## Skills and Honors
+
+Technical skills: Python, PyTorch, TensorFlow, Java, SQL, C/C++, HTML, CSS, JavaScript, Tableau, ECharts, Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, and Spark. Languages: English and Mandarin. Honors: Three-time University Basketball Championship (2022-23, 2023-24, 2024-25).

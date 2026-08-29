@@ -19,24 +19,30 @@ nav_order: 2
 
 ### AI for Energy
 
-I develop data-driven methods for energy systems, including time-series forecasting for intelligent operation and maintenance of advanced nuclear systems. This work includes an Informer-based forecasting approach and a submission on *Development of Rod-Bundle CHF Correlation Based on Data Augmentation* for NUTHOS-15.
+I develop data-driven methods for energy systems, including an Informer-based time-series forecasting approach for intelligent operation and maintenance of advanced nuclear systems. This work uses data from a collaboration between China General Nuclear Power Group and Shenzhen University. A paper, *Development of Rod-Bundle CHF Correlation Based on Data Augmentation*, was submitted for presentation at NUTHOS-15.
 
 Related publication: *A Modularity-Enhanced Echo State Network for Nonlinear Wind Energy Predicting* (Energies, 2025).
 
 ### AI for Science and Intelligent Systems
 
-My work in scientific and industrial intelligence includes surface-defect signal detection, metasurface inverse design, and delay-robust time-series forecasting. FREDNet was evaluated on the NEU-DET and GC-10 datasets, with a 4.8% improvement in mAP@0.5.
+My work in scientific and industrial intelligence includes surface-defect signal detection and metasurface inverse design. FREDNet was evaluated on the NEU-DET and GC-10 datasets, with a 4.8% improvement in mAP@0.5. I contributed to the framework design, dataset curation, benchmarking, ablation studies, and cross-domain generalization experiments.
 
-Related publications: *FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection* (ICASSP 2026); *Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter* (AIP Advances, 2025); and *ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting* (arXiv, 2026).
+Related publications: *FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection* (ICASSP 2026) and *Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter* (AIP Advances, 2025).
 
 ### Federated Learning
 
-I study federated learning under non-IID and heterogeneous data, including a review of practical challenges across healthcare, finance, and IoT. I also designed a Frequency-Adaptive Semantic Distillation framework that combines semantic topology with dynamic frequency-based weighting.
+I study federated learning under non-IID and heterogeneous data, including a review of practical challenges across healthcare, finance, and IoT. I also designed a Frequency-Adaptive Semantic Distillation framework that combines semantic topology with dynamic frequency-based weighting. This ongoing work is planned for submission to Expert Systems with Applications.
 
 Related publication: *A Review of Federated Learning under Data Heterogeneity* (Expert Systems, 2026).
 
+### Time-Series Learning and Financial AI
+
+I develop delay-robust forecasting methods for financial time series. ReLaMix studies residual latency-aware mixing for this setting.
+
+Related publication: *ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting* (arXiv, 2026).
+
 ### AI for Biomedical and Neuroscience Research
 
-My biomedical work includes real-time Spike and EEG signal detection for symptom analysis in rat models, as well as LLM-driven augmentation and diagnostic analysis of Traditional Chinese Medicine symptom texts. The latter was recognized as an Honors Thesis.
+My biomedical work includes real-time Spike and EEG signal detection for symptom analysis in rat models through a collaboration with the School of Basic Medical Sciences, Peking University. I also developed an LLM-driven approach for Traditional Chinese Medicine symptom-text augmentation and diagnostic analysis. The latter reduced text length by up to 44.1%, improved diagnostic accuracy by up to 28.4%, and was recognized as an Honors Thesis.
 
-Related publication: *TRACE: Training-time Report-guided and Clinically Ordered Concept Editing* (ACMMM 2026, to appear).
+Related publication: *TRACE: Training-time Report-guided and Clinically Ordered Concept Editing* (ACMMM 2026, to appear). The Spike and EEG work is ongoing, with plans for two or more SCI Q1 publications.
