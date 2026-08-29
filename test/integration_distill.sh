@@ -4,11 +4,29 @@ set -euo pipefail
 tmp_dir="$(mktemp -d)"
 tmp_override="${tmp_dir}/distill-override.yml"
 tmp_site="${tmp_dir}/site"
+tmp_source="${tmp_dir}/source"
 
 cleanup() {
   rm -rf "${tmp_dir}"
 }
 trap cleanup EXIT
+
+mkdir -p "${tmp_source}"
+git archive --format=tar HEAD | tar -xf - -C "${tmp_source}"
+mkdir -p "${tmp_source}/_posts"
+cat >"${tmp_source}/_posts/2021-05-22-distill.md" <<'MARKDOWN'
+---
+layout: distill
+title: Distill integration fixture
+date: 2021-05-22
+giscus_comments: true
+mermaid:
+  enabled: true
+tikzjax: true
+---
+
+Temporary integration fixture.
+MARKDOWN
 
 cat >"${tmp_override}" <<'YAML'
 giscus:
@@ -18,7 +36,7 @@ giscus:
   category_id: DIC_kwDOExample
 YAML
 
-bundle exec jekyll build --config "_config.yml,${tmp_override}" -d "${tmp_site}" >/dev/null
+bundle exec jekyll build --source "${tmp_source}" --config "${tmp_source}/_config.yml,${tmp_override}" -d "${tmp_site}" >/dev/null
 
 distill_page="${tmp_site}/blog/2021/distill/index.html"
 

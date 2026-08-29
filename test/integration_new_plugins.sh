@@ -8,16 +8,42 @@
 set -euo pipefail
 
 tmp_dir="$(mktemp -d)"
+tmp_source="${tmp_dir}/source"
 cleanup() {
   rm -rf "${tmp_dir}"
 }
 trap cleanup EXIT
 
+mkdir -p "${tmp_source}"
+git archive --format=tar HEAD | tar -xf - -C "${tmp_source}"
+mkdir -p "${tmp_source}/_posts"
+cat >"${tmp_source}/_posts/2022-10-15-rtl.md" <<'MARKDOWN'
+---
+layout: post
+title: RTL integration fixture
+date: 2022-10-15 10:00:00
+lang: fa
+---
+
+Temporary integration fixture.
+MARKDOWN
+
+cat >"${tmp_source}/_posts/2025-04-28-marimo.md" <<'MARKDOWN'
+---
+layout: post
+title: Marimo integration fixture
+date: 2025-04-28 12:00:00
+marimo: true
+---
+
+Temporary integration fixture.
+MARKDOWN
+
 build() {
   local name="$1"
   shift
   local out="${tmp_dir}/site-${name}"
-  bundle exec jekyll build "$@" -d "${out}" >/dev/null
+  bundle exec jekyll build --source "${tmp_source}" "$@" -d "${out}" >/dev/null
   echo "${out}"
 }
 
@@ -69,12 +95,11 @@ grep -q 'al_marimo' "${default_site}/index.html" && fail "home page wrongly load
 
 # --- al_email_protect -------------------------------------------------------
 
-# Off by default, so this builds with an override rather than changing the
-# shipped config: turning it on for the demo site would flip the default for
-# everyone who copies this template.
-override="${tmp_dir}/protect-email.yml"
-printf 'protect_email: true\n' >"${override}"
-protected_site="$(build protected --config "_config.yml,${override}")"
+# Test both gates explicitly so the assertions do not depend on the site's
+# chosen default. Personal sites may enable email protection in _config.yml.
+protected_override="${tmp_dir}/protect-email-on.yml"
+printf 'protect_email: true\n' >"${protected_override}"
+protected_site="$(build protected --config "${tmp_source}/_config.yml,${protected_override}")"
 
 # Scope note: this asserts the gating and the runtime, NOT that site-wide
 # addresses are obfuscated. `al_folio_core`'s metadata.liquid renders social
@@ -92,8 +117,11 @@ grep -q 'assets/al_email_protect/css/email-protect.css' "${protected_site}/index
 [ -f "${protected_site}/assets/al_email_protect/css/email-protect.css" ] \
   || fail "email-protect stylesheet referenced but not published"
 
-# ...and with it off (the default), the plugin costs nothing.
-grep -q 'al_email_protect' "${default_site}/index.html" \
+# ...and with it explicitly off, the plugin costs nothing.
+unprotected_override="${tmp_dir}/protect-email-off.yml"
+printf 'protect_email: false\n' >"${unprotected_override}"
+unprotected_site="$(build unprotected --config "${tmp_source}/_config.yml,${unprotected_override}")"
+grep -q 'al_email_protect' "${unprotected_site}/index.html" \
   && fail "email-protect assets loaded while disabled"
 
 echo "new plugin integration checks passed"
