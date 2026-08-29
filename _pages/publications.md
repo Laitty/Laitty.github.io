@@ -1,8 +1,8 @@
 ---
 layout: page
 permalink: /publications/
-title: Publications
-description: Publications and selected research areas.
+title: "Research & Projects"
+description: Publications, research areas, and selected projects.
 nav: true
 nav_order: 2
 ---
@@ -15,11 +15,11 @@ nav_order: 2
 
 </div>
 
-## Research Areas
+## Research Areas and Projects
 
 ### AI for Energy
 
-I develop data-driven methods for energy systems, including an Informer-based time-series forecasting approach for intelligent operation and maintenance of advanced nuclear systems. This work uses data from a collaboration between China General Nuclear Power Group and Shenzhen University. A paper, *Development of Rod-Bundle CHF Correlation Based on Data Augmentation*, was submitted for presentation at NUTHOS-15.
+I develop data-driven methods for energy systems, including an Informer-based time-series forecasting approach for intelligent operation and maintenance of advanced nuclear systems. This work uses data from a collaboration between China General Nuclear Power Group and Shenzhen University. The manuscript *Development of Rod-Bundle CHF Correlation Based on Data Augmentation* has been submitted to *Expert Systems*.
 
 Related publication: *A Modularity-Enhanced Echo State Network for Nonlinear Wind Energy Predicting* (Energies, 2025).
 
@@ -35,6 +35,12 @@ I study federated learning under non-IID and heterogeneous data, including a rev
 
 Related publication: *A Review of Federated Learning under Data Heterogeneity* (Expert Systems, 2026).
 
+### Large Language Models and Clinical AI
+
+I am currently exploring large language model applications for clinical text and intelligent healthcare systems. My undergraduate Honors Thesis, *LLM-Driven Approach for TCM Symptom Text Augmentation and Diagnostic Analysis*, used a curated TCM dataset with specialized prompt engineering and fine-tuning. It reduced text length by up to 44.1% and improved diagnostic accuracy by up to 28.4%.
+
+I am also developing an intelligent case-retrieval system for dental orthodontics.
+
 ### Time-Series Learning and Financial AI
 
 I develop delay-robust forecasting methods for financial time series. ReLaMix studies residual latency-aware mixing for this setting.
@@ -46,3 +52,7 @@ Related publication: *ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Fi
 My biomedical work includes real-time Spike and EEG signal detection for symptom analysis in rat models through a collaboration with the School of Basic Medical Sciences, Peking University. I also developed an LLM-driven approach for Traditional Chinese Medicine symptom-text augmentation and diagnostic analysis. The latter reduced text length by up to 44.1%, improved diagnostic accuracy by up to 28.4%, and was recognized as an Honors Thesis.
 
 Related publication: *TRACE: Training-time Report-guided and Clinically Ordered Concept Editing* (ACMMM 2026, to appear). The Spike and EEG work is ongoing, with plans for two or more SCI Q1 publications.
+
+### Computational Social Science and Sports Media
+
+From Sep. 2023 to Dec. 2023, I investigated computational social science methods in sports media. The project analyzed and applied AI video-generation styles and parameters, evaluating their effects on copyright compliance and audience appeal across major Chinese media platforms. I used Python and Tableau to explore NBA data and visualize how features relate to player competitiveness. I also studied the roles of FreeD 3D, volumetric imaging, and AIGC in sports-media and competitive-sports settings, producing a final social-computing research report.
