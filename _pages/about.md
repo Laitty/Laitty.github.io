@@ -11,7 +11,7 @@ profile:
   image:
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p><a href="mailto:laity@cmu.edu">laity@cmu.edu</a></p>
+    <p>laityATcmu.edu</p>
 
 selected_papers: false
 social: true # includes social icons at the bottom of the page
@@ -27,7 +27,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am Tianyou Lai, an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University. My interests include machine learning, large language models, time-series forecasting, signal detection, federated learning, and AI for Science. I have worked on applications in energy systems, industrial intelligence, healthcare, neuroscience, and financial time-series analysis.
+I am Tianyou Lai (Theo), an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University. My interests include machine learning, large language models, time-series forecasting, signal detection, federated learning, and AI for Science. I have worked on applications in energy systems, industrial intelligence, healthcare, neuroscience, and financial time-series analysis.
 
 ## Education
 

@@ -2,17 +2,17 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: Tianyou Lai # the website title (if blank, full name will be used instead)
-first_name: Tianyou
+title: Tianyou (Theo) Lai # the website title (if blank, full name will be used instead)
+first_name: Tianyou (Theo)
 middle_name: ""
 last_name: Lai
 contact_note:
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Tianyou Lai is an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University, with research interests in Artificial Intelligence, Machine Learning, LLM, Data Science, and AI for Science.
+  Tianyou (Theo) Lai is an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University, with research interests in Artificial Intelligence, Machine Learning, LLM, Data Science, and AI for Science.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-keywords: Tianyou Lai, Artificial Intelligence, Machine Learning, LLM, Data Science, AI for Science, time-series forecasting, signal processing, federated learning, academic website
+keywords: Tianyou Lai, Theo Lai, Artificial Intelligence, Machine Learning, LLM, Data Science, AI for Science, time-series forecasting, signal processing, federated learning, academic website
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 apple_touch_icon: # image name in /assets/img/ (or a rooted path / absolute URL) used for iOS home-screen bookmarks; needs a real 180x180 PNG, since Safari ignores the emoji favicon above. Left empty, iOS falls back to a screenshot of the page.
