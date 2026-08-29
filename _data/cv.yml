@@ -1,54 +1,223 @@
 cv:
   name: Tianyou Lai
   label: MS in Artificial Intelligence Systems Management
-  email: lai.tianyou@foxmail.com
-  summary: Graduate student in Artificial Intelligence Systems Management at Carnegie Mellon University with research interests in Artificial Intelligence, Machine Learning, LLM, Data Science, and AI for Science.
+  email: laity@cmu.edu
+  summary: MS student in Artificial Intelligence Systems Management at Carnegie Mellon University with research interests in Artificial Intelligence, Machine Learning, LLM, Data Science, and AI for Science.
 
   sections:
     Education:
       - institution: Carnegie Mellon University
+        location: Pittsburgh, USA
         area: Artificial Intelligence Systems Management
         studyType: MS
-        start_date: 2026-08
-        end_date: 2027-12
+        start_date: "2026-08"
+        end_date: "2027-12"
 
       - institution: Lanzhou University
+        location: Lanzhou, China
         area: Data Science & Big Data Technology
         studyType: BS
-        start_date: 2021-09
-        end_date: 2025-07
-        courses: Machine learning, data mining, cloud computing, big data analysis
+        start_date: "2021-09"
+        end_date: "2025-07"
+        highlights:
+          - "GPA: 87.34/100"
+          - "Scholarships: 2023-2024 Academic Year Second-Class Scholarship, Internship Professional Scholarship"
+          - "Coursework: Database, Python, Data Science Programming, Big Data MGMT, Machine Learning, Information Visualization Technique, Cloud Computing and Big Data Processing, Data Mining and Big Data Analysis"
 
-    Research:
+      - institution: The University of Texas at Austin
+        location: Austin, USA
+        area: Software Engineering
+        studyType: International Academy Exchange Program
+        start_date: "2024-01"
+        end_date: "2024-02"
+        highlights:
+          - "GPA: 4.0/4.0"
+
+    Publications:
       - title: "TRACE: Training-time Report-guided and Clinically Ordered Concept Editing"
-        date: 2026
-        summary: ACMMM 2026, to appear
+        authors:
+          - "Lai, T."
+          - "Yue, W."
+          - "Luo, J."
+          - "Mao, Q."
+          - "Wang, Z."
+          - "Ning, Z."
+          - "Li, Q."
+        date: "2026"
+        summary: "ACMMM 2026, To appear."
 
       - title: "FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection"
-        date: 2026
-        summary: ICASSP 2026
+        authors:
+          - "Lai, T."
+          - "Zhou, H."
+          - "Hao, C."
+          - "Yue, W."
+          - "Yue, S."
+          - "Zhang, H."
+        date: "2026"
+        doi: "10.1109/ICASSP55912.2026.11462834"
+        summary: "ICASSP 2026."
 
-      - title: A Review of Federated Learning under Data Heterogeneity
-        date: 2026
-        summary: Expert Systems
+      - title: "A Review of Federated Learning under Data Heterogeneity"
+        authors:
+          - "Yue, W."
+          - "Lai, T."
+          - "Mao, Q."
+          - "Li, Q."
+          - "Camacho, D."
+        date: "2026"
+        doi: "10.1111/exsy.70271"
+        summary: "Expert Systems, 70271."
 
       - title: "ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting"
-        date: 2026
-        summary: arXiv
+        authors:
+          - "Lai, T."
+          - "Yue, W."
+          - "Zhou, J."
+          - "Hao, C."
+          - "Chang, L."
+          - "Mao, Q."
+          - "Niu, Z."
+          - "Li, Q."
+        date: "2026"
+        url: https://arxiv.org/html/2603.20869v1
+        summary: "arXiv, 2026."
 
-    Experience:
+      - title: "Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter"
+        authors:
+          - "Zhou, Y."
+          - "Lai, T."
+          - "He, X."
+        date: "2025"
+        doi: "10.1063/5.0281453"
+        summary: "AIP Advances, 15, 075235."
+
+      - title: "A Modularity-Enhanced Echo State Network for Nonlinear Wind Energy Predicting"
+        authors:
+          - "Yue, S."
+          - "Zhao, Z."
+          - "Lai, T."
+          - "Zhang, J."
+        date: "2025"
+        doi: "10.3390/en18071858"
+        summary: "Energies, 18(7), 1858."
+
+    Research:
+      - title: Advanced Nuclear System Data Analysis and Predictive Modeling
+        location: Shenzhen, China
+        position: Research Assistant at Shenzhen University
+        start_date: "2025-10"
+        end_date: Present
+        highlights:
+          - "Primary contributor for advanced nuclear energy system data from the collaboration between China General Nuclear Power Group and Shenzhen University."
+          - "Designed an Informer-based time-series forecasting algorithm for intelligent operation and maintenance."
+          - "Submitted work on Development of Rod-Bundle CHF Correlation Based on Data Augmentation for presentation at NUTHOS-15."
+
+      - title: Real-Time Spike & EEG Signal Detection for Symptom Analysis in Rat Models
+        location: Beijing, China
+        position: Algorithm Lead
+        start_date: "2025-07"
+        end_date: Present
+        highlights:
+          - "Developed and optimized real-time detection algorithms for electrophysiological pulse signals from juvenile and adult rat Spike & EEG data."
+          - "Supported symptom analysis and reverse translational treatment research through a collaboration with the School of Basic Medical Sciences, Peking University."
+
+      - title: LLM-Driven Approach for TCM Symptom Text Augmentation and Diagnostic Analysis
+        location: Lanzhou, China
+        position: Independent Researcher
+        start_date: "2024-11"
+        end_date: "2025-05"
+        highlights:
+          - "Developed an LLM-driven approach for augmenting Traditional Chinese Medicine symptom texts."
+          - "Created a high-quality TCM dataset and designed specialized prompt engineering and fine-tuning."
+          - "Reduced text length by up to 44.1% and improved diagnostic accuracy by up to 28.4%."
+          - "Recognized as Honors Thesis."
+
+      - title: "FreDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection"
+        location: Lanzhou, China
+        position: Co-first Author
+        start_date: "2024-09"
+        end_date: "2025-07"
+        highlights:
+          - "Designed and implemented the FreDNet framework for real-time surface defect detection."
+          - "Led data curation for NEU-DET and GC-10 datasets."
+          - "Conducted benchmarking, ablation studies, and cross-domain generalization experiments."
+          - "Validated a 4.8% improvement in mAP@0.5."
+
+      - title: Federated Learning on Non-IID and Heterogeneity Data
+        location: Beijing, China
+        position: Researcher
+        start_date: "2024-09"
+        end_date: "2025-12"
+        highlights:
+          - "Co-authored federated learning work on heterogeneity challenges and solutions."
+          - "Led the design of a federated learning survey covering healthcare, finance, and IoT case studies."
+          - "Designed the Frequency-Adaptive Semantic Distillation framework with semantic topology and dynamic frequency-based weighting."
+
+    Professional Experience:
       - company: Sichuan DeepGraph Intelligent Technology
-        position: Data science and algorithm work
-        summary: Worked on data cleaning, relationship analysis, and algorithm optimization.
+        position: Data Science Intern
+        location: Chengdu, China
+        start_date: "2024-09"
+        end_date: "2025-02"
+        highlights:
+          - "Cleaned and preprocessed data in Python to support analysis and modeling."
+          - "Queried and computed complex datasets using Ultipa XAI."
+          - "Assisted in developing and optimizing data analysis algorithms."
 
       - company: Lanzhou Bronze Ding Intelligent Technology
-        position: Data engineering work
-        summary: Processed large-scale datasets and supported data infrastructure deployment.
+        position: Data Engineer Intern
+        location: Lanzhou, China
+        start_date: "2024-03"
+        end_date: "2024-09"
+        highlights:
+          - "Collected, cleaned, and processed data using Python and SQL, organizing 20+ datasets and labeling 10k+ entries."
+          - "Deployed databases and distributed frameworks including MySQL and Hadoop."
+          - "Produced 7 data analysis reports with Matplotlib and Seaborn visualizations."
 
       - company: Guotai Junan Futures
-        position: Quantitative analysis work
-        summary: Developed Python-based trading solutions and implemented TWAP/VWAP strategies.
+        position: Quantitative Research PTA
+        location: Remote
+        start_date: "2024-03"
+        end_date: "2024-04"
+        highlights:
+          - "Developed a futures trading system in Python with lock and close functions."
+          - "Used Simnow for real-time debugging of C++ and Python versions interfacing with CTP-API."
+          - "Implemented TWAP and VWAP algorithms in Python and integrated TA-Lib for indicator generation and data filtering."
 
-    Interests:
-      - name: Artificial Intelligence
-        keywords: Machine Learning, LLM, Data Science, AI for Science, time-series forecasting, signal detection, federated learning, intelligent diagnostic systems
+      - company: Zhongzheng Tiantong CPA Tax Department
+        position: Tax and Business Consulting Intern
+        location: Beijing, China
+        start_date: "2023-07"
+        end_date: "2023-09"
+        highlights:
+          - "Collected, cleaned, and processed raw data using Python and SQL."
+          - "Visualized and reported insights with Tableau."
+          - "Analyzed client strategies and market conditions, providing reports on financials, risks, and trends."
+
+      - company: Feitian Technologies
+        position: Product Data Engineer Intern
+        location: Beijing, China
+        start_date: "2022-07"
+        end_date: "2023-01"
+        highlights:
+          - "Used Python and SQL for database tagging, updates, and data storage for hardware products."
+          - "Implemented and tested intelligent password systems."
+          - "Developed and refined C/C++ code through coding, code review, product testing, and functionality modifications."
+          - "Conducted over 30 performance tests and delivered 10+ blockchain report summaries."
+
+    Skills:
+      - name: Programming and Analysis
+        keywords: Python, PyTorch, TensorFlow, Matplotlib, Seaborn, Java, SQL, C/C++, HTML, CSS, JavaScript, Tableau, ECharts, Linux
+
+      - name: Cloud and Big Data Frameworks
+        keywords: Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, Spark
+
+    Languages:
+      - name: English
+      - name: Mandarin
+
+    Honors:
+      - title: Three-time University Basketball Championship
+        date: "2022-2025"
+        summary: "2022-23, 2023-24, 2024-25"
