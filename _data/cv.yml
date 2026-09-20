@@ -2,7 +2,7 @@ cv:
   name: Tianyou (Theo) Lai
   label: MS in Artificial Intelligence Systems Management
   email: laityATcmu.edu
-  summary: MS student in Artificial Intelligence Systems Management at Carnegie Mellon University with research interests in Artificial Intelligence, Machine Learning, LLM, Data Science, and AI for Science.
+  summary: Carnegie Mellon MS student working on federated learning, model unlearning and evaluation, human–AI interaction, and applied machine learning, with experience in experimental evaluation and Python/SQL data engineering.
 
   sections:
     Education:
@@ -36,27 +36,29 @@ cv:
     Publications:
       - title: "TRACE: Training-time Report-guided and Clinically Ordered Concept Editing"
         authors:
-          - "Lai, T."
           - "Yue, W."
+          - "Lai, T."
           - "Luo, J."
           - "Mao, Q."
           - "Wang, Z."
           - "Ning, Z."
           - "Li, Q."
         date: "2026"
-        summary: "ACMMM 2026, To appear."
+        doi: "10.1145/3767308.3836433"
+        url: https://arxiv.org/abs/2608.20809
+        summary: "ACM MM 2026, accepted; to appear. * W. Yue and T. Lai contributed equally."
 
       - title: "FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection"
         authors:
-          - "Lai, T."
           - "Zhou, H."
+          - "Lai, T."
           - "Hao, C."
           - "Yue, W."
           - "Yue, S."
           - "Zhang, H."
         date: "2026"
         doi: "10.1109/ICASSP55912.2026.11462834"
-        summary: "ICASSP 2026."
+        summary: "ICASSP 2026. * H. Zhou and T. Lai contributed equally."
 
       - title: "A Review of Federated Learning under Data Heterogeneity"
         authors:
@@ -80,8 +82,9 @@ cv:
           - "Niu, Z."
           - "Li, Q."
         date: "2026"
-        url: https://arxiv.org/html/2603.20869v1
-        summary: "arXiv, 2026."
+        url: https://arxiv.org/abs/2603.20869
+        doi: "10.48550/arXiv.2603.20869"
+        summary: "arXiv preprint, 2026. * T. Lai and W. Yue contributed equally."
 
       - title: "Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter"
         authors:
@@ -103,15 +106,43 @@ cv:
         summary: "Energies, 18(7), 1858."
 
     Research:
-      - title: Advanced Nuclear System Data Analysis and Predictive Modeling
-        location: Shenzhen, China
-        position: Research Assistant at Shenzhen University
-        start_date: "2025-10"
+      - title: "TRACE: Interpretable Breast Ultrasound Classification"
+        position: Co-first Author
+        start_date: "2026-02"
         end_date: Present
         highlights:
-          - "Primary contributor for advanced nuclear energy system data from the collaboration between China General Nuclear Power Group and Shenzhen University."
-          - "Designed an Informer-based time-series forecasting algorithm for intelligent operation and maintenance."
-          - "Submitted the manuscript Development of Rod-Bundle CHF Correlation Based on Data Augmentation to Expert Systems."
+          - "Contributed to BI-RADS-aligned image recognition and structured descriptions in collaboration with Southern Medical University."
+          - "The framework uses radiology reports during training and requires only images at inference; ACM MM 2026, accepted."
+
+      - title: "ReLaMix: Forecasting with Delayed Observations"
+        position: Co-first Author
+        start_date: "2026-01"
+        end_date: "2026-01"
+        highlights:
+          - "Developed residual bottleneck mixing for delayed financial observations; evaluated PAXGUSDT and cross-asset generalization to BTCUSDT."
+          - "Used non-overlapping temporal segments and delay-robustness benchmarks; arXiv preprint (2026)."
+
+      - title: "Reasoning after Unlearning: Context Effects and Answer-Information Use"
+        position: First Author
+        highlights:
+          - "Submitted to ICLR 2027."
+          - "Evaluated original, unlearned, and retrained Llama checkpoints on TOFU using matched context controls, answer masking, and identity substitution."
+
+      - title: Human–AI Interaction and LLM Judges
+        highlights:
+          - "When Outputs Become Outcomes; first author, submitted to CHI 2027."
+          - "Examines content agreement, acceptance of judging authority, source attribution, and human mediation in livestream games and academic reviewing."
+
+      - title: Collaborative Learning and Model Evaluation
+        position: Co-author
+        highlights:
+          - "AAAI 2027 submissions on heterogeneous edge learning (FedSAP), personalized federated vision-language models, and maintenance of multi-agent cooperation."
+          - "ICLR 2027 submissions on federated language models (FedSocratic), auxiliary supervision in multimodal unlearning, and comparison feedback in model selection."
+
+      - title: "Artificial Intelligence for Critical Heat Flux in Energy Systems: From Predictive Accuracy to Engineering Use"
+        highlights:
+          - "Review in preparation; planned submission to Energy."
+          - "Synthesizes numerical prediction and sensing studies, audits a public CHF benchmark, and connects evaluation and uncertainty to engineering use boundaries."
 
       - title: Real-Time Spike & EEG Signal Detection for Symptom Analysis in Rat Models
         location: Beijing, China
@@ -130,16 +161,16 @@ cv:
         highlights:
           - "Developed an LLM-driven approach for augmenting Traditional Chinese Medicine symptom texts."
           - "Created a high-quality TCM dataset and designed specialized prompt engineering and fine-tuning."
-          - "Reduced text length by up to 44.1% and improved diagnostic accuracy by up to 28.4%."
+          - "Reduced text length by up to 44.1%, increased terminology tokens 4.4-fold, and achieved diagnostic accuracy of up to 81.3% in thesis experiments."
           - "Recognized as Honors Thesis."
 
-      - title: "FreDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection"
+      - title: "FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection"
         location: Lanzhou, China
         position: Co-first Author
         start_date: "2024-09"
         end_date: "2025-07"
         highlights:
-          - "Designed and implemented the FreDNet framework for real-time surface defect detection."
+          - "Designed and implemented the FREDNet framework for real-time surface defect detection."
           - "Led data curation for NEU-DET and GC-10 datasets."
           - "Conducted benchmarking, ablation studies, and cross-domain generalization experiments."
           - "Validated a 4.8% improvement in mAP@0.5."
@@ -153,6 +184,22 @@ cv:
           - "Co-authored federated learning work on heterogeneity challenges and solutions."
           - "Led the design of a federated learning survey covering healthcare, finance, and IoT case studies."
           - "Designed the Frequency-Adaptive Semantic Distillation framework with semantic topology and dynamic frequency-based weighting."
+
+      - title: Metasurface Inverse Design
+        position: Second Author
+        start_date: "2024-12"
+        end_date: "2025-05"
+        highlights:
+          - "Developed CNN-Transformer regression with polarization-conversion spectra and Gaussian-noise augmentation; mean MSE 0.00331."
+          - "Published in AIP Advances (2025)."
+
+      - title: Modular Echo State Networks for Wind Energy Prediction
+        position: Third Author
+        start_date: "2024-12"
+        end_date: "2025-03"
+        highlights:
+          - "Implemented modular echo state networks, clustering, and training on turbine data; best R-squared 0.9905."
+          - "Published in Energies (2025)."
 
     Professional Experience:
       - company: Sichuan DeepGraph Intelligent Technology
@@ -207,11 +254,14 @@ cv:
           - "Conducted over 30 performance tests and delivered 10+ blockchain report summaries."
 
     Skills:
-      - name: Programming and Analysis
-        keywords: Python, PyTorch, TensorFlow, Matplotlib, Seaborn, Java, SQL, C/C++, HTML, CSS, JavaScript, Tableau, ECharts, Linux
+      - name: Programming and AI
+        keywords: Python, PyTorch, TensorFlow, Java, SQL, C/C++, LLM fine-tuning and evaluation, federated learning, computer vision, time-series modeling
 
-      - name: Cloud and Big Data Frameworks
-        keywords: Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, Spark
+      - name: Data and Systems
+        keywords: MySQL, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, Spark, Linux
+
+      - name: Research and Presentation
+        keywords: Benchmark design, ablation studies, cross-domain evaluation, Matplotlib, Seaborn, Tableau, PowerPoint
 
     Languages:
       - name: English

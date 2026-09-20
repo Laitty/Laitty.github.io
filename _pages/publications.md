@@ -15,74 +15,50 @@ nav_order: 2
 
 </div>
 
-## Research Areas and Projects
+\* Equal contribution: W. Yue and T. Lai on TRACE; H. Zhou and T. Lai on FREDNet; T. Lai and W. Yue on ReLaMix. Author order follows the published and preprint records.
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-  <section>
-    <h3>Research Areas</h3>
+## Research Experience
 
-    <h4>AI for Science</h4>
-    <ul>
-      <li>
-        <strong>Energy systems</strong>
-        <ul>
-          <li><strong>Nuclear:</strong> Informer-based forecasting for intelligent operation and maintenance of advanced nuclear systems; the manuscript <em>Development of Rod-Bundle CHF Correlation Based on Data Augmentation</em> has been submitted to <em>Expert Systems</em>.</li>
-          <li><strong>Wind:</strong> <em>A Modularity-Enhanced Echo State Network for Nonlinear Wind Energy Predicting</em> (Energies, 2025).</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Medical and neuroscience</strong>
-        <ul>
-          <li><strong>Dental orthodontics:</strong> intelligent case-retrieval systems.</li>
-          <li><strong>Clinical concept editing:</strong> <em>TRACE: Training-time Report-guided and Clinically Ordered Concept Editing</em> (ACMMM 2026, to appear).</li>
-          <li><strong>Neural signals:</strong> real-time Spike and EEG signal detection for symptom analysis in rat models.</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Industrial and physical intelligence</strong>
-        <ul>
-          <li><strong>Industrial detection:</strong> FREDNet for surface-defect signal detection, evaluated on NEU-DET and GC-10 with a 4.8% improvement in mAP@0.5.</li>
-          <li><strong>Metasurfaces:</strong> deep learning-based inverse design of broadband polarization converters.</li>
-        </ul>
-      </li>
-    </ul>
+My research connects reliable learning and model evaluation with human–AI interaction and applied machine learning.
 
-    <h4>Large Language Models and Generative AI</h4>
-    <ul>
-      <li><strong>Current focus:</strong> deeply exploring LLM methods and their applications to clinical text and intelligent healthcare systems.</li>
-      <li><strong>LLM for medical AI:</strong> TCM symptom-text augmentation and diagnostic analysis, also part of the medical research area above.</li>
-      <li><strong>Generative media:</strong> AI video generation and AIGC applications in sports media.</li>
-    </ul>
+### Learning Systems and Human–AI Interaction
 
-    <h4>Federated Learning</h4>
-    <ul>
-      <li><strong>Data heterogeneity:</strong> non-IID federated learning across healthcare, finance, and IoT; related review in <em>Expert Systems</em> (2026).</li>
-      <li><strong>Semantic distillation:</strong> Frequency-Adaptive Semantic Distillation with semantic topology and dynamic frequency-based weighting; a manuscript is planned for submission to <em>Expert Systems with Applications</em>.</li>
-    </ul>
+#### Federated and Heterogeneous Learning
 
-    <h4>Time-Series Learning and Financial AI</h4>
-    <ul>
-      <li><strong>Financial forecasting:</strong> ReLaMix for delay-robust financial time-series forecasting (arXiv, 2026).</li>
-    </ul>
-  </section>
+Led the framework of a survey on data heterogeneity published in _Expert Systems_ (2026), alongside frequency-adaptive semantic distillation research. Recent co-authored submissions address structured partitioning for heterogeneous edge devices (FedSAP, AAAI 2027), semantic–appearance correction for personalized federated vision–language models (AAAI 2027), and verifiable questioning for federated language models (FedSocratic, ICLR 2027).
 
-  <section>
-    <h3>Projects</h3>
+#### Unlearning, Context Effects, and Model Evaluation
 
-    <h4>In Progress</h4>
-    <ul>
-      <li><strong>Advanced Nuclear System Data Analysis and Predictive Modeling:</strong> developing forecasting methods for advanced nuclear energy systems with Shenzhen University and China General Nuclear Power Group data.</li>
-      <li><strong>Dental Orthodontic Intelligent Case Retrieval System:</strong> developing an intelligent case-retrieval system for dental orthodontics.</li>
-      <li><strong>Real-Time Spike and EEG Signal Detection:</strong> developing and optimizing real-time electrophysiological signal detection for symptom analysis in rat models.</li>
-    </ul>
+**[Reasoning after Unlearning](https://openreview.net/forum?id=KL95EGhmuB)** — first author; submitted to ICLR 2027. This study evaluates original, unlearned, and target-excluded retrained Llama checkpoints on TOFU, separating context effects, answer exposure, and use of supplied answer information through matched controls, answer masking, and identity substitution. Related co-authored ICLR 2027 submissions examine auxiliary supervision in multimodal unlearning and misleading comparison feedback in model selection.
 
-    <h4>Selected Completed Projects</h4>
-    <ul>
-      <li><strong>LLM-Driven TCM Symptom Text Augmentation and Diagnostic Analysis:</strong> undergraduate Honors Thesis using a curated TCM dataset, prompt engineering, and fine-tuning; reduced text length by up to 44.1% and improved diagnostic accuracy by up to 28.4%.</li>
-      <li><strong>FREDNet:</strong> frequency and decomposed-spatial learning for industrial defect signal detection, including dataset curation, benchmarking, ablation studies, and cross-domain evaluation.</li>
-      <li><strong>Federated Learning Under Data Heterogeneity:</strong> research on heterogeneity challenges, cross-domain case studies, and Frequency-Adaptive Semantic Distillation.</li>
-      <li><strong>ReLaMix:</strong> residual latency-aware mixing for delay-robust financial time-series forecasting.</li>
-      <li><strong>Computational Social Science and Sports Media:</strong> Sep. 2023 - Dec. 2023 research using AI video generation, Python, Tableau, FreeD 3D, volumetric imaging, and AIGC to study sports media and player competitiveness.</li>
-    </ul>
-  </section>
-</div>
+#### Human–AI Interaction and LLM Judges
+
+**When Outputs Become Outcomes** — first author; submitted to CHI 2027. The study distinguishes agreement with an assessment, acceptance of a judge's authority, and subsequent action in livestream games and academic reviewing. Observational, interview, and presentation-comparison methods examine source attribution and human mediation.
+
+#### Collaborative Multi-Agent Reinforcement Learning Research
+
+Co-authored an AAAI 2027 submission on gradient routing and optimizer-dependent maintenance of learned cooperation.
+
+### Applied Machine Learning
+
+#### Healthcare and Clinical Language
+
+- **[TRACE](https://arxiv.org/abs/2608.20809)** — accepted at ACM MM 2026. Report supervision during training supports concept-based breast ultrasound diagnosis with image-only inference. The work connects BI-RADS concepts, structured clinical descriptions, and concept-edit distillation. [Code](https://github.com/wentao-2/TRACE).
+- **Spike and EEG detection:** RT-DETR and spatiotemporal graph methods for juvenile and adult rat electrophysiology data, in collaboration with Peking University; algorithm development and signal analysis for symptom studies.
+- **LLM-based TCM symptom-text augmentation:** independent undergraduate honors thesis combining dataset curation, prompting, and fine-tuning. Thesis experiments reduced text length by up to 44.1%, increased terminology tokens 4.4-fold, and achieved diagnostic accuracy of up to 81.3%.
+- **Dental orthodontic case retrieval:** an ongoing intelligent case-retrieval project.
+
+#### Industrial Inspection and Physical Inverse Design
+
+- **FREDNet** — ICASSP 2026. Frequency and decomposed-spatial learning with attention fusion for surface-defect detection; contributions include data curation, training, benchmarking, ablations, and cross-domain evaluation on NEU-DET and GC-10, with a reported 4.8% improvement in mAP@0.5.
+- **Metasurface inverse design** — _AIP Advances_ (2025). CNN–Transformer regression using polarization-conversion spectra and Gaussian-noise augmentation; reported mean MSE of 0.00331.
+
+#### Time-Series Forecasting and Energy Systems
+
+- **[ReLaMix](https://arxiv.org/abs/2603.20869)** — arXiv preprint (2026). Residual bottleneck mixing for delayed financial observations, evaluated on second-resolution PAXGUSDT and BTCUSDT using non-overlapping temporal segments and delay-robustness benchmarks.
+- **Artificial Intelligence for Critical Heat Flux in Energy Systems: From Predictive Accuracy to Engineering Use** — review in preparation for submission to _Energy_. Synthesizes numerical prediction and sensing studies, audits a public CHF benchmark, and connects validation under distribution shifts, uncertainty, and deployment boundaries to engineering use.
+- **Wind energy prediction** — _Energies_ (2025). Modular echo state networks, clustering, and training on turbine data; reported best R² of 0.9905.
+
+#### Earlier Interdisciplinary Work
+
+- **Computational social science and sports media** (Sep.–Dec. 2023): AI video generation, Python, Tableau, FreeD 3D, volumetric imaging, and AIGC for studying sports media and player competitiveness.

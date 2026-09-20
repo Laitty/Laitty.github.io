@@ -27,22 +27,28 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am Tianyou Lai (Theo), originally from Beijing, China, and an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University. My interests include machine learning, large language models, time-series forecasting, signal detection, federated learning, and AI for Science. I have worked on applications in energy systems, industrial intelligence, healthcare, neuroscience, and financial time-series analysis.
+I am Tianyou Lai (Theo), an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University. My research connects reliable learning systems, model evaluation, and human–AI interaction with applied machine learning in healthcare, industrial inspection, physical inverse design, forecasting, and energy systems.
+
+My experience spans model design, dataset preparation, training, and experimental evaluation, alongside Python/SQL data engineering and distributed-data infrastructure. I am interested in machine learning engineering opportunities that connect research with practical systems.
+
+[Academic CV (English)]({{ '/assets/pdf/academic_en.pdf' | relative_url }}) · [学术简历（中文）]({{ '/assets/pdf/academic_zh.pdf' | relative_url }}) · [MLE Resume (English)]({{ '/assets/pdf/ml_en.pdf' | relative_url }}) · [MLE 简历（中文）]({{ '/assets/pdf/ml_zh.pdf' | relative_url }}) · [Quant Resume (English)]({{ '/assets/pdf/quant_en.pdf' | relative_url }}) · [量化简历（中文）]({{ '/assets/pdf/quant_zh.pdf' | relative_url }})
 
 ## Education
 
-- **Carnegie Mellon University** - MS in Artificial Intelligence Systems Management, Aug. 2026 - Dec. 2027
+- **Carnegie Mellon University** - MS in Artificial Intelligence Systems Management, Aug. 2026 - Dec. 2027 (expected)
 - **Lanzhou University** - BS in Data Science & Big Data Technology, Sep. 2021 - Jul. 2025; GPA: 87.34/100
 - **The University of Texas at Austin** - International Academy Exchange Program in Software Engineering, Jan. 2024 - Feb. 2024; GPA: 4.0/4.0
 
 ## Publications
 
-- **TRACE: Training-time Report-guided and Clinically Ordered Concept Editing**. ACMMM 2026, to appear.
-- **FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection**. ICASSP 2026.
-- **A Review of Federated Learning under Data Heterogeneity**. Expert Systems, 2026.
-- **ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting**. arXiv, 2026.
-- **Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter**. AIP Advances, 2025.
-- **A Modularity-Enhanced Echo State Network for Nonlinear Wind Energy Predicting**. Energies, 2025.
+- **[TRACE: Training-time Report-guided and Clinically Ordered Concept Editing](https://arxiv.org/abs/2608.20809)\***. ACM MM 2026, accepted. [DOI: 10.1145/3767308.3836433](https://doi.org/10.1145/3767308.3836433).
+- **[FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection](https://doi.org/10.1109/ICASSP55912.2026.11462834)\***. ICASSP 2026. [DOI: 10.1109/ICASSP55912.2026.11462834](https://doi.org/10.1109/ICASSP55912.2026.11462834).
+- **[A Review of Federated Learning under Data Heterogeneity](https://doi.org/10.1111/exsy.70271)**. _Expert Systems_, 2026. [DOI: 10.1111/exsy.70271](https://doi.org/10.1111/exsy.70271).
+- **[ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting](https://arxiv.org/abs/2603.20869)\***. arXiv preprint, 2026. [DOI: 10.48550/arXiv.2603.20869](https://doi.org/10.48550/arXiv.2603.20869).
+- **[Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter](https://doi.org/10.1063/5.0281453)**. _AIP Advances_, 2025. [DOI: 10.1063/5.0281453](https://doi.org/10.1063/5.0281453).
+- **[A Modularity-Enhanced Echo State Network for Nonlinear Wind Energy Predicting](https://doi.org/10.3390/en18071858)**. _Energies_, 2025. [DOI: 10.3390/en18071858](https://doi.org/10.3390/en18071858).
+
+\* Co-first author. The full author lists and research summaries are on the [Research & Projects]({{ '/publications/' | relative_url }}) page.
 
 ## Professional Experience
 
@@ -54,7 +60,7 @@ I am Tianyou Lai (Theo), originally from Beijing, China, and an MS student in Ar
 
 ## Skills and Honors
 
-- **Technical skills:** Python, PyTorch, TensorFlow, Java, SQL, C/C++, HTML, CSS, JavaScript, Tableau, ECharts, Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, and Spark.
+- **Technical skills:** Python, SQL, C/C++, Java, PyTorch, TensorFlow; LLM fine-tuning and evaluation, federated learning, computer vision, and time-series modeling; MySQL, Hadoop, Spark, HDFS, OpenStack, Docker, Kubernetes, and Linux; benchmarking, ablations, cross-domain evaluation, Matplotlib, Seaborn, Tableau, and PowerPoint.
 - **Languages:** English and Mandarin.
 - **Honors:** Three-time University Basketball Championship (2022-23, 2023-24, 2024-25).
 
