@@ -46,7 +46,7 @@ cv:
         date: "2026"
         doi: "10.1145/3767308.3836433"
         url: https://arxiv.org/abs/2608.20809
-        summary: "ACM MM 2026, accepted; to appear."
+        summary: "ACM International Conference on Multimedia (ACM MM) 2026, accepted; to appear."
 
       - title: "FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection"
         authors:
@@ -58,7 +58,7 @@ cv:
           - "Zhang, H."
         date: "2026"
         doi: "10.1109/ICASSP55912.2026.11462834"
-        summary: "ICASSP 2026."
+        summary: "IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP) 2026."
 
       - title: "A Review of Federated Learning under Data Heterogeneity"
         authors:
@@ -69,7 +69,7 @@ cv:
           - "Camacho, D."
         date: "2026"
         doi: "10.1111/exsy.70271"
-        summary: "Expert Systems, 70271."
+        summary: "Expert Systems (Expert Syst.), 70271."
 
       - title: "ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting"
         authors:
@@ -84,7 +84,7 @@ cv:
         date: "2026"
         url: https://arxiv.org/abs/2603.20869
         doi: "10.48550/arXiv.2603.20869"
-        summary: "arXiv preprint, 2026."
+        summary: "arXiv preprint (arXiv), 2026."
 
       - title: "Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter"
         authors:
@@ -93,7 +93,7 @@ cv:
           - "He, X."
         date: "2025"
         doi: "10.1063/5.0281453"
-        summary: "AIP Advances, 15, 075235."
+        summary: "AIP Advances (AIP Adv.), 15, 075235."
 
       - title: "A Modularity-Enhanced Echo State Network for Nonlinear Wind Energy Predicting"
         authors:
@@ -103,7 +103,7 @@ cv:
           - "Zhang, J."
         date: "2025"
         doi: "10.3390/en18071858"
-        summary: "Energies, 18(7), 1858."
+        summary: "Energies (Energies), 18(7), 1858."
 
     Research Appointments:
       - company: Shenzhen University
@@ -113,11 +113,11 @@ cv:
         highlights:
           - "Nuclear sensor online monitoring and energy-system AI."
           - "Mamba-In is under review at Engineering Applications of Artificial Intelligence (EAAI)."
-          - "Critical-heat-flux review in preparation for Energy."
+          - "Critical-heat-flux review in preparation for Energy (Energy)."
 
     Academic Service:
       - name: Reviewer
-        summary: ICASSP 2027, ACM MM 2027, IJCNN 2026
+        summary: IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP) 2027, ACM International Conference on Multimedia (ACM MM) 2027, International Joint Conference on Neural Networks (IJCNN) 2026
 
     Research:
       - title: "TRACE: Interpretable Breast Ultrasound Classification"
@@ -126,13 +126,13 @@ cv:
         end_date: Present
         highlights:
           - "Contributed to BI-RADS-aligned image recognition and structured descriptions in collaboration with Southern Medical University."
-          - "The framework uses radiology reports during training and requires only images at inference; ACM MM 2026, accepted."
+          - "The framework uses radiology reports during training and requires only images at inference; ACM International Conference on Multimedia (ACM MM) 2026, accepted."
 
       - title: "Artificial Intelligence for Critical Heat Flux in Energy Systems: From Predictive Accuracy to Engineering Use"
         location: Shenzhen, China
         position: Research Assistant, Shenzhen University
         highlights:
-          - "Review in preparation; planned submission to Energy."
+          - "Review in preparation; planned submission to Energy (Energy)."
 
       - title: "Mamba-In: An Informer-based Industrial Long-Term Time-Series Prediction for High-Reliability Sensor Online Monitoring in Nuclear Applications"
         location: Shenzhen, China
@@ -147,24 +147,24 @@ cv:
         end_date: "2026-01"
         highlights:
           - "Developed residual bottleneck mixing for delayed financial observations; evaluated PAXGUSDT and cross-asset generalization to BTCUSDT."
-          - "Used non-overlapping temporal segments and delay-robustness benchmarks; arXiv preprint (2026)."
+          - "Used non-overlapping temporal segments and delay-robustness benchmarks; arXiv preprint (arXiv, 2026)."
 
       - title: "Reasoning after Unlearning: Context Effects and Answer-Information Use"
         position: First Author
         highlights:
-          - "Submitted to ICLR 2027."
+          - "Submitted to the International Conference on Learning Representations (ICLR) 2027."
           - "Evaluated original, unlearned, and retrained Llama checkpoints on TOFU using matched context controls, answer masking, and identity substitution."
 
       - title: Human–AI Interaction and LLM Judges
         highlights:
-          - "When Outputs Become Outcomes; first author, submitted to CHI 2027."
+          - "When Outputs Become Outcomes; first author, submitted to the ACM Conference on Human Factors in Computing Systems (CHI) 2027."
           - "Examines content agreement, acceptance of judging authority, source attribution, and human mediation in livestream games and academic reviewing."
 
       - title: Collaborative Learning and Model Evaluation
         position: Co-author
         highlights:
-          - "AAAI 2027 submissions on heterogeneous edge learning (FedSAP), personalized federated vision-language models, and maintenance of multi-agent cooperation."
-          - "ICLR 2027 submissions on federated language models (FedSocratic), auxiliary supervision in multimodal unlearning, and comparison feedback in model selection."
+          - "AAAI Conference on Artificial Intelligence (AAAI) 2027 submissions on heterogeneous edge learning (FedSAP), personalized federated vision-language models, and maintenance of multi-agent cooperation."
+          - "International Conference on Learning Representations (ICLR) 2027 submissions on federated language models (FedSocratic), auxiliary supervision in multimodal unlearning, and comparison feedback in model selection."
 
       - title: Real-Time Spike & EEG Signal Detection for Symptom Analysis in Rat Models
         location: Beijing, China
@@ -213,7 +213,7 @@ cv:
         end_date: "2025-05"
         highlights:
           - "Developed CNN-Transformer regression with polarization-conversion spectra and Gaussian-noise augmentation; mean MSE 0.00331."
-          - "Published in AIP Advances (2025)."
+          - "Published in AIP Advances (AIP Adv., 2025)."
 
       - title: Modular Echo State Networks for Wind Energy Prediction
         position: Third Author
@@ -221,7 +221,7 @@ cv:
         end_date: "2025-03"
         highlights:
           - "Implemented modular echo state networks, clustering, and training on turbine data; best R-squared 0.9905."
-          - "Published in Energies (2025)."
+          - "Published in Energies (Energies, 2025)."
 
     Professional Experience:
       - company: Sichuan DeepGraph Intelligent Technology

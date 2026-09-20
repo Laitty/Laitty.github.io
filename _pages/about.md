@@ -39,16 +39,16 @@ My experience spans model design, dataset preparation, training, and experimenta
 
 ## Research Appointment
 
-- **Research Assistant, Shenzhen University** (Oct. 2025 - May 2026): nuclear sensor online monitoring and energy-system AI, including **Mamba-In** (under review at EAAI) and the critical-heat-flux review in preparation for _Energy_.
+- **Research Assistant, Shenzhen University** (Oct. 2025 - May 2026): nuclear sensor online monitoring and energy-system AI, including **Mamba-In** (under review at _Engineering Applications of Artificial Intelligence_ (EAAI)) and the critical-heat-flux review in preparation for _Energy_ (Energy).
 
 ## Publications
 
-- **[TRACE: Training-time Report-guided and Clinically Ordered Concept Editing](https://arxiv.org/abs/2608.20809)\***. ACM MM 2026, accepted. [DOI: 10.1145/3767308.3836433](https://doi.org/10.1145/3767308.3836433).
-- **[FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection](https://doi.org/10.1109/ICASSP55912.2026.11462834)\***. ICASSP 2026. [DOI: 10.1109/ICASSP55912.2026.11462834](https://doi.org/10.1109/ICASSP55912.2026.11462834).
-- **[A Review of Federated Learning under Data Heterogeneity](https://doi.org/10.1111/exsy.70271)**. _Expert Systems_, 2026. [DOI: 10.1111/exsy.70271](https://doi.org/10.1111/exsy.70271).
-- **[ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting](https://arxiv.org/abs/2603.20869)\***. arXiv preprint, 2026. [DOI: 10.48550/arXiv.2603.20869](https://doi.org/10.48550/arXiv.2603.20869).
-- **[Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter](https://doi.org/10.1063/5.0281453)**. _AIP Advances_, 2025. [DOI: 10.1063/5.0281453](https://doi.org/10.1063/5.0281453).
-- **[A Modularity-Enhanced Echo State Network for Nonlinear Wind Energy Predicting](https://doi.org/10.3390/en18071858)**. _Energies_, 2025. [DOI: 10.3390/en18071858](https://doi.org/10.3390/en18071858).
+- **[TRACE: Training-time Report-guided and Clinically Ordered Concept Editing](https://arxiv.org/abs/2608.20809)\***. ACM International Conference on Multimedia (ACM MM) 2026, accepted. [DOI: 10.1145/3767308.3836433](https://doi.org/10.1145/3767308.3836433).
+- **[FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection](https://doi.org/10.1109/ICASSP55912.2026.11462834)\***. IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP) 2026. [DOI: 10.1109/ICASSP55912.2026.11462834](https://doi.org/10.1109/ICASSP55912.2026.11462834).
+- **[A Review of Federated Learning under Data Heterogeneity](https://doi.org/10.1111/exsy.70271)**. _Expert Systems_ (Expert Syst.), 2026. [DOI: 10.1111/exsy.70271](https://doi.org/10.1111/exsy.70271).
+- **[ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting](https://arxiv.org/abs/2603.20869)\***. arXiv preprint (arXiv), 2026. [DOI: 10.48550/arXiv.2603.20869](https://doi.org/10.48550/arXiv.2603.20869).
+- **[Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter](https://doi.org/10.1063/5.0281453)**. _AIP Advances_ (AIP Adv.), 2025. [DOI: 10.1063/5.0281453](https://doi.org/10.1063/5.0281453).
+- **[A Modularity-Enhanced Echo State Network for Nonlinear Wind Energy Predicting](https://doi.org/10.3390/en18071858)**. _Energies_ (Energies), 2025. [DOI: 10.3390/en18071858](https://doi.org/10.3390/en18071858).
 
 \* (Co-)First author. The full author lists and research summaries are on the [Research & Projects]({{ '/publications/' | relative_url }}) page.
 
@@ -62,7 +62,7 @@ My experience spans model design, dataset preparation, training, and experimenta
 
 ## Academic Service
 
-- **Reviewer:** ICASSP 2027, ACM MM 2027, IJCNN 2026.
+- **Reviewer:** IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP) 2027, ACM International Conference on Multimedia (ACM MM) 2027, International Joint Conference on Neural Networks (IJCNN) 2026.
 
 ## Skills and Honors
 
