@@ -110,6 +110,10 @@ cv:
         position: Research Assistant
         start_date: "2025-10"
         end_date: "2026-05"
+        highlights:
+          - "Nuclear sensor online monitoring and energy-system AI."
+          - "Mamba-In is under review at Engineering Applications of Artificial Intelligence (EAAI)."
+          - "Critical-heat-flux review in preparation for Energy."
 
     Academic Service:
       - name: Reviewer
@@ -123,6 +127,19 @@ cv:
         highlights:
           - "Contributed to BI-RADS-aligned image recognition and structured descriptions in collaboration with Southern Medical University."
           - "The framework uses radiology reports during training and requires only images at inference; ACM MM 2026, accepted."
+
+      - title: "Artificial Intelligence for Critical Heat Flux in Energy Systems: From Predictive Accuracy to Engineering Use"
+        location: Shenzhen, China
+        position: Research Assistant, Shenzhen University
+        highlights:
+          - "Review in preparation; planned submission to Energy."
+
+      - title: "Mamba-In: An Informer-based Industrial Long-Term Time-Series Prediction for High-Reliability Sensor Online Monitoring in Nuclear Applications"
+        location: Shenzhen, China
+        position: Research Assistant, Shenzhen University
+        highlights:
+          - "Under review at Engineering Applications of Artificial Intelligence (EAAI)."
+          - "Combines a Mamba branch and an Informer-style ProbSparse attention branch for long-horizon multivariate virtual sensing, residual-based fault detection, and signal reconstruction."
 
       - title: "ReLaMix: Forecasting with Delayed Observations"
         position: Co-first Author
@@ -148,11 +165,6 @@ cv:
         highlights:
           - "AAAI 2027 submissions on heterogeneous edge learning (FedSAP), personalized federated vision-language models, and maintenance of multi-agent cooperation."
           - "ICLR 2027 submissions on federated language models (FedSocratic), auxiliary supervision in multimodal unlearning, and comparison feedback in model selection."
-
-      - title: "Artificial Intelligence for Critical Heat Flux in Energy Systems: From Predictive Accuracy to Engineering Use"
-        highlights:
-          - "Review in preparation; planned submission to Energy."
-          - "Synthesizes numerical prediction and sensing studies, audits a public CHF benchmark, and connects evaluation and uncertainty to engineering use boundaries."
 
       - title: Real-Time Spike & EEG Signal Detection for Symptom Analysis in Rat Models
         location: Beijing, China
@@ -264,11 +276,14 @@ cv:
           - "Conducted over 30 performance tests and delivered 10+ blockchain report summaries."
 
     Skills:
-      - name: Programming and Analysis
-        keywords: Python, PyTorch, TensorFlow, Matplotlib, Seaborn, Java, SQL, C/C++, HTML, CSS, JavaScript, Tableau, ECharts, Linux
+      - name: Programming
+        keywords: Python (PyTorch, TensorFlow), Java, SQL, C/C++, HTML, CSS, JavaScript
 
-      - name: Cloud and Big Data Frameworks
-        keywords: Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, Spark
+      - name: Visualization
+        keywords: Matplotlib, Seaborn, Tableau, ECharts
+
+      - name: Cloud and Big Data
+        keywords: Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, Spark
 
     Languages:
       - name: English

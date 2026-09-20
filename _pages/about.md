@@ -39,7 +39,7 @@ My experience spans model design, dataset preparation, training, and experimenta
 
 ## Research Appointment
 
-- **Research Assistant, Shenzhen University** (Oct. 2025 - May 2026)
+- **Research Assistant, Shenzhen University** (Oct. 2025 - May 2026): nuclear sensor online monitoring and energy-system AI, including **Mamba-In** (under review at EAAI) and the critical-heat-flux review in preparation for _Energy_.
 
 ## Publications
 
@@ -66,7 +66,7 @@ My experience spans model design, dataset preparation, training, and experimenta
 
 ## Skills and Honors
 
-- **Technical skills:** Python, PyTorch, TensorFlow, Java, SQL, C/C++, HTML, CSS, JavaScript, Tableau, ECharts, Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, and Spark.
+- **Technical skills:** Python (PyTorch, TensorFlow), Java, SQL, C/C++, HTML, CSS, JavaScript; Tableau, ECharts; Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, Spark.
 - **Languages:** English and Mandarin.
 - **Honors:** Lanzhou University academic, internship, and international exchange scholarships; undergraduate honors thesis (2025); three-time University Basketball Championship (2022-23, 2023-24, 2024-25).
 
