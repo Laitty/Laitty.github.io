@@ -19,6 +19,8 @@ nav_order: 2
 
 ## Research Experience
 
+**Research Assistant, Shenzhen University** · Oct. 2025 - May 2026
+
 My research connects reliable learning and model evaluation with human–AI interaction and applied machine learning.
 
 ### Learning Systems and Human–AI Interaction

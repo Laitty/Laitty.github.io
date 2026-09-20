@@ -31,13 +31,15 @@ I am Tianyou Lai (Theo), an MS student in Artificial Intelligence Systems Manage
 
 My experience spans model design, dataset preparation, training, and experimental evaluation, alongside Python/SQL data engineering and distributed-data infrastructure. I am interested in machine learning engineering opportunities that connect research with practical systems.
 
-[Academic CV (English)]({{ '/assets/pdf/academic_en.pdf' | relative_url }}) · [学术简历（中文）]({{ '/assets/pdf/academic_zh.pdf' | relative_url }}) · [MLE Resume (English)]({{ '/assets/pdf/ml_en.pdf' | relative_url }}) · [MLE 简历（中文）]({{ '/assets/pdf/ml_zh.pdf' | relative_url }}) · [Quant Resume (English)]({{ '/assets/pdf/quant_en.pdf' | relative_url }}) · [量化简历（中文）]({{ '/assets/pdf/quant_zh.pdf' | relative_url }})
-
 ## Education
 
 - **Carnegie Mellon University** - MS in Artificial Intelligence Systems Management, Aug. 2026 - Dec. 2027 (expected)
 - **Lanzhou University** - BS in Data Science & Big Data Technology, Sep. 2021 - Jul. 2025; GPA: 87.34/100
 - **The University of Texas at Austin** - International Academy Exchange Program in Software Engineering, Jan. 2024 - Feb. 2024; GPA: 4.0/4.0
+
+## Research Appointment
+
+- **Research Assistant, Shenzhen University** (Oct. 2025 - May 2026)
 
 ## Publications
 
@@ -58,6 +60,10 @@ My experience spans model design, dataset preparation, training, and experimenta
 - **Tax and Business Consulting Intern, Zhongzheng Tiantong CPA Tax Department** (Jul. 2023 - Sep. 2023): processed data with Python and SQL, prepared Tableau reports, and analyzed client financials, risks, and market trends.
 - **Product Data Engineer Intern, Feitian Technologies** (Jul. 2022 - Jan. 2023): supported product databases and intelligent password-system testing with Python, SQL, and C/C++; completed 30+ performance tests and prepared 10+ blockchain report summaries.
 
+## Academic Service
+
+- **Reviewer:** ICASSP 2027, ACM MM 2027, IJCNN 2026.
+
 ## Skills and Honors
 
 - **Technical skills:** Python, SQL, C/C++, Java, PyTorch, TensorFlow; LLM fine-tuning and evaluation, federated learning, computer vision, and time-series modeling; MySQL, Hadoop, Spark, HDFS, OpenStack, Docker, Kubernetes, and Linux; benchmarking, ablations, cross-domain evaluation, Matplotlib, Seaborn, Tableau, and PowerPoint.
@@ -68,4 +74,4 @@ My experience spans model design, dataset preparation, training, and experimenta
 
 - **Basketball:** currently taking a break from playing while recovering from knee surgery.
 - **Billiards:** enjoying both the hot streaks and the cold spells.
-- **Travel:** I have visited nearly every province in China and taken two half-month trips across Europe. My goal is to explore the world.
+- **Fun fact:** I have visited nearly every province in China and explored Europe on two trips of two weeks each. My travel wish list keeps growing.
