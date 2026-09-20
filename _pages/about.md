@@ -37,10 +37,6 @@ My experience spans model design, dataset preparation, training, and experimenta
 - **Lanzhou University** - BS in Data Science & Big Data Technology, Sep. 2021 - Jul. 2025; GPA: 87.34/100
 - **The University of Texas at Austin** - International Academy Exchange Program in Software Engineering, Jan. 2024 - Feb. 2024; GPA: 4.0/4.0
 
-## Research Appointment
-
-- **Research Assistant, Shenzhen University** (Oct. 2025 - May 2026): nuclear sensor online monitoring and energy-system AI, including **Mamba-In** (under review at EAAI) and the critical-heat-flux review in preparation for _Energy_.
-
 ## Publications
 
 - **[TRACE: Training-time Report-guided and Clinically Ordered Concept Editing](https://arxiv.org/abs/2608.20809)\***. ACM International Conference on Multimedia (ACM MM) 2026, accepted. [DOI: 10.1145/3767308.3836433](https://doi.org/10.1145/3767308.3836433).
@@ -59,6 +55,10 @@ My experience spans model design, dataset preparation, training, and experimenta
 - **Quantitative Research PTA, Guotai Junan Futures** (Mar. 2024 - Apr. 2024): developed a Python futures trading system, debugged C++ and Python CTP-API implementations with Simnow, and implemented TWAP and VWAP algorithms with TA-Lib.
 - **Tax and Business Consulting Intern, Zhongzheng Tiantong CPA Tax Department** (Jul. 2023 - Sep. 2023): processed data with Python and SQL, prepared Tableau reports, and analyzed client financials, risks, and market trends.
 - **Product Data Engineer Intern, Feitian Technologies** (Jul. 2022 - Jan. 2023): supported product databases and intelligent password-system testing with Python, SQL, and C/C++; completed 30+ performance tests and prepared 10+ blockchain report summaries.
+
+## Research Appointment
+
+- **Research Assistant, Shenzhen University** (Oct. 2025 - May 2026): nuclear sensor online monitoring and energy-system AI, including **Mamba-In** (under review at EAAI) and the critical-heat-flux review in preparation for _Energy_.
 
 ## Academic Service
 

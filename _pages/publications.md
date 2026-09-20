@@ -53,9 +53,8 @@ Co-authored an AAAI 2027 submission on gradient routing and optimizer-dependent 
 
 #### Time-Series Forecasting and Energy Systems
 
-- **Research Assistant, Shenzhen University** (Oct. 2025 - May 2026)
-  - **Mamba-In:** under review at EAAI. Hybrid Mamba and Informer-style ProbSparse attention for long-horizon nuclear sensor forecasting, residual-based fault detection, and signal reconstruction.
-  - **Artificial Intelligence for Critical Heat Flux in Energy Systems: From Predictive Accuracy to Engineering Use** — review in preparation for submission to _Energy_.
+- **Artificial Intelligence for Critical Heat Flux in Energy Systems: From Predictive Accuracy to Engineering Use** (Shenzhen University RA, 2025.10–2026.5) — review in preparation for submission to _Energy_.
+- **Mamba-In:** under review at EAAI. Hybrid Mamba and Informer-style ProbSparse attention for long-horizon nuclear sensor forecasting, residual-based fault detection, and signal reconstruction (Shenzhen University RA, 2025.10–2026.5).
 - **ReLaMix** — arXiv preprint (2026). Residual bottleneck mixing for delayed financial observations, evaluated on second-resolution PAXGUSDT and BTCUSDT using non-overlapping temporal segments and delay-robustness benchmarks.
 - **Wind energy prediction** — _Energies_ (2025). Modular echo state networks, clustering, and training on turbine data; reported best R² of 0.9905.
 
