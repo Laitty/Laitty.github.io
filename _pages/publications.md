@@ -31,7 +31,7 @@ Led the framework of a survey on data heterogeneity published in _Expert Systems
 
 #### Unlearning, Context Effects, and Model Evaluation
 
-**[Reasoning after Unlearning](https://openreview.net/forum?id=KL95EGhmuB)** — first author; submitted to ICLR 2027. This study evaluates original, unlearned, and target-excluded retrained Llama checkpoints on TOFU, separating context effects, answer exposure, and use of supplied answer information through matched controls, answer masking, and identity substitution. Related co-authored ICLR 2027 submissions examine auxiliary supervision in multimodal unlearning and misleading comparison feedback in model selection.
+**Reasoning after Unlearning** — first author; submitted to ICLR 2027. This study evaluates original, unlearned, and target-excluded retrained Llama checkpoints on TOFU, separating context effects, answer exposure, and use of supplied answer information through matched controls, answer masking, and identity substitution. Related co-authored ICLR 2027 submissions examine auxiliary supervision in multimodal unlearning and misleading comparison feedback in model selection.
 
 #### Human–AI Interaction and LLM Judges
 
@@ -45,7 +45,7 @@ Co-authored an AAAI 2027 submission on gradient routing and optimizer-dependent 
 
 #### Healthcare and Clinical Language
 
-- **[TRACE](https://arxiv.org/abs/2608.20809)** — accepted at ACM MM 2026. Report supervision during training supports concept-based breast ultrasound diagnosis with image-only inference. The work connects BI-RADS concepts, structured clinical descriptions, and concept-edit distillation. [Code](https://github.com/wentao-2/TRACE).
+- **TRACE** — accepted at ACM MM 2026. Report supervision during training supports concept-based breast ultrasound diagnosis with image-only inference. The work connects BI-RADS concepts, structured clinical descriptions, and concept-edit distillation.
 - **Spike and EEG detection:** RT-DETR and spatiotemporal graph methods for juvenile and adult rat electrophysiology data, in collaboration with Peking University; algorithm development and signal analysis for symptom studies.
 - **LLM-based TCM symptom-text augmentation:** independent undergraduate honors thesis combining dataset curation, prompting, and fine-tuning. Thesis experiments reduced text length by up to 44.1%, increased terminology tokens 4.4-fold, and achieved diagnostic accuracy of up to 81.3%.
 - **Dental orthodontic case retrieval:** an ongoing intelligent case-retrieval project.
@@ -57,7 +57,7 @@ Co-authored an AAAI 2027 submission on gradient routing and optimizer-dependent 
 
 #### Time-Series Forecasting and Energy Systems
 
-- **[ReLaMix](https://arxiv.org/abs/2603.20869)** — arXiv preprint (2026). Residual bottleneck mixing for delayed financial observations, evaluated on second-resolution PAXGUSDT and BTCUSDT using non-overlapping temporal segments and delay-robustness benchmarks.
+- **ReLaMix** — arXiv preprint (2026). Residual bottleneck mixing for delayed financial observations, evaluated on second-resolution PAXGUSDT and BTCUSDT using non-overlapping temporal segments and delay-robustness benchmarks.
 - **Artificial Intelligence for Critical Heat Flux in Energy Systems: From Predictive Accuracy to Engineering Use** — review in preparation for submission to _Energy_. Synthesizes numerical prediction and sensing studies, audits a public CHF benchmark, and connects validation under distribution shifts, uncertainty, and deployment boundaries to engineering use.
 - **Wind energy prediction** — _Energies_ (2025). Modular echo state networks, clustering, and training on turbine data; reported best R² of 0.9905.
 
