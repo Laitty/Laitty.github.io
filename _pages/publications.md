@@ -17,14 +17,7 @@ nav_order: 2
 
 ## Research Experience
 
-**Research Assistant, Shenzhen University** · Oct. 2025 - May 2026
-
-Nuclear sensor monitoring and energy-system AI with Shenzhen University.
-
-- **Artificial Intelligence for Critical Heat Flux in Energy Systems: From Predictive Accuracy to Engineering Use** — review in preparation for submission to _Energy_.
-- **Mamba-In: An Informer-based Industrial Long-Term Time-Series Prediction for High-Reliability Sensor Online Monitoring in Nuclear Applications** — under review at EAAI. Periodic manual calibration remains the most widely used sensor maintenance approach in nuclear applications, but it is labor-intensive, depends on refueling outages, and cannot detect sensor degradation between calibration intervals. Although online monitoring and signal reconstruction have been studied for nuclear power plants, many approaches focus on calibration verification, short-term reconstruction, or accident-parameter prediction, rather than on long-horizon multivariate virtual sensing for condition-based maintenance. This paper proposes a hybrid analytical-redundancy model for online monitoring that performs both nuclear sensor forecasting and fault detection. The model formulates virtual sensing as long-horizon multivariate forecasting, where predicted trajectories are used to generate residuals for fault detection and to provide reconstructed signals when physical sensors become unreliable. Architecturally, the proposed model combines a Mamba-based selective state-space branch for local temporal evolution with an Informer-style ProbSparse attention branch for long-range cross-sensor dependency modeling. An adaptive gating module dynamically fuses the two branches, enabling the model to balance degradation-sensitive local patterns and system-level coupling under different input conditions. Experiments on a benchmark nuclear reactor dataset collected from a primary loop mock-up facility cover four multi-step forecasting settings and three simulated sensor fault types, with fault-injection analysis performed on representative mass-flow-meter and thermocouple channels. Compared with existing methods, the proposed model achieves the best overall forecasting performance. Ablation and fault-injection results confirm the complementary benefits of the Mamba and attention branches and show that the model can support residual-based detection of representative sensor faults, including constant bias, linear drift, and additive noise. These results indicate that the proposed model is a promising virtual-sensor framework for online sensor monitoring and can support the transition from periodic manual calibration to condition-based maintenance in nuclear applications.
-
-My other research connects reliable learning and model evaluation with human–AI interaction and applied machine learning.
+My research connects reliable learning and model evaluation with human–AI interaction and applied machine learning.
 
 ### Learning Systems and Human–AI Interaction
 
@@ -60,6 +53,9 @@ Co-authored an AAAI 2027 submission on gradient routing and optimizer-dependent 
 
 #### Time-Series Forecasting and Energy Systems
 
+- **Research Assistant, Shenzhen University** (Oct. 2025 - May 2026)
+  - **Mamba-In:** under review at EAAI. Hybrid Mamba and Informer-style ProbSparse attention for long-horizon nuclear sensor forecasting, residual-based fault detection, and signal reconstruction.
+  - **Artificial Intelligence for Critical Heat Flux in Energy Systems: From Predictive Accuracy to Engineering Use** — review in preparation for submission to _Energy_.
 - **ReLaMix** — arXiv preprint (2026). Residual bottleneck mixing for delayed financial observations, evaluated on second-resolution PAXGUSDT and BTCUSDT using non-overlapping temporal segments and delay-robustness benchmarks.
 - **Wind energy prediction** — _Energies_ (2025). Modular echo state networks, clustering, and training on turbine data; reported best R² of 0.9905.
 
