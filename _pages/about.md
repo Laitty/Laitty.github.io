@@ -66,7 +66,7 @@ My experience spans model design, dataset preparation, training, and experimenta
 
 ## Skills and Honors
 
-- **Technical skills:** Python, SQL, C/C++, Java, PyTorch, TensorFlow; LLM fine-tuning and evaluation, federated learning, computer vision, and time-series modeling; MySQL, Hadoop, Spark, HDFS, OpenStack, Docker, Kubernetes, and Linux; benchmarking, ablations, cross-domain evaluation, Matplotlib, Seaborn, Tableau, and PowerPoint.
+- **Technical skills:** Python, PyTorch, TensorFlow, Java, SQL, C/C++, HTML, CSS, JavaScript, Tableau, ECharts, Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, and Spark.
 - **Languages:** English and Mandarin.
 - **Honors:** Three-time University Basketball Championship (2022-23, 2023-24, 2024-25).
 

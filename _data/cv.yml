@@ -264,14 +264,11 @@ cv:
           - "Conducted over 30 performance tests and delivered 10+ blockchain report summaries."
 
     Skills:
-      - name: Programming and AI
-        keywords: Python, PyTorch, TensorFlow, Java, SQL, C/C++, LLM fine-tuning and evaluation, federated learning, computer vision, time-series modeling
+      - name: Programming and Analysis
+        keywords: Python, PyTorch, TensorFlow, Matplotlib, Seaborn, Java, SQL, C/C++, HTML, CSS, JavaScript, Tableau, ECharts, Linux
 
-      - name: Data and Systems
-        keywords: MySQL, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, Spark, Linux
-
-      - name: Research and Presentation
-        keywords: Benchmark design, ablation studies, cross-domain evaluation, Matplotlib, Seaborn, Tableau, PowerPoint
+      - name: Cloud and Big Data Frameworks
+        keywords: Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, Spark
 
     Languages:
       - name: English
