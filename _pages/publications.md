@@ -15,8 +15,6 @@ nav_order: 2
 
 </div>
 
-\* Equal contribution: W. Yue and T. Lai on TRACE; H. Zhou and T. Lai on FREDNet; T. Lai and W. Yue on ReLaMix. Author order follows the published and preprint records.
-
 ## Research Experience
 
 **Research Assistant, Shenzhen University** · Oct. 2025 - May 2026

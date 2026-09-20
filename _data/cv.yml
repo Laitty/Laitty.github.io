@@ -36,8 +36,8 @@ cv:
     Publications:
       - title: "TRACE: Training-time Report-guided and Clinically Ordered Concept Editing"
         authors:
-          - "Yue, W."
-          - "Lai, T."
+          - "Yue*, W."
+          - "Lai*, T."
           - "Luo, J."
           - "Mao, Q."
           - "Wang, Z."
@@ -46,19 +46,19 @@ cv:
         date: "2026"
         doi: "10.1145/3767308.3836433"
         url: https://arxiv.org/abs/2608.20809
-        summary: "ACM MM 2026, accepted; to appear. * W. Yue and T. Lai contributed equally."
+        summary: "ACM MM 2026, accepted; to appear."
 
       - title: "FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection"
         authors:
-          - "Zhou, H."
-          - "Lai, T."
+          - "Zhou*, H."
+          - "Lai*, T."
           - "Hao, C."
           - "Yue, W."
           - "Yue, S."
           - "Zhang, H."
         date: "2026"
         doi: "10.1109/ICASSP55912.2026.11462834"
-        summary: "ICASSP 2026. * H. Zhou and T. Lai contributed equally."
+        summary: "ICASSP 2026."
 
       - title: "A Review of Federated Learning under Data Heterogeneity"
         authors:
@@ -73,8 +73,8 @@ cv:
 
       - title: "ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting"
         authors:
-          - "Lai, T."
-          - "Yue, W."
+          - "Lai*, T."
+          - "Yue*, W."
           - "Zhou, J."
           - "Hao, C."
           - "Chang, L."
@@ -84,7 +84,7 @@ cv:
         date: "2026"
         url: https://arxiv.org/abs/2603.20869
         doi: "10.48550/arXiv.2603.20869"
-        summary: "arXiv preprint, 2026. * T. Lai and W. Yue contributed equally."
+        summary: "arXiv preprint, 2026."
 
       - title: "Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter"
         authors:
@@ -275,6 +275,11 @@ cv:
       - name: Mandarin
 
     Honors:
+      - title: Lanzhou University Scholarships
+        summary: "Academic, internship, and international exchange scholarships"
+      - title: Undergraduate Honors Thesis
+        date: "2025"
+        summary: "LLM-based TCM symptom-text augmentation"
       - title: Three-time University Basketball Championship
         date: "2022-2025"
         summary: "2022-23, 2023-24, 2024-25"

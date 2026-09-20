@@ -50,7 +50,7 @@ My experience spans model design, dataset preparation, training, and experimenta
 - **[Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter](https://doi.org/10.1063/5.0281453)**. _AIP Advances_, 2025. [DOI: 10.1063/5.0281453](https://doi.org/10.1063/5.0281453).
 - **[A Modularity-Enhanced Echo State Network for Nonlinear Wind Energy Predicting](https://doi.org/10.3390/en18071858)**. _Energies_, 2025. [DOI: 10.3390/en18071858](https://doi.org/10.3390/en18071858).
 
-\* Co-first author. The full author lists and research summaries are on the [Research & Projects]({{ '/publications/' | relative_url }}) page.
+\* (Co-)First author. The full author lists and research summaries are on the [Research & Projects]({{ '/publications/' | relative_url }}) page.
 
 ## Professional Experience
 
@@ -68,7 +68,7 @@ My experience spans model design, dataset preparation, training, and experimenta
 
 - **Technical skills:** Python, PyTorch, TensorFlow, Java, SQL, C/C++, HTML, CSS, JavaScript, Tableau, ECharts, Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, and Spark.
 - **Languages:** English and Mandarin.
-- **Honors:** Three-time University Basketball Championship (2022-23, 2023-24, 2024-25).
+- **Honors:** Lanzhou University academic, internship, and international exchange scholarships; undergraduate honors thesis (2025); three-time University Basketball Championship (2022-23, 2023-24, 2024-25).
 
 ## Interests
 
