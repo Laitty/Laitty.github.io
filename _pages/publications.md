@@ -15,7 +15,7 @@ nav_order: 2
 
 </div>
 
-## Research & Projects Experience
+## Research & Project Experience
 
 My research connects reliable learning and model evaluation with human–AI interaction and applied machine learning.
 
