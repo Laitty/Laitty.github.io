@@ -49,13 +49,13 @@
       .polygonsData(regions.features)
       .polygonGeoJsonGeometry((d) => d.geometry)
       .polygonCapColor((d) =>
-        d.properties.visited ? "rgba(0,145,255,0.52)" : "rgba(255,255,255,0.06)"
+        d.properties.visited ? "rgba(232, 168, 56, 0.62)" : "rgba(255,255,255,0.06)"
       )
       .polygonSideColor((d) =>
-        d.properties.visited ? "rgba(0,145,255,0.28)" : "rgba(255,255,255,0.05)"
+        d.properties.visited ? "rgba(232, 168, 56, 0.28)" : "rgba(255,255,255,0.05)"
       )
       .polygonStrokeColor((d) =>
-        d.properties.visited ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.22)"
+        d.properties.visited ? "rgba(255, 236, 190, 0.95)" : "rgba(255,255,255,0.22)"
       )
       .polygonAltitude((d) => (d.properties.visited ? 0.012 : 0.003))
       .polygonLabel((d) => {
@@ -70,7 +70,7 @@
       .arcColor((d) =>
         d.kind === "pulse"
           ? "rgba(255, 255, 255, 0.42)"
-          : ["#7ec8ff", "#0055d4"]
+          : ["#0071e3", "#e8a838"]
       )
       .arcStroke((d) => (d.kind === "pulse" ? 0.28 : 0.46))
       .arcAltitude((d) => d.alt || 0.12)
@@ -88,7 +88,7 @@
       .pointLng("lng")
       .pointAltitude(0.012)
       .pointRadius(0.22)
-      .pointColor(() => "#0071e3")
+      .pointColor(() => "#e8a838")
       .pointLabel((d) => `<div class="travel-tip"><div class="travel-tip-name">${d.city}</div></div>`)
       .pointOfView({ lat: 32, lng: 88, altitude: 2.15 }, 0);
 

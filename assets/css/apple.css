@@ -408,15 +408,15 @@ footer {
 }
 
 .travel-chip-visited::before {
-  background: #0a84ff;
-  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.25);
+  background: #e8a838;
+  box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.28);
 }
 
 .travel-chip-flight::before {
   width: 1.35rem;
   height: 3px;
   border-radius: 99px;
-  background: linear-gradient(90deg, #7ec8ff 0%, #0055d4 78%, rgba(255, 255, 255, 0.7) 86%, #0055d4 100%);
+  background: linear-gradient(90deg, #0071e3 0%, #e8a838 100%);
 }
 
 .travel-globe-hint {
