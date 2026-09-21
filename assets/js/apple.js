@@ -25,64 +25,18 @@ function initLiquidName() {
   wrap.appendChild(title);
 
   const letters = splitName(title);
-  let inkFocus = "";
   let pointerOn = false;
   let px = 0;
   let py = 0;
-
-  const swellLetters = () => {
-    const radius = phone ? 72 : 108;
-    let best = "";
-    let bestT = 0;
-    letters.forEach((span) => {
-      if (!pointerOn) {
-        span.style.transform = "";
-        span.classList.remove("is-hot");
-        return;
-      }
-      const b = span.getBoundingClientRect();
-      const dx = px - (b.left + b.width / 2);
-      const dy = py - (b.top + b.height / 2);
-      const t = Math.max(0, 1 - Math.hypot(dx, dy) / radius);
-      const ease = t * t * (3 - 2 * t);
-      const sc = 1 + 0.46 * ease;
-      const lift = -18 * ease;
-      const rot = (dx / 48) * ease * -7;
-      span.style.transform = `translate3d(0, ${lift}px, 0) scale(${sc}) rotate(${rot}deg)`;
-      span.classList.toggle("is-hot", ease > 0.62);
-      if (ease > bestT) {
-        bestT = ease;
-        best = span.textContent;
-      }
-    });
-    inkFocus = bestT > 0.28 ? best : "";
-  };
-
-  title.addEventListener("pointerenter", (event) => {
-    pointerOn = true;
-    px = event.clientX;
-    py = event.clientY;
-    swellLetters();
-  });
-  title.addEventListener("pointermove", (event) => {
-    pointerOn = true;
-    px = event.clientX;
-    py = event.clientY;
-    swellLetters();
-  });
-  title.addEventListener("pointerleave", () => {
-    pointerOn = false;
-    inkFocus = "";
-    swellLetters();
-  });
+  let mx = 0;
+  let my = 0;
+  let emitCool = 0;
 
   const canvas = document.createElement("canvas");
   canvas.className = "apple-liquid-canvas";
   canvas.setAttribute("aria-hidden", "true");
   hero.prepend(canvas);
   const ctx = canvas.getContext("2d", { alpha: true });
-  const stamp = document.createElement("canvas");
-  const sctx = stamp.getContext("2d", { alpha: true });
 
   const lai = ["L", "a", "i"];
   const given = ["T", "i", "a", "n", "y", "o", "u"];
@@ -90,20 +44,8 @@ function initLiquidName() {
 
   const layout = phone
     ? [
-        ...lai.map((ch, i) => ({
-          ch,
-          nx: 0.28 + i * 0.22,
-          ny: 0.36,
-          s: 0.24,
-          tier: "core",
-        })),
-        ...given.map((ch, i) => ({
-          ch,
-          nx: 0.14 + i * 0.12,
-          ny: 0.58,
-          s: 0.13,
-          tier: "row",
-        })),
+        ...lai.map((ch, i) => ({ ch, nx: 0.28 + i * 0.22, ny: 0.36, s: 0.24, tier: "core" })),
+        ...given.map((ch, i) => ({ ch, nx: 0.14 + i * 0.12, ny: 0.58, s: 0.13, tier: "row" })),
         { ch: edge[0], nx: 0.08, ny: 0.18, s: 0.1, tier: "edge" },
         { ch: edge[1], nx: 0.9, ny: 0.22, s: 0.1, tier: "edge" },
         { ch: edge[2], nx: 0.1, ny: 0.82, s: 0.09, tier: "edge" },
@@ -112,20 +54,8 @@ function initLiquidName() {
         { ch: edge[5], nx: 0.5, ny: 0.86, s: 0.08, tier: "edge" },
       ]
     : [
-        ...lai.map((ch, i) => ({
-          ch,
-          nx: 0.28 + i * 0.22,
-          ny: 0.34,
-          s: 0.3,
-          tier: "core",
-        })),
-        ...given.map((ch, i) => ({
-          ch,
-          nx: 0.12 + i * 0.126,
-          ny: 0.58,
-          s: 0.16,
-          tier: "row",
-        })),
+        ...lai.map((ch, i) => ({ ch, nx: 0.28 + i * 0.22, ny: 0.34, s: 0.3, tier: "core" })),
+        ...given.map((ch, i) => ({ ch, nx: 0.12 + i * 0.126, ny: 0.58, s: 0.16, tier: "row" })),
         { ch: edge[0], nx: 0.07, ny: 0.16, s: 0.11, tier: "edge" },
         { ch: edge[1], nx: 0.93, ny: 0.18, s: 0.11, tier: "edge" },
         { ch: edge[2], nx: 0.08, ny: 0.84, s: 0.1, tier: "edge" },
@@ -140,21 +70,25 @@ function initLiquidName() {
     ...g,
     rot: (i % 2 === 0 ? -1 : 1) * (0.04 + (i % 5) * 0.015),
     phase: i * 0.72,
-    stain: -0.15 * (i % 6),
-    speed: 0.28 + (i % 5) * 0.04,
-    lastHot: false,
-    ox: (i % 3) * 0.14 - 0.14,
-    oy: ((i + 1) % 3) * 0.12 - 0.12,
-    tips: Array.from({ length: 5 }, () => ({
-      ang: Math.random() * Math.PI * 2,
-      len: 0.18 + Math.random() * 0.38,
-      thick: 0.04 + Math.random() * 0.08,
-      dry: Math.random(),
-    })),
   }));
 
-  const mist = [];
-  const mistCap = phone ? 48 : 80;
+  const palette = [
+    [22, 24, 28],
+    [48, 56, 68],
+    [0, 113, 227],
+    [58, 74, 98],
+    [92, 48, 44],
+  ];
+  const paletteDark = [
+    [236, 238, 242],
+    [198, 206, 218],
+    [100, 180, 255],
+    [180, 190, 205],
+    [220, 180, 175],
+  ];
+
+  const field = [];
+  const cap = phone ? 70 : 120;
   let hw = 1;
   let hh = 1;
   let dpr = 1;
@@ -176,123 +110,84 @@ function initLiquidName() {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   };
 
-  const inkRgb = () => (dark() ? [236, 238, 242] : [22, 24, 28]);
+  const localPoint = (event) => {
+    const box = hero.getBoundingClientRect();
+    return { x: event.clientX - box.left, y: event.clientY - box.top };
+  };
 
-  const emitMist = (x, y, size, burst, hot) => {
-    const rgb = inkRgb();
+  const emitAt = (x, y, burst) => {
+    const colors = dark() ? paletteDark : palette;
     for (let i = 0; i < burst; i += 1) {
       const ang = Math.random() * Math.PI * 2;
-      const dist = size * (0.12 + Math.random() * 0.55);
-      const speed = 0.15 + Math.random() * (hot ? 0.9 : 0.45);
-      mist.push({
-        x: x + Math.cos(ang) * dist * 0.35,
-        y: y + Math.sin(ang) * dist * 0.35,
+      const speed = 0.9 + Math.random() * 2.2;
+      field.push({
+        x: x + (Math.random() - 0.5) * 6,
+        y: y + (Math.random() - 0.5) * 6,
         vx: Math.cos(ang) * speed,
-        vy: Math.sin(ang) * speed - 0.08,
-        r: (hot ? 5 : 3) + Math.random() * (hot ? 14 : 9),
-        squash: 0.55 + Math.random() * 0.45,
-        rot: Math.random() * Math.PI,
-        life: 1.2 + Math.random() * 1.8,
+        vy: Math.sin(ang) * speed - 0.35,
+        r: 1.8 + Math.random() * 2.6,
+        life: 3.8 + Math.random() * 3.5,
         age: 0,
-        bloom: 0.08 + Math.random() * 0.16,
-        rgb,
+        hue: Math.floor(Math.random() * colors.length),
       });
     }
-    if (mist.length > mistCap) mist.splice(0, mist.length - mistCap);
+    if (field.length > cap) field.splice(0, field.length - cap);
   };
 
-  const drawStain = (g, x, y, size, progress, rgb, alpha) => {
-    const dim = Math.max(56, Math.ceil(size * 2.55));
-    stamp.width = dim * dpr;
-    stamp.height = dim * dpr;
-    sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    sctx.clearRect(0, 0, dim, dim);
-    const cx = dim / 2;
-    const cy = dim / 2;
-    const wobble = Math.sin(time * 0.2 + g.phase) * 0.02;
-    sctx.save();
-    sctx.translate(cx, cy);
-    sctx.rotate(g.rot + wobble);
-    sctx.textAlign = "center";
-    sctx.textBaseline = "middle";
-    sctx.font = `italic 700 ${size}px "Snell Roundhand", "Apple Chancery", "Kaiti SC", "STKaiti", "KaiTi", "Palatino Linotype", serif`;
-
-    // Soft ink pool under the glyph
-    sctx.filter = "blur(8px)";
-    sctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha * 0.38})`;
-    sctx.fillText(g.ch, size * 0.03, size * 0.04);
-
-    // Main body + messy layered strokes
-    sctx.filter = "blur(0.55px)";
-    sctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
-    sctx.fillText(g.ch, 0, 0);
-    sctx.globalAlpha = 0.42;
-    sctx.fillText(g.ch, size * 0.018, -size * 0.012);
-    sctx.globalAlpha = 0.28;
-    sctx.fillText(g.ch, -size * 0.016, size * 0.02);
-    sctx.globalAlpha = 0.18;
-    sctx.filter = "blur(1.4px)";
-    sctx.fillText(g.ch, size * 0.028, size * 0.018);
-
-    // Dry brush / 飞白 breaks inside the letter
-    sctx.globalCompositeOperation = "destination-out";
-    sctx.filter = "none";
-    for (let i = 0; i < 7; i += 1) {
-      const ang = g.phase + i * 0.9;
-      const rx = Math.cos(ang) * size * (0.08 + (i % 3) * 0.05);
-      const ry = Math.sin(ang * 1.3) * size * (0.1 + (i % 2) * 0.06);
-      sctx.beginPath();
-      sctx.ellipse(rx, ry, size * (0.018 + (i % 3) * 0.012), size * (0.05 + (i % 2) * 0.03), ang, 0, Math.PI * 2);
-      sctx.fillStyle = `rgba(0,0,0,${0.35 + (i % 3) * 0.12})`;
-      sctx.fill();
-    }
-
-    // Messy brush tips / 笔锋 around the glyph
-    sctx.globalCompositeOperation = "source-over";
-    g.tips.forEach((tip, ti) => {
-      const tx = Math.cos(tip.ang + wobble) * size * 0.42;
-      const ty = Math.sin(tip.ang + wobble * 1.2) * size * 0.38;
-      const len = size * tip.len;
-      const thick = size * tip.thick;
-      sctx.save();
-      sctx.translate(tx, ty);
-      sctx.rotate(tip.ang + 0.35);
-      const grad = sctx.createLinearGradient(0, 0, len, 0);
-      grad.addColorStop(0, `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha * 0.55})`);
-      grad.addColorStop(0.55, `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha * 0.22})`);
-      grad.addColorStop(1, `rgba(${rgb[0]},${rgb[1]},${rgb[2]},0)`);
-      sctx.fillStyle = grad;
-      sctx.beginPath();
-      sctx.moveTo(0, -thick * 0.55);
-      sctx.quadraticCurveTo(len * 0.35, -thick * (0.2 + tip.dry * 0.35), len, 0);
-      sctx.quadraticCurveTo(len * 0.35, thick * (0.15 + tip.dry * 0.3), 0, thick * 0.35);
-      sctx.closePath();
-      sctx.fill();
-      if (tip.dry > 0.45) {
-        sctx.globalAlpha = 0.35;
-        sctx.beginPath();
-        sctx.ellipse(len * 0.55, thick * 0.1, thick * 0.35, thick * 0.12, tip.ang, 0, Math.PI * 2);
-        sctx.fill();
+  const swellLetters = () => {
+    const radius = phone ? 72 : 108;
+    letters.forEach((span) => {
+      if (!pointerOn) {
+        span.style.transform = "";
+        span.classList.remove("is-hot");
+        return;
       }
-      sctx.restore();
-      if (ti === 0) {
-        sctx.globalAlpha = 0.25;
-        sctx.filter = "blur(2px)";
-        sctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
-        sctx.beginPath();
-        sctx.ellipse(tx * 1.05, ty * 1.05, thick * 1.8, thick * 0.7, tip.ang, 0, Math.PI * 2);
-        sctx.fill();
-        sctx.filter = "none";
-        sctx.globalAlpha = 1;
-      }
+      const b = span.getBoundingClientRect();
+      const dx = px - (b.left + b.width / 2);
+      const dy = py - (b.top + b.height / 2);
+      const t = Math.max(0, 1 - Math.hypot(dx, dy) / radius);
+      const ease = t * t * (3 - 2 * t);
+      span.style.transform = `translate3d(0, ${-18 * ease}px, 0) scale(${1 + 0.46 * ease}) rotate(${(dx / 48) * ease * -7}deg)`;
+      span.classList.toggle("is-hot", ease > 0.62);
     });
-    sctx.restore();
-
-    ctx.drawImage(stamp, x - dim / 2, y - dim / 2, dim, dim);
   };
+
+  title.addEventListener("pointerenter", (event) => {
+    pointerOn = true;
+    px = event.clientX;
+    py = event.clientY;
+    const p = localPoint(event);
+    mx = p.x;
+    my = p.y;
+    swellLetters();
+    emitAt(mx, my, phone ? 10 : 16);
+  });
+  title.addEventListener("pointermove", (event) => {
+    pointerOn = true;
+    px = event.clientX;
+    py = event.clientY;
+    const p = localPoint(event);
+    mx = p.x;
+    my = p.y;
+    swellLetters();
+  });
+  title.addEventListener("pointerleave", () => {
+    pointerOn = false;
+    swellLetters();
+  });
+
+  const inkRgb = () => (dark() ? [236, 238, 242] : [22, 24, 28]);
 
   const tick = () => {
     time += 0.016;
+    if (pointerOn) {
+      emitCool += 0.016;
+      if (emitCool > (phone ? 0.04 : 0.022)) {
+        emitAt(mx, my, phone ? 2 : 3);
+        emitCool = 0;
+      }
+    }
+
     ctx.clearRect(0, 0, hw, hh);
     const rgb = inkRgb();
     const min = Math.min(hw, hh);
@@ -302,58 +197,60 @@ function initLiquidName() {
       const pad = size * 0.72;
       const x = Math.min(hw - pad, Math.max(pad, g.nx * hw + Math.sin(time * 0.28 + g.phase) * 5));
       const y = Math.min(hh - pad, Math.max(pad, g.ny * hh + Math.cos(time * 0.22 + g.phase) * 4));
-      const hot = Boolean(inkFocus && g.ch.toLowerCase() === inkFocus.toLowerCase());
-      if (hot && !g.lastHot) {
-        g.speed = phone ? 1.2 : 1.5;
-        emitMist(x + g.ox * size, y + g.oy * size, size, phone ? 5 : 8, true);
-      }
-      g.lastHot = hot;
-      g.speed += ((hot ? 1.4 : 0.38) - g.speed) * 0.08;
-      if (g.stain < 1) {
-        g.stain = Math.min(1, g.stain + 0.016 * g.speed);
-        if (g.stain > 0) {
-          const edge = size * (0.1 + 1.15 * g.stain);
-          if (Math.random() < (hot ? 0.42 : 0.14)) {
-            const ang = Math.random() * Math.PI * 2;
-            emitMist(
-              x + g.ox * size + Math.cos(ang) * edge * 0.55,
-              y + g.oy * size + Math.sin(ang) * edge * 0.55,
-              size,
-              hot ? (phone ? 2 : 3) : 1,
-              hot
-            );
-          }
-        }
-      }
+      const base = g.tier === "core" ? 0.28 : g.tier === "row" ? 0.2 : 0.11;
+      const alpha = base * (0.92 + 0.08 * Math.sin(time * 0.45 + g.phase));
 
-      const base =
-        g.tier === "core" ? (hot ? 0.46 : 0.3) : g.tier === "row" ? (hot ? 0.34 : 0.22) : hot ? 0.2 : 0.12;
-      const alpha = base * (0.9 + 0.1 * Math.sin(time * 0.5 + g.phase));
-      drawStain(g, x, y, size, g.stain, rgb, alpha);
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(g.rot + Math.sin(time * 0.2 + g.phase) * 0.02);
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = `italic 600 ${size}px "Snell Roundhand", "Apple Chancery", "Kaiti SC", "KaiTi", "Palatino Linotype", serif`;
+      ctx.filter = "blur(5px)";
+      ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha * 0.35})`;
+      ctx.fillText(g.ch, size * 0.02, size * 0.025);
+      ctx.filter = "blur(0.4px)";
+      ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
+      ctx.fillText(g.ch, 0, 0);
+      ctx.restore();
     });
 
-    for (let i = mist.length - 1; i >= 0; i -= 1) {
-      const p = mist[i];
+    const colors = dark() ? paletteDark : palette;
+    for (let i = field.length - 1; i >= 0; i -= 1) {
+      const p = field[i];
       p.age += 0.016;
-      p.r += p.bloom;
+      p.vy += 0.016;
       p.x += p.vx;
       p.y += p.vy;
-      p.vx *= 0.986;
-      p.vy *= 0.992;
-      const fade =
-        p.age > p.life - 0.85 ? Math.max(0, (p.life - p.age) / 0.85) : Math.min(1, p.age / 0.12);
+      if (p.x < p.r) {
+        p.x = p.r;
+        p.vx = Math.abs(p.vx) * 0.86;
+      } else if (p.x > hw - p.r) {
+        p.x = hw - p.r;
+        p.vx = -Math.abs(p.vx) * 0.86;
+      }
+      if (p.y < p.r) {
+        p.y = p.r;
+        p.vy = Math.abs(p.vy) * 0.86;
+      } else if (p.y > hh - p.r) {
+        p.y = hh - p.r;
+        p.vy = -Math.abs(p.vy) * 0.86;
+      }
+      p.vx *= 0.995;
+      p.vy *= 0.995;
+      const fade = p.age > p.life - 1 ? Math.max(0, p.life - p.age) : 1;
       if (p.age > p.life || fade <= 0) {
-        mist.splice(i, 1);
+        field.splice(i, 1);
         continue;
       }
-      const [r, gv, b] = p.rgb;
-      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
-      grad.addColorStop(0, `rgba(${r},${gv},${b},${0.16 * fade})`);
-      grad.addColorStop(0.48, `rgba(${r},${gv},${b},${0.07 * fade})`);
-      grad.addColorStop(1, `rgba(${r},${gv},${b},0)`);
-      ctx.fillStyle = grad;
+      const [r, g, b] = colors[p.hue];
       ctx.beginPath();
-      ctx.ellipse(p.x, p.y, p.r, p.r * p.squash, p.rot, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${r},${g},${b},${0.22 + 0.7 * fade})`;
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(255,255,255,${0.4 * fade})`;
+      ctx.arc(p.x - p.r * 0.22, p.y - p.r * 0.25, Math.max(0.5, p.r * 0.3), 0, Math.PI * 2);
       ctx.fill();
     }
 
