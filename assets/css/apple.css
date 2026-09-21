@@ -117,23 +117,38 @@ h1, h2, h3, .post-title, .apple-hero-title {
   padding: 7.5rem 1rem 4.5rem;
   margin: -1.5rem -12px 3.5rem;
   border-radius: 28px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.46), rgba(255, 255, 255, 0.16));
+  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.58);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.78),
     inset 0 -24px 40px rgba(0, 113, 227, 0.05),
     0 22px 54px rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
+}
+
+.apple-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.1));
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
 }
 
 html[data-theme="dark"] .apple-hero,
 html[data-theme-setting="dark"] .apple-hero {
-  background: linear-gradient(180deg, rgba(40, 40, 44, 0.55), rgba(20, 20, 22, 0.32));
+  background: transparent;
   border-color: rgba(255, 255, 255, 0.14);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.16),
     0 22px 54px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .apple-hero::after,
+html[data-theme-setting="dark"] .apple-hero::after {
+  background: linear-gradient(180deg, rgba(40, 40, 44, 0.28), rgba(20, 20, 22, 0.12));
 }
 
 .apple-orbs {
@@ -175,23 +190,34 @@ html[data-theme="dark"] .apple-orbs {
 .apple-hero-title {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 0 auto 0.7rem;
   max-width: 18ch;
   font-size: clamp(2.8rem, 7vw, 5.4rem);
   line-height: 1.02;
-  overflow-wrap: anywhere;
   color: #1d1d1f;
-  background-image:
-    radial-gradient(circle at var(--lx, 50%) var(--ly, 40%), rgba(255, 255, 255, 0.55) 0 3%, rgba(255, 255, 255, 0) 16%),
-    linear-gradient(115deg, #111111 0%, #1d1d1f 22%, #0057c2 48%, #1d1d1f 74%, #111111 100%);
-  background-size: 120% 120%, 280% 100%;
-  background-position: var(--lx, 50%) var(--ly, 40%), var(--shift, 30%) 50%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: #1d1d1f;
   filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.12));
+  cursor: default;
+}
+
+.apple-ch {
+  display: inline-block;
+  transform-origin: 50% 85%;
   cursor: pointer;
-  animation: apple-liquid-shift 7.5s ease-in-out infinite;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apple-ch.is-space {
+  pointer-events: none;
+  width: 0.28em;
+}
+
+.apple-ch.is-hot {
+  transform: translateY(-14px) scale(1.34);
+  z-index: 3;
 }
 
 .apple-title-wrap {
@@ -200,33 +226,12 @@ html[data-theme="dark"] .apple-orbs {
   width: fit-content;
   max-width: 100%;
   margin: 0 auto;
-  transform-origin: center;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.apple-hero.is-bloom .apple-title-wrap {
-  transform: translateY(-12px) scale(1.07);
-}
-
-.apple-hero.is-bloom .apple-eyebrow {
-  transform: translateY(-14px) scale(0.92);
-}
-
-.apple-hero.is-bloom .apple-hero-sub {
-  transform: translateY(12px) scale(0.94);
 }
 
 html[data-theme="dark"] .apple-hero-title,
 html[data-theme-setting="dark"] .apple-hero-title {
   color: #f5f5f7;
-  background-image:
-    radial-gradient(circle at var(--lx, 50%) var(--ly, 40%), rgba(255, 255, 255, 0.5) 0 3%, rgba(255, 255, 255, 0) 16%),
-    linear-gradient(115deg, #f5f5f7 0%, #dfe3ea 24%, #4aa3ff 50%, #dfe3ea 76%, #f5f5f7 100%);
-}
-
-@keyframes apple-liquid-shift {
-  0%, 100% { background-size: 120% 120%, 280% 100%; }
-  50% { background-size: 120% 120%, 320% 120%; }
+  -webkit-text-fill-color: #f5f5f7;
 }
 
 .apple-liquid-canvas {
@@ -235,7 +240,7 @@ html[data-theme-setting="dark"] .apple-hero-title {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 
 .apple-eyebrow,
@@ -244,7 +249,6 @@ html[data-theme-setting="dark"] .apple-hero-title {
 .apple-hero-actions {
   position: relative;
   z-index: 2;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .apple-hero-sub {
