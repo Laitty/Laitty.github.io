@@ -51,32 +51,29 @@
         d.properties.visited ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.22)"
       )
       .polygonAltitude((d) => (d.properties.visited ? 0.012 : 0.003))
-      .polygonLabel(
-        (d) =>
-          `<div class="travel-tip"><strong>${d.properties.name}</strong>${
-            d.properties.parent ? `<span>${d.properties.parent}</span>` : ""
-          }</div>`
-      )
+      .polygonLabel((d) => {
+        const extra = d.properties.parent ? `<div class="travel-tip-sub">${d.properties.parent}</div>` : "";
+        return `<div class="travel-tip"><div class="travel-tip-name">${d.properties.name}</div>${extra}</div>`;
+      })
       .arcsData(flights.arcs)
       .arcStartLat("startLat")
       .arcStartLng("startLng")
       .arcEndLat("endLat")
       .arcEndLng("endLng")
-      .arcColor(() => ["rgba(255,255,255,0.35)", "#0071e3"])
-      .arcStroke(0.45)
+      .arcColor(() => ["#ff9f0a", "#0071e3"])
+      .arcStroke(0.55)
       .arcAltitude((d) => d.alt || 0.08)
-      .arcDashLength(0.32)
-      .arcDashGap(0.85)
-      .arcDashInitialGap((d) => d.dash || 0)
-      .arcDashAnimateTime(1500)
-      .arcLabel((d) => `<div class="travel-tip"><strong>${d.from} → ${d.to}</strong></div>`)
+      .arcDashLength(1)
+      .arcDashGap(0)
+      .arcDashAnimateTime(0)
+      .arcLabel((d) => `<div class="travel-tip"><div class="travel-tip-name">${d.from} → ${d.to}</div></div>`)
       .pointsData(flights.airports)
       .pointLat("lat")
       .pointLng("lng")
-      .pointAltitude(0.01)
-      .pointRadius(0.16)
-      .pointColor(() => "#ffffff")
-      .pointLabel((d) => `<div class="travel-tip"><strong>${d.city}</strong><span>${d.id}</span></div>`)
+      .pointAltitude(0.012)
+      .pointRadius(0.22)
+      .pointColor(() => "#0071e3")
+      .pointLabel((d) => `<div class="travel-tip"><div class="travel-tip-name">${d.city}</div></div>`)
       .pointOfView({ lat: 32, lng: 88, altitude: 2.15 }, 0);
 
     const material = globe.globeMaterial();

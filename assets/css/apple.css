@@ -413,10 +413,10 @@ footer {
 }
 
 .travel-chip-flight::before {
-  width: 1.1rem;
-  height: 0;
-  border-radius: 0;
-  border-top: 2px dashed #7dd3fc;
+  width: 1.15rem;
+  height: 3px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #ff9f0a, #0071e3);
 }
 
 .travel-globe-hint {
@@ -424,20 +424,35 @@ footer {
   color: var(--apple-muted);
 }
 
-.travel-tip {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  padding: 0.35rem 0.55rem;
-  background: rgba(22, 22, 23, 0.92);
-  color: #f5f5f7;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  line-height: 1.3;
+#travel-globe .scene-tooltip,
+.scene-tooltip {
+  color: #1d1d1f !important;
+  background: transparent !important;
+  font-size: 14px !important;
+  opacity: 1 !important;
 }
 
-.travel-tip span {
-  display: block;
-  color: #a1a1a6;
-  font-size: 0.72rem;
+.travel-tip {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  min-width: 7rem;
+  padding: 0.55rem 0.75rem;
+  background: #ffffff;
+  color: #1d1d1f;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+}
+
+.travel-tip-name {
+  font-weight: 650;
+  color: #1d1d1f;
+}
+
+.travel-tip-sub {
+  margin-top: 0.12rem;
+  color: #6e6e73;
+  font-size: 0.8rem;
 }
 
 @media (max-width: 768px) {
