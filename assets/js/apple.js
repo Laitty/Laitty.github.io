@@ -84,41 +84,67 @@ function initLiquidName() {
   const stamp = document.createElement("canvas");
   const sctx = stamp.getContext("2d", { alpha: true });
 
-  const src = [...title.getAttribute("aria-label")].filter((ch) => /[A-Za-z]/.test(ch));
+  const lai = ["L", "a", "i"];
+  const given = ["T", "i", "a", "n", "y", "o", "u"];
+  const edge = ["T", "h", "e", "o", "y", "n"];
+
   const layout = phone
     ? [
-        { ch: src[0] || "T", nx: 0.22, ny: 0.38, s: 0.28 },
-        { ch: src[src.length - 3] || "L", nx: 0.78, ny: 0.62, s: 0.26 },
-        { ch: src[2] || "a", nx: 0.5, ny: 0.24, s: 0.18 },
-        { ch: src[5] || "o", nx: 0.32, ny: 0.72, s: 0.17 },
-        { ch: src[8] || "h", nx: 0.68, ny: 0.34, s: 0.16 },
+        ...lai.map((ch, i) => ({
+          ch,
+          nx: 0.28 + i * 0.22,
+          ny: 0.36,
+          s: 0.24,
+        })),
+        ...given.map((ch, i) => ({
+          ch,
+          nx: 0.14 + i * 0.12,
+          ny: 0.58,
+          s: 0.13,
+        })),
+        { ch: edge[0], nx: 0.08, ny: 0.18, s: 0.1 },
+        { ch: edge[1], nx: 0.9, ny: 0.22, s: 0.1 },
+        { ch: edge[2], nx: 0.1, ny: 0.82, s: 0.09 },
+        { ch: edge[3], nx: 0.9, ny: 0.8, s: 0.1 },
+        { ch: edge[4], nx: 0.5, ny: 0.14, s: 0.08 },
+        { ch: edge[5], nx: 0.5, ny: 0.86, s: 0.08 },
       ]
     : [
-        { ch: src[0] || "T", nx: 0.2, ny: 0.34, s: 0.3 },
-        { ch: src[src.length - 3] || "L", nx: 0.8, ny: 0.64, s: 0.28 },
-        { ch: src[1] || "i", nx: 0.4, ny: 0.24, s: 0.16 },
-        { ch: src[2] || "a", nx: 0.58, ny: 0.28, s: 0.18 },
-        { ch: src[3] || "n", nx: 0.3, ny: 0.7, s: 0.18 },
-        { ch: src[4] || "y", nx: 0.18, ny: 0.62, s: 0.16 },
-        { ch: src[5] || "o", nx: 0.62, ny: 0.74, s: 0.16 },
-        { ch: src[6] || "u", nx: 0.78, ny: 0.28, s: 0.15 },
-        { ch: src[8] || "h", nx: 0.48, ny: 0.52, s: 0.14 },
-        { ch: src[9] || "e", nx: 0.36, ny: 0.48, s: 0.14 },
+        ...lai.map((ch, i) => ({
+          ch,
+          nx: 0.28 + i * 0.22,
+          ny: 0.34,
+          s: 0.3,
+        })),
+        ...given.map((ch, i) => ({
+          ch,
+          nx: 0.12 + i * 0.126,
+          ny: 0.58,
+          s: 0.16,
+        })),
+        { ch: edge[0], nx: 0.07, ny: 0.16, s: 0.11 },
+        { ch: edge[1], nx: 0.93, ny: 0.18, s: 0.11 },
+        { ch: edge[2], nx: 0.08, ny: 0.84, s: 0.1 },
+        { ch: edge[3], nx: 0.92, ny: 0.82, s: 0.11 },
+        { ch: edge[4], nx: 0.5, ny: 0.12, s: 0.09 },
+        { ch: edge[5], nx: 0.5, ny: 0.88, s: 0.09 },
+        { ch: "T", nx: 0.16, ny: 0.48, s: 0.08 },
+        { ch: "o", nx: 0.84, ny: 0.46, s: 0.08 },
       ];
 
   const glyphs = layout.map((g, i) => ({
     ...g,
-    rot: (i % 2 === 0 ? -1 : 1) * (0.05 + (i % 5) * 0.02),
-    phase: i * 0.9,
+    rot: (i % 2 === 0 ? -1 : 1) * (0.04 + (i % 5) * 0.015),
+    phase: i * 0.72,
     stain: 1,
     speed: 0.55,
     lastHot: false,
-    ox: (i % 3) * 0.18 - 0.18,
-    oy: ((i + 1) % 3) * 0.16 - 0.16,
+    ox: (i % 3) * 0.14 - 0.14,
+    oy: ((i + 1) % 3) * 0.12 - 0.12,
   }));
 
   const mist = [];
-  const mistCap = phone ? 36 : 64;
+  const mistCap = phone ? 48 : 80;
   let hw = 1;
   let hh = 1;
   let dpr = 1;
@@ -218,9 +244,9 @@ function initLiquidName() {
 
     glyphs.forEach((g) => {
       const size = g.s * min;
-      const pad = size * 1.05;
-      const x = Math.min(hw - pad, Math.max(pad, g.nx * hw + Math.sin(time * 0.28 + g.phase) * 8));
-      const y = Math.min(hh - pad, Math.max(pad, g.ny * hh + Math.cos(time * 0.22 + g.phase) * 6));
+      const pad = size * 0.72;
+      const x = Math.min(hw - pad, Math.max(pad, g.nx * hw + Math.sin(time * 0.28 + g.phase) * 5));
+      const y = Math.min(hh - pad, Math.max(pad, g.ny * hh + Math.cos(time * 0.22 + g.phase) * 4));
       const hot = Boolean(inkFocus && g.ch.toLowerCase() === inkFocus.toLowerCase());
       if (hot && !g.lastHot) {
         g.stain = 0;
