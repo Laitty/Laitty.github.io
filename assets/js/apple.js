@@ -60,7 +60,6 @@ function initLiquidName() {
   let hw = 1;
   let hh = 1;
   let dpr = 1;
-  let glassHot = false;
   let nameHot = false;
   let mx = 0;
   let my = 0;
@@ -117,11 +116,11 @@ function initLiquidName() {
   };
 
   const tick = () => {
-    if (glassHot) {
+    if (nameHot) {
       emitCool += 0.016;
       const gap = phone ? 0.038 : 0.02;
       if (emitCool > gap) {
-        emitAt(mx, my, nameHot ? (phone ? 3 : 4) : phone ? 1 : 2);
+        emitAt(mx, my, phone ? 3 : 4);
         emitCool = 0;
       }
     }
@@ -167,32 +166,30 @@ function initLiquidName() {
     requestAnimationFrame(tick);
   };
 
-  hero.addEventListener("pointerenter", (event) => {
-    glassHot = true;
+  title.addEventListener("pointerenter", (event) => {
     const p = localPoint(event);
     mx = p.x;
     my = p.y;
+    setWarp(event, true);
+    emitAt(mx, my, phone ? 10 : 16);
   });
-  hero.addEventListener("pointermove", (event) => {
-    glassHot = true;
+  title.addEventListener("pointermove", (event) => {
     const p = localPoint(event);
     mx = p.x;
     my = p.y;
-    setWarp(event, Boolean(event.target.closest(".apple-hero-title") === title));
+    setWarp(event, true);
   });
-  hero.addEventListener("pointerdown", (event) => {
+  title.addEventListener("pointerdown", (event) => {
     const p = localPoint(event);
     mx = p.x;
     my = p.y;
-    const onName = event.target.closest(".apple-hero-title") === title;
-    setWarp(event, onName);
-    emitAt(mx, my, onName ? (phone ? 12 : 18) : phone ? 6 : 10);
+    setWarp(event, true);
+    emitAt(mx, my, phone ? 12 : 18);
   });
-  hero.addEventListener("pointerleave", () => {
-    glassHot = false;
+  title.addEventListener("pointerleave", () => {
     setWarp(null, false);
   });
-  hero.addEventListener("pointerup", () => {
+  title.addEventListener("pointerup", () => {
     if (coarse) setWarp(null, false);
   });
 
