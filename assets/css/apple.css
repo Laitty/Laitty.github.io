@@ -129,6 +129,7 @@ html[data-theme="dark"] .apple-orbs {
   max-width: 18ch;
   font-size: clamp(2.8rem, 7vw, 5.4rem);
   line-height: 1.02;
+  overflow-wrap: anywhere;
   color: #1d1d1f;
   background-image:
     radial-gradient(circle at var(--lx, 50%) var(--ly, 40%), rgba(255, 255, 255, 0.55) 0 3%, rgba(255, 255, 255, 0) 16%),
@@ -237,10 +238,12 @@ html[data-theme-setting="dark"] .apple-hero-title {
   box-shadow: 0 8px 24px rgba(0, 113, 227, 0.28);
 }
 
-.apple-btn-primary:hover {
-  background: var(--apple-blue-hover);
-  color: #fff !important;
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .apple-btn-primary:hover {
+    background: var(--apple-blue-hover);
+    color: #fff !important;
+    transform: translateY(-1px);
+  }
 }
 
 .apple-btn-ghost {
@@ -291,11 +294,13 @@ html[data-theme="dark"] .apple-btn-ghost {
   transition: transform 0.35s var(--apple-ease), box-shadow 0.35s var(--apple-ease);
 }
 
-.apple-page article ul > li:hover,
-.post article ul > li:hover,
-.apple-article ul > li:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.12);
+@media (hover: hover) and (pointer: fine) {
+  .apple-page article ul > li:hover,
+  .post article ul > li:hover,
+  .apple-article ul > li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.12);
+  }
 }
 
 .bibliography li,
@@ -310,10 +315,12 @@ html[data-theme="dark"] .apple-btn-ghost {
   transition: transform 0.35s var(--apple-ease), box-shadow 0.35s var(--apple-ease);
 }
 
-.bibliography li:hover,
-.publications li:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.14);
+@media (hover: hover) and (pointer: fine) {
+  .bibliography li:hover,
+  .publications li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.14);
+  }
 }
 
 .bibliography .title,
@@ -349,14 +356,6 @@ footer {
   to {
     opacity: 1;
     transform: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .apple-hero {
-    padding: 5.5rem 0.6rem 3rem;
-    margin-left: -8px;
-    margin-right: -8px;
   }
 }
 
@@ -463,7 +462,93 @@ footer {
   font-size: 0.8rem;
 }
 
-@media (max-width: 768px) {
-  .travel-globe-stage { height: 420px; }
-  .travel-globe-hint { margin-left: 0; width: 100%; }
+@media (max-width: 1100px) {
+  .apple-hero {
+    padding: 6.2rem 1.1rem 3.2rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .apple-hero-title {
+    max-width: 12ch;
+    font-size: clamp(2.4rem, 7.2vw, 4.4rem);
+  }
+  .apple-glass-lens {
+    width: min(200px, 38vw);
+    height: min(200px, 38vw);
+  }
+  .travel-globe-stage {
+    height: min(56vh, 520px);
+  }
+}
+
+@media (max-width: 734px) {
+  body .container {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+  .apple-hero {
+    padding: 4.6rem 0.35rem 2.4rem;
+    margin: -0.6rem 0 2.2rem;
+    border-radius: 22px;
+  }
+  .apple-hero-title {
+    max-width: none;
+    font-size: clamp(2.15rem, 11vw, 3.1rem);
+  }
+  .apple-hero-sub,
+  .apple-hero-lede {
+    max-width: none;
+  }
+  .apple-hero-sub { font-size: 1.08rem; }
+  .apple-hero-lede {
+    font-size: 1.02rem;
+    margin-bottom: 1.3rem;
+  }
+  .apple-btn {
+    min-height: 2.6rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.98rem;
+  }
+  .apple-article { font-size: 1rem; }
+  .apple-article > .clearfix > p:first-of-type { font-size: 1.08rem; }
+  .apple-page h2,
+  .post h2 {
+    margin-top: 2.3rem;
+    font-size: 1.55rem;
+  }
+  .apple-page article ul > li,
+  .apple-article ul > li,
+  .bibliography li,
+  .publications li {
+    padding: 0.9rem 0.95rem !important;
+    border-radius: 14px;
+  }
+  .apple-glass-lens {
+    width: 140px;
+    height: 140px;
+  }
+  .travel-globe-card {
+    margin: 0.85rem 0 1.8rem;
+    border-radius: 18px;
+  }
+  .travel-globe-stage {
+    height: min(58vh, 420px);
+  }
+  .travel-globe-legend {
+    padding: 0.65rem 0.85rem 0.9rem;
+    font-size: 0.78rem;
+  }
+  .travel-globe-hint {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (hover: none) {
+  .apple-page article ul > li,
+  .apple-article ul > li,
+  .bibliography li,
+  .publications li {
+    transform: none !important;
+  }
 }
