@@ -33,12 +33,16 @@
       fetch(mount.dataset.flights).then((r) => r.json()),
     ]);
 
+    const phone = window.matchMedia("(max-width: 734px)").matches;
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
     const tracks = flights.arcs.map((arc) => ({ ...arc, kind: "track" }));
-    const pulses = flights.arcs.map((arc, i) => ({
-      ...arc,
-      kind: "pulse",
-      gap: arc.gap ?? (i * 0.13) % 1,
-    }));
+    const pulses = phone
+      ? []
+      : flights.arcs.map((arc, i) => ({
+          ...arc,
+          kind: "pulse",
+          gap: arc.gap ?? (i * 0.13) % 1,
+        }));
 
     const globe = Globe()(mount)
       .backgroundColor("rgba(0,0,0,0)")
@@ -90,7 +94,7 @@
       .pointRadius(0.22)
       .pointColor(() => "#e8a838")
       .pointLabel((d) => `<div class="travel-tip"><div class="travel-tip-name">${d.city}</div></div>`)
-      .pointOfView({ lat: 32, lng: 88, altitude: 2.15 }, 0);
+      .pointOfView({ lat: 32, lng: 88, altitude: phone ? 2.55 : 2.15 }, 0);
 
     const material = globe.globeMaterial();
     if (material) {
@@ -101,9 +105,11 @@
       }
     }
     globe.controls().autoRotate = true;
-    globe.controls().autoRotateSpeed = 0.35;
+    globe.controls().autoRotateSpeed = coarse ? 0.45 : 0.35;
     globe.controls().enableDamping = true;
-    globe.renderer().setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    globe.controls().enableZoom = !coarse;
+    globe.controls().rotateSpeed = coarse ? 0.55 : 0.4;
+    globe.renderer().setPixelRatio(Math.min(window.devicePixelRatio || 1, phone ? 1.5 : 2));
     if ("toneMappingExposure" in globe.renderer()) {
       globe.renderer().toneMappingExposure = 1.35;
     }
@@ -117,9 +123,14 @@
       globe.controls().autoRotate = true;
     };
     mount.addEventListener("pointerdown", pause);
+    mount.addEventListener("pointerup", () => setTimeout(resume, 1400));
     mount.addEventListener("pointerleave", resume);
+    mount.style.touchAction = "none";
 
     window.addEventListener("resize", () => fit(globe));
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", () => fit(globe));
+    }
   };
 
   init().catch((err) => {

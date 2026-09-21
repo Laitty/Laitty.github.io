@@ -28,7 +28,12 @@ function initLiquidName() {
   lens.setAttribute("aria-hidden", "true");
   hero.appendChild(lens);
 
-  const blobs = Array.from({ length: 16 }, (_, i) => ({
+  const phone = window.matchMedia("(max-width: 734px)").matches;
+  const tablet = window.matchMedia("(min-width: 735px) and (max-width: 1100px)").matches;
+  const coarse = window.matchMedia("(pointer: coarse)").matches;
+  const blobCount = phone ? 7 : tablet ? 12 : 16;
+  const dotCount = phone ? 16 : tablet ? 28 : 46;
+  const blobs = Array.from({ length: blobCount }, (_, i) => ({
     kind: "blob",
     x: 0.3 + Math.random() * 0.4,
     y: 0.28 + Math.random() * 0.2,
@@ -38,7 +43,7 @@ function initLiquidName() {
     hue: i % 3,
     seed: Math.random() * Math.PI * 2,
   }));
-  const dots = Array.from({ length: 46 }, (_, i) => ({
+  const dots = Array.from({ length: dotCount }, (_, i) => ({
     kind: "dot",
     x: 0.22 + Math.random() * 0.56,
     y: 0.2 + Math.random() * 0.28,
@@ -80,8 +85,12 @@ function initLiquidName() {
 
   const tick = () => {
     time += 0.016;
-    mx += (tx - mx) * 0.07;
-    my += (ty - my) * 0.07;
+    if (!hovering) {
+      tx = 0.5 + Math.cos(time * 0.32) * (phone ? 0.16 : 0.12);
+      ty = 0.34 + Math.sin(time * 0.24) * (phone ? 0.08 : 0.06);
+    }
+    mx += (tx - mx) * (coarse ? 0.1 : 0.07);
+    my += (ty - my) * (coarse ? 0.1 : 0.07);
 
     hero.style.setProperty("--mx", `${(mx * 100).toFixed(2)}%`);
     hero.style.setProperty("--my", `${(my * 100).toFixed(2)}%`);
@@ -156,16 +165,24 @@ function initLiquidName() {
     hovering = true;
     setTarget(event);
   });
+  hero.addEventListener("pointerdown", (event) => {
+    hovering = true;
+    setTarget(event);
+  });
   hero.addEventListener("pointermove", (event) => {
     hovering = true;
     setTarget(event);
   });
+  hero.addEventListener("pointerup", () => {
+    if (coarse) hovering = false;
+  });
   hero.addEventListener("pointerleave", () => {
     hovering = false;
-    tx = 0.5;
-    ty = 0.34;
   });
   window.addEventListener("resize", fit);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", fit);
+  }
 
   fit();
   requestAnimationFrame(tick);
