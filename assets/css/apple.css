@@ -283,6 +283,10 @@ html[data-theme="dark"] .apple-btn-ghost {
   line-height: 1.65;
 }
 
+#about {
+  scroll-margin-top: 5.2rem;
+}
+
 .apple-article > .clearfix > p:first-of-type {
   font-size: 1.22rem;
   line-height: 1.5;
