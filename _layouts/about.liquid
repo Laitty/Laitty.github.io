@@ -17,12 +17,12 @@ layout: default
       <p class="apple-hero-lede">{{ page.hero_lede }}</p>
     {% endif %}
     <div class="apple-hero-actions">
-      <a class="apple-btn apple-btn-primary" href="{{ '/publications/' | relative_url }}">Explore research</a>
-      <a class="apple-btn apple-btn-ghost" href="#publications">Publications</a>
+      <a class="apple-btn apple-btn-primary" href="#about">About me</a>
+      <a class="apple-btn apple-btn-ghost" href="{{ '/publications/' | relative_url }}">Explore research</a>
     </div>
   </header>
 
-  <article class="apple-article">
+  <article class="apple-article" id="about">
     {% if page.profile %}
       <div class="profile float-{% if page.profile.align == 'left' %}left{% else %}right{% endif %}">
         {% if page.profile.image %}
