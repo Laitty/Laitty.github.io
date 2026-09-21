@@ -32,7 +32,7 @@ latest_posts:
 
 I am Tianyou Lai (Theo), an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University. My research connects reliable learning systems, model evaluation, and human–AI interaction with applied machine learning in healthcare, industrial inspection, physical inverse design, forecasting, and energy systems.
 
-My experience spans model design, dataset preparation, training, and experimental evaluation, alongside Python/SQL data engineering and distributed-data infrastructure. I am interested in machine learning engineering opportunities that connect research with practical systems.
+In research, I work across model design, dataset preparation, training, and experimental evaluation. In industry, I have interned in product data, consulting analytics, quantitative research, startup data science, and data engineering.
 
 ## Education
 
@@ -53,7 +53,7 @@ My experience spans model design, dataset preparation, training, and experimenta
 
 ## Professional Experience
 
-- **Data Science Intern, Sichuan DeepGraph Intelligent Technology** (Sep. 2024 - Feb. 2025): cleaned and preprocessed data in Python, queried complex datasets with Ultipa XAI, and assisted with data-analysis algorithm optimization.
+- **Data Science Intern, Sichuan DeepGraph Intelligent Technology** (Sep. 2024 - Feb. 2025): cleaned and preprocessed data in Python, queried complex datasets with Ultipa XAI — a financial graph database serving financial institutions — and assisted with data-analysis algorithm optimization.
 - **Data Engineer Intern, Lanzhou Bronze Ding Intelligent Technology** (Mar. 2024 - Sep. 2024): organized 20+ datasets and labeled 10k+ entries using Python and SQL; deployed MySQL and Hadoop; produced seven analysis reports with Matplotlib and Seaborn.
 - **Quantitative Research PTA, Guotai Junan Futures** (Mar. 2024 - Apr. 2024): developed a Python futures trading system, debugged C++ and Python CTP-API implementations with Simnow, and implemented TWAP and VWAP algorithms with TA-Lib.
 - **Tax and Business Consulting Intern, Zhongzheng Tiantong CPA Tax Department** (Jul. 2023 - Sep. 2023): processed data with Python and SQL, prepared Tableau reports, and analyzed client financials, risks, and market trends.

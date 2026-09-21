@@ -231,7 +231,7 @@ cv:
         end_date: "2025-02"
         highlights:
           - "Cleaned and preprocessed data in Python to support analysis and modeling."
-          - "Queried and computed complex datasets using Ultipa XAI."
+          - "Queried and computed complex datasets using Ultipa XAI, a financial graph database serving financial institutions."
           - "Assisted in developing and optimizing data analysis algorithms."
 
       - company: Lanzhou Bronze Ding Intelligent Technology
