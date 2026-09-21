@@ -33,22 +33,12 @@
       fetch(mount.dataset.flights).then((r) => r.json()),
     ]);
 
-    const groups = new Map();
-    flights.arcs.forEach((arc) => {
-      const key = `${arc.from}|${arc.to}`;
-      if (!groups.has(key)) groups.set(key, []);
-      groups.get(key).push(arc);
-    });
-
-    const tracks = [];
-    const pulses = [];
-    for (const group of groups.values()) {
-      const base = group[0];
-      tracks.push({ ...base, kind: "track" });
-      group.forEach((_, k) => {
-        pulses.push({ ...base, kind: "pulse", gap: k / group.length });
-      });
-    }
+    const tracks = flights.arcs.map((arc) => ({ ...arc, kind: "track" }));
+    const pulses = flights.arcs.map((arc, i) => ({
+      ...arc,
+      kind: "pulse",
+      gap: arc.gap ?? (i * 0.13) % 1,
+    }));
 
     const globe = Globe()(mount)
       .backgroundColor("rgba(0,0,0,0)")
@@ -77,13 +67,13 @@
       .arcStartLng("startLng")
       .arcEndLat("endLat")
       .arcEndLng("endLng")
-      .arcColor((d) => (d.kind === "pulse" ? "#ffffff" : "rgba(0, 113, 227, 0.42)"))
-      .arcStroke((d) => (d.kind === "pulse" ? 0.9 : 0.42))
-      .arcAltitude(0.14)
-      .arcDashLength((d) => (d.kind === "pulse" ? 0.08 : 1))
-      .arcDashGap((d) => (d.kind === "pulse" ? 0.92 : 0))
+      .arcColor((d) => (d.kind === "pulse" ? "#ffffff" : ["rgba(90, 200, 250, 0.18)", "rgba(0, 113, 227, 0.55)"]))
+      .arcStroke((d) => (d.kind === "pulse" ? 0.72 : 0.38))
+      .arcAltitude((d) => d.alt || 0.12)
+      .arcDashLength((d) => (d.kind === "pulse" ? 0.1 : 1))
+      .arcDashGap((d) => (d.kind === "pulse" ? 1.05 : 0))
       .arcDashInitialGap((d) => (d.kind === "pulse" ? d.gap : 0))
-      .arcDashAnimateTime((d) => (d.kind === "pulse" ? 2200 : 0))
+      .arcDashAnimateTime((d) => (d.kind === "pulse" ? 2400 : 0))
       .arcLabel((d) =>
         d.kind === "track"
           ? `<div class="travel-tip"><div class="travel-tip-name">${d.from} → ${d.to}</div></div>`
