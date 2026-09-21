@@ -36,7 +36,8 @@
     const phone = window.matchMedia("(max-width: 734px)").matches;
     const coarse = window.matchMedia("(pointer: coarse)").matches;
 
-    // Stack duplicate / round-trip arcs by altitude so they don't tangle.
+    // Stack duplicate / round-trip arcs by altitude so they don't tangle,
+    // but keep each route's original distance-based height (long-haul stays high).
     const routeBuckets = new Map();
     flights.arcs.forEach((arc) => {
       const key = [arc.from, arc.to].sort().join("||");
@@ -50,12 +51,11 @@
         return (a.gap || 0) - (b.gap || 0);
       });
       const n = list.length;
-      const span = Math.min(0.28, 0.04 + n * 0.014);
-      const step = n > 1 ? span / (n - 1) : 0;
-      const base = 0.05;
+      const step = n > 1 ? Math.min(0.022, 0.28 / Math.max(1, n - 1)) : 0;
       list.forEach((arc, i) => {
-        const dirLift = arc.from <= arc.to ? 0 : step * 0.35;
-        arc.alt = base + i * step + dirLift;
+        const orig = Number.isFinite(arc.alt) ? arc.alt : 0.12;
+        const dirLift = arc.from <= arc.to ? 0 : step * 0.4;
+        arc.alt = orig + i * step + dirLift;
       });
     });
 
