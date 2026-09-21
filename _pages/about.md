@@ -5,6 +5,8 @@ permalink: /
 nav: false
 subtitle: >
   MS in Artificial Intelligence Systems Management at Carnegie Mellon University
+hero_eyebrow: Carnegie Mellon University
+hero_lede: Reliable learning, model evaluation, and applied machine learning — from healthcare and industrial inspection to energy systems.
 
 profile:
   align: right
@@ -37,7 +39,7 @@ My experience spans model design, dataset preparation, training, and experimenta
 - **Lanzhou University** - BS in Data Science & Big Data Technology, Sep. 2021 - Jul. 2025; GPA: 87.34/100
 - **The University of Texas at Austin** - International Academy Exchange Program in Software Engineering, Jan. 2024 - Feb. 2024; GPA: 4.0/4.0
 
-## Publications
+## Publications {#publications}
 
 - **[TRACE: Training-time Report-guided and Clinically Ordered Concept Editing](https://arxiv.org/abs/2608.20809)\***. ACM International Conference on Multimedia (ACM MM) 2026, accepted. [DOI: 10.1145/3767308.3836433](https://doi.org/10.1145/3767308.3836433).
 - **[FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection](https://doi.org/10.1109/ICASSP55912.2026.11462834)\***. IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP) 2026. [DOI: 10.1109/ICASSP55912.2026.11462834](https://doi.org/10.1109/ICASSP55912.2026.11462834).
