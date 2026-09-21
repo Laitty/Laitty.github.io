@@ -10,6 +10,10 @@
   --apple-line: rgba(0, 0, 0, 0.08);
   --apple-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
   --apple-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --global-theme-color: #0071e3;
+  --global-hover-color: #0077ed;
+  --global-hover-text-color: #ffffff;
+  --global-code-bg-color: rgba(0, 113, 227, 0.08);
 }
 
 html[data-theme="dark"],
@@ -22,6 +26,9 @@ html[data-theme-setting="dark"] {
   --apple-card: rgba(28, 28, 30, 0.72);
   --apple-line: rgba(255, 255, 255, 0.1);
   --apple-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --global-theme-color: #2997ff;
+  --global-hover-color: #64b5ff;
+  --global-code-bg-color: rgba(41, 151, 255, 0.12);
 }
 
 html {
@@ -67,6 +74,24 @@ html[data-theme="dark"] nav.navbar.fixed-top {
   font-weight: 500;
 }
 
+#navbar .nav-link:hover,
+#navbar .nav-link:focus,
+#navbar .nav-link:focus-visible,
+#navbar .nav-link:active,
+#navbar .nav-link.active,
+#navbar .navbar-brand:hover,
+#navbar .navbar-brand:focus,
+#navbar .navbar-brand:active {
+  color: var(--apple-blue) !important;
+}
+
+#navbar .nav-link:focus-visible,
+#navbar .navbar-brand:focus-visible,
+#navbar button:focus-visible {
+  outline: 2px solid var(--apple-blue);
+  outline-offset: 2px;
+}
+
 a {
   color: var(--apple-blue);
   text-decoration-thickness: 1px;
@@ -101,7 +126,7 @@ h1, h2, h3, .post-title, .apple-hero-title {
   height: 28rem;
   background:
     radial-gradient(circle at 30% 40%, rgba(0, 113, 227, 0.28), transparent 42%),
-    radial-gradient(circle at 72% 30%, rgba(175, 82, 222, 0.22), transparent 38%),
+    radial-gradient(circle at 72% 30%, rgba(0, 113, 227, 0.16), transparent 38%),
     radial-gradient(circle at 50% 80%, rgba(48, 209, 88, 0.12), transparent 42%);
   filter: blur(8px);
   animation: apple-drift 18s var(--apple-ease) infinite alternate;
@@ -110,7 +135,7 @@ h1, h2, h3, .post-title, .apple-hero-title {
 html[data-theme="dark"] .apple-orbs {
   background:
     radial-gradient(circle at 28% 38%, rgba(41, 151, 255, 0.38), transparent 44%),
-    radial-gradient(circle at 74% 28%, rgba(191, 90, 242, 0.28), transparent 40%),
+    radial-gradient(circle at 74% 28%, rgba(41, 151, 255, 0.22), transparent 40%),
     radial-gradient(circle at 50% 78%, rgba(48, 209, 88, 0.12), transparent 42%);
 }
 
