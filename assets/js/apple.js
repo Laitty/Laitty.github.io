@@ -140,11 +140,17 @@ function initLiquidName() {
     ...g,
     rot: (i % 2 === 0 ? -1 : 1) * (0.04 + (i % 5) * 0.015),
     phase: i * 0.72,
-    stain: 1,
-    speed: 0.55,
+    stain: -0.15 * (i % 6),
+    speed: 0.28 + (i % 5) * 0.04,
     lastHot: false,
     ox: (i % 3) * 0.14 - 0.14,
     oy: ((i + 1) % 3) * 0.12 - 0.12,
+    tips: Array.from({ length: 5 }, () => ({
+      ang: Math.random() * Math.PI * 2,
+      len: 0.18 + Math.random() * 0.38,
+      thick: 0.04 + Math.random() * 0.08,
+      dry: Math.random(),
+    })),
   }));
 
   const mist = [];
@@ -196,46 +202,91 @@ function initLiquidName() {
   };
 
   const drawStain = (g, x, y, size, progress, rgb, alpha) => {
-    const dim = Math.max(48, Math.ceil(size * 2.35));
+    const dim = Math.max(56, Math.ceil(size * 2.55));
     stamp.width = dim * dpr;
     stamp.height = dim * dpr;
     sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     sctx.clearRect(0, 0, dim, dim);
     const cx = dim / 2;
     const cy = dim / 2;
+    const wobble = Math.sin(time * 0.2 + g.phase) * 0.02;
     sctx.save();
     sctx.translate(cx, cy);
-    sctx.rotate(g.rot + Math.sin(time * 0.2 + g.phase) * 0.025);
+    sctx.rotate(g.rot + wobble);
     sctx.textAlign = "center";
     sctx.textBaseline = "middle";
-    sctx.font = `italic 600 ${size}px "Snell Roundhand", "Apple Chancery", "Kaiti SC", "KaiTi", "Palatino Linotype", serif`;
-    sctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
-    sctx.filter = "blur(0.7px)";
-    sctx.fillText(g.ch, 0, 0);
-    sctx.filter = "blur(6px)";
-    sctx.globalAlpha = 0.32;
-    sctx.fillText(g.ch, size * 0.02, size * 0.03);
-    sctx.restore();
+    sctx.font = `italic 700 ${size}px "Snell Roundhand", "Apple Chancery", "Kaiti SC", "STKaiti", "KaiTi", "Palatino Linotype", serif`;
 
-    if (progress < 0.995) {
-      sctx.save();
-      sctx.globalCompositeOperation = "destination-in";
-      const r = size * (0.08 + 1.05 * progress);
-      const gx = sctx.createRadialGradient(
-        cx + g.ox * size,
-        cy + g.oy * size,
-        0,
-        cx + g.ox * size,
-        cy + g.oy * size,
-        r
-      );
-      gx.addColorStop(0, "rgba(0,0,0,1)");
-      gx.addColorStop(0.7, "rgba(0,0,0,0.88)");
-      gx.addColorStop(1, "rgba(0,0,0,0)");
-      sctx.fillStyle = gx;
-      sctx.fillRect(0, 0, dim, dim);
-      sctx.restore();
+    // Soft ink pool under the glyph
+    sctx.filter = "blur(8px)";
+    sctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha * 0.38})`;
+    sctx.fillText(g.ch, size * 0.03, size * 0.04);
+
+    // Main body + messy layered strokes
+    sctx.filter = "blur(0.55px)";
+    sctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
+    sctx.fillText(g.ch, 0, 0);
+    sctx.globalAlpha = 0.42;
+    sctx.fillText(g.ch, size * 0.018, -size * 0.012);
+    sctx.globalAlpha = 0.28;
+    sctx.fillText(g.ch, -size * 0.016, size * 0.02);
+    sctx.globalAlpha = 0.18;
+    sctx.filter = "blur(1.4px)";
+    sctx.fillText(g.ch, size * 0.028, size * 0.018);
+
+    // Dry brush / 飞白 breaks inside the letter
+    sctx.globalCompositeOperation = "destination-out";
+    sctx.filter = "none";
+    for (let i = 0; i < 7; i += 1) {
+      const ang = g.phase + i * 0.9;
+      const rx = Math.cos(ang) * size * (0.08 + (i % 3) * 0.05);
+      const ry = Math.sin(ang * 1.3) * size * (0.1 + (i % 2) * 0.06);
+      sctx.beginPath();
+      sctx.ellipse(rx, ry, size * (0.018 + (i % 3) * 0.012), size * (0.05 + (i % 2) * 0.03), ang, 0, Math.PI * 2);
+      sctx.fillStyle = `rgba(0,0,0,${0.35 + (i % 3) * 0.12})`;
+      sctx.fill();
     }
+
+    // Messy brush tips / 笔锋 around the glyph
+    sctx.globalCompositeOperation = "source-over";
+    g.tips.forEach((tip, ti) => {
+      const tx = Math.cos(tip.ang + wobble) * size * 0.42;
+      const ty = Math.sin(tip.ang + wobble * 1.2) * size * 0.38;
+      const len = size * tip.len;
+      const thick = size * tip.thick;
+      sctx.save();
+      sctx.translate(tx, ty);
+      sctx.rotate(tip.ang + 0.35);
+      const grad = sctx.createLinearGradient(0, 0, len, 0);
+      grad.addColorStop(0, `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha * 0.55})`);
+      grad.addColorStop(0.55, `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha * 0.22})`);
+      grad.addColorStop(1, `rgba(${rgb[0]},${rgb[1]},${rgb[2]},0)`);
+      sctx.fillStyle = grad;
+      sctx.beginPath();
+      sctx.moveTo(0, -thick * 0.55);
+      sctx.quadraticCurveTo(len * 0.35, -thick * (0.2 + tip.dry * 0.35), len, 0);
+      sctx.quadraticCurveTo(len * 0.35, thick * (0.15 + tip.dry * 0.3), 0, thick * 0.35);
+      sctx.closePath();
+      sctx.fill();
+      if (tip.dry > 0.45) {
+        sctx.globalAlpha = 0.35;
+        sctx.beginPath();
+        sctx.ellipse(len * 0.55, thick * 0.1, thick * 0.35, thick * 0.12, tip.ang, 0, Math.PI * 2);
+        sctx.fill();
+      }
+      sctx.restore();
+      if (ti === 0) {
+        sctx.globalAlpha = 0.25;
+        sctx.filter = "blur(2px)";
+        sctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
+        sctx.beginPath();
+        sctx.ellipse(tx * 1.05, ty * 1.05, thick * 1.8, thick * 0.7, tip.ang, 0, Math.PI * 2);
+        sctx.fill();
+        sctx.filter = "none";
+        sctx.globalAlpha = 1;
+      }
+    });
+    sctx.restore();
 
     ctx.drawImage(stamp, x - dim / 2, y - dim / 2, dim, dim);
   };
@@ -253,26 +304,25 @@ function initLiquidName() {
       const y = Math.min(hh - pad, Math.max(pad, g.ny * hh + Math.cos(time * 0.22 + g.phase) * 4));
       const hot = Boolean(inkFocus && g.ch.toLowerCase() === inkFocus.toLowerCase());
       if (hot && !g.lastHot) {
-        g.stain = 0;
         g.speed = phone ? 1.2 : 1.5;
-        g.ox = (Math.random() - 0.5) * 0.28;
-        g.oy = (Math.random() - 0.5) * 0.28;
         emitMist(x + g.ox * size, y + g.oy * size, size, phone ? 5 : 8, true);
       }
       g.lastHot = hot;
-      g.speed += ((hot ? 1.4 : 0.42) - g.speed) * 0.1;
+      g.speed += ((hot ? 1.4 : 0.38) - g.speed) * 0.08;
       if (g.stain < 1) {
         g.stain = Math.min(1, g.stain + 0.016 * g.speed);
-        const edge = size * (0.08 + 1.05 * g.stain);
-        if (Math.random() < (hot ? 0.42 : 0.16)) {
-          const ang = Math.random() * Math.PI * 2;
-          emitMist(
-            x + g.ox * size + Math.cos(ang) * edge * 0.55,
-            y + g.oy * size + Math.sin(ang) * edge * 0.55,
-            size,
-            hot ? (phone ? 2 : 3) : 1,
-            hot
-          );
+        if (g.stain > 0) {
+          const edge = size * (0.1 + 1.15 * g.stain);
+          if (Math.random() < (hot ? 0.42 : 0.14)) {
+            const ang = Math.random() * Math.PI * 2;
+            emitMist(
+              x + g.ox * size + Math.cos(ang) * edge * 0.55,
+              y + g.oy * size + Math.sin(ang) * edge * 0.55,
+              size,
+              hot ? (phone ? 2 : 3) : 1,
+              hot
+            );
+          }
         }
       }
 
