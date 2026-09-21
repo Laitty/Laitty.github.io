@@ -210,8 +210,8 @@ html[data-theme="dark"] .apple-orbs {
   pointer-events: none;
   filter: url(#apple-name-warp) drop-shadow(0 10px 24px rgba(0, 87, 194, 0.22));
   opacity: 0;
-  -webkit-mask-image: radial-gradient(circle 84px at var(--hx, 50%) var(--hy, 50%), #000 0 46%, transparent 74%);
-  mask-image: radial-gradient(circle 84px at var(--hx, 50%) var(--hy, 50%), #000 0 46%, transparent 74%);
+  -webkit-mask-image: radial-gradient(circle 58px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
+  mask-image: radial-gradient(circle 58px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
 }
 
 .apple-hero-title-hot.is-on {
@@ -540,9 +540,9 @@ footer {
     max-width: 12ch;
     font-size: clamp(2.4rem, 7.2vw, 4.4rem);
   }
-  .apple-glass-lens {
-    width: min(200px, 38vw);
-    height: min(200px, 38vw);
+  .apple-hero-title-hot {
+    -webkit-mask-image: radial-gradient(circle 50px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
+    mask-image: radial-gradient(circle 50px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
   }
   .travel-globe-stage {
     height: min(56vh, 520px);
@@ -591,9 +591,9 @@ footer {
     padding: 0.9rem 0.95rem !important;
     border-radius: 14px;
   }
-  .apple-glass-lens {
-    width: 140px;
-    height: 140px;
+  .apple-hero-title-hot {
+    -webkit-mask-image: radial-gradient(circle 42px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
+    mask-image: radial-gradient(circle 42px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
   }
   .travel-globe-card {
     margin: 0.85rem 0 1.8rem;
