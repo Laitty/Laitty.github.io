@@ -9,9 +9,9 @@
   --apple-card: rgba(255, 255, 255, 0.72);
   --apple-line: rgba(0, 0, 0, 0.08);
   --apple-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
-  --apple-glass-sm-bg: linear-gradient(180deg, rgba(196, 224, 255, 0.46) 0%, rgba(255, 255, 255, 0.62) 48%, rgba(255, 255, 255, 0.9) 100%);
-  --apple-glass-sm-border: rgba(186, 214, 242, 0.5);
-  --apple-glass-sm-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78), inset 0 16px 26px rgba(0, 113, 227, 0.07), 0 8px 20px rgba(0, 0, 0, 0.035);
+  --apple-glass-sm-bg: radial-gradient(120% 90% at 92% 0%, rgba(206, 230, 255, 0.2) 0%, rgba(255, 255, 255, 0.42) 34%, rgba(255, 255, 255, 0.9) 68%);
+  --apple-glass-sm-border: rgba(226, 234, 242, 0.58);
+  --apple-glass-sm-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), inset -20px 14px 28px rgba(0, 113, 227, 0.035), 0 8px 20px rgba(0, 0, 0, 0.03);
   --apple-glass-sm-blur: blur(16px) saturate(150%);
   --apple-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --global-theme-color: #0071e3;
@@ -30,9 +30,9 @@ html[data-theme-setting="dark"] {
   --apple-card: rgba(28, 28, 30, 0.72);
   --apple-line: rgba(255, 255, 255, 0.1);
   --apple-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-  --apple-glass-sm-bg: linear-gradient(180deg, rgba(48, 82, 128, 0.42) 0%, rgba(36, 40, 48, 0.32) 46%, rgba(255, 255, 255, 0.08) 100%);
-  --apple-glass-sm-border: rgba(140, 180, 230, 0.18);
-  --apple-glass-sm-shadow: inset 0 1px 0 rgba(180, 210, 255, 0.14), inset 0 16px 26px rgba(41, 151, 255, 0.08), 0 10px 24px rgba(0, 0, 0, 0.22);
+  --apple-glass-sm-bg: radial-gradient(120% 90% at 92% 0%, rgba(72, 122, 180, 0.2) 0%, rgba(40, 44, 52, 0.28) 40%, rgba(255, 255, 255, 0.07) 72%);
+  --apple-glass-sm-border: rgba(180, 196, 214, 0.14);
+  --apple-glass-sm-shadow: inset 0 1px 0 rgba(200, 220, 255, 0.1), inset -18px 14px 26px rgba(41, 151, 255, 0.05), 0 10px 24px rgba(0, 0, 0, 0.22);
   --apple-glass-sm-blur: blur(16px) saturate(140%);
   --global-theme-color: #2997ff;
   --global-hover-color: #64b5ff;
@@ -204,59 +204,35 @@ html[data-theme="dark"] .apple-orbs {
 .apple-title-wrap {
   position: relative;
   z-index: 3;
-  display: flex;
-  justify-content: center;
-  transform-origin: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.apple-eyebrow .apple-ch,
+.apple-hero-sub .apple-ch {
+  display: inline-block;
+  transform-origin: 50% 50%;
   transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .apple-hero-title-hot {
   position: absolute;
-  left: 50%;
-  top: 0;
+  inset: 0;
   width: 100%;
   margin: 0;
-  transform: translateX(-50%);
   pointer-events: none;
+  transform: scale(var(--swell, 1));
+  transform-origin: var(--hx, 50%) var(--hy, 50%);
+  transition: opacity 0.18s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   filter: url(#apple-name-warp) drop-shadow(0 10px 24px rgba(0, 87, 194, 0.22));
   opacity: 0;
-  -webkit-mask-image: radial-gradient(circle 86px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
-  mask-image: radial-gradient(circle 86px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle 78px at var(--hx, 50%) var(--hy, 50%), #000 0 38%, transparent 72%);
+  mask-image: radial-gradient(circle 78px at var(--hx, 50%) var(--hy, 50%), #000 0 38%, transparent 72%);
 }
 
 .apple-hero-title-hot.is-on {
   opacity: 1;
-}
-
-.apple-hero.is-bloom .apple-title-wrap {
-  z-index: 5;
-  transform: translateY(-14px) scale(1.16);
-}
-
-.apple-hero.is-bloom .apple-hero-title {
-  filter: drop-shadow(0 28px 48px rgba(0, 87, 194, 0.28));
-}
-
-.apple-hero.is-bloom .apple-eyebrow {
-  transform: translateY(-46px) scale(0.94);
-  letter-spacing: 0.52em;
-  opacity: 0.28;
-}
-
-.apple-hero.is-bloom .apple-hero-sub {
-  transform: translateY(42px);
-  letter-spacing: 0.08em;
-  opacity: 0.38;
-}
-
-.apple-hero.is-bloom .apple-hero-lede {
-  transform: translateY(58px);
-  opacity: 0.28;
-}
-
-.apple-hero.is-bloom .apple-hero-actions {
-  transform: translateY(36px);
-  opacity: 0.5;
 }
 
 html[data-theme="dark"] .apple-hero-title,
@@ -287,7 +263,6 @@ html[data-theme-setting="dark"] .apple-hero-title {
 .apple-hero-actions {
   position: relative;
   z-index: 2;
-  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease, letter-spacing 0.55s ease;
 }
 
 .apple-hero-sub {
@@ -421,10 +396,10 @@ html[data-theme="dark"] .apple-btn-ghost {
   .bibliography li:hover,
   .publications li:hover {
     transform: translateY(-2px);
-    border-color: rgba(170, 210, 245, 0.72);
+    border-color: rgba(214, 228, 240, 0.72);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.82),
-      inset 0 18px 26px rgba(0, 113, 227, 0.09),
+      inset 0 1px 0 rgba(255, 255, 255, 0.86),
+      inset -18px 16px 26px rgba(0, 113, 227, 0.05),
       0 14px 30px rgba(0, 0, 0, 0.05);
   }
 }
@@ -597,9 +572,6 @@ footer {
     -webkit-mask-image: radial-gradient(circle 72px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
     mask-image: radial-gradient(circle 72px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
   }
-  .apple-hero.is-bloom .apple-title-wrap {
-    transform: translateY(-10px) scale(1.1);
-  }
   .travel-globe-stage {
     height: min(56vh, 520px);
   }
@@ -618,20 +590,6 @@ footer {
   .apple-hero-title {
     max-width: none;
     font-size: clamp(2.15rem, 11vw, 3.1rem);
-  }
-  .apple-hero.is-bloom .apple-title-wrap {
-    transform: translateY(-8px) scale(1.08);
-  }
-  .apple-hero.is-bloom .apple-eyebrow {
-    transform: translateY(-26px);
-    letter-spacing: 0.22em;
-  }
-  .apple-hero.is-bloom .apple-hero-sub {
-    transform: translateY(24px);
-  }
-  .apple-hero.is-bloom .apple-hero-lede,
-  .apple-hero.is-bloom .apple-hero-actions {
-    transform: translateY(28px);
   }
   .apple-hero-sub,
   .apple-hero-lede {

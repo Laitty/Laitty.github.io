@@ -9,6 +9,23 @@ document.addEventListener("DOMContentLoaded", () => {
   initLiquidName();
 });
 
+function splitChars(el) {
+  if (!el) return [];
+  const text = el.textContent;
+  el.setAttribute("aria-label", text.trim());
+  el.textContent = "";
+  const letters = [];
+  for (const ch of text) {
+    if (ch === "\n") continue;
+    const span = document.createElement("span");
+    span.className = "apple-ch";
+    span.textContent = ch === " " ? "\u00a0" : ch;
+    el.appendChild(span);
+    letters.push(span);
+  }
+  return letters;
+}
+
 function initLiquidName() {
   const hero = document.querySelector(".apple-hero");
   const title = document.querySelector(".apple-hero-title");
@@ -19,6 +36,10 @@ function initLiquidName() {
 
   const phone = window.matchMedia("(max-width: 734px)").matches;
   const coarse = window.matchMedia("(pointer: coarse)").matches;
+  const eyebrow = hero.querySelector(".apple-eyebrow");
+  const sub = hero.querySelector(".apple-hero-sub");
+  const eyeLetters = splitChars(eyebrow);
+  const subLetters = splitChars(sub);
 
   const wrap = document.createElement("div");
   wrap.className = "apple-title-wrap";
@@ -100,20 +121,38 @@ function initLiquidName() {
     if (field.length > cap) field.splice(0, field.length - cap);
   };
 
+  const scatterLine = (letters, on, dirY) => {
+    const mid = (letters.length - 1) / 2;
+    const unit = Math.min(phone ? 2.6 : 4.6, 78 / Math.max(1, Math.abs(mid)));
+    letters.forEach((span, i) => {
+      if (!on) {
+        span.style.transform = "";
+        return;
+      }
+      const k = i - mid;
+      span.style.transform = `translate(${k * unit}px, ${dirY * (6 + Math.abs(k) * 1.15)}px) rotate(${k * 1.2}deg)`;
+    });
+  };
+
   const setWarp = (event, on) => {
     nameHot = on;
-    hero.classList.toggle("is-bloom", on);
     if (!on) {
       hot.classList.remove("is-on");
+      hot.style.setProperty("--swell", "1");
+      scatterLine(eyeLetters, false, -1);
+      scatterLine(subLetters, false, 1);
       return;
     }
     const tbox = wrap.getBoundingClientRect();
     const box = title.getBoundingClientRect();
     hot.style.setProperty("--hx", `${event.clientX - tbox.left}px`);
     hot.style.setProperty("--hy", `${event.clientY - tbox.top}px`);
+    hot.style.setProperty("--swell", phone ? "1.18" : "1.26");
     title.style.setProperty("--lx", `${((event.clientX - box.left) / Math.max(1, box.width)) * 100}%`);
     title.style.setProperty("--ly", `${((event.clientY - box.top) / Math.max(1, box.height)) * 100}%`);
     hot.classList.add("is-on");
+    scatterLine(eyeLetters, true, -1);
+    scatterLine(subLetters, true, 1);
   };
 
   const tick = () => {
