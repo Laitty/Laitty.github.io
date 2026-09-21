@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll(".apple-hero, .apple-article h2, .apple-article ul > li, .bibliography > ol > li, .publications li, .social").forEach((e,l)=>{e.style.animationDelay=`${Math.min(.05*l,.6)}s`,e.classList.add("apple-reveal")})});
