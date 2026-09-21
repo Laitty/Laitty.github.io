@@ -33,6 +33,23 @@
       fetch(mount.dataset.flights).then((r) => r.json()),
     ]);
 
+    const groups = new Map();
+    flights.arcs.forEach((arc) => {
+      const key = `${arc.from}|${arc.to}`;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(arc);
+    });
+
+    const tracks = [];
+    const pulses = [];
+    for (const group of groups.values()) {
+      const base = group[0];
+      tracks.push({ ...base, kind: "track" });
+      group.forEach((_, k) => {
+        pulses.push({ ...base, kind: "pulse", gap: k / group.length });
+      });
+    }
+
     const globe = Globe()(mount)
       .backgroundColor("rgba(0,0,0,0)")
       .globeImageUrl("https://cdn.jsdelivr.net/npm/three-globe@2.44.1/example/img/earth-blue-marble.jpg")
@@ -55,18 +72,23 @@
         const extra = d.properties.parent ? `<div class="travel-tip-sub">${d.properties.parent}</div>` : "";
         return `<div class="travel-tip"><div class="travel-tip-name">${d.properties.name}</div>${extra}</div>`;
       })
-      .arcsData(flights.arcs)
+      .arcsData([...tracks, ...pulses])
       .arcStartLat("startLat")
       .arcStartLng("startLng")
       .arcEndLat("endLat")
       .arcEndLng("endLng")
-      .arcColor(() => ["#ff9f0a", "#0071e3"])
-      .arcStroke(0.55)
-      .arcAltitude((d) => d.alt || 0.08)
-      .arcDashLength(1)
-      .arcDashGap(0)
-      .arcDashAnimateTime(0)
-      .arcLabel((d) => `<div class="travel-tip"><div class="travel-tip-name">${d.from} → ${d.to}</div></div>`)
+      .arcColor((d) => (d.kind === "pulse" ? "#ffffff" : "rgba(0, 113, 227, 0.42)"))
+      .arcStroke((d) => (d.kind === "pulse" ? 0.9 : 0.42))
+      .arcAltitude(0.14)
+      .arcDashLength((d) => (d.kind === "pulse" ? 0.08 : 1))
+      .arcDashGap((d) => (d.kind === "pulse" ? 0.92 : 0))
+      .arcDashInitialGap((d) => (d.kind === "pulse" ? d.gap : 0))
+      .arcDashAnimateTime((d) => (d.kind === "pulse" ? 2200 : 0))
+      .arcLabel((d) =>
+        d.kind === "track"
+          ? `<div class="travel-tip"><div class="travel-tip-name">${d.from} → ${d.to}</div></div>`
+          : ""
+      )
       .pointsData(flights.airports)
       .pointLat("lat")
       .pointLng("lng")
