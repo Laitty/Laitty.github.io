@@ -38,12 +38,6 @@ function initLiquidName() {
   hero.prepend(heroCanvas);
   const heroCtx = heroCanvas.getContext("2d", { alpha: true });
 
-  const pageCanvas = document.createElement("canvas");
-  pageCanvas.className = "apple-page-particles";
-  pageCanvas.setAttribute("aria-hidden", "true");
-  document.body.prepend(pageCanvas);
-  const pageCtx = pageCanvas.getContext("2d", { alpha: true });
-
   const lens = document.createElement("div");
   lens.className = "apple-glass-lens";
   lens.setAttribute("aria-hidden", "true");
@@ -112,19 +106,24 @@ function initLiquidName() {
     glyphPts = pts.length ? pts : [{ x: 0.5, y: 0.5 }];
   };
 
-  const glyphScreen = (pt) => {
-    const box = title.getBoundingClientRect();
-    return { x: box.left + pt.x * box.width, y: box.top + pt.y * box.height };
+  const glyphLocal = (pt) => {
+    const titleBox = title.getBoundingClientRect();
+    const heroBox = hero.getBoundingClientRect();
+    return {
+      x: titleBox.left - heroBox.left + pt.x * titleBox.width,
+      y: titleBox.top - heroBox.top + pt.y * titleBox.height,
+    };
   };
 
   const emitFromGlyph = (count, speedScale, aged) => {
     if (!glyphPts.length) sampleGlyphs();
-    const box = title.getBoundingClientRect();
-    const cx = box.left + box.width / 2;
-    const cy = box.top + box.height / 2;
+    const titleBox = title.getBoundingClientRect();
+    const heroBox = hero.getBoundingClientRect();
+    const cx = titleBox.left - heroBox.left + titleBox.width / 2;
+    const cy = titleBox.top - heroBox.top + titleBox.height / 2;
     for (let i = 0; i < count; i += 1) {
       const pt = glyphPts[Math.floor(Math.random() * glyphPts.length)];
-      const pos = glyphScreen(pt);
+      const pos = glyphLocal(pt);
       const ang = Math.atan2(pos.y - cy, pos.x - cx) + (Math.random() - 0.5) * 0.55;
       const speed = (0.55 + Math.random() * 1.7) * speedScale;
       const p = {
@@ -150,8 +149,6 @@ function initLiquidName() {
 
   let hw = 1;
   let hh = 1;
-  let pw = 1;
-  let ph = 1;
   let dpr = 1;
   let tx = 0.5;
   let ty = 0.34;
@@ -179,14 +176,6 @@ function initLiquidName() {
     heroCanvas.style.width = `${hw}px`;
     heroCanvas.style.height = `${hh}px`;
     heroCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    pw = Math.max(1, window.innerWidth);
-    ph = Math.max(1, window.innerHeight);
-    pageCanvas.width = pw * dpr;
-    pageCanvas.height = ph * dpr;
-    pageCanvas.style.width = `${pw}px`;
-    pageCanvas.style.height = `${ph}px`;
-    pageCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
     sampleGlyphs();
   };
 
@@ -275,7 +264,6 @@ function initLiquidName() {
       heroCtx.fill();
     });
 
-    pageCtx.clearRect(0, 0, pw, ph);
     for (let i = field.length - 1; i >= 0; i -= 1) {
       const p = field[i];
       p.age += 0.016;
@@ -288,12 +276,12 @@ function initLiquidName() {
       const grow = Math.min(1, p.age / 0.28);
       const fade = p.age > p.life - 1.2 ? Math.max(0, (p.life - p.age) / 1.2) : 1;
       const radius = 0.35 + p.rMax * grow;
-      const off = p.x < -20 || p.y < -20 || p.x > pw + 20 || p.y > ph + 20;
+      const off = p.x < -16 || p.y < -16 || p.x > hw + 16 || p.y > hh + 16;
       if (p.age > p.life || fade <= 0 || off) {
         field.splice(i, 1);
         continue;
       }
-      drawDot(pageCtx, p, radius, 0.2 + 0.75 * fade * grow);
+      drawDot(heroCtx, p, radius, 0.2 + 0.75 * fade * grow);
     }
 
     requestAnimationFrame(tick);
