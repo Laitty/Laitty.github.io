@@ -67,13 +67,17 @@
       .arcStartLng("startLng")
       .arcEndLat("endLat")
       .arcEndLng("endLng")
-      .arcColor((d) => (d.kind === "pulse" ? "#ffffff" : ["rgba(90, 200, 250, 0.18)", "rgba(0, 113, 227, 0.55)"]))
-      .arcStroke((d) => (d.kind === "pulse" ? 0.72 : 0.38))
+      .arcColor((d) =>
+        d.kind === "pulse"
+          ? "rgba(255, 255, 255, 0.42)"
+          : ["#7ec8ff", "#0055d4"]
+      )
+      .arcStroke((d) => (d.kind === "pulse" ? 0.28 : 0.46))
       .arcAltitude((d) => d.alt || 0.12)
-      .arcDashLength((d) => (d.kind === "pulse" ? 0.1 : 1))
-      .arcDashGap((d) => (d.kind === "pulse" ? 1.05 : 0))
+      .arcDashLength((d) => (d.kind === "pulse" ? 0.035 : 1))
+      .arcDashGap((d) => (d.kind === "pulse" ? 1.2 : 0))
       .arcDashInitialGap((d) => (d.kind === "pulse" ? d.gap : 0))
-      .arcDashAnimateTime((d) => (d.kind === "pulse" ? 2400 : 0))
+      .arcDashAnimateTime((d) => (d.kind === "pulse" ? 2800 : 0))
       .arcLabel((d) =>
         d.kind === "track"
           ? `<div class="travel-tip"><div class="travel-tip-name">${d.from} → ${d.to}</div></div>`
