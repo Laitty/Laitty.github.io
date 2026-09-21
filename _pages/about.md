@@ -2,6 +2,7 @@
 layout: about
 title: About
 permalink: /
+travel_globe: true
 nav: false
 subtitle: >
   MS in Artificial Intelligence Systems Management at Carnegie Mellon University
@@ -77,3 +78,20 @@ My experience spans model design, dataset preparation, training, and experimenta
 - **Basketball:** currently taking a break from playing while recovering from knee surgery.
 - **Billiards:** enjoying both the hot streaks and the cold spells.
 - **Fun fact:** I have visited nearly every province in China and explored Europe on two trips of two weeks each. My travel wish list keeps growing.
+
+<div class="travel-globe-card">
+  <div class="travel-globe-stage">
+    <div
+      id="travel-globe"
+      class="travel-globe"
+      data-regions="{{ '/assets/json/travel-regions.json' | relative_url }}"
+      data-flights="{{ '/assets/json/travel-flights.json' | relative_url }}"
+    ></div>
+    <div class="travel-globe-status">Loading map…</div>
+  </div>
+  <div class="travel-globe-legend">
+    <span class="travel-chip travel-chip-visited">Visited</span>
+    <span class="travel-chip travel-chip-flight">Flight → destination</span>
+    <span class="travel-globe-hint">Drag to spin · scroll to zoom</span>
+  </div>
+</div>

@@ -210,3 +210,8 @@
 <link rel="stylesheet" href="{{ '/assets/css/apple.css' | relative_url | bust_file_cache }}">
 <script defer src="{{ '/assets/js/apple.js' | relative_url | bust_file_cache }}"></script>
 
+{% if page.travel_globe %}
+  <script defer src="https://cdn.jsdelivr.net/npm/globe.gl@2.41.4/dist/globe.gl.min.js"></script>
+  <script defer src="{{ '/assets/js/travel-globe.js' | relative_url | bust_file_cache }}"></script>
+{% endif %}
+
