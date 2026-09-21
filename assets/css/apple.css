@@ -123,56 +123,71 @@ html[data-theme="dark"] .apple-orbs {
 
 .apple-hero-title {
   position: relative;
+  z-index: 2;
   margin: 0 auto 0.7rem;
   max-width: 18ch;
   font-size: clamp(2.8rem, 7vw, 5.4rem);
   line-height: 1.02;
-  color: var(--apple-text);
+  color: transparent;
+  background-image:
+    radial-gradient(circle at var(--lx, 50%) var(--ly, 42%), rgba(255, 255, 255, 0.95) 0 8%, rgba(255, 255, 255, 0) 34%),
+    linear-gradient(118deg, #1d1d1f 8%, #3d7dff 28%, #9ad6ff 46%, #d7c6ff 60%, #1d1d1f 86%);
+  background-size: 140% 140%, 220% 220%;
+  background-position: var(--lx, 50%) var(--ly, 42%), 30% 40%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 10px 28px rgba(80, 150, 255, 0.18));
+  animation: apple-liquid-shift 14s ease-in-out infinite;
 }
 
-.apple-hero::before {
-  content: "";
+html[data-theme="dark"] .apple-hero-title,
+html[data-theme-setting="dark"] .apple-hero-title {
+  background-image:
+    radial-gradient(circle at var(--lx, 50%) var(--ly, 42%), rgba(255, 255, 255, 0.9) 0 8%, rgba(255, 255, 255, 0) 34%),
+    linear-gradient(118deg, #f5f5f7 8%, #64b5ff 30%, #c7b0ff 55%, #f5f5f7 86%);
+}
+
+@keyframes apple-liquid-shift {
+  0%, 100% { background-position: var(--lx, 50%) var(--ly, 42%), 18% 40%; }
+  50% { background-position: var(--lx, 50%) var(--ly, 42%), 78% 58%; }
+}
+
+.apple-liquid-canvas {
   position: absolute;
-  width: 18rem;
-  height: 18rem;
-  left: var(--mx, 50%);
-  top: var(--my, 40%);
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(0, 113, 227, 0.2), transparent 64%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 0;
+  filter: blur(10px) saturate(140%);
+}
+
+.apple-glass-lens {
+  position: absolute;
+  z-index: 1;
+  width: min(240px, 46vw);
+  height: min(240px, 46vw);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.06) 42%, rgba(255, 255, 255, 0.02) 70%);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -18px 40px rgba(0, 113, 227, 0.08),
+    0 18px 50px rgba(0, 113, 227, 0.1);
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  transition: opacity 0.6s var(--apple-ease);
 }
 
 .apple-eyebrow,
-.apple-hero-title,
 .apple-hero-sub,
 .apple-hero-lede,
 .apple-hero-actions {
   position: relative;
-  z-index: 1;
-}
-
-.apple-letter {
-  position: relative;
-  z-index: 1;
-  display: inline-block;
-  will-change: transform, color;
-}
-
-.apple-letter-space {
-  width: 0.32em;
-}
-
-.apple-hero-sub,
-.apple-hero-lede,
-.apple-eyebrow {
-  will-change: transform;
-}
-
-.apple-copy-motion {
-  position: relative;
-  will-change: transform;
-  background-image: radial-gradient(180px 90px at var(--cx, 50%) var(--cy, 50%), rgba(0, 113, 227, calc(0.08 * var(--copy-glow, 0))), transparent 70%);
+  z-index: 2;
 }
 
 .apple-hero-sub {
