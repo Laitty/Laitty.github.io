@@ -117,6 +117,8 @@ function initLiquidName() {
     oy: ((i + 1) % 3) * 0.16 - 0.16,
   }));
 
+  const mist = [];
+  const mistCap = phone ? 36 : 64;
   let hw = 1;
   let hh = 1;
   let dpr = 1;
@@ -139,6 +141,29 @@ function initLiquidName() {
   };
 
   const inkRgb = () => (dark() ? [236, 238, 242] : [22, 24, 28]);
+
+  const emitMist = (x, y, size, burst, hot) => {
+    const rgb = inkRgb();
+    for (let i = 0; i < burst; i += 1) {
+      const ang = Math.random() * Math.PI * 2;
+      const dist = size * (0.12 + Math.random() * 0.55);
+      const speed = 0.15 + Math.random() * (hot ? 0.9 : 0.45);
+      mist.push({
+        x: x + Math.cos(ang) * dist * 0.35,
+        y: y + Math.sin(ang) * dist * 0.35,
+        vx: Math.cos(ang) * speed,
+        vy: Math.sin(ang) * speed - 0.08,
+        r: (hot ? 5 : 3) + Math.random() * (hot ? 14 : 9),
+        squash: 0.55 + Math.random() * 0.45,
+        rot: Math.random() * Math.PI,
+        life: 1.2 + Math.random() * 1.8,
+        age: 0,
+        bloom: 0.08 + Math.random() * 0.16,
+        rgb,
+      });
+    }
+    if (mist.length > mistCap) mist.splice(0, mist.length - mistCap);
+  };
 
   const drawStain = (g, x, y, size, progress, rgb, alpha) => {
     const dim = Math.max(48, Math.ceil(size * 2.35));
@@ -202,14 +227,53 @@ function initLiquidName() {
         g.speed = phone ? 1.2 : 1.5;
         g.ox = (Math.random() - 0.5) * 0.28;
         g.oy = (Math.random() - 0.5) * 0.28;
+        emitMist(x + g.ox * size, y + g.oy * size, size, phone ? 5 : 8, true);
       }
       g.lastHot = hot;
       g.speed += ((hot ? 1.4 : 0.42) - g.speed) * 0.1;
-      if (g.stain < 1) g.stain = Math.min(1, g.stain + 0.016 * g.speed);
+      if (g.stain < 1) {
+        g.stain = Math.min(1, g.stain + 0.016 * g.speed);
+        const edge = size * (0.08 + 1.05 * g.stain);
+        if (Math.random() < (hot ? 0.42 : 0.16)) {
+          const ang = Math.random() * Math.PI * 2;
+          emitMist(
+            x + g.ox * size + Math.cos(ang) * edge * 0.55,
+            y + g.oy * size + Math.sin(ang) * edge * 0.55,
+            size,
+            hot ? (phone ? 2 : 3) : 1,
+            hot
+          );
+        }
+      }
 
       const alpha = (hot ? 0.28 : 0.14) * (0.9 + 0.1 * Math.sin(time * 0.5 + g.phase));
       drawStain(g, x, y, size, g.stain, rgb, alpha);
     });
+
+    for (let i = mist.length - 1; i >= 0; i -= 1) {
+      const p = mist[i];
+      p.age += 0.016;
+      p.r += p.bloom;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vx *= 0.986;
+      p.vy *= 0.992;
+      const fade =
+        p.age > p.life - 0.85 ? Math.max(0, (p.life - p.age) / 0.85) : Math.min(1, p.age / 0.12);
+      if (p.age > p.life || fade <= 0) {
+        mist.splice(i, 1);
+        continue;
+      }
+      const [r, gv, b] = p.rgb;
+      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+      grad.addColorStop(0, `rgba(${r},${gv},${b},${0.16 * fade})`);
+      grad.addColorStop(0.48, `rgba(${r},${gv},${b},${0.07 * fade})`);
+      grad.addColorStop(1, `rgba(${r},${gv},${b},0)`);
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.ellipse(p.x, p.y, p.r, p.r * p.squash, p.rot, 0, Math.PI * 2);
+      ctx.fill();
+    }
 
     requestAnimationFrame(tick);
   };
