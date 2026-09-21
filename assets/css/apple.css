@@ -9,9 +9,9 @@
   --apple-card: rgba(255, 255, 255, 0.72);
   --apple-line: rgba(0, 0, 0, 0.08);
   --apple-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
-  --apple-glass-sm-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.08));
-  --apple-glass-sm-border: rgba(255, 255, 255, 0.44);
-  --apple-glass-sm-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.56), inset 0 -10px 18px rgba(0, 113, 227, 0.028), 0 8px 20px rgba(0, 0, 0, 0.035);
+  --apple-glass-sm-bg: linear-gradient(180deg, rgba(232, 243, 255, 0.44), rgba(196, 224, 252, 0.12));
+  --apple-glass-sm-border: rgba(170, 206, 245, 0.46);
+  --apple-glass-sm-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62), inset 0 -12px 22px rgba(0, 113, 227, 0.06), 0 8px 20px rgba(0, 113, 227, 0.045);
   --apple-glass-sm-blur: blur(16px) saturate(150%);
   --apple-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --global-theme-color: #0071e3;
@@ -30,9 +30,9 @@ html[data-theme-setting="dark"] {
   --apple-card: rgba(28, 28, 30, 0.72);
   --apple-line: rgba(255, 255, 255, 0.1);
   --apple-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-  --apple-glass-sm-bg: linear-gradient(180deg, rgba(48, 48, 52, 0.36), rgba(22, 22, 24, 0.14));
-  --apple-glass-sm-border: rgba(255, 255, 255, 0.11);
-  --apple-glass-sm-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 10px 24px rgba(0, 0, 0, 0.22);
+  --apple-glass-sm-bg: linear-gradient(180deg, rgba(38, 58, 88, 0.4), rgba(18, 28, 44, 0.16));
+  --apple-glass-sm-border: rgba(90, 150, 220, 0.2);
+  --apple-glass-sm-shadow: inset 0 1px 0 rgba(160, 200, 255, 0.12), inset 0 -12px 22px rgba(41, 151, 255, 0.07), 0 10px 24px rgba(0, 0, 0, 0.22);
   --apple-glass-sm-blur: blur(16px) saturate(140%);
   --global-theme-color: #2997ff;
   --global-hover-color: #64b5ff;
@@ -387,10 +387,11 @@ html[data-theme="dark"] .apple-btn-ghost {
   .bibliography li:hover,
   .publications li:hover {
     transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.62);
+    border-color: rgba(150, 198, 245, 0.7);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.7),
-      0 14px 30px rgba(0, 0, 0, 0.06);
+      inset 0 1px 0 rgba(255, 255, 255, 0.72),
+      inset 0 -10px 18px rgba(0, 113, 227, 0.08),
+      0 14px 30px rgba(0, 113, 227, 0.07);
   }
 }
 
