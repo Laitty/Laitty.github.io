@@ -3,82 +3,69 @@ layout: default
 ---
 <div class="post apple-page">
   <header class="apple-hero">
-    <div class="apple-orbs" aria-hidden="true"></div>
-    <p class="apple-eyebrow">{{ page.hero_eyebrow | default: "Carnegie Mellon University" }}</p>
-    <h1 class="apple-hero-title">
-      {% if site.title == 'blank' %}
-        <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }} {{ site.last_name }}
-      {% else %}
-        {{ site.title }}
+    <div class="apple-hero-copy">
+      <p class="apple-eyebrow">{{ page.hero_eyebrow | default: "Carnegie Mellon University" }}</p>
+      <h1 class="apple-hero-title">
+        {% if site.title == 'blank' %}
+          <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }} {{ site.last_name }}
+        {% else %}
+          {{ site.title }}
+        {% endif %}
+      </h1>
+      <p class="apple-hero-sub">{{ page.subtitle }}</p>
+      {% if page.hero_lede %}
+        <p class="apple-hero-lede">{{ page.hero_lede }}</p>
       {% endif %}
-    </h1>
-    <p class="apple-hero-sub">{{ page.subtitle }}</p>
-    {% if page.hero_lede %}
-      <p class="apple-hero-lede">{{ page.hero_lede }}</p>
-    {% endif %}
-    <div class="apple-hero-actions">
-      <a class="apple-btn apple-btn-primary" href="{{ '/publications/' | relative_url }}">Explore research</a>
-      <a class="apple-btn apple-btn-ghost" href="#publications">Publications</a>
+      <div class="apple-hero-actions">
+        <a class="apple-btn apple-btn-primary" href="{{ '/publications/' | relative_url }}">View research</a>
+        <a class="apple-btn apple-btn-ghost" href="#publications">Publications</a>
+      </div>
+    </div>
+    <div class="apple-hero-media">
+      {% if page.profile.image %}
+        {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
+        {%
+          include figure.liquid loading="eager" path=profile_image_path class="apple-portrait" sizes="320px" alt=site.title cache_bust=true
+        %}
+      {% else %}
+        <div class="apple-monogram" role="img" aria-label="{{ site.title }}">T</div>
+      {% endif %}
     </div>
   </header>
 
+  <section class="apple-features" aria-label="Selected research">
+    <p class="apple-kicker">Selected research</p>
+    <div class="apple-feature-grid">
+      <a class="apple-feature" href="https://doi.org/10.1145/3767308.3836433">
+        <span class="apple-feature-venue">ACM MM 2026</span>
+        <h3>TRACE</h3>
+        <p>Concept editing for clinical breast ultrasound, with report supervision at training time.</p>
+      </a>
+      <a class="apple-feature" href="https://doi.org/10.1109/ICASSP55912.2026.11462834">
+        <span class="apple-feature-venue">ICASSP 2026</span>
+        <h3>FREDNet</h3>
+        <p>Frequency and spatial learning for industrial defect detection across NEU-DET and GC-10.</p>
+      </a>
+      <a class="apple-feature" href="https://arxiv.org/abs/2603.20869">
+        <span class="apple-feature-venue">arXiv 2026</span>
+        <h3>ReLaMix</h3>
+        <p>Residual mixing for delay-robust financial time-series forecasting.</p>
+      </a>
+    </div>
+  </section>
+
   <article class="apple-article">
-    {% if page.profile %}
-      <div class="profile float-{% if page.profile.align == 'left' %}left{% else %}right{% endif %}">
-        {% if page.profile.image %}
-          {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
-          {% if page.profile.image_circular %}
-            {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
-          {% else %}
-            {% assign profile_image_class = 'img-fluid z-depth-1 rounded' %}
-          {% endif %}
-          {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.3}}px, (min-width: 576px) 30vw, 95vw"{% endcapture %}
-          {%
-            include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.image cache_bust=true
-          %}
-        {% endif %}
-        {% if page.profile.more_info %}
-          <div class="more-info">{{ page.profile.more_info }}</div>
-        {% endif %}
-      </div>
+    {% if page.profile.more_info %}
+      <div class="apple-inline-contact">{{ page.profile.more_info }}</div>
     {% endif %}
 
     <div class="clearfix">{{ content }}</div>
-
-    {% if page.announcements and page.announcements.enabled %}
-      <h2>
-        <a href="{{ '/news/' | relative_url }}" style="color: inherit">news</a>
-      </h2>
-      {% include news.liquid limit=true %}
-    {% endif %}
-
-    {% if page.latest_posts and page.latest_posts.enabled %}
-      <h2>
-        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
-      </h2>
-      {% include latest_posts.liquid %}
-    {% endif %}
-
-    {% if page.selected_papers %}
-      <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">selected publications</a>
-      </h2>
-      {% include selected_papers.liquid %}
-    {% endif %}
 
     {% if page.social %}
       <div class="social">
         <div class="contact-icons">{% social_links %}</div>
         <div class="contact-note">{{ site.contact_note }}</div>
       </div>
-    {% endif %}
-
-    {% if site.newsletter and site.newsletter.enabled and site.footer_fixed %}
-      {% if site.plugins contains 'al_newsletter' %}
-        {% include plugins/al_newsletter_form_center_margin.liquid %}
-      {% else %}
-        {% include newsletter.liquid center=true %}
-      {% endif %}
     {% endif %}
   </article>
 </div>
