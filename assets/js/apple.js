@@ -36,7 +36,7 @@ function initLiquidName() {
   svg.innerHTML =
     '<filter id="apple-name-warp" x="-20%" y="-20%" width="140%" height="140%">' +
     '<feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="2" seed="3" result="noise"></feTurbulence>' +
-    '<feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>' +
+    '<feDisplacementMap in="SourceGraphic" in2="noise" scale="16" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>' +
     "</filter>";
   document.body.appendChild(svg);
 
@@ -102,6 +102,7 @@ function initLiquidName() {
 
   const setWarp = (event, on) => {
     nameHot = on;
+    hero.classList.toggle("is-bloom", on);
     if (!on) {
       hot.classList.remove("is-on");
       return;
@@ -120,7 +121,7 @@ function initLiquidName() {
       emitCool += 0.016;
       const gap = phone ? 0.038 : 0.02;
       if (emitCool > gap) {
-        emitAt(mx, my, phone ? 3 : 4);
+        emitAt(mx, my, phone ? 4 : 6);
         emitCool = 0;
       }
     }
@@ -171,7 +172,7 @@ function initLiquidName() {
     mx = p.x;
     my = p.y;
     setWarp(event, true);
-    emitAt(mx, my, phone ? 10 : 16);
+    emitAt(mx, my, phone ? 14 : 22);
   });
   title.addEventListener("pointermove", (event) => {
     const p = localPoint(event);

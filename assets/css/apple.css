@@ -203,9 +203,11 @@ html[data-theme="dark"] .apple-orbs {
 
 .apple-title-wrap {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   justify-content: center;
+  transform-origin: center;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .apple-hero-title-hot {
@@ -218,12 +220,43 @@ html[data-theme="dark"] .apple-orbs {
   pointer-events: none;
   filter: url(#apple-name-warp) drop-shadow(0 10px 24px rgba(0, 87, 194, 0.22));
   opacity: 0;
-  -webkit-mask-image: radial-gradient(circle 58px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
-  mask-image: radial-gradient(circle 58px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle 86px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
+  mask-image: radial-gradient(circle 86px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
 }
 
 .apple-hero-title-hot.is-on {
   opacity: 1;
+}
+
+.apple-hero.is-bloom .apple-title-wrap {
+  z-index: 5;
+  transform: translateY(-14px) scale(1.16);
+}
+
+.apple-hero.is-bloom .apple-hero-title {
+  filter: drop-shadow(0 28px 48px rgba(0, 87, 194, 0.28));
+}
+
+.apple-hero.is-bloom .apple-eyebrow {
+  transform: translateY(-46px) scale(0.94);
+  letter-spacing: 0.52em;
+  opacity: 0.28;
+}
+
+.apple-hero.is-bloom .apple-hero-sub {
+  transform: translateY(42px);
+  letter-spacing: 0.08em;
+  opacity: 0.38;
+}
+
+.apple-hero.is-bloom .apple-hero-lede {
+  transform: translateY(58px);
+  opacity: 0.28;
+}
+
+.apple-hero.is-bloom .apple-hero-actions {
+  transform: translateY(36px);
+  opacity: 0.5;
 }
 
 html[data-theme="dark"] .apple-hero-title,
@@ -254,6 +287,7 @@ html[data-theme-setting="dark"] .apple-hero-title {
 .apple-hero-actions {
   position: relative;
   z-index: 2;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease, letter-spacing 0.55s ease;
 }
 
 .apple-hero-sub {
@@ -560,8 +594,11 @@ footer {
     font-size: clamp(2.4rem, 7.2vw, 4.4rem);
   }
   .apple-hero-title-hot {
-    -webkit-mask-image: radial-gradient(circle 50px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
-    mask-image: radial-gradient(circle 50px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
+    -webkit-mask-image: radial-gradient(circle 72px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
+    mask-image: radial-gradient(circle 72px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
+  }
+  .apple-hero.is-bloom .apple-title-wrap {
+    transform: translateY(-10px) scale(1.1);
   }
   .travel-globe-stage {
     height: min(56vh, 520px);
@@ -581,6 +618,20 @@ footer {
   .apple-hero-title {
     max-width: none;
     font-size: clamp(2.15rem, 11vw, 3.1rem);
+  }
+  .apple-hero.is-bloom .apple-title-wrap {
+    transform: translateY(-8px) scale(1.08);
+  }
+  .apple-hero.is-bloom .apple-eyebrow {
+    transform: translateY(-26px);
+    letter-spacing: 0.22em;
+  }
+  .apple-hero.is-bloom .apple-hero-sub {
+    transform: translateY(24px);
+  }
+  .apple-hero.is-bloom .apple-hero-lede,
+  .apple-hero.is-bloom .apple-hero-actions {
+    transform: translateY(28px);
   }
   .apple-hero-sub,
   .apple-hero-lede {
