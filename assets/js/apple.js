@@ -95,19 +95,21 @@ function initLiquidName() {
           nx: 0.28 + i * 0.22,
           ny: 0.36,
           s: 0.24,
+          tier: "core",
         })),
         ...given.map((ch, i) => ({
           ch,
           nx: 0.14 + i * 0.12,
           ny: 0.58,
           s: 0.13,
+          tier: "row",
         })),
-        { ch: edge[0], nx: 0.08, ny: 0.18, s: 0.1 },
-        { ch: edge[1], nx: 0.9, ny: 0.22, s: 0.1 },
-        { ch: edge[2], nx: 0.1, ny: 0.82, s: 0.09 },
-        { ch: edge[3], nx: 0.9, ny: 0.8, s: 0.1 },
-        { ch: edge[4], nx: 0.5, ny: 0.14, s: 0.08 },
-        { ch: edge[5], nx: 0.5, ny: 0.86, s: 0.08 },
+        { ch: edge[0], nx: 0.08, ny: 0.18, s: 0.1, tier: "edge" },
+        { ch: edge[1], nx: 0.9, ny: 0.22, s: 0.1, tier: "edge" },
+        { ch: edge[2], nx: 0.1, ny: 0.82, s: 0.09, tier: "edge" },
+        { ch: edge[3], nx: 0.9, ny: 0.8, s: 0.1, tier: "edge" },
+        { ch: edge[4], nx: 0.5, ny: 0.14, s: 0.08, tier: "edge" },
+        { ch: edge[5], nx: 0.5, ny: 0.86, s: 0.08, tier: "edge" },
       ]
     : [
         ...lai.map((ch, i) => ({
@@ -115,21 +117,23 @@ function initLiquidName() {
           nx: 0.28 + i * 0.22,
           ny: 0.34,
           s: 0.3,
+          tier: "core",
         })),
         ...given.map((ch, i) => ({
           ch,
           nx: 0.12 + i * 0.126,
           ny: 0.58,
           s: 0.16,
+          tier: "row",
         })),
-        { ch: edge[0], nx: 0.07, ny: 0.16, s: 0.11 },
-        { ch: edge[1], nx: 0.93, ny: 0.18, s: 0.11 },
-        { ch: edge[2], nx: 0.08, ny: 0.84, s: 0.1 },
-        { ch: edge[3], nx: 0.92, ny: 0.82, s: 0.11 },
-        { ch: edge[4], nx: 0.5, ny: 0.12, s: 0.09 },
-        { ch: edge[5], nx: 0.5, ny: 0.88, s: 0.09 },
-        { ch: "T", nx: 0.16, ny: 0.48, s: 0.08 },
-        { ch: "o", nx: 0.84, ny: 0.46, s: 0.08 },
+        { ch: edge[0], nx: 0.07, ny: 0.16, s: 0.11, tier: "edge" },
+        { ch: edge[1], nx: 0.93, ny: 0.18, s: 0.11, tier: "edge" },
+        { ch: edge[2], nx: 0.08, ny: 0.84, s: 0.1, tier: "edge" },
+        { ch: edge[3], nx: 0.92, ny: 0.82, s: 0.11, tier: "edge" },
+        { ch: edge[4], nx: 0.5, ny: 0.12, s: 0.09, tier: "edge" },
+        { ch: edge[5], nx: 0.5, ny: 0.88, s: 0.09, tier: "edge" },
+        { ch: "T", nx: 0.16, ny: 0.48, s: 0.08, tier: "edge" },
+        { ch: "o", nx: 0.84, ny: 0.46, s: 0.08, tier: "edge" },
       ];
 
   const glyphs = layout.map((g, i) => ({
@@ -272,7 +276,9 @@ function initLiquidName() {
         }
       }
 
-      const alpha = (hot ? 0.28 : 0.14) * (0.9 + 0.1 * Math.sin(time * 0.5 + g.phase));
+      const base =
+        g.tier === "core" ? (hot ? 0.46 : 0.3) : g.tier === "row" ? (hot ? 0.34 : 0.22) : hot ? 0.2 : 0.12;
+      const alpha = base * (0.9 + 0.1 * Math.sin(time * 0.5 + g.phase));
       drawStain(g, x, y, size, g.stain, rgb, alpha);
     });
 
