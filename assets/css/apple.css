@@ -9,6 +9,10 @@
   --apple-card: rgba(255, 255, 255, 0.72);
   --apple-line: rgba(0, 0, 0, 0.08);
   --apple-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+  --apple-glass-sm-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.08));
+  --apple-glass-sm-border: rgba(255, 255, 255, 0.44);
+  --apple-glass-sm-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.56), inset 0 -10px 18px rgba(0, 113, 227, 0.028), 0 8px 20px rgba(0, 0, 0, 0.035);
+  --apple-glass-sm-blur: blur(16px) saturate(150%);
   --apple-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --global-theme-color: #0071e3;
   --global-hover-color: #0077ed;
@@ -26,6 +30,10 @@ html[data-theme-setting="dark"] {
   --apple-card: rgba(28, 28, 30, 0.72);
   --apple-line: rgba(255, 255, 255, 0.1);
   --apple-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --apple-glass-sm-bg: linear-gradient(180deg, rgba(48, 48, 52, 0.36), rgba(22, 22, 24, 0.14));
+  --apple-glass-sm-border: rgba(255, 255, 255, 0.11);
+  --apple-glass-sm-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 10px 24px rgba(0, 0, 0, 0.22);
+  --apple-glass-sm-blur: blur(16px) saturate(140%);
   --global-theme-color: #2997ff;
   --global-hover-color: #64b5ff;
   --global-code-bg-color: rgba(41, 151, 255, 0.12);
@@ -303,12 +311,16 @@ html[data-theme-setting="dark"] .apple-hero-title {
 }
 
 .apple-btn-ghost {
-  background: rgba(0, 0, 0, 0.06);
+  background: var(--apple-glass-sm-bg);
   color: var(--apple-blue) !important;
+  border: 1px solid var(--apple-glass-sm-border);
+  box-shadow: var(--apple-glass-sm-shadow);
+  backdrop-filter: var(--apple-glass-sm-blur);
+  -webkit-backdrop-filter: var(--apple-glass-sm-blur);
 }
 
 html[data-theme="dark"] .apple-btn-ghost {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--apple-glass-sm-bg);
 }
 
 .apple-article {
@@ -341,45 +353,44 @@ html[data-theme="dark"] .apple-btn-ghost {
 
 .apple-page article ul > li,
 .post article ul > li,
-.apple-article ul > li {
+.apple-article ul > li,
+.bibliography li,
+.publications li {
   position: relative;
-  margin: 0 0 0.85rem;
-  padding: 1.05rem 1.15rem;
-  background: var(--apple-card);
-  border: 1px solid var(--apple-line);
-  border-radius: 18px;
-  box-shadow: var(--apple-shadow);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: transform 0.35s var(--apple-ease), box-shadow 0.35s var(--apple-ease);
+  background: var(--apple-glass-sm-bg);
+  border: 1px solid var(--apple-glass-sm-border);
+  box-shadow: var(--apple-glass-sm-shadow);
+  backdrop-filter: var(--apple-glass-sm-blur);
+  -webkit-backdrop-filter: var(--apple-glass-sm-blur);
+  transition: transform 0.35s var(--apple-ease), box-shadow 0.35s var(--apple-ease), border-color 0.35s var(--apple-ease);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .apple-page article ul > li:hover,
-  .post article ul > li:hover,
-  .apple-article ul > li:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.12);
-  }
+.apple-page article ul > li,
+.post article ul > li,
+.apple-article ul > li {
+  margin: 0 0 0.85rem;
+  padding: 1.05rem 1.15rem;
+  border-radius: 16px;
 }
 
 .bibliography li,
 .publications li {
   margin-bottom: 1.1rem !important;
   padding: 1.15rem 1.2rem !important;
-  background: var(--apple-card);
-  border: 1px solid var(--apple-line);
-  border-radius: 20px;
-  box-shadow: var(--apple-shadow);
-  backdrop-filter: blur(16px);
-  transition: transform 0.35s var(--apple-ease), box-shadow 0.35s var(--apple-ease);
+  border-radius: 16px;
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .apple-page article ul > li:hover,
+  .post article ul > li:hover,
+  .apple-article ul > li:hover,
   .bibliography li:hover,
   .publications li:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.14);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.62);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.7),
+      0 14px 30px rgba(0, 0, 0, 0.06);
   }
 }
 
@@ -423,15 +434,19 @@ footer {
 .travel-globe-card {
   margin: 1.1rem 0 2.4rem;
   overflow: hidden;
-  border-radius: 24px;
-  background: linear-gradient(180deg, #d7e6f6 0%, #eef3f8 100%);
-  box-shadow: var(--apple-shadow);
+  border-radius: 22px;
+  background: var(--apple-glass-sm-bg);
+  border: 1px solid var(--apple-glass-sm-border);
+  box-shadow: var(--apple-glass-sm-shadow);
+  backdrop-filter: var(--apple-glass-sm-blur);
+  -webkit-backdrop-filter: var(--apple-glass-sm-blur);
 }
 
 .travel-globe-stage {
   position: relative;
   width: 100%;
   height: min(62vh, 560px);
+  background: radial-gradient(circle at 50% 42%, rgba(215, 230, 246, 0.42), rgba(238, 243, 248, 0.12));
 }
 
 .travel-globe {
@@ -511,12 +526,15 @@ footer {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   min-width: 7rem;
   padding: 0.55rem 0.75rem;
-  background: #ffffff;
+  background: var(--apple-glass-sm-bg);
   color: #1d1d1f;
+  border: 1px solid var(--apple-glass-sm-border);
   border-radius: 12px;
   font-size: 0.95rem;
   line-height: 1.35;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+  box-shadow: var(--apple-glass-sm-shadow);
+  backdrop-filter: var(--apple-glass-sm-blur);
+  -webkit-backdrop-filter: var(--apple-glass-sm-blur);
 }
 
 .travel-tip-name {
@@ -623,7 +641,12 @@ footer {
 
 html[data-theme="dark"] .travel-globe-card,
 html[data-theme-setting="dark"] .travel-globe-card {
-  background: linear-gradient(180deg, #141820 0%, #07090d 100%);
+  background: var(--apple-glass-sm-bg);
+}
+
+html[data-theme="dark"] .travel-globe-stage,
+html[data-theme-setting="dark"] .travel-globe-stage {
+  background: radial-gradient(circle at 50% 42%, rgba(20, 24, 32, 0.46), rgba(7, 9, 13, 0.16));
 }
 
 html[data-theme="dark"] .travel-globe-legend,
@@ -640,9 +663,9 @@ html[data-theme-setting="dark"] .travel-globe-status {
 
 html[data-theme="dark"] .travel-tip,
 html[data-theme-setting="dark"] .travel-tip {
-  background: #1c1c1e;
+  background: var(--apple-glass-sm-bg);
   color: #f5f5f7;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--apple-glass-sm-shadow);
 }
 
 html[data-theme="dark"] .travel-tip-name,
