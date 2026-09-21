@@ -9,23 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initLiquidName();
 });
 
-function splitChars(el) {
-  if (!el) return [];
-  const text = el.textContent;
-  el.setAttribute("aria-label", text.trim());
-  el.textContent = "";
-  const letters = [];
-  for (const ch of text) {
-    if (ch === "\n") continue;
-    const span = document.createElement("span");
-    span.className = "apple-ch";
-    span.textContent = ch === " " ? "\u00a0" : ch;
-    el.appendChild(span);
-    letters.push(span);
-  }
-  return letters;
-}
-
 function initLiquidName() {
   const hero = document.querySelector(".apple-hero");
   const title = document.querySelector(".apple-hero-title");
@@ -36,30 +19,11 @@ function initLiquidName() {
 
   const phone = window.matchMedia("(max-width: 734px)").matches;
   const coarse = window.matchMedia("(pointer: coarse)").matches;
-  const eyebrow = hero.querySelector(".apple-eyebrow");
-  const sub = hero.querySelector(".apple-hero-sub");
-  const eyeLetters = splitChars(eyebrow);
-  const subLetters = splitChars(sub);
 
   const wrap = document.createElement("div");
   wrap.className = "apple-title-wrap";
   title.parentNode.insertBefore(wrap, title);
   wrap.appendChild(title);
-
-  const hot = title.cloneNode(true);
-  hot.classList.add("apple-hero-title-hot");
-  hot.setAttribute("aria-hidden", "true");
-  wrap.appendChild(hot);
-
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("class", "apple-liquid-svg");
-  svg.setAttribute("aria-hidden", "true");
-  svg.innerHTML =
-    '<filter id="apple-name-warp" x="-20%" y="-20%" width="140%" height="140%">' +
-    '<feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="2" seed="3" result="noise"></feTurbulence>' +
-    '<feDisplacementMap in="SourceGraphic" in2="noise" scale="16" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>' +
-    "</filter>";
-  document.body.appendChild(svg);
 
   const canvas = document.createElement("canvas");
   canvas.className = "apple-liquid-canvas";
@@ -67,17 +31,26 @@ function initLiquidName() {
   hero.prepend(canvas);
   const ctx = canvas.getContext("2d", { alpha: true });
 
-  const palette = [
-    [0, 113, 227],
-    [94, 92, 230],
-    [232, 168, 56],
-    [48, 209, 88],
-    [255, 69, 58],
-    [100, 210, 255],
+  const inkLight = [
+    [22, 22, 24],
+    [42, 46, 54],
+    [58, 74, 98],
+    [92, 28, 32],
   ];
+  const inkDark = [
+    [236, 238, 242],
+    [198, 206, 218],
+    [156, 178, 206],
+    [210, 168, 168],
+  ];
+  const ink = () =>
+    document.documentElement.getAttribute("data-theme") === "dark" ||
+    document.documentElement.getAttribute("data-theme-setting") === "dark"
+      ? inkDark
+      : inkLight;
 
   const field = [];
-  const cap = phone ? 80 : 140;
+  const cap = phone ? 36 : 58;
   let hw = 1;
   let hh = 1;
   let dpr = 1;
@@ -104,103 +77,82 @@ function initLiquidName() {
   };
 
   const emitAt = (x, y, burst) => {
+    const palette = ink();
     for (let i = 0; i < burst; i += 1) {
-      const ang = Math.random() * Math.PI * 2;
-      const speed = 1.2 + Math.random() * 2.6;
+      const ang = -Math.PI / 2 + (Math.random() - 0.5) * 1.6;
+      const speed = 0.35 + Math.random() * 1.1;
       field.push({
-        x,
-        y,
+        x: x + (Math.random() - 0.5) * 10,
+        y: y + (Math.random() - 0.5) * 8,
         vx: Math.cos(ang) * speed,
         vy: Math.sin(ang) * speed,
-        r: 1.7 + Math.random() * 2.4,
+        r: 6 + Math.random() * 16,
+        squash: 0.62 + Math.random() * 0.5,
+        rot: Math.random() * Math.PI,
         hue: Math.floor(Math.random() * palette.length),
-        life: 5 + Math.random() * 5.5,
+        life: 2.4 + Math.random() * 2.8,
         age: 0,
+        bloom: 0.12 + Math.random() * 0.18,
       });
     }
     if (field.length > cap) field.splice(0, field.length - cap);
   };
 
-  const scatterLine = (letters, on, dirY) => {
-    const mid = (letters.length - 1) / 2;
-    const unit = Math.min(phone ? 2.6 : 4.6, 78 / Math.max(1, Math.abs(mid)));
-    letters.forEach((span, i) => {
-      if (!on) {
-        span.style.transform = "";
-        return;
-      }
-      const k = i - mid;
-      span.style.transform = `translate(${k * unit}px, ${dirY * (6 + Math.abs(k) * 1.15)}px) rotate(${k * 1.2}deg)`;
-    });
-  };
-
-  const setWarp = (event, on) => {
+  const setHot = (event, on) => {
     nameHot = on;
-    if (!on) {
-      hot.classList.remove("is-on");
-      hot.style.setProperty("--swell", "1");
-      scatterLine(eyeLetters, false, -1);
-      scatterLine(subLetters, false, 1);
-      return;
-    }
-    const tbox = wrap.getBoundingClientRect();
+    hero.classList.toggle("is-bloom", on);
+    if (!on) return;
     const box = title.getBoundingClientRect();
-    hot.style.setProperty("--hx", `${event.clientX - tbox.left}px`);
-    hot.style.setProperty("--hy", `${event.clientY - tbox.top}px`);
-    hot.style.setProperty("--swell", phone ? "1.18" : "1.26");
     title.style.setProperty("--lx", `${((event.clientX - box.left) / Math.max(1, box.width)) * 100}%`);
     title.style.setProperty("--ly", `${((event.clientY - box.top) / Math.max(1, box.height)) * 100}%`);
-    hot.classList.add("is-on");
-    scatterLine(eyeLetters, true, -1);
-    scatterLine(subLetters, true, 1);
   };
 
   const tick = () => {
     if (nameHot) {
       emitCool += 0.016;
-      const gap = phone ? 0.038 : 0.02;
-      if (emitCool > gap) {
-        emitAt(mx, my, phone ? 4 : 6);
+      if (emitCool > (phone ? 0.055 : 0.032)) {
+        emitAt(mx, my, phone ? 1 : 2);
         emitCool = 0;
       }
     }
 
     ctx.clearRect(0, 0, hw, hh);
+    const palette = ink();
     for (let i = field.length - 1; i >= 0; i -= 1) {
       const p = field[i];
       p.age += 0.016;
-      p.vy += 0.018;
+      p.r += p.bloom;
       p.x += p.vx;
       p.y += p.vy;
+      p.vx *= 0.985;
+      p.vy *= 0.99;
       if (p.x < p.r) {
         p.x = p.r;
-        p.vx = Math.abs(p.vx) * 0.88;
+        p.vx = Math.abs(p.vx) * 0.55;
       } else if (p.x > hw - p.r) {
         p.x = hw - p.r;
-        p.vx = -Math.abs(p.vx) * 0.88;
+        p.vx = -Math.abs(p.vx) * 0.55;
       }
       if (p.y < p.r) {
         p.y = p.r;
-        p.vy = Math.abs(p.vy) * 0.88;
+        p.vy = Math.abs(p.vy) * 0.4;
       } else if (p.y > hh - p.r) {
         p.y = hh - p.r;
-        p.vy = -Math.abs(p.vy) * 0.88;
+        p.vy = -Math.abs(p.vy) * 0.4;
       }
-      p.vx *= 0.996;
-      p.vy *= 0.996;
-      const fade = p.age > p.life - 1 ? Math.max(0, p.life - p.age) : 1;
+      const fade = p.age > p.life - 1.1 ? Math.max(0, (p.life - p.age) / 1.1) : Math.min(1, p.age / 0.18);
       if (p.age > p.life || fade <= 0) {
         field.splice(i, 1);
         continue;
       }
-      const [r, g, b] = palette[p.hue];
+      const [r, g, b] = palette[p.hue % palette.length];
+      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+      grad.addColorStop(0, `rgba(${r},${g},${b},${0.2 * fade})`);
+      grad.addColorStop(0.42, `rgba(${r},${g},${b},${0.1 * fade})`);
+      grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+      ctx.fillStyle = grad;
       ctx.beginPath();
-      ctx.fillStyle = `rgba(${r},${g},${b},${0.22 + 0.78 * fade})`;
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.fillStyle = `rgba(255,255,255,${0.55 * fade})`;
-      ctx.arc(p.x - p.r * 0.25, p.y - p.r * 0.28, Math.max(0.6, p.r * 0.32), 0, Math.PI * 2);
+      ctx.ellipse(p.x, p.y, p.r, p.r * p.squash, p.rot, 0, Math.PI * 2);
       ctx.fill();
     }
     requestAnimationFrame(tick);
@@ -210,27 +162,27 @@ function initLiquidName() {
     const p = localPoint(event);
     mx = p.x;
     my = p.y;
-    setWarp(event, true);
-    emitAt(mx, my, phone ? 14 : 22);
+    setHot(event, true);
+    emitAt(mx, my, phone ? 5 : 8);
   });
   title.addEventListener("pointermove", (event) => {
     const p = localPoint(event);
     mx = p.x;
     my = p.y;
-    setWarp(event, true);
+    setHot(event, true);
   });
   title.addEventListener("pointerdown", (event) => {
     const p = localPoint(event);
     mx = p.x;
     my = p.y;
-    setWarp(event, true);
-    emitAt(mx, my, phone ? 12 : 18);
+    setHot(event, true);
+    emitAt(mx, my, phone ? 6 : 10);
   });
   title.addEventListener("pointerleave", () => {
-    setWarp(null, false);
+    setHot(null, false);
   });
   title.addEventListener("pointerup", () => {
-    if (coarse) setWarp(null, false);
+    if (coarse) setHot(null, false);
   });
 
   window.addEventListener("resize", fit);

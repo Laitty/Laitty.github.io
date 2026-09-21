@@ -1,0 +1,13 @@
+{% if site.footer_fixed %}
+  <footer class="fixed-bottom apple-footer">
+    <div class="container mt-0">
+      &copy; {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.last_name }}
+    </div>
+  </footer>
+{% else %}
+  <footer class="apple-footer">
+    <div class="container">
+      &copy; {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.last_name }}
+    </div>
+  </footer>
+{% endif %}

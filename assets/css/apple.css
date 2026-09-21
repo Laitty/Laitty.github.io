@@ -207,32 +207,20 @@ html[data-theme="dark"] .apple-orbs {
   width: fit-content;
   max-width: 100%;
   margin: 0 auto;
+  transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.apple-eyebrow .apple-ch,
-.apple-hero-sub .apple-ch {
-  display: inline-block;
-  transform-origin: 50% 50%;
-  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+.apple-hero.is-bloom .apple-title-wrap {
+  transform: translateY(-12px) scale(1.07);
 }
 
-.apple-hero-title-hot {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  margin: 0;
-  pointer-events: none;
-  transform: scale(var(--swell, 1));
-  transform-origin: var(--hx, 50%) var(--hy, 50%);
-  transition: opacity 0.18s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: url(#apple-name-warp) drop-shadow(0 10px 24px rgba(0, 87, 194, 0.22));
-  opacity: 0;
-  -webkit-mask-image: radial-gradient(circle 78px at var(--hx, 50%) var(--hy, 50%), #000 0 38%, transparent 72%);
-  mask-image: radial-gradient(circle 78px at var(--hx, 50%) var(--hy, 50%), #000 0 38%, transparent 72%);
+.apple-hero.is-bloom .apple-eyebrow {
+  transform: translateY(-14px) scale(0.92);
 }
 
-.apple-hero-title-hot.is-on {
-  opacity: 1;
+.apple-hero.is-bloom .apple-hero-sub {
+  transform: translateY(12px) scale(0.94);
 }
 
 html[data-theme="dark"] .apple-hero-title,
@@ -263,6 +251,7 @@ html[data-theme-setting="dark"] .apple-hero-title {
 .apple-hero-actions {
   position: relative;
   z-index: 2;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .apple-hero-sub {
@@ -412,11 +401,28 @@ html[data-theme="dark"] .apple-btn-ghost {
 }
 
 footer.fixed-bottom,
+footer.apple-footer,
 footer {
-  background: transparent !important;
+  background: rgba(251, 251, 253, 0.72) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-top: 1px solid var(--apple-line);
   color: var(--apple-muted);
   font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] footer.fixed-bottom,
+html[data-theme="dark"] footer.apple-footer,
+html[data-theme="dark"] footer {
+  background: rgba(22, 22, 23, 0.72) !important;
+}
+
+.apple-footer .container {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
 }
 
 .social .contact-icons a {
@@ -568,10 +574,6 @@ footer {
     max-width: 12ch;
     font-size: clamp(2.4rem, 7.2vw, 4.4rem);
   }
-  .apple-hero-title-hot {
-    -webkit-mask-image: radial-gradient(circle 72px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
-    mask-image: radial-gradient(circle 72px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
-  }
   .travel-globe-stage {
     height: min(56vh, 520px);
   }
@@ -618,10 +620,6 @@ footer {
   .publications li {
     padding: 0.9rem 0.95rem !important;
     border-radius: 14px;
-  }
-  .apple-hero-title-hot {
-    -webkit-mask-image: radial-gradient(circle 42px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
-    mask-image: radial-gradient(circle 42px at var(--hx, 50%) var(--hy, 50%), #000 0 42%, transparent 72%);
   }
   .travel-globe-card {
     margin: 0.85rem 0 1.8rem;
