@@ -87,42 +87,36 @@ function initLiquidName() {
   const src = [...title.getAttribute("aria-label")].filter((ch) => /[A-Za-z]/.test(ch));
   const layout = phone
     ? [
-        { ch: src[0] || "T", nx: 0.16, ny: 0.4, s: 0.42 },
-        { ch: src[src.length - 1] || "i", nx: 0.82, ny: 0.68, s: 0.34 },
-        { ch: src[3] || "n", nx: 0.52, ny: 0.22, s: 0.22 },
-        { ch: src[6] || "u", nx: 0.3, ny: 0.78, s: 0.2 },
-        { ch: src[8] || "h", nx: 0.72, ny: 0.36, s: 0.18 },
+        { ch: src[0] || "T", nx: 0.22, ny: 0.38, s: 0.28 },
+        { ch: src[src.length - 3] || "L", nx: 0.78, ny: 0.62, s: 0.26 },
+        { ch: src[2] || "a", nx: 0.5, ny: 0.24, s: 0.18 },
+        { ch: src[5] || "o", nx: 0.32, ny: 0.72, s: 0.17 },
+        { ch: src[8] || "h", nx: 0.68, ny: 0.34, s: 0.16 },
       ]
     : [
-        { ch: src[0] || "T", nx: 0.14, ny: 0.36, s: 0.46 },
-        { ch: src[src.length - 3] || "L", nx: 0.84, ny: 0.64, s: 0.4 },
-        { ch: src[1] || "i", nx: 0.4, ny: 0.18, s: 0.18 },
-        { ch: src[2] || "a", nx: 0.58, ny: 0.26, s: 0.22 },
-        { ch: src[3] || "n", nx: 0.32, ny: 0.74, s: 0.24 },
-        { ch: src[4] || "y", nx: 0.12, ny: 0.78, s: 0.2 },
-        { ch: src[5] || "o", nx: 0.62, ny: 0.8, s: 0.2 },
-        { ch: src[6] || "u", nx: 0.78, ny: 0.22, s: 0.18 },
-        { ch: src[8] || "h", nx: 0.5, ny: 0.52, s: 0.16 },
-        { ch: src[9] || "e", nx: 0.28, ny: 0.5, s: 0.16 },
+        { ch: src[0] || "T", nx: 0.2, ny: 0.34, s: 0.3 },
+        { ch: src[src.length - 3] || "L", nx: 0.8, ny: 0.64, s: 0.28 },
+        { ch: src[1] || "i", nx: 0.4, ny: 0.24, s: 0.16 },
+        { ch: src[2] || "a", nx: 0.58, ny: 0.28, s: 0.18 },
+        { ch: src[3] || "n", nx: 0.3, ny: 0.7, s: 0.18 },
+        { ch: src[4] || "y", nx: 0.18, ny: 0.62, s: 0.16 },
+        { ch: src[5] || "o", nx: 0.62, ny: 0.74, s: 0.16 },
+        { ch: src[6] || "u", nx: 0.78, ny: 0.28, s: 0.15 },
+        { ch: src[8] || "h", nx: 0.48, ny: 0.52, s: 0.14 },
+        { ch: src[9] || "e", nx: 0.36, ny: 0.48, s: 0.14 },
       ];
 
   const glyphs = layout.map((g, i) => ({
     ...g,
-    rot: (i % 2 === 0 ? -1 : 1) * (0.08 + (i % 5) * 0.03),
+    rot: (i % 2 === 0 ? -1 : 1) * (0.05 + (i % 5) * 0.02),
     phase: i * 0.9,
-    write: 0.2 + (i % 7) * 0.08,
-    hold: 1.2 + i * 0.35,
-    speed: 0.35,
+    stain: 1,
+    speed: 0.55,
     lastHot: false,
-    dots: Array.from({ length: 4 }, () => ({
-      dx: (Math.random() - 0.5) * 0.9,
-      dy: (Math.random() - 0.5) * 0.9,
-      r: 0.03 + Math.random() * 0.07,
-    })),
+    ox: (i % 3) * 0.18 - 0.18,
+    oy: ((i + 1) % 3) * 0.16 - 0.16,
   }));
 
-  const field = [];
-  const cap = phone ? 48 : 90;
   let hw = 1;
   let hh = 1;
   let dpr = 1;
@@ -146,48 +140,8 @@ function initLiquidName() {
 
   const inkRgb = () => (dark() ? [236, 238, 242] : [22, 24, 28]);
 
-  const bez = (t, a, b, c, d) => {
-    const u = 1 - t;
-    return {
-      x: u * u * u * a.x + 3 * u * u * t * b.x + 3 * u * t * t * c.x + t * t * t * d.x,
-      y: u * u * u * a.y + 3 * u * u * t * b.y + 3 * u * t * t * c.y + t * t * t * d.y,
-    };
-  };
-
-  const strokeFor = (size, seed) => {
-    const s = size * 0.5;
-    return {
-      a: { x: -s * 0.72, y: -s * 0.52 },
-      b: { x: -s * 0.08 + seed * 12, y: s * 0.18 },
-      c: { x: s * 0.22, y: -s * 0.12 },
-      d: { x: s * 0.68, y: s * 0.54 },
-    };
-  };
-
-  const emitInk = (x, y, burst, extra) => {
-    const palette = inkRgb();
-    for (let i = 0; i < burst; i += 1) {
-      const ang = Math.random() * Math.PI * 2;
-      const speed = 0.25 + Math.random() * 1.35;
-      field.push({
-        x: x + (Math.random() - 0.5) * 8,
-        y: y + (Math.random() - 0.5) * 8,
-        vx: Math.cos(ang) * speed * 0.45,
-        vy: Math.sin(ang) * speed * 0.45 + 0.12,
-        r: (extra ? 7 : 4) + Math.random() * (extra ? 18 : 11),
-        squash: 0.55 + Math.random() * 0.5,
-        rot: Math.random() * Math.PI,
-        life: 1.6 + Math.random() * 2.4,
-        age: 0,
-        bloom: 0.1 + Math.random() * 0.2,
-        rgb: palette,
-      });
-    }
-    if (field.length > cap) field.splice(0, field.length - cap);
-  };
-
-  const drawWritten = (g, x, y, size, progress, rgb, alpha) => {
-    const dim = Math.max(32, Math.ceil(size * 1.7));
+  const drawStain = (g, x, y, size, progress, rgb, alpha) => {
+    const dim = Math.max(48, Math.ceil(size * 2.35));
     stamp.width = dim * dpr;
     stamp.height = dim * dpr;
     sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -196,37 +150,39 @@ function initLiquidName() {
     const cy = dim / 2;
     sctx.save();
     sctx.translate(cx, cy);
-    sctx.rotate(g.rot + Math.sin(time * 0.2 + g.phase) * 0.03);
+    sctx.rotate(g.rot + Math.sin(time * 0.2 + g.phase) * 0.025);
     sctx.textAlign = "center";
     sctx.textBaseline = "middle";
     sctx.font = `italic 600 ${size}px "Snell Roundhand", "Apple Chancery", "Kaiti SC", "KaiTi", "Palatino Linotype", serif`;
     sctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
-    sctx.filter = "blur(0.8px)";
+    sctx.filter = "blur(0.7px)";
     sctx.fillText(g.ch, 0, 0);
-    sctx.filter = "blur(7px)";
-    sctx.globalAlpha = 0.35;
-    sctx.fillText(g.ch, 3, 5);
+    sctx.filter = "blur(6px)";
+    sctx.globalAlpha = 0.32;
+    sctx.fillText(g.ch, size * 0.02, size * 0.03);
     sctx.restore();
 
-    const st = strokeFor(size, g.phase);
-    sctx.save();
-    sctx.translate(cx, cy);
-    sctx.globalCompositeOperation = "destination-in";
-    sctx.beginPath();
-    sctx.moveTo(st.a.x, st.a.y);
-    sctx.bezierCurveTo(st.b.x, st.b.y, st.c.x, st.c.y, st.d.x, st.d.y);
-    sctx.lineCap = "round";
-    sctx.lineJoin = "round";
-    sctx.lineWidth = size * 0.58;
-    sctx.strokeStyle = "#000";
-    const len = size * 1.85;
-    sctx.setLineDash([Math.max(1, len * progress), len]);
-    sctx.lineDashOffset = 0;
-    sctx.stroke();
-    sctx.restore();
+    if (progress < 0.995) {
+      sctx.save();
+      sctx.globalCompositeOperation = "destination-in";
+      const r = size * (0.08 + 1.05 * progress);
+      const gx = sctx.createRadialGradient(
+        cx + g.ox * size,
+        cy + g.oy * size,
+        0,
+        cx + g.ox * size,
+        cy + g.oy * size,
+        r
+      );
+      gx.addColorStop(0, "rgba(0,0,0,1)");
+      gx.addColorStop(0.7, "rgba(0,0,0,0.88)");
+      gx.addColorStop(1, "rgba(0,0,0,0)");
+      sctx.fillStyle = gx;
+      sctx.fillRect(0, 0, dim, dim);
+      sctx.restore();
+    }
 
     ctx.drawImage(stamp, x - dim / 2, y - dim / 2, dim, dim);
-    return bez(Math.min(1, progress), st.a, st.b, st.c, st.d);
   };
 
   const tick = () => {
@@ -236,75 +192,24 @@ function initLiquidName() {
     const min = Math.min(hw, hh);
 
     glyphs.forEach((g) => {
-      const x = g.nx * hw + Math.sin(time * 0.35 + g.phase) * 10;
-      const y = g.ny * hh + Math.cos(time * 0.28 + g.phase) * 8;
       const size = g.s * min;
+      const pad = size * 1.05;
+      const x = Math.min(hw - pad, Math.max(pad, g.nx * hw + Math.sin(time * 0.28 + g.phase) * 8));
+      const y = Math.min(hh - pad, Math.max(pad, g.ny * hh + Math.cos(time * 0.22 + g.phase) * 6));
       const hot = Boolean(inkFocus && g.ch.toLowerCase() === inkFocus.toLowerCase());
       if (hot && !g.lastHot) {
-        g.write = 0;
-        g.speed = phone ? 1.15 : 1.45;
-        emitInk(x, y, phone ? 6 : 10, true);
+        g.stain = 0;
+        g.speed = phone ? 1.2 : 1.5;
+        g.ox = (Math.random() - 0.5) * 0.28;
+        g.oy = (Math.random() - 0.5) * 0.28;
       }
       g.lastHot = hot;
-      g.speed += ((hot ? 1.35 : 0.32) - g.speed) * 0.08;
-      g.write += 0.016 * g.speed;
-      if (g.write >= 1) {
-        g.hold -= 0.016;
-        g.write = 1;
-        if (g.hold <= 0 && !hot) {
-          g.write = 0;
-          g.hold = 2.4 + g.phase;
-          g.speed = 0.28;
-        }
-      }
+      g.speed += ((hot ? 1.4 : 0.42) - g.speed) * 0.1;
+      if (g.stain < 1) g.stain = Math.min(1, g.stain + 0.016 * g.speed);
 
-      const alpha = (hot ? 0.3 : 0.13) * (0.88 + 0.12 * Math.sin(time * 0.6 + g.phase));
-      const tip = drawWritten(g, x, y, size, Math.min(1, g.write), rgb, alpha);
-      if (g.write < 1 && Math.random() < (hot ? 0.5 : 0.14)) {
-        emitInk(x + tip.x, y + tip.y, hot ? (phone ? 2 : 3) : 1, hot);
-      }
-
-      g.dots.forEach((d, di) => {
-        const dx = x + d.dx * size;
-        const dy = y + d.dy * size + Math.sin(time * 0.5 + di) * 2;
-        const r = d.r * size * (0.7 + 0.3 * g.write);
-        const grad = ctx.createRadialGradient(dx, dy, 0, dx, dy, r);
-        grad.addColorStop(0, `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha * 0.55 * g.write})`);
-        grad.addColorStop(1, `rgba(${rgb[0]},${rgb[1]},${rgb[2]},0)`);
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.ellipse(dx, dy, r, r * 0.68, d.dx, 0, Math.PI * 2);
-        ctx.fill();
-      });
+      const alpha = (hot ? 0.28 : 0.14) * (0.9 + 0.1 * Math.sin(time * 0.5 + g.phase));
+      drawStain(g, x, y, size, g.stain, rgb, alpha);
     });
-
-    for (let i = field.length - 1; i >= 0; i -= 1) {
-      const p = field[i];
-      p.age += 0.016;
-      p.r += p.bloom;
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vx *= 0.985;
-      p.vy *= 0.99;
-      if (p.x < 0) p.vx = Math.abs(p.vx) * 0.5;
-      if (p.x > hw) p.vx = -Math.abs(p.vx) * 0.5;
-      if (p.y < 0) p.vy = Math.abs(p.vy) * 0.4;
-      if (p.y > hh) p.vy = -Math.abs(p.vy) * 0.4;
-      const fade = p.age > p.life - 0.9 ? Math.max(0, (p.life - p.age) / 0.9) : Math.min(1, p.age / 0.12);
-      if (p.age > p.life || fade <= 0) {
-        field.splice(i, 1);
-        continue;
-      }
-      const [r, gv, b] = p.rgb;
-      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
-      grad.addColorStop(0, `rgba(${r},${gv},${b},${0.18 * fade})`);
-      grad.addColorStop(0.45, `rgba(${r},${gv},${b},${0.08 * fade})`);
-      grad.addColorStop(1, `rgba(${r},${gv},${b},0)`);
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.ellipse(p.x, p.y, p.r, p.r * p.squash, p.rot, 0, Math.PI * 2);
-      ctx.fill();
-    }
 
     requestAnimationFrame(tick);
   };
