@@ -124,19 +124,55 @@ html[data-theme="dark"] .apple-orbs {
 .apple-hero-title {
   position: relative;
   margin: 0 auto 0.7rem;
-  max-width: 16ch;
+  max-width: 18ch;
   font-size: clamp(2.8rem, 7vw, 5.4rem);
   line-height: 1.02;
-  background: linear-gradient(180deg, var(--apple-text) 40%, rgba(29, 29, 31, 0.72));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--apple-text);
 }
 
-html[data-theme="dark"] .apple-hero-title {
-  background: linear-gradient(180deg, #fff 20%, rgba(245, 245, 247, 0.72));
-  -webkit-background-clip: text;
-  background-clip: text;
+.apple-hero::before {
+  content: "";
+  position: absolute;
+  width: 18rem;
+  height: 18rem;
+  left: var(--mx, 50%);
+  top: var(--my, 40%);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0, 113, 227, 0.2), transparent 64%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.apple-eyebrow,
+.apple-hero-title,
+.apple-hero-sub,
+.apple-hero-lede,
+.apple-hero-actions {
+  position: relative;
+  z-index: 1;
+}
+
+.apple-letter {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  will-change: transform, color;
+}
+
+.apple-letter-space {
+  width: 0.32em;
+}
+
+.apple-hero-sub,
+.apple-hero-lede,
+.apple-eyebrow {
+  will-change: transform;
+}
+
+.apple-copy-motion {
+  position: relative;
+  will-change: transform;
+  background-image: radial-gradient(180px 90px at var(--cx, 50%) var(--cy, 50%), rgba(0, 113, 227, calc(0.08 * var(--copy-glow, 0))), transparent 70%);
 }
 
 .apple-hero-sub {
