@@ -30,15 +30,17 @@ My research connects reliable learning and model evaluation with human–AI inte
 
 #### Unlearning, Context Effects, and Model Evaluation
 
-**Reasoning after Unlearning** — first author; submitted to ICLR 2027. This study evaluates original, unlearned, and target-excluded retrained Llama checkpoints on TOFU, separating context effects, answer exposure, and use of supplied answer information through matched controls, answer masking, and identity substitution. Related co-authored ICLR 2027 submissions examine auxiliary supervision in multimodal unlearning and misleading comparison feedback in model selection.
+- **Reasoning after Unlearning** — first author; submitted to ICLR 2027. Evaluates original, unlearned, and target-excluded retrained Llama checkpoints on TOFU, separating context effects, answer exposure, and use of supplied answer information through matched controls, answer masking, and identity substitution.
+- **Multimodal unlearning** — co-authored; submitted to ICLR 2027. Auxiliary supervision for unlearning in multimodal models.
+- **Model selection feedback** — co-authored; submitted to ICLR 2027. Misleading comparison feedback in model selection.
 
 #### Human–AI Interaction and LLM Judges
 
-**When Outputs Become Outcomes** — first author; submitted to CHI 2027. The study distinguishes agreement with an assessment, acceptance of a judge's authority, and subsequent action in livestream games and academic reviewing. Observational, interview, and presentation-comparison methods examine source attribution and human mediation.
+- **When Outputs Become Outcomes** — first author; submitted to CHI 2027. Distinguishes agreement with an assessment, acceptance of a judge's authority, and subsequent action in livestream games and academic reviewing; observational, interview, and presentation-comparison methods examine source attribution and human mediation.
 
 #### Collaborative Multi-Agent Reinforcement Learning Research
 
-Co-authored an AAAI 2027 submission on gradient routing and optimizer-dependent maintenance of learned cooperation.
+- **Cooperation maintenance** — submitted to AAAI 2027. Co-authored work on gradient routing and optimizer-dependent maintenance of learned cooperation.
 
 ### Applied Machine Learning
 
