@@ -1,1 +1,1 @@
-document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll(".apple-hero, .apple-article h2, .apple-article ul > li, .bibliography > ol > li, .publications li, .social").forEach((e,l)=>{e.style.animationDelay=`${Math.min(.05*l,.6)}s`,e.classList.add("apple-reveal")})});
+document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll(".apple-hero, .apple-feature, .apple-article h2, .apple-article ul > li, .bibliography > ol > li, .social").forEach((e,a)=>{e.style.animationDelay=`${Math.min(.04*a,.45)}s`,e.classList.add("apple-reveal")})});
