@@ -313,7 +313,7 @@ footer {
   margin: 1.1rem 0 2.4rem;
   overflow: hidden;
   border-radius: 24px;
-  background: #05070d;
+  background: linear-gradient(180deg, #d7e6f6 0%, #eef3f8 100%);
   box-shadow: var(--apple-shadow);
 }
 
@@ -342,7 +342,7 @@ footer {
   inset: 0;
   display: grid;
   place-items: center;
-  color: #a1a1a6;
+  color: var(--apple-muted);
   font-size: 0.95rem;
   pointer-events: none;
 }
@@ -353,7 +353,7 @@ footer {
   gap: 0.55rem 0.9rem;
   align-items: center;
   padding: 0.75rem 1rem 1rem;
-  color: #d2d2d7;
+  color: var(--apple-text);
   font-size: 0.82rem;
 }
 
@@ -385,7 +385,7 @@ footer {
 
 .travel-globe-hint {
   margin-left: auto;
-  color: #86868b;
+  color: var(--apple-muted);
 }
 
 .travel-tip {
