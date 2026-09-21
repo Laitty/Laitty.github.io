@@ -104,12 +104,12 @@ function initLiquidName() {
     const colors = dark() ? paletteDark : palette;
     for (let i = 0; i < burst; i += 1) {
       const ang = Math.random() * Math.PI * 2;
-      const speed = 0.9 + Math.random() * 2.2;
+      const speed = 1.45 + Math.random() * 2.8;
       field.push({
         x: x + (Math.random() - 0.5) * 6,
         y: y + (Math.random() - 0.5) * 6,
         vx: Math.cos(ang) * speed,
-        vy: Math.sin(ang) * speed - 0.35,
+        vy: Math.sin(ang) * speed - 0.5,
         r: 1.8 + Math.random() * 2.6,
         life: 3.8 + Math.random() * 3.5,
         age: 0,
