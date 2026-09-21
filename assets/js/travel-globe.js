@@ -35,6 +35,30 @@
 
     const phone = window.matchMedia("(max-width: 734px)").matches;
     const coarse = window.matchMedia("(pointer: coarse)").matches;
+
+    // Stack duplicate / round-trip arcs by altitude so they don't tangle.
+    const routeBuckets = new Map();
+    flights.arcs.forEach((arc) => {
+      const key = [arc.from, arc.to].sort().join("||");
+      if (!routeBuckets.has(key)) routeBuckets.set(key, []);
+      routeBuckets.get(key).push(arc);
+    });
+    routeBuckets.forEach((list) => {
+      list.sort((a, b) => {
+        if (a.from !== b.from) return a.from < b.from ? -1 : 1;
+        if (a.to !== b.to) return a.to < b.to ? -1 : 1;
+        return (a.gap || 0) - (b.gap || 0);
+      });
+      const n = list.length;
+      const span = Math.min(0.28, 0.04 + n * 0.014);
+      const step = n > 1 ? span / (n - 1) : 0;
+      const base = 0.05;
+      list.forEach((arc, i) => {
+        const dirLift = arc.from <= arc.to ? 0 : step * 0.35;
+        arc.alt = base + i * step + dirLift;
+      });
+    });
+
     const tracks = flights.arcs.map((arc) => ({ ...arc, kind: "track" }));
     const pulses = phone
       ? []
