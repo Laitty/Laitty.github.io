@@ -44,11 +44,32 @@
           gap: arc.gap ?? (i * 0.13) % 1,
         }));
 
+    const dayMap = "https://cdn.jsdelivr.net/npm/three-globe@2.44.1/example/img/earth-blue-marble.jpg";
+    const nightMap = "https://cdn.jsdelivr.net/npm/three-globe@2.44.1/example/img/earth-night.jpg";
+    const isDark = () => {
+      const root = document.documentElement;
+      const setting = root.getAttribute("data-theme-setting");
+      if (setting === "dark") return true;
+      if (setting === "light") return false;
+      return root.getAttribute("data-theme") === "dark" || window.matchMedia("(prefers-color-scheme: dark)").matches;
+    };
+    const applyGlobeTheme = (globe) => {
+      const dark = isDark();
+      globe.globeImageUrl(dark ? nightMap : dayMap);
+      globe.atmosphereColor(dark ? "#5aa7ff" : "#8ec8ff");
+      globe.atmosphereAltitude(dark ? 0.22 : 0.18);
+      const material = globe.globeMaterial();
+      if (material && "emissive" in material) {
+        material.emissive.setHex(dark ? 0x0b1220 : 0x3a4d66);
+        material.emissiveIntensity = dark ? 0.18 : 0.35;
+      }
+    };
+
     const globe = Globe()(mount)
       .backgroundColor("rgba(0,0,0,0)")
-      .globeImageUrl("https://cdn.jsdelivr.net/npm/three-globe@2.44.1/example/img/earth-blue-marble.jpg")
-      .atmosphereColor("#8ec8ff")
-      .atmosphereAltitude(0.18)
+      .globeImageUrl(isDark() ? nightMap : dayMap)
+      .atmosphereColor(isDark() ? "#5aa7ff" : "#8ec8ff")
+      .atmosphereAltitude(isDark() ? 0.22 : 0.18)
       .showGraticules(false)
       .polygonsData(regions.features)
       .polygonGeoJsonGeometry((d) => d.geometry)
@@ -97,13 +118,10 @@
       .pointOfView({ lat: 32, lng: 88, altitude: phone ? 2.55 : 2.15 }, 0);
 
     const material = globe.globeMaterial();
-    if (material) {
-      material.color.setHex(0xffffff);
-      if ("emissive" in material) {
-        material.emissive.setHex(0x3a4d66);
-        material.emissiveIntensity = 0.35;
-      }
-    }
+    if (material) material.color.setHex(0xffffff);
+    applyGlobeTheme(globe);
+    const themeWatcher = new MutationObserver(() => applyGlobeTheme(globe));
+    themeWatcher.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme", "data-theme-setting"] });
     globe.controls().autoRotate = true;
     globe.controls().autoRotateSpeed = coarse ? 0.45 : 0.35;
     globe.controls().enableDamping = true;

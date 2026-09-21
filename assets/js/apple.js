@@ -67,20 +67,86 @@ function initLiquidName() {
   }));
 
   const ambientCount = phone ? 22 : tablet ? 34 : 48;
+  const cap = phone ? 90 : 160;
   const field = [];
-  const spawnAmbient = () => {
-    field.push({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.28,
-      r: 1.6 + Math.random() * 2.4,
-      hue: Math.floor(Math.random() * 3),
-      seed: Math.random() * Math.PI * 2,
-      born: false,
-    });
+  let glyphPts = [];
+
+  const sampleGlyphs = () => {
+    const text = (title.getAttribute("aria-label") || title.textContent || "").replace(/\s+/g, " ").trim();
+    const cs = getComputedStyle(title);
+    const w = Math.max(2, Math.ceil(title.clientWidth));
+    const h = Math.max(2, Math.ceil(title.clientHeight));
+    const c = document.createElement("canvas");
+    c.width = w;
+    c.height = h;
+    const g = c.getContext("2d");
+    g.clearRect(0, 0, w, h);
+    g.fillStyle = "#fff";
+    g.textAlign = "center";
+    g.textBaseline = "middle";
+    g.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+    const maxW = w * 0.98;
+    const words = text.split(" ");
+    const lines = [];
+    let current = words[0] || "";
+    for (let i = 1; i < words.length; i += 1) {
+      const next = `${current} ${words[i]}`;
+      if (g.measureText(next).width > maxW) {
+        lines.push(current);
+        current = words[i];
+      } else current = next;
+    }
+    if (current) lines.push(current);
+    const size = parseFloat(cs.fontSize) || 48;
+    const lh = size * 1.02;
+    const startY = h / 2 - ((lines.length - 1) * lh) / 2;
+    lines.forEach((line, i) => g.fillText(line, w / 2, startY + i * lh, maxW));
+    const data = g.getImageData(0, 0, w, h).data;
+    const pts = [];
+    const step = phone ? 4 : 3;
+    for (let y = 0; y < h; y += step) {
+      for (let x = 0; x < w; x += step) {
+        if (data[(y * w + x) * 4 + 3] > 120) pts.push({ x: x / w, y: y / h });
+      }
+    }
+    glyphPts = pts.length ? pts : [{ x: 0.5, y: 0.5 }];
   };
-  for (let i = 0; i < ambientCount; i += 1) spawnAmbient();
+
+  const glyphScreen = (pt) => {
+    const box = title.getBoundingClientRect();
+    return { x: box.left + pt.x * box.width, y: box.top + pt.y * box.height };
+  };
+
+  const emitFromGlyph = (count, speedScale, aged) => {
+    if (!glyphPts.length) sampleGlyphs();
+    const box = title.getBoundingClientRect();
+    const cx = box.left + box.width / 2;
+    const cy = box.top + box.height / 2;
+    for (let i = 0; i < count; i += 1) {
+      const pt = glyphPts[Math.floor(Math.random() * glyphPts.length)];
+      const pos = glyphScreen(pt);
+      const ang = Math.atan2(pos.y - cy, pos.x - cx) + (Math.random() - 0.5) * 0.55;
+      const speed = (0.55 + Math.random() * 1.7) * speedScale;
+      const p = {
+        x: pos.x,
+        y: pos.y,
+        vx: Math.cos(ang) * speed,
+        vy: Math.sin(ang) * speed - 0.15,
+        rMax: 1.7 + Math.random() * 2.3,
+        hue: Math.floor(Math.random() * 3),
+        seed: Math.random() * Math.PI * 2,
+        age: 0,
+        life: 5.5 + Math.random() * 7,
+      };
+      if (aged) {
+        p.age = 0.04 + Math.random() * 0.28;
+        p.x += p.vx * (p.age / 0.016);
+        p.y += p.vy * (p.age / 0.016);
+      }
+      field.push(p);
+    }
+    if (field.length > cap) field.splice(0, field.length - cap);
+  };
 
   let hw = 1;
   let hh = 1;
@@ -121,42 +187,18 @@ function initLiquidName() {
     pageCanvas.style.width = `${pw}px`;
     pageCanvas.style.height = `${ph}px`;
     pageCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    sampleGlyphs();
   };
 
-  const emitFromName = () => {
-    const box = title.getBoundingClientRect();
-    const burst = phone ? 2 : 3;
-    for (let i = 0; i < burst; i += 1) {
-      const x = box.left + Math.random() * box.width;
-      const y = box.top + Math.random() * box.height * 0.85;
-      const cx = box.left + box.width / 2;
-      const cy = box.top + box.height / 2;
-      const ang = Math.atan2(y - cy, x - cx) + (Math.random() - 0.5) * 0.7;
-      const speed = 1.6 + Math.random() * 2.4;
-      field.push({
-        x,
-        y,
-        vx: Math.cos(ang) * speed,
-        vy: Math.sin(ang) * speed - 0.35,
-        r: 2.1 + Math.random() * 2.8,
-        hue: Math.floor(Math.random() * 3),
-        seed: Math.random() * Math.PI * 2,
-        born: true,
-      });
-    }
-    const cap = phone ? 90 : 160;
-    if (field.length > cap) field.splice(0, field.length - cap);
-  };
-
-  const drawDot = (ctx, p, alpha) => {
+  const drawDot = (ctx, p, radius, alpha) => {
     const [r, g, b] = palette[p.hue];
     ctx.beginPath();
     ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
     ctx.fill();
     ctx.beginPath();
-    ctx.fillStyle = `rgba(255,255,255,${Math.min(0.85, alpha + 0.1)})`;
-    ctx.arc(p.x - p.r * 0.22, p.y - p.r * 0.26, Math.max(0.7, p.r * 0.28), 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${Math.min(0.9, alpha + 0.08)})`;
+    ctx.arc(p.x - radius * 0.22, p.y - radius * 0.26, Math.max(0.5, radius * 0.28), 0, Math.PI * 2);
     ctx.fill();
   };
 
@@ -192,12 +234,11 @@ function initLiquidName() {
     lens.style.top = `${my * 100}%`;
     lens.classList.toggle("is-active", heroHover || nameHot);
 
-    if (nameHot) {
-      emitCool += 0.016;
-      if (emitCool > (phone ? 0.055 : 0.032)) {
-        emitFromName();
-        emitCool = 0;
-      }
+    emitCool += 0.016;
+    const drip = nameHot ? (phone ? 0.04 : 0.022) : 0.18;
+    if (emitCool > drip) {
+      emitFromGlyph(nameHot ? (phone ? 2 : 4) : 1, nameHot ? 1.7 : 0.55, false);
+      emitCool = 0;
     }
 
     heroCtx.clearRect(0, 0, hw, hh);
@@ -235,25 +276,25 @@ function initLiquidName() {
     });
 
     pageCtx.clearRect(0, 0, pw, ph);
-    field.forEach((p) => {
-      p.vx += Math.cos(time * 0.55 + p.seed) * 0.012;
-      p.vy += Math.sin(time * 0.48 + p.seed * 1.2) * 0.01;
-      if (p.born) {
-        p.vx *= 0.985;
-        p.vy *= 0.985;
-        if (Math.hypot(p.vx, p.vy) < 0.38) p.born = false;
-      } else {
-        p.vx *= 0.995;
-        p.vy *= 0.995;
-      }
+    for (let i = field.length - 1; i >= 0; i -= 1) {
+      const p = field[i];
+      p.age += 0.016;
+      p.vx += Math.cos(time * 0.45 + p.seed) * 0.008;
+      p.vy += Math.sin(time * 0.4 + p.seed * 1.15) * 0.007;
+      p.vx *= 0.992;
+      p.vy *= 0.992;
       p.x += p.vx;
       p.y += p.vy;
-      if (p.x < -12) p.x = pw + 12;
-      if (p.x > pw + 12) p.x = -12;
-      if (p.y < -12) p.y = ph + 12;
-      if (p.y > ph + 12) p.y = -12;
-      drawDot(pageCtx, p, p.born ? 0.95 : 0.62);
-    });
+      const grow = Math.min(1, p.age / 0.28);
+      const fade = p.age > p.life - 1.2 ? Math.max(0, (p.life - p.age) / 1.2) : 1;
+      const radius = 0.35 + p.rMax * grow;
+      const off = p.x < -20 || p.y < -20 || p.x > pw + 20 || p.y > ph + 20;
+      if (p.age > p.life || fade <= 0 || off) {
+        field.splice(i, 1);
+        continue;
+      }
+      drawDot(pageCtx, p, radius, 0.2 + 0.75 * fade * grow);
+    }
 
     requestAnimationFrame(tick);
   };
@@ -288,7 +329,7 @@ function initLiquidName() {
   title.addEventListener("pointerenter", (event) => {
     nameHot = true;
     setNameWarp(event);
-    emitFromName();
+    emitFromGlyph(phone ? 6 : 10, 1.8, false);
   });
   title.addEventListener("pointermove", (event) => {
     nameHot = true;
@@ -298,7 +339,7 @@ function initLiquidName() {
   title.addEventListener("pointerdown", (event) => {
     nameHot = true;
     setNameWarp(event);
-    emitFromName();
+    emitFromGlyph(phone ? 6 : 10, 1.8, false);
   });
   title.addEventListener("pointerleave", () => {
     nameHot = false;
@@ -311,5 +352,6 @@ function initLiquidName() {
   if (window.visualViewport) window.visualViewport.addEventListener("resize", fit);
 
   fit();
+  emitFromGlyph(ambientCount, 0.7, true);
   requestAnimationFrame(tick);
 }
