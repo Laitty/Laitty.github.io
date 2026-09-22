@@ -65,4 +65,4 @@ My research connects reliable learning and model evaluation with human–AI inte
 
 #### Earlier Interdisciplinary Work
 
-- **Computational social science and sports media** (Sep.–Dec. 2023): AI video generation, Python, Tableau, FreeD 3D, volumetric imaging, and AIGC for studying sports media and player competitiveness. Advisor: Dr. Jian Zhan (first research mentor).
+- **Computational social science and sports media** (Sep.–Dec. 2023): AI video generation, Python, Tableau, FreeD 3D, volumetric imaging, and AIGC for studying sports media and player competitiveness. Advisor: Dr. Jian Zhan.
