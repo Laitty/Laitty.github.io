@@ -97,18 +97,30 @@
       .showGraticules(false)
       .polygonsData(regions.features)
       .polygonGeoJsonGeometry((d) => d.geometry)
-      .polygonCapColor((d) =>
-        d.properties.visited ? "rgba(232, 168, 56, 0.62)" : "rgba(255,255,255,0.06)"
-      )
-      .polygonSideColor((d) =>
-        d.properties.visited ? "rgba(232, 168, 56, 0.28)" : "rgba(255,255,255,0.05)"
-      )
-      .polygonStrokeColor((d) =>
-        d.properties.visited ? "rgba(255, 236, 190, 0.95)" : "rgba(255,255,255,0.22)"
-      )
-      .polygonAltitude((d) => (d.properties.visited ? 0.012 : 0.003))
+      .polygonCapColor((d) => {
+        if (d.properties.visited) return "rgba(232, 168, 56, 0.62)";
+        if (d.properties.kind === "polar") return "rgba(170, 210, 255, 0.1)";
+        return "rgba(255,255,255,0.06)";
+      })
+      .polygonSideColor((d) => {
+        if (d.properties.visited) return "rgba(232, 168, 56, 0.28)";
+        if (d.properties.kind === "polar") return "rgba(140, 190, 240, 0.16)";
+        return "rgba(255,255,255,0.05)";
+      })
+      .polygonStrokeColor((d) => {
+        if (d.properties.visited) return "rgba(255, 236, 190, 0.95)";
+        if (d.properties.kind === "polar") return "rgba(170, 210, 255, 0.78)";
+        return "rgba(255,255,255,0.22)";
+      })
+      .polygonAltitude((d) => {
+        if (d.properties.visited) return 0.012;
+        if (d.properties.kind === "polar") return 0.007;
+        return 0.003;
+      })
       .polygonLabel((d) => {
-        const extra = d.properties.parent ? `<div class="travel-tip-sub">${d.properties.parent}</div>` : "";
+        const extra = d.properties.parent
+          ? `<div class="travel-tip-sub">${d.properties.parent}</div>`
+          : "";
         return `<div class="travel-tip"><div class="travel-tip-name">${d.properties.name}</div>${extra}</div>`;
       })
       .arcsData([...tracks, ...pulses])
