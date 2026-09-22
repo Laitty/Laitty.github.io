@@ -23,10 +23,10 @@ My research connects reliable learning and model evaluation with human–AI inte
 
 #### Federated and Heterogeneous Learning
 
-- **Data heterogeneity survey** — _Expert Systems_ (2026). Led the survey framework on federated learning under non-IID and heterogeneous data, covering healthcare, finance, and IoT case studies; also designed frequency-adaptive semantic distillation with semantic topology and dynamic frequency-based weighting.
-- **FedSAP** — submitted to AAAI 2027. Structured partitioning for heterogeneous edge devices.
-- **Semantic–appearance correction** — submitted to AAAI 2027. Personalized federated vision–language models with semantic–appearance interaction correction.
-- **FedSocratic** — submitted to ICLR 2027. Verifiable questioning for federated language models.
+- **Data heterogeneity survey** — _Expert Systems_ (2026). Led the survey framework on federated learning under non-IID and heterogeneous data, covering healthcare, finance, and IoT case studies; also designed frequency-adaptive semantic distillation with semantic topology and dynamic frequency-based weighting. Advisors: Prof. Qilei Li and Prof. David Camacho.
+- **FedSAP** — submitted to AAAI 2027. Structured partitioning for heterogeneous edge devices. Advisors: Prof. Qilei Li and Prof. David Camacho.
+- **Semantic–appearance correction** — submitted to AAAI 2027. Personalized federated vision–language models with semantic–appearance interaction correction. Advisors: Prof. Qilei Li and Prof. David Camacho.
+- **FedSocratic** — submitted to ICLR 2027. Verifiable questioning for federated language models. Advisors: Prof. Qilei Li and Prof. David Camacho.
 
 #### Unlearning, Context Effects, and Model Evaluation
 
