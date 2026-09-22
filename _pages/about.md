@@ -77,8 +77,7 @@ In research, I work across model design, dataset preparation, training, and expe
 
 - **Basketball:** currently taking a break from playing while recovering from knee surgery.
 - **Billiards:** enjoying both the hot streaks and the cold spells.
-- **Fun fact:** I have visited nearly every province in China and explored Europe on two trips of two weeks each. My travel wish list keeps growing.
-- **Hiking:** I have completed several 5 km+ hiking and mountaineering trips, but a knee injury cost me the chance to attempt a 7 km peak.
+- **Fun facts:** I have visited nearly every province in China and explored Europe on two trips of two weeks each. I have also completed several 5 km+ hiking and mountaineering trips, though a knee injury cost me the chance to attempt a 7 km peak. My travel wish list keeps growing.
 
 <div class="travel-globe-card">
   <div class="travel-globe-stage">
