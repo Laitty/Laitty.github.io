@@ -84,8 +84,8 @@ In research, I work across model design, dataset preparation, training, and expe
     <div
       id="travel-globe"
       class="travel-globe"
-      data-regions="{{ '/assets/json/travel-regions.json' | relative_url }}"
-      data-flights="{{ '/assets/json/travel-flights.json' | relative_url }}"
+      data-regions="{{ '/assets/json/travel-regions.json' | relative_url | bust_file_cache }}"
+      data-flights="{{ '/assets/json/travel-flights.json' | relative_url | bust_file_cache }}"
     ></div>
     <div class="travel-globe-status">Loading map…</div>
   </div>
