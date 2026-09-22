@@ -36,7 +36,7 @@ My research connects reliable learning and model evaluation with human–AI inte
 
 #### Human–AI Interaction and LLM Judges
 
-- **When Outputs Become Outcomes** — first author; submitted to CHI 2027. Distinguishes agreement with an assessment, acceptance of a judge's authority, and subsequent action in livestream games and academic reviewing; observational, interview, and presentation-comparison methods examine source attribution and human mediation.
+- **When Outputs Become Outcomes** — first author; submitted to CHI 2027. Distinguishes agreement with an assessment, acceptance of a judge's authority, and subsequent action in livestream games and academic reviewing; observational, interview, and presentation-comparison methods examine source attribution and human mediation. Advisor: Prof. Qilei Li.
 
 #### Collaborative Multi-Agent Reinforcement Learning Research
 
