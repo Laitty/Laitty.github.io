@@ -30,9 +30,9 @@ My research connects reliable learning and model evaluation with human–AI inte
 
 #### Unlearning, Context Effects, and Model Evaluation
 
-- **Reasoning after Unlearning** — first author; submitted to ICLR 2027. Evaluates original, unlearned, and target-excluded retrained Llama checkpoints on TOFU, separating context effects, answer exposure, and use of supplied answer information through matched controls, answer masking, and identity substitution.
-- **Multimodal unlearning** — co-authored; submitted to ICLR 2027. Auxiliary supervision for unlearning in multimodal models.
-- **Model selection feedback** — co-authored; submitted to ICLR 2027. Misleading comparison feedback in model selection.
+- **Reasoning after Unlearning** — first author; submitted to ICLR 2027. Evaluates original, unlearned, and target-excluded retrained Llama checkpoints on TOFU, separating context effects, answer exposure, and use of supplied answer information through matched controls, answer masking, and identity substitution. Advisor: Prof. Qilei Li.
+- **Multimodal unlearning** — co-authored; submitted to ICLR 2027. Auxiliary supervision for unlearning in multimodal models. Advisor: Prof. Qilei Li.
+- **Model selection feedback** — co-authored; submitted to ICLR 2027. Misleading comparison feedback in model selection. Advisor: Prof. Qilei Li.
 
 #### Human–AI Interaction and LLM Judges
 
@@ -40,7 +40,7 @@ My research connects reliable learning and model evaluation with human–AI inte
 
 #### Collaborative Multi-Agent Reinforcement Learning Research
 
-- **Cooperation maintenance** — submitted to AAAI 2027. Co-authored work on gradient routing and optimizer-dependent maintenance of learned cooperation.
+- **Cooperation maintenance** — submitted to AAAI 2027. Co-authored work on gradient routing and optimizer-dependent maintenance of learned cooperation. Advisor: Prof. Qilei Li.
 
 ### Applied Machine Learning
 
