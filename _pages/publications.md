@@ -60,7 +60,7 @@ My research connects reliable learning and model evaluation with human–AI inte
 
 - **Artificial Intelligence for Critical Heat Flux in Energy Systems: From Predictive Accuracy to Engineering Use** (Shenzhen University RA, 2025.10–2026.5) — review in preparation for submission to _Energy_. Advisor: Prof. Bo Pang.
 - **Mamba-In:** under review at EAAI. Hybrid Mamba and Informer-style ProbSparse attention for long-horizon nuclear sensor forecasting, residual-based fault detection, and signal reconstruction (Shenzhen University RA, 2025.10–2026.5). Advisor: Prof. Bo Pang.
-- **ReLaMix** — arXiv preprint (2026). Residual bottleneck mixing for delayed financial observations, evaluated on second-resolution PAXGUSDT and BTCUSDT using non-overlapping temporal segments and delay-robustness benchmarks.
+- **ReLaMix** — arXiv preprint (2026). Residual bottleneck mixing for delayed financial observations, evaluated on second-resolution PAXGUSDT and BTCUSDT using non-overlapping temporal segments and delay-robustness benchmarks. Advisor: Prof. Qilei Li.
 - **Wind energy prediction** — _Energies_ (2025). Modular echo state networks, clustering, and training on turbine data; reported best R² of 0.9905.
 
 #### Earlier Interdisciplinary Work
