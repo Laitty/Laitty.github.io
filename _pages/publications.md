@@ -53,7 +53,7 @@ My research connects reliable learning and model evaluation with human–AI inte
 
 #### Industrial Inspection and Physical Inverse Design
 
-- **FREDNet** — ICASSP 2026. Frequency and decomposed-spatial learning with attention fusion for surface-defect detection; contributions include data curation, training, benchmarking, ablations, and cross-domain evaluation on NEU-DET and GC-10, with a reported 4.8% improvement in mAP@0.5.
+- **FREDNet** — ICASSP 2026. Frequency and decomposed-spatial learning with attention fusion for surface-defect detection; contributions include data curation, training, benchmarking, ablations, and cross-domain evaluation on NEU-DET and GC-10, with a reported 4.8% improvement in mAP@0.5. Advisor: Dr. Hongjuan Zhang.
 - **Metasurface inverse design** — _AIP Advances_ (2025). CNN–Transformer regression using polarization-conversion spectra and Gaussian-noise augmentation; reported mean MSE of 0.00331.
 
 #### Time-Series Forecasting and Energy Systems
