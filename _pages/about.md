@@ -91,6 +91,7 @@ In research, I work across model design, dataset preparation, training, and expe
   </div>
   <div class="travel-globe-legend">
     <span class="travel-chip travel-chip-visited">Visited</span>
+    <span class="travel-chip travel-chip-polar">Polar region</span>
     <span class="travel-chip travel-chip-flight">Blue takeoff → Gold landing</span>
     <span class="travel-globe-hint">Drag to spin · scroll to zoom</span>
   </div>
