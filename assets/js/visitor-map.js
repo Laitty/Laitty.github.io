@@ -53,8 +53,8 @@
     const total = ranked.reduce((sum, place) => sum + place.count, 0);
     if (note) {
       note.textContent = total
-        ? `${total} past ${total === 1 ? "visit" : "visits"}. This is a history, not who is online.`
-        : "Past visits will show up here. This is a history, not a live view.";
+        ? `${total} cumulative ${total === 1 ? "visit" : "visits"}`
+        : "Cumulative visits will show up here.";
     }
   };
 
