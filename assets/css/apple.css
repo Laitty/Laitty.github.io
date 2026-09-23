@@ -470,6 +470,11 @@ html[data-theme="dark"] footer {
 
 .travel-globe:active { cursor: grabbing; }
 
+.travel-globe,
+.travel-globe canvas {
+  touch-action: none;
+}
+
 .travel-globe canvas {
   display: block;
   width: 100% !important;
