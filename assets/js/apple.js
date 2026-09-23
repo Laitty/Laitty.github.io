@@ -26,6 +26,15 @@ function initLiquidName() {
   wrap.appendChild(title);
 
   const letters = splitName(title);
+  const springs = letters.map((span) => ({
+    span,
+    cx: 0,
+    cy: 0,
+    influence: 0,
+    vInf: 0,
+    rot: 0,
+    vRot: 0,
+  }));
   let pointerOn = false;
   let px = 0;
   let py = 0;
@@ -105,6 +114,18 @@ function initLiquidName() {
       w: Math.max(1, titleBox.width),
       h: Math.max(1, titleBox.height),
     };
+    const titleRect = title.getBoundingClientRect();
+    springs.forEach((st) => {
+      const span = st.span;
+      st.cx = titleRect.left + span.offsetLeft + span.offsetWidth / 2;
+      st.cy = titleRect.top + span.offsetTop + span.offsetHeight * 0.78;
+    });
+  };
+
+  const stepSpring = (value, velocity, target) => {
+    const dt = 0.016;
+    const next = velocity + ((target - value) * 128 - velocity * 16.8) * dt;
+    return [value + next * dt, next];
   };
 
   const localPoint = (event) => {
@@ -131,24 +152,6 @@ function initLiquidName() {
     if (field.length > cap) field.splice(0, field.length - cap);
   };
 
-  const swellLetters = () => {
-    const radius = phone ? 72 : 108;
-    letters.forEach((span) => {
-      if (!pointerOn) {
-        span.style.transform = "";
-        span.classList.remove("is-hot");
-        return;
-      }
-      const b = span.getBoundingClientRect();
-      const dx = px - (b.left + b.width / 2);
-      const dy = py - (b.top + b.height / 2);
-      const t = Math.max(0, 1 - Math.hypot(dx, dy) / radius);
-      const ease = t * t * (3 - 2 * t);
-      span.style.transform = `translate3d(0, ${-18 * ease}px, 0) scale(${1 + 0.46 * ease}) rotate(${(dx / 48) * ease * -7}deg)`;
-      span.classList.toggle("is-hot", ease > 0.62);
-    });
-  };
-
   title.addEventListener("pointerenter", (event) => {
     pointerOn = true;
     px = event.clientX;
@@ -156,7 +159,6 @@ function initLiquidName() {
     const p = localPoint(event);
     mx = p.x;
     my = p.y;
-    swellLetters();
     emitAt(mx, my, phone ? 10 : 16);
   });
   title.addEventListener("pointermove", (event) => {
@@ -166,11 +168,9 @@ function initLiquidName() {
     const p = localPoint(event);
     mx = p.x;
     my = p.y;
-    swellLetters();
   });
   title.addEventListener("pointerleave", () => {
     pointerOn = false;
-    swellLetters();
   });
   title.addEventListener("pointerdown", (event) => {
     pointerOn = true;
@@ -181,7 +181,6 @@ function initLiquidName() {
   });
   const release = () => {
     pointerOn = false;
-    swellLetters();
   };
   title.addEventListener("pointerup", release);
   title.addEventListener("pointercancel", release);
@@ -190,6 +189,23 @@ function initLiquidName() {
 
   const tick = () => {
     time += 0.016;
+    const radius = phone ? 108 : 168;
+    springs.forEach((st) => {
+      let target = 0;
+      let targetRot = 0;
+      if (pointerOn) {
+        const dx = px - st.cx;
+        const dy = py - st.cy;
+        const near = Math.max(0, 1 - Math.hypot(dx, dy) / radius);
+        target = near * near * (3 - 2 * near);
+        targetRot = (dx / 96) * target * -10;
+      }
+      [st.influence, st.vInf] = stepSpring(st.influence, st.vInf, target);
+      [st.rot, st.vRot] = stepSpring(st.rot, st.vRot, targetRot);
+      const eased = st.influence;
+      st.span.style.transform = `translate3d(${st.rot * 0.28}px, ${-30 * eased}px, 0) scale(${1 + 0.64 * eased}) rotate(${st.rot}deg)`;
+      st.span.classList.toggle("is-hot", eased > 0.72);
+    });
     if (pointerOn) {
       emitCool += 0.016;
       if (emitCool > (phone ? 0.04 : 0.022)) {
