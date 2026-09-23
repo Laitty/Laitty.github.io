@@ -66,6 +66,7 @@ In research, I work across model design, dataset preparation, training, and expe
 ## Academic Service
 
 - **Reviewer:** ICASSP 2027, ACM MM 2027, IJCNN 2026.
+- **IEEE Member**, 2025–present.
 
 ## Skills and Honors
 
