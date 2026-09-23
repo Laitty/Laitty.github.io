@@ -47,7 +47,7 @@ My research connects reliable learning and model evaluation with human–AI inte
 
 #### Healthcare and Clinical Language
 
-- **TRACE** — accepted at ACM MM 2026. Report supervision during training supports concept-based breast ultrasound diagnosis with image-only inference. The work connects BI-RADS concepts, structured clinical descriptions, and concept-edit distillation. Advisors: Prof. Qilei Li and Prof. 宁振源.
+- **TRACE** — accepted at ACM MM 2026. Report supervision during training supports concept-based breast ultrasound diagnosis with image-only inference. The work connects BI-RADS concepts, structured clinical descriptions, and concept-edit distillation. Advisors: Prof. Qilei Li and Prof. Zhenyuan Ning.
 - **Spike and EEG detection:** RT-DETR and spatiotemporal graph methods for juvenile and adult rat electrophysiology data, in collaboration with Peking University; algorithm development and signal analysis for symptom studies.
 - **LLM-based TCM symptom-text augmentation:** independent undergraduate honors thesis combining dataset curation, prompting, and fine-tuning. Thesis experiments reduced text length by up to 44.1%, increased terminology tokens 4.4-fold, and achieved diagnostic accuracy of up to 81.3%. Advisor: Prof. Yi Yang.
 - **Dental orthodontic case retrieval:** an ongoing intelligent case-retrieval project.
