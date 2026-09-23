@@ -208,7 +208,6 @@ html[data-theme="dark"] .apple-orbs {
   transform-origin: 50% 85%;
   cursor: pointer;
   will-change: transform;
-  transition: transform 0.48s cubic-bezier(0.22, 1.45, 0.36, 1);
 }
 
 .apple-ch.is-space {
