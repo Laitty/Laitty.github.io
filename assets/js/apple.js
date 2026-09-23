@@ -122,9 +122,9 @@ function initLiquidName() {
     });
   };
 
-  const stepSpring = (value, velocity, target) => {
+  const stepSpring = (value, velocity, target, stiffness, damping) => {
     const dt = 0.016;
-    const next = velocity + ((target - value) * 230 - velocity * 22.4) * dt;
+    const next = velocity + ((target - value) * stiffness - velocity * damping) * dt;
     return [value + next * dt, next];
   };
 
@@ -200,8 +200,10 @@ function initLiquidName() {
         target = near * near * (3 - 2 * near);
         targetRot = (dx / 96) * target * -10;
       }
-      [st.influence, st.vInf] = stepSpring(st.influence, st.vInf, target);
-      [st.rot, st.vRot] = stepSpring(st.rot, st.vRot, targetRot);
+      const deforming = target > st.influence;
+      [st.influence, st.vInf] = stepSpring(st.influence, st.vInf, target, deforming ? 460 : 230, deforming ? 32 : 22.4);
+      const turning = Math.abs(targetRot) > Math.abs(st.rot);
+      [st.rot, st.vRot] = stepSpring(st.rot, st.vRot, targetRot, turning ? 460 : 230, turning ? 32 : 22.4);
       const eased = st.influence;
       st.span.style.transform = `translate3d(${st.rot * 0.28}px, ${-30 * eased}px, 0) scale(${1 + 0.64 * eased}) rotate(${st.rot}deg)`;
       st.span.classList.toggle("is-hot", eased > 0.72);
