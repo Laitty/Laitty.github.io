@@ -582,6 +582,18 @@ html[data-theme="dark"] footer {
     max-width: none;
     font-size: clamp(2.15rem, 11vw, 3.1rem);
   }
+  .apple-liquid-canvas {
+    z-index: 2;
+  }
+  .apple-eyebrow,
+  .apple-hero-sub,
+  .apple-hero-lede,
+  .apple-hero-actions {
+    z-index: 3;
+  }
+  .apple-title-wrap {
+    z-index: 4;
+  }
   .apple-hero-sub,
   .apple-hero-lede {
     max-width: none;
