@@ -5,6 +5,7 @@ title: "Research & Projects"
 description: Publications, research areas, and selected projects.
 nav: true
 nav_order: 2
+visitor_map: true
 ---
 
 ## Publications
@@ -66,3 +67,15 @@ My research connects reliable learning and model evaluation with human–AI inte
 #### Earlier Interdisciplinary Work
 
 - **Computational social science and sports media** (Sep.–Dec. 2023): AI video generation, Python, Tableau, FreeD 3D, volumetric imaging, and AIGC for studying sports media and player competitiveness. Advisor: Lecturer Dr. Jian Zhan.
+
+## Visitors
+
+<div
+  id="visitor-map"
+  class="visitor-map-card"
+  data-api="https://crudcrud.com/api/0f79f27ceada49808e65e6f733501818"
+  data-map="{{ '/assets/img/visitor-world.svg' | relative_url }}"
+>
+  <div class="visitor-map-stage"></div>
+  <p class="visitor-map-note">Loading visits…</p>
+</div>
