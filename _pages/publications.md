@@ -68,7 +68,7 @@ My research connects reliable learning and model evaluation with human–AI inte
 
 - **Computational social science and sports media** (Sep.–Dec. 2023): AI video generation, Python, Tableau, FreeD 3D, volumetric imaging, and AIGC for studying sports media and player competitiveness. Advisor: Lecturer Dr. Jian Zhan.
 
-## Visitors
+## Visit history
 
 <div
   id="visitor-map"
@@ -77,5 +77,5 @@ My research connects reliable learning and model evaluation with human–AI inte
   data-map="{{ '/assets/img/visitor-world.svg' | relative_url }}"
 >
   <div class="visitor-map-stage"></div>
-  <p class="visitor-map-note">Loading visits…</p>
+  <p class="visitor-map-note">Loading visit history…</p>
 </div>

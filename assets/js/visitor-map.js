@@ -43,7 +43,7 @@
       const city = document.createElement("span");
       city.textContent = place.label;
       const count = document.createElement("strong");
-      count.textContent = String(place.count);
+      count.textContent = `${place.count} ${place.count === 1 ? "visit" : "visits"}`;
       tip.append(city, count);
       pin.append(dot, tip);
       pin.setAttribute("aria-label", `${place.label}, ${place.count}`);
@@ -53,8 +53,8 @@
     const total = ranked.reduce((sum, place) => sum + place.count, 0);
     if (note) {
       note.textContent = total
-        ? `${total} ${total === 1 ? "visit" : "visits"} on this page`
-        : "Visits to this page will show up here.";
+        ? `${total} past ${total === 1 ? "visit" : "visits"}. This is a history, not who is online.`
+        : "Past visits will show up here. This is a history, not a live view.";
     }
   };
 
