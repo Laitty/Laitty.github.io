@@ -149,7 +149,8 @@
     globe.controls().autoRotate = true;
     globe.controls().autoRotateSpeed = coarse ? 0.45 : 0.35;
     globe.controls().enableDamping = true;
-    globe.controls().enableZoom = !coarse;
+    globe.controls().enableZoom = true;
+    globe.controls().zoomSpeed = coarse ? 1.35 : 1;
     globe.controls().rotateSpeed = coarse ? 0.55 : 0.4;
     globe.renderer().setPixelRatio(Math.min(window.devicePixelRatio || 1, phone ? 1.5 : 2));
     if ("toneMappingExposure" in globe.renderer()) {
@@ -168,6 +169,9 @@
     mount.addEventListener("pointerup", () => setTimeout(resume, 1400));
     mount.addEventListener("pointerleave", resume);
     mount.style.touchAction = "none";
+    mount.querySelectorAll("canvas").forEach((canvas) => {
+      canvas.style.touchAction = "none";
+    });
 
     window.addEventListener("resize", () => fit(globe));
     if (window.visualViewport) {
