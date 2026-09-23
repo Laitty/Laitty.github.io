@@ -679,7 +679,7 @@ html[data-theme-setting="dark"] .travel-tip-sub {
 
 .visitor-map-card {
   margin: 0.4rem 0 2.6rem;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 22px;
   background: linear-gradient(180deg, rgba(232, 243, 255, 0.44), rgba(196, 224, 252, 0.12));
   border: 1px solid rgba(170, 206, 245, 0.46);
@@ -707,49 +707,46 @@ html[data-theme-setting="dark"] .travel-tip-sub {
 
 .visitor-map-pin {
   position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 0.18rem;
-  transform: translate(-4px, -50%);
-  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+}
+
+.visitor-map-pin:hover {
+  z-index: 3;
 }
 
 .visitor-map-dot {
-  flex: none;
+  display: block;
   border-radius: 50%;
   background: rgba(0, 113, 227, 0.82);
   box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.16);
 }
 
-.visitor-map-count {
-  color: #0071e3;
-  font-size: 0.72rem;
-  font-weight: 650;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
+.visitor-map-tip {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%);
+  padding: 0.38rem 0.55rem 0.42rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  color: #1d1d1f;
+  font-size: 0.78rem;
+  line-height: 1.25;
+  white-space: nowrap;
+  pointer-events: none;
 }
 
-.visitor-map-list {
+.visitor-map-pin:hover .visitor-map-tip {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 0.35rem 1.2rem;
-  margin: 0;
-  padding: 0.85rem 1rem 0.15rem;
-  list-style: none;
+  justify-items: center;
 }
 
-.visitor-map-list li {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.8rem;
-  color: var(--apple-ink, #1d1d1f);
-  font-size: 0.86rem;
-}
-
-.visitor-map-list strong {
+.visitor-map-tip strong {
+  font-size: 0.95rem;
   font-variant-numeric: tabular-nums;
-  font-weight: 650;
 }
 
 .visitor-map-note {
@@ -775,13 +772,8 @@ html[data-theme-setting="dark"] .visitor-map-land {
   filter: brightness(0.72) contrast(1.05);
 }
 
-html[data-theme="dark"] .visitor-map-count,
-html[data-theme-setting="dark"] .visitor-map-count {
-  color: #8ec8ff;
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.85);
-}
-
-html[data-theme="dark"] .visitor-map-list li,
-html[data-theme-setting="dark"] .visitor-map-list li {
+html[data-theme="dark"] .visitor-map-tip,
+html[data-theme-setting="dark"] .visitor-map-tip {
+  background: rgba(28, 28, 30, 0.94);
   color: #f5f5f7;
 }
