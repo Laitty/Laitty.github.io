@@ -124,7 +124,7 @@ function initLiquidName() {
 
   const stepSpring = (value, velocity, target) => {
     const dt = 0.016;
-    const next = velocity + ((target - value) * 128 - velocity * 16.8) * dt;
+    const next = velocity + ((target - value) * 230 - velocity * 22.4) * dt;
     return [value + next * dt, next];
   };
 
