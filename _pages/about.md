@@ -30,7 +30,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am Tianyou Lai (Theo), an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University. My research connects reliable learning systems, model evaluation, and human–AI interaction with applied machine learning in healthcare, industrial inspection, physical inverse design, forecasting, and energy systems.
+I am Tianyou Lai (Theo), an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University. I am from Xicheng, Beijing. My research connects reliable learning systems, model evaluation, and human–AI interaction with applied machine learning in healthcare, industrial inspection, physical inverse design, forecasting, and energy systems.
 
 In research, I work across model design, dataset preparation, training, and experimental evaluation. In industry, I have interned in product data, consulting analytics, quantitative research, startup data science, and data engineering.
 
