@@ -676,3 +676,62 @@ html[data-theme="dark"] .travel-tip-sub,
 html[data-theme-setting="dark"] .travel-tip-sub {
   color: #a1a1a6;
 }
+
+.visitor-map-card {
+  margin: 0.4rem 0 2.6rem;
+  overflow: hidden;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(232, 243, 255, 0.44), rgba(196, 224, 252, 0.12));
+  border: 1px solid rgba(170, 206, 245, 0.46);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62), inset 0 -12px 22px rgba(0, 113, 227, 0.06), 0 8px 20px rgba(0, 113, 227, 0.045);
+}
+
+.visitor-map-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.visitor-map-land {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.visitor-map-dots {
+  position: absolute;
+  inset: 0;
+}
+
+.visitor-map-dot {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 113, 227, 0.82);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.16);
+}
+
+.visitor-map-note {
+  margin: 0;
+  padding: 0.7rem 1rem 0.85rem;
+  color: var(--apple-muted);
+  font-size: 0.84rem;
+}
+
+html[data-theme="dark"] .visitor-map-card,
+html[data-theme-setting="dark"] .visitor-map-card {
+  background: linear-gradient(180deg, rgba(38, 58, 88, 0.4), rgba(18, 28, 44, 0.16));
+  border-color: rgba(90, 150, 220, 0.2);
+}
+
+html[data-theme="dark"] .visitor-map-stage,
+html[data-theme-setting="dark"] .visitor-map-stage {
+  background: rgba(12, 16, 24, 0.35);
+}
+
+html[data-theme="dark"] .visitor-map-land,
+html[data-theme-setting="dark"] .visitor-map-land {
+  filter: brightness(0.72) contrast(1.05);
+}
