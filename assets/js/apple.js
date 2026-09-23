@@ -17,7 +17,8 @@ function initLiquidName() {
   title.classList.add("apple-liquid-name");
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const phone = window.matchMedia("(max-width: 734px)").matches;
+  const isPhone = () => window.matchMedia("(max-width: 734px)").matches;
+  let phone = isPhone();
 
   const wrap = document.createElement("div");
   wrap.className = "apple-title-wrap";
@@ -31,6 +32,7 @@ function initLiquidName() {
   let mx = 0;
   let my = 0;
   let emitCool = 0;
+  let idleCool = 0;
 
   const canvas = document.createElement("canvas");
   canvas.className = "apple-liquid-canvas";
@@ -43,8 +45,8 @@ function initLiquidName() {
 
   const layout = phone
     ? [
-        ...lai.map((ch, i) => ({ ch, nx: 0.28 + i * 0.22, ny: 0.36, s: 0.24, tier: "core" })),
-        ...given.map((ch, i) => ({ ch, nx: 0.14 + i * 0.12, ny: 0.58, s: 0.13, tier: "row" })),
+        ...lai.map((ch, i) => ({ ch, nx: 0.3 + i * 0.2, ny: 0.34, s: 0.22, tier: "core" })),
+        ...given.map((ch, i) => ({ ch, nx: 0.08 + i * 0.14, ny: 0.7, s: 0.15, tier: "row" })),
       ]
     : [
         ...lai.map((ch, i) => ({ ch, nx: 0.28 + i * 0.22, ny: 0.34, s: 0.3, tier: "core" })),
@@ -83,8 +85,11 @@ function initLiquidName() {
     document.documentElement.getAttribute("data-theme") === "dark" ||
     document.documentElement.getAttribute("data-theme-setting") === "dark";
 
+  let anchor = { x: 0, y: 0, w: 1, h: 1 };
+
   const fit = () => {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    phone = isPhone();
+    dpr = Math.min(window.devicePixelRatio || 1, phone ? 1.5 : 2);
     const box = hero.getBoundingClientRect();
     hw = Math.max(1, Math.floor(box.width));
     hh = Math.max(1, Math.floor(box.height));
@@ -93,6 +98,13 @@ function initLiquidName() {
     canvas.style.width = `${hw}px`;
     canvas.style.height = `${hh}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const titleBox = wrap.getBoundingClientRect();
+    anchor = {
+      x: titleBox.left - box.left,
+      y: titleBox.top - box.top,
+      w: Math.max(1, titleBox.width),
+      h: Math.max(1, titleBox.height),
+    };
   };
 
   const localPoint = (event) => {
@@ -160,6 +172,19 @@ function initLiquidName() {
     pointerOn = false;
     swellLetters();
   });
+  title.addEventListener("pointerdown", (event) => {
+    pointerOn = true;
+    const p = localPoint(event);
+    mx = p.x;
+    my = p.y;
+    emitAt(mx, my, phone ? 14 : 10);
+  });
+  const release = () => {
+    pointerOn = false;
+    swellLetters();
+  };
+  title.addEventListener("pointerup", release);
+  title.addEventListener("pointercancel", release);
 
   const inkRgb = () => (dark() ? [236, 238, 242] : [22, 24, 28]);
 
@@ -173,16 +198,38 @@ function initLiquidName() {
       }
     }
 
+    if (phone && !pointerOn) {
+      idleCool += 0.016;
+      if (idleCool > 0.2) {
+        emitAt(anchor.x + anchor.w * (0.18 + Math.random() * 0.64), anchor.y + anchor.h * 0.62, 2);
+        const born = field[field.length - 1];
+        if (born) {
+          born.vy = -1.15 - Math.random() * 0.9;
+          born.vx *= 0.35;
+        }
+        const born2 = field[field.length - 2];
+        if (born2) {
+          born2.vy = -1.15 - Math.random() * 0.9;
+          born2.vx *= 0.35;
+        }
+        idleCool = 0;
+      }
+    }
+
     ctx.clearRect(0, 0, hw, hh);
     const rgb = inkRgb();
     const min = Math.min(hw, hh);
 
     glyphs.forEach((g) => {
-      const size = g.s * min;
+      const size = phone ? g.s * anchor.w : g.s * min;
       const pad = size * 0.72;
-      const x = Math.min(hw - pad, Math.max(pad, g.nx * hw + Math.sin(time * 0.28 + g.phase) * 5));
-      const y = Math.min(hh - pad, Math.max(pad, g.ny * hh + Math.cos(time * 0.22 + g.phase) * 4));
-      const base = g.tier === "core" ? 0.28 : 0.2;
+      const driftX = Math.sin(time * 0.28 + g.phase) * (phone ? 2 : 5);
+      const driftY = Math.cos(time * 0.22 + g.phase) * (phone ? 1.5 : 4);
+      const rawX = phone ? anchor.x + g.nx * anchor.w + driftX : g.nx * hw + driftX;
+      const rawY = phone ? anchor.y + g.ny * anchor.h + driftY : g.ny * hh + driftY;
+      const x = Math.min(hw - pad, Math.max(pad, rawX));
+      const y = Math.min(hh - pad, Math.max(pad, rawY));
+      const base = g.tier === "core" ? (phone ? 0.4 : 0.28) : phone ? 0.3 : 0.2;
       const alpha = base * (0.92 + 0.08 * Math.sin(time * 0.45 + g.phase));
 
       ctx.save();
@@ -191,12 +238,19 @@ function initLiquidName() {
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.font = `italic 600 ${size}px "Snell Roundhand", "Apple Chancery", "Kaiti SC", "KaiTi", "Palatino Linotype", serif`;
-      ctx.filter = "blur(5px)";
-      ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha * 0.35})`;
-      ctx.fillText(g.ch, size * 0.02, size * 0.025);
-      ctx.filter = "blur(0.4px)";
-      ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
-      ctx.fillText(g.ch, 0, 0);
+      if (phone) {
+        ctx.shadowColor = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha * 0.45})`;
+        ctx.shadowBlur = Math.max(6, size * 0.14);
+        ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
+        ctx.fillText(g.ch, 0, 0);
+      } else {
+        ctx.filter = "blur(5px)";
+        ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha * 0.35})`;
+        ctx.fillText(g.ch, size * 0.02, size * 0.025);
+        ctx.filter = "blur(0.4px)";
+        ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
+        ctx.fillText(g.ch, 0, 0);
+      }
       ctx.restore();
     });
 
