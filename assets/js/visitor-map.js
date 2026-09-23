@@ -34,23 +34,20 @@
       pin.style.left = `${((place.lng + 180) / 360) * 100}%`;
       pin.style.top = `${((90 - place.lat) / 180) * 100}%`;
       const size = Math.min(18, 7 + Math.sqrt(place.count) * 2.2);
-      pin.innerHTML = `<span class="visitor-map-dot" style="width:${size}px;height:${size}px"></span><span class="visitor-map-count">${place.count}</span>`;
-      pin.title = `${place.label} · ${place.count}`;
-      pin.setAttribute("aria-label", pin.title);
+      const dot = document.createElement("span");
+      dot.className = "visitor-map-dot";
+      dot.style.width = `${size}px`;
+      dot.style.height = `${size}px`;
+      const tip = document.createElement("span");
+      tip.className = "visitor-map-tip";
+      const city = document.createElement("span");
+      city.textContent = place.label;
+      const count = document.createElement("strong");
+      count.textContent = String(place.count);
+      tip.append(city, count);
+      pin.append(dot, tip);
+      pin.setAttribute("aria-label", `${place.label}, ${place.count}`);
       dots.append(pin);
-    });
-
-    let list = root.querySelector(".visitor-map-list");
-    if (!list) {
-      list = document.createElement("ol");
-      list.className = "visitor-map-list";
-      note.before(list);
-    }
-    list.replaceChildren();
-    ranked.forEach((place) => {
-      const item = document.createElement("li");
-      item.innerHTML = `<span>${place.label}</span><strong>${place.count}</strong>`;
-      list.append(item);
     });
 
     const total = ranked.reduce((sum, place) => sum + place.count, 0);
