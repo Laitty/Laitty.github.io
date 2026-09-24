@@ -1,20 +1,25 @@
 (() => {
-  const root = document.getElementById("visitor-map");
-  if (!root) return;
+  const config = window.visitorHistory || {};
+  const stores = (config.stores || []).map((url) => url.replace(/\/$/, "")).filter(Boolean);
+  const historyUrl = config.history || "";
+  const counter = (config.counter || "").replace(/\/$/, "");
+  const namespace = config.namespace || "";
+  if (!stores.length || !counter || !namespace) return;
 
-  const api = (root.dataset.api || "").replace(/\/$/, "");
-  const mirror = (root.dataset.mirror || "").replace(/\/$/, "");
-  const historyUrl = root.dataset.history || "";
-  const stage = root.querySelector(".visitor-map-stage");
-  const note = root.querySelector(".visitor-map-note");
-  if (!api || !stage) return;
+  const root = document.getElementById("visitor-map");
+  const stage = root && root.querySelector(".visitor-map-stage");
+  const note = root && root.querySelector(".visitor-map-note");
+  let dots = null;
+  let draw = () => {};
+
+  if (root && stage) {
 
   const land = document.createElement("img");
   land.className = "visitor-map-land";
   land.alt = "";
   land.draggable = false;
   land.src = root.dataset.map;
-  const dots = document.createElement("div");
+  dots = document.createElement("div");
   dots.className = "visitor-map-dots";
   const world = document.createElement("div");
   world.className = "visitor-map-world";
@@ -155,7 +160,7 @@
     apply();
   });
 
-  const draw = (places) => {
+  draw = (places) => {
     dots.replaceChildren();
     const ranked = places
       .map((place) => ({
@@ -190,15 +195,16 @@
       dots.append(pin);
     });
 
-    const total = ranked.reduce((sum, place) => sum + place.count, 0);
+    const total = places.reduce((sum, place) => sum + (Number(place.n) || 0), 0);
     if (note) {
       note.textContent = total
         ? `${total} cumulative ${total === 1 ? "visit" : "visits"}`
         : "Cumulative visits will show up here.";
     }
   };
+  }
 
-  const stores = [api, mirror].filter(Boolean);
+  const counterKey = (key) => String(key).replace(/,/g, "_");
 
   const normalize = (data) => {
     const places = Array.isArray(data) ? data : data && data.places;
@@ -206,29 +212,35 @@
   };
 
   const pack = (places) =>
-    places.map(({ key, n, lat, lng, label }) => ({
-      key,
-      n: Number(n) || 0,
-      lat: Number(lat),
-      lng: Number(lng),
-      label: label || "Visit",
-    }));
+    places.map((place) => {
+      const lat = Number(place.lat);
+      const lng = Number(place.lng);
+      const located = Number.isFinite(lat) && Number.isFinite(lng);
+      return {
+        key: place.key,
+        n: Number(place.n) || 0,
+        lat: located ? Number(lat.toFixed(1)) : null,
+        lng: located ? Number(lng.toFixed(1)) : null,
+        label: place.label || "Visit",
+      };
+    });
 
   const merge = (lists) => {
     const byKey = new Map();
     lists.flat().forEach((place) => {
+      if (!place || !place.key) return;
       const lat = Number(place.lat);
       const lng = Number(place.lng);
-      if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
-      const key = place.key || `${lat.toFixed(1)},${lng.toFixed(1)}`;
+      const located = Number.isFinite(lat) && Number.isFinite(lng);
+      if (place.key !== "unknown" && !located) return;
       const n = Number(place.n) || 0;
-      const prev = byKey.get(key);
+      const prev = byKey.get(place.key);
       if (!prev || n >= prev.n) {
-        byKey.set(key, {
-          key,
+        byKey.set(place.key, {
+          key: place.key,
           n: Math.max(n, prev ? prev.n : 0),
-          lat: Number(lat.toFixed(1)),
-          lng: Number(lng.toFixed(1)),
+          lat: located ? Number(lat.toFixed(1)) : null,
+          lng: located ? Number(lng.toFixed(1)) : null,
           label: place.label || (prev && prev.label) || "Visit",
         });
       }
@@ -270,110 +282,138 @@
       body: JSON.stringify({ places: pack(places) }),
     });
 
-  const memoryKey = "visitor-map-history";
-
-  const readBrowser = () => {
-    try {
-      return normalize(JSON.parse(localStorage.getItem(memoryKey) || "null"));
-    } catch {
-      return [];
-    }
-  };
-
-  const writeBrowser = (places) => {
-    try {
-      localStorage.setItem(memoryKey, JSON.stringify({ places: pack(places) }));
-      return true;
-    } catch {
-      return false;
-    }
-  };
-
   const saveAll = (places) => Promise.all(stores.map((url) => save(url, places).catch(() => null)));
+
+  const counterUrl = (action, key) =>
+    `${counter}/${action}/${namespace}/${encodeURIComponent(counterKey(key))}`;
+
+  const readCount = async (key) => {
+    try {
+      const response = await fetch(counterUrl("get", key), { cache: "no-store" });
+      if (response.status === 404) return 0;
+      if (!response.ok) return null;
+      return Number((await response.json()).value) || 0;
+    } catch {
+      return null;
+    }
+  };
+
+  const hitCount = async (key) => {
+    try {
+      const response = await fetch(counterUrl("hit", key), { cache: "no-store" });
+      if (!response.ok) return null;
+      return Number((await response.json()).value) || 0;
+    } catch {
+      return null;
+    }
+  };
+
+  const syncCounts = async (places) =>
+    Promise.all(
+      places.map(async (place) => {
+        const value = await readCount(place.key);
+        if (value == null) return place;
+        return { ...place, n: Math.max(Number(place.n) || 0, value) };
+      })
+    );
 
   const gather = async () => {
     const [local, ...remotes] = await Promise.all([readLocal(), ...stores.map(readStore)]);
     return { local, remotes };
   };
 
-  const load = async () => {
+  const loadRegistry = async () => {
     const { local, remotes } = await gather();
-    let places = merge([readBrowser(), local, ...remotes.filter(Array.isArray)]);
+    return merge([local, ...remotes.filter(Array.isArray)]);
+  };
+
+  const heal = async (places) => {
     const fresh = await Promise.all(stores.map(readStore));
-    places = merge([places, ...fresh.filter(Array.isArray)]);
-    writeBrowser(places);
+    const merged = merge([places, ...fresh.filter(Array.isArray)]);
     await Promise.all(
       stores.map((url, index) => {
         const remote = fresh[index];
-        if (!remote || !behind(remote, places)) return null;
-        return save(url, places).catch(() => null);
+        if (!remote || !behind(remote, merged)) return null;
+        return save(url, merged).catch(() => null);
       })
     );
-    return places;
+    return merged;
   };
 
   const persist = async (places) => {
     let pending = places;
     let stored = false;
-    for (let attempt = 0; attempt < 3; attempt += 1) {
+    for (let attempt = 0; attempt < 5; attempt += 1) {
       const remotes = await Promise.all(stores.map(readStore));
-      pending = merge([pending, readBrowser(), ...remotes.filter(Array.isArray)]);
+      pending = merge([pending, ...remotes.filter(Array.isArray)]);
       const responses = await saveAll(pending);
-      stored = writeBrowser(pending) || responses.some((response) => response && response.ok);
+      stored = responses.some((response) => response && response.ok);
       if (!stored) continue;
       const check = (await Promise.all(stores.map(readStore))).filter(Array.isArray);
-      if (!check.length || !behind(merge(check), pending)) return { places: pending, stored: true };
+      if (check.length && !check.some((remote) => behind(remote, pending))) {
+        return { places: pending, stored: true };
+      }
       pending = merge([pending, ...check]);
     }
-    writeBrowser(pending);
     return { places: pending, stored };
   };
 
+  const counted = () => {
+    try {
+      return sessionStorage.getItem("visitor-map-counted") === "1";
+    } catch {
+      return false;
+    }
+  };
+
+  const markCounted = () => {
+    try {
+      sessionStorage.setItem("visitor-map-counted", "1");
+    } catch {
+      /* this page view is still counted for the session */
+    }
+  };
+
   const record = async (places) => {
-    if (!Array.isArray(places)) return [];
+    if (!Array.isArray(places) || counted()) return places;
+
+    let point = { key: "unknown", lat: null, lng: null, label: "Unknown" };
     try {
-      if (sessionStorage.getItem("visitor-map-counted")) return places;
+      const geo = await fetch("https://get.geojs.io/v1/ip/geo.json").then((response) => response.json());
+      const lat = Number(geo.latitude);
+      const lng = Number(geo.longitude);
+      if (Number.isFinite(lat) && Number.isFinite(lng)) {
+        point = {
+          key: `${lat.toFixed(1)},${lng.toFixed(1)}`,
+          lat: Number(lat.toFixed(1)),
+          lng: Number(lng.toFixed(1)),
+          label: [geo.city, geo.country].filter(Boolean).join(", ") || "Visit",
+        };
+      }
     } catch {
-      return places;
+      /* a failed location lookup still counts the visit */
     }
 
-    let geo;
-    try {
-      geo = await fetch("https://get.geojs.io/v1/ip/geo.json").then((response) => response.json());
-    } catch {
-      return places;
-    }
-
-    const lat = Number(geo.latitude);
-    const lng = Number(geo.longitude);
-    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return places;
-
-    const key = `${lat.toFixed(1)},${lng.toFixed(1)}`;
-    const label = [geo.city, geo.country].filter(Boolean).join(", ") || "Visit";
-    const existing = places.find((place) => place.key === key);
-    const point = {
-      key,
-      n: existing ? (Number(existing.n) || 0) + 1 : 1,
-      lat: Number(lat.toFixed(1)),
-      lng: Number(lng.toFixed(1)),
-      label: (existing && existing.label) || label,
+    const hit = await hitCount(point.key);
+    const existing = places.find((place) => place.key === point.key);
+    const n = hit != null ? hit : (Number(existing && existing.n) || 0) + 1;
+    const nextPlace = {
+      ...point,
+      n: Math.max(n, Number(existing && existing.n) || 0),
+      label: (existing && existing.label) || point.label,
     };
     const next = existing
-      ? places.map((place) => (place.key === key ? { ...place, ...point } : place))
-      : [...places, point];
+      ? places.map((place) => (place.key === point.key ? { ...place, ...nextPlace } : place))
+      : [...places, nextPlace];
 
     try {
       const saved = await persist(next);
-      if (!saved.stored) return places;
-      sessionStorage.setItem("visitor-map-counted", "1");
+      if (hit == null && !saved.stored) return places;
+      markCounted();
       return saved.places;
     } catch {
-      if (!writeBrowser(next)) return places;
-      try {
-        sessionStorage.setItem("visitor-map-counted", "1");
-      } catch {
-        /* this browser still has the visit and will sync it later */
-      }
+      if (hit == null) return places;
+      markCounted();
       return next;
     }
   };
@@ -388,8 +428,8 @@
       .join("|");
 
   const publish = (places) => {
-    const next = merge([shown, places, readBrowser()]);
-    writeBrowser(next);
+    if (!dots) return;
+    const next = merge([shown, places]);
     const nextSignature = fingerprint(next);
     if (nextSignature === signature) return;
     signature = nextSignature;
@@ -397,22 +437,29 @@
     draw(next);
   };
 
-  const watch = async () => {
-    publish(await load());
+  const watch = async (withCounts) => {
+    let places = await loadRegistry();
+    if (withCounts) places = await heal(await syncCounts(places));
+    publish(places);
   };
 
-  load()
+  loadRegistry()
+    .then((places) => (dots ? syncCounts(places).then(heal) : places))
     .then(record)
     .then(publish)
     .catch(async () => {
       try {
-        publish(merge([readBrowser(), await readLocal()]));
+        publish(await readLocal());
       } catch {
         if (note) note.textContent = "The visitor map could not load.";
       }
     });
 
-  window.setInterval(() => {
-    watch().catch(() => {});
-  }, 10000);
+  if (dots) {
+    let ticks = 0;
+    window.setInterval(() => {
+      ticks += 1;
+      watch(ticks % 3 === 0).catch(() => {});
+    }, 10000);
+  }
 })();

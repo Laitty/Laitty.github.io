@@ -215,7 +215,16 @@
   <script defer src="{{ '/assets/js/travel-globe.js' | relative_url | bust_file_cache }}"></script>
 {% endif %}
 
-{% if page.visitor_map %}
-  <script defer src="{{ '/assets/js/visitor-map.js' | relative_url | bust_file_cache }}"></script>
-{% endif %}
+<script>
+  window.visitorHistory = {
+    stores: [
+      "https://extendsclass.com/api/json-storage/bin/feeabdc",
+      "https://extendsclass.com/api/json-storage/bin/ddfbcda"
+    ],
+    history: {{ "/assets/json/visit-history.json" | relative_url | jsonify }},
+    counter: "https://abacus.jasoncameron.dev",
+    namespace: "laitty-github-io-visits"
+  };
+</script>
+<script defer src="{{ '/assets/js/visitor-map.js' | relative_url | bust_file_cache }}"></script>
 
