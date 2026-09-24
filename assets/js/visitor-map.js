@@ -3,6 +3,7 @@
   if (!root) return;
 
   const api = (root.dataset.api || "").replace(/\/$/, "");
+  const mirror = (root.dataset.mirror || "").replace(/\/$/, "");
   const historyUrl = root.dataset.history || "";
   const stage = root.querySelector(".visitor-map-stage");
   const note = root.querySelector(".visitor-map-note");
@@ -197,9 +198,47 @@
     }
   };
 
+  const stores = [api, mirror].filter(Boolean);
+
   const normalize = (data) => {
     const places = Array.isArray(data) ? data : data && data.places;
     return Array.isArray(places) ? places : [];
+  };
+
+  const pack = (places) =>
+    places.map(({ key, n, lat, lng, label }) => ({
+      key,
+      n: Number(n) || 0,
+      lat: Number(lat),
+      lng: Number(lng),
+      label: label || "Visit",
+    }));
+
+  const merge = (lists) => {
+    const byKey = new Map();
+    lists.flat().forEach((place) => {
+      const lat = Number(place.lat);
+      const lng = Number(place.lng);
+      if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+      const key = place.key || `${lat.toFixed(1)},${lng.toFixed(1)}`;
+      const n = Number(place.n) || 0;
+      const prev = byKey.get(key);
+      if (!prev || n >= prev.n) {
+        byKey.set(key, {
+          key,
+          n: Math.max(n, prev ? prev.n : 0),
+          lat: Number(lat.toFixed(1)),
+          lng: Number(lng.toFixed(1)),
+          label: place.label || (prev && prev.label) || "Visit",
+        });
+      }
+    });
+    return [...byKey.values()];
+  };
+
+  const behind = (remote, full) => {
+    const counts = new Map(remote.map((place) => [place.key, Number(place.n) || 0]));
+    return full.some((place) => (counts.get(place.key) || 0) < place.n);
   };
 
   const readLocal = async () => {
@@ -213,32 +252,38 @@
     }
   };
 
-  const save = (places) =>
-    fetch(api, {
+  const readStore = async (url) => {
+    try {
+      const response = await fetch(`${url}?t=${Date.now()}`, { cache: "no-store" });
+      if (!response.ok) return null;
+      return normalize(await response.json());
+    } catch {
+      return null;
+    }
+  };
+
+  const save = (url, places) =>
+    fetch(url, {
       method: "PUT",
       cache: "no-store",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        places: places.map(({ key, n, lat, lng, label }) => ({
-          key,
-          n: Number(n) || 0,
-          lat: Number(lat),
-          lng: Number(lng),
-          label: label || "Visit",
-        })),
-      }),
+      body: JSON.stringify({ places: pack(places) }),
     });
+
+  const saveAll = (places) => Promise.all(stores.map((url) => save(url, places).catch(() => null)));
 
   const load = async () => {
     const local = await readLocal();
-    try {
-      const response = await fetch(`${api}?t=${Date.now()}`, { cache: "no-store" });
-      if (!response.ok) return local;
-      const remote = normalize(await response.json());
-      return remote.length ? remote : local;
-    } catch {
-      return local;
-    }
+    const remotes = await Promise.all(stores.map(readStore));
+    const places = merge([local, ...remotes.filter(Array.isArray)]);
+    await Promise.all(
+      stores.map((url, index) => {
+        const remote = remotes[index];
+        if (!remote || !behind(remote, places)) return null;
+        return save(url, places).catch(() => null);
+      })
+    );
+    return places;
   };
 
   const record = async (places) => {
@@ -275,8 +320,8 @@
       : [...places, point];
 
     try {
-      const response = await save(next);
-      if (!response.ok) return places;
+      const responses = await saveAll(next);
+      if (!responses.some((response) => response && response.ok)) return places;
       sessionStorage.setItem("visitor-map-counted", "1");
       return next;
     } catch {
