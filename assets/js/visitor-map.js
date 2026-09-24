@@ -270,20 +270,63 @@
       body: JSON.stringify({ places: pack(places) }),
     });
 
+  const memoryKey = "visitor-map-history";
+
+  const readBrowser = () => {
+    try {
+      return normalize(JSON.parse(localStorage.getItem(memoryKey) || "null"));
+    } catch {
+      return [];
+    }
+  };
+
+  const writeBrowser = (places) => {
+    try {
+      localStorage.setItem(memoryKey, JSON.stringify({ places: pack(places) }));
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
   const saveAll = (places) => Promise.all(stores.map((url) => save(url, places).catch(() => null)));
 
+  const gather = async () => {
+    const [local, ...remotes] = await Promise.all([readLocal(), ...stores.map(readStore)]);
+    return { local, remotes };
+  };
+
   const load = async () => {
-    const local = await readLocal();
-    const remotes = await Promise.all(stores.map(readStore));
-    const places = merge([local, ...remotes.filter(Array.isArray)]);
+    const { local, remotes } = await gather();
+    let places = merge([readBrowser(), local, ...remotes.filter(Array.isArray)]);
+    const fresh = await Promise.all(stores.map(readStore));
+    places = merge([places, ...fresh.filter(Array.isArray)]);
+    writeBrowser(places);
     await Promise.all(
       stores.map((url, index) => {
-        const remote = remotes[index];
+        const remote = fresh[index];
         if (!remote || !behind(remote, places)) return null;
         return save(url, places).catch(() => null);
       })
     );
     return places;
+  };
+
+  const persist = async (places) => {
+    let pending = places;
+    let stored = false;
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const remotes = await Promise.all(stores.map(readStore));
+      pending = merge([pending, readBrowser(), ...remotes.filter(Array.isArray)]);
+      const responses = await saveAll(pending);
+      stored = writeBrowser(pending) || responses.some((response) => response && response.ok);
+      if (!stored) continue;
+      const check = (await Promise.all(stores.map(readStore))).filter(Array.isArray);
+      if (!check.length || !behind(merge(check), pending)) return { places: pending, stored: true };
+      pending = merge([pending, ...check]);
+    }
+    writeBrowser(pending);
+    return { places: pending, stored };
   };
 
   const record = async (places) => {
@@ -320,23 +363,56 @@
       : [...places, point];
 
     try {
-      const responses = await saveAll(next);
-      if (!responses.some((response) => response && response.ok)) return places;
+      const saved = await persist(next);
+      if (!saved.stored) return places;
       sessionStorage.setItem("visitor-map-counted", "1");
-      return next;
+      return saved.places;
     } catch {
-      return places;
+      if (!writeBrowser(next)) return places;
+      try {
+        sessionStorage.setItem("visitor-map-counted", "1");
+      } catch {
+        /* this browser still has the visit and will sync it later */
+      }
+      return next;
     }
+  };
+
+  let shown = [];
+  let signature = "";
+
+  const fingerprint = (places) =>
+    places
+      .map((place) => `${place.key}:${Number(place.n) || 0}:${place.label || ""}`)
+      .sort()
+      .join("|");
+
+  const publish = (places) => {
+    const next = merge([shown, places, readBrowser()]);
+    writeBrowser(next);
+    const nextSignature = fingerprint(next);
+    if (nextSignature === signature) return;
+    signature = nextSignature;
+    shown = next;
+    draw(next);
+  };
+
+  const watch = async () => {
+    publish(await load());
   };
 
   load()
     .then(record)
-    .then(draw)
+    .then(publish)
     .catch(async () => {
       try {
-        draw(await readLocal());
+        publish(merge([readBrowser(), await readLocal()]));
       } catch {
         if (note) note.textContent = "The visitor map could not load.";
       }
     });
+
+  window.setInterval(() => {
+    watch().catch(() => {});
+  }, 10000);
 })();
