@@ -3,6 +3,7 @@
   if (!root) return;
 
   const api = (root.dataset.api || "").replace(/\/$/, "");
+  const historyUrl = root.dataset.history || "";
   const stage = root.querySelector(".visitor-map-stage");
   const note = root.querySelector(".visitor-map-note");
   if (!api || !stage) return;
@@ -196,11 +197,57 @@
     }
   };
 
-  const load = () => fetch(`${api}/places`).then((response) => response.json());
+  const normalize = (data) => {
+    const places = Array.isArray(data) ? data : data && data.places;
+    return Array.isArray(places) ? places : [];
+  };
+
+  const readLocal = async () => {
+    if (!historyUrl) return [];
+    try {
+      const response = await fetch(historyUrl, { cache: "no-store" });
+      if (!response.ok) return [];
+      return normalize(await response.json());
+    } catch {
+      return [];
+    }
+  };
+
+  const save = (places) =>
+    fetch(api, {
+      method: "PUT",
+      cache: "no-store",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        places: places.map(({ key, n, lat, lng, label }) => ({
+          key,
+          n: Number(n) || 0,
+          lat: Number(lat),
+          lng: Number(lng),
+          label: label || "Visit",
+        })),
+      }),
+    });
+
+  const load = async () => {
+    const local = await readLocal();
+    try {
+      const response = await fetch(`${api}?t=${Date.now()}`, { cache: "no-store" });
+      if (!response.ok) return local;
+      const remote = normalize(await response.json());
+      return remote.length ? remote : local;
+    } catch {
+      return local;
+    }
+  };
 
   const record = async (places) => {
     if (!Array.isArray(places)) return [];
-    if (sessionStorage.getItem("visitor-map-counted")) return places;
+    try {
+      if (sessionStorage.getItem("visitor-map-counted")) return places;
+    } catch {
+      return places;
+    }
 
     let geo;
     try {
@@ -216,45 +263,35 @@
     const key = `${lat.toFixed(1)},${lng.toFixed(1)}`;
     const label = [geo.city, geo.country].filter(Boolean).join(", ") || "Visit";
     const existing = places.find((place) => place.key === key);
-    sessionStorage.setItem("visitor-map-counted", "1");
-
-    if (existing) {
-      const body = {
-        key,
-        n: (Number(existing.n) || 0) + 1,
-        lat: Number(lat.toFixed(1)),
-        lng: Number(lng.toFixed(1)),
-        label: existing.label || label,
-      };
-      const response = await fetch(`${api}/places/${existing._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      if (!response.ok) return places;
-      return places.map((place) => (place._id === existing._id ? { ...place, ...body } : place));
-    }
-
-    const body = {
+    const point = {
       key,
-      n: 1,
+      n: existing ? (Number(existing.n) || 0) + 1 : 1,
       lat: Number(lat.toFixed(1)),
       lng: Number(lng.toFixed(1)),
-      label,
+      label: (existing && existing.label) || label,
     };
-    const response = await fetch(`${api}/places`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    if (!response.ok) return places;
-    return [...places, await response.json()];
+    const next = existing
+      ? places.map((place) => (place.key === key ? { ...place, ...point } : place))
+      : [...places, point];
+
+    try {
+      const response = await save(next);
+      if (!response.ok) return places;
+      sessionStorage.setItem("visitor-map-counted", "1");
+      return next;
+    } catch {
+      return places;
+    }
   };
 
   load()
     .then(record)
     .then(draw)
-    .catch(() => {
-      if (note) note.textContent = "The visitor map could not load.";
+    .catch(async () => {
+      try {
+        draw(await readLocal());
+      } catch {
+        if (note) note.textContent = "The visitor map could not load.";
+      }
     });
 })();

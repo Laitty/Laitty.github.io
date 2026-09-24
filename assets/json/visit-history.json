@@ -1,0 +1,18 @@
+{
+  "places": [
+    {
+      "key": "40.4,-79.9",
+      "n": 1,
+      "lat": 40.4,
+      "lng": -79.9,
+      "label": "Pittsburgh, United States"
+    },
+    {
+      "key": "53.5,-2.3",
+      "n": 1,
+      "lat": 53.5,
+      "lng": -2.3,
+      "label": "Manchester, United Kingdom"
+    }
+  ]
+}

@@ -73,7 +73,8 @@ My research connects reliable learning and model evaluation with human–AI inte
 <div
   id="visitor-map"
   class="visitor-map-card"
-  data-api="https://crudcrud.com/api/0f79f27ceada49808e65e6f733501818"
+  data-api="https://extendsclass.com/api/json-storage/bin/feeabdc"
+  data-history="{{ '/assets/json/visit-history.json' | relative_url }}"
   data-map="{{ '/assets/img/visitor-world.svg' | relative_url }}"
 >
   <div class="visitor-map-stage"></div>
