@@ -784,7 +784,8 @@ html[data-theme-setting="dark"] .scene-tooltip {
 .visitor-map-pin {
   position: absolute;
   z-index: 1;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(var(--visitor-pin-scale, 1));
+  transform-origin: center;
 }
 
 .visitor-map-pin:hover {

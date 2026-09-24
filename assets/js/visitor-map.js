@@ -57,6 +57,7 @@
 
   const apply = () => {
     world.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
+    dots.style.setProperty("--visitor-pin-scale", String(1 / scale));
   };
 
   const zoomAt = (clientX, clientY, nextScale) => {
