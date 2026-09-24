@@ -117,7 +117,7 @@ cv:
 
     Academic Service:
       - name: Reviewer
-        summary: ICASSP 2027, ACM MM 2027, IJCNN 2026
+        summary: ICASSP 2027, ACM MM 2026, IJCNN 2026
 
     Research:
       - title: "TRACE: Interpretable Breast Ultrasound Classification"

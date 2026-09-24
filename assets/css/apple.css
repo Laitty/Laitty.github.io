@@ -726,7 +726,47 @@ html[data-theme-setting="dark"] .scene-tooltip {
   position: relative;
   width: 100%;
   aspect-ratio: 2 / 1;
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
   background: rgba(255, 255, 255, 0.35);
+}
+
+.visitor-map-stage.is-panning {
+  cursor: grabbing;
+}
+
+.visitor-map-world {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+}
+
+.visitor-map-controls {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  z-index: 4;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.visitor-map-control {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid rgba(170, 206, 245, 0.7);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #0071e3;
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.12);
+}
+
+.visitor-map-control:hover {
+  background: #fff;
 }
 
 .visitor-map-land {
@@ -780,6 +820,10 @@ html[data-theme-setting="dark"] .scene-tooltip {
   justify-items: center;
 }
 
+.visitor-map-stage.is-panning .visitor-map-tip {
+  display: none;
+}
+
 .visitor-map-tip strong {
   font-size: 0.95rem;
   font-variant-numeric: tabular-nums;
@@ -801,6 +845,13 @@ html[data-theme-setting="dark"] .visitor-map-card {
 html[data-theme="dark"] .visitor-map-stage,
 html[data-theme-setting="dark"] .visitor-map-stage {
   background: rgba(12, 16, 24, 0.35);
+}
+
+html[data-theme="dark"] .visitor-map-control,
+html[data-theme-setting="dark"] .visitor-map-control {
+  background: rgba(28, 28, 30, 0.92);
+  border-color: rgba(90, 150, 220, 0.35);
+  color: #8ec8ff;
 }
 
 html[data-theme="dark"] .visitor-map-land,
