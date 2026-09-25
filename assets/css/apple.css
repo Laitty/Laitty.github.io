@@ -428,12 +428,57 @@ html[data-theme="dark"] footer {
   padding-bottom: 0.7rem;
 }
 
+.social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.social .contact-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.85rem;
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+  line-height: 1;
+}
+
 .social .contact-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 1.2em;
+  margin: 0;
+  line-height: 1;
   transition: transform 0.3s var(--apple-ease);
+}
+
+.social .contact-icons a i {
+  width: auto;
+  line-height: 1;
+}
+
+.social .contact-icons a .ai {
+  font-size: 1.2em;
+}
+
+.social .contact-icons a .ai-google-scholar {
+  margin-inline-start: -0.42rem;
 }
 
 .social .contact-icons a:hover {
   transform: translateY(-3px) scale(1.06);
+}
+
+@media (max-width: 576px) {
+  .social .contact-icons {
+    gap: 1.15rem;
+    font-size: 2.7rem;
+  }
 }
 
 .apple-reveal {
