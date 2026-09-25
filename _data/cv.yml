@@ -202,9 +202,11 @@ cv:
         start_date: "2024-09"
         end_date: "2025-12"
         highlights:
-          - "Co-authored federated learning work on heterogeneity challenges and solutions."
           - "Led the design of a federated learning survey covering healthcare, finance, and IoT case studies."
           - "Designed the Frequency-Adaptive Semantic Distillation framework with semantic topology and dynamic frequency-based weighting."
+          - "FedSAP: structured adaptive partitioning for federated learning on multi-domain heterogeneous edge devices."
+          - "Margin-oriented semantic-appearance interaction correction: personalized federated vision-language models beyond domain-level adaptation."
+          - "After Cooperation Is Learned: gradient routing and optimizer-dependent maintenance of learned cooperation in multi-agent reinforcement learning."
 
       - title: Metasurface Inverse Design
         position: Second Author
