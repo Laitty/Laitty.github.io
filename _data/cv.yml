@@ -69,7 +69,7 @@ cv:
           - "Camacho, D."
         date: "2026"
         doi: "10.1111/exsy.70271"
-        summary: "Expert Systems, 70271."
+        summary: "Expert Systems, 2026."
 
       - title: "ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting"
         authors:
