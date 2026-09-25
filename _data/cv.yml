@@ -163,7 +163,6 @@ cv:
       - title: Collaborative Learning and Model Evaluation
         position: Co-author
         highlights:
-          - "AAAI 2027 submissions on heterogeneous edge learning (FedSAP), personalized federated vision-language models, and maintenance of multi-agent cooperation."
           - "ICLR 2027 submissions on federated language models (FedSocratic), auxiliary supervision in multimodal unlearning, and comparison feedback in model selection."
 
       - title: Real-Time Spike & EEG Signal Detection for Symptom Analysis in Rat Models

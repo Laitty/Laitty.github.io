@@ -25,8 +25,6 @@ My research connects reliable learning and model evaluation with human–AI inte
 #### Federated and Heterogeneous Learning
 
 - **Data heterogeneity survey** — _Expert Systems_ (2026). Led the survey framework on federated learning under non-IID and heterogeneous data, covering healthcare, finance, and IoT case studies; also designed frequency-adaptive semantic distillation with semantic topology and dynamic frequency-based weighting. Advisors: Prof. Qilei Li and Prof. David Camacho.
-- **FedSAP** — submitted to AAAI 2027. Structured partitioning for heterogeneous edge devices. Advisors: Prof. Qilei Li and Prof. David Camacho.
-- **Semantic–appearance correction** — submitted to AAAI 2027. Personalized federated vision–language models with semantic–appearance interaction correction. Advisors: Prof. Qilei Li and Prof. David Camacho.
 - **FedSocratic** — submitted to ICLR 2027. Verifiable questioning for federated language models. Advisors: Prof. Qilei Li and Prof. David Camacho.
 
 #### Unlearning, Context Effects, and Model Evaluation
@@ -38,10 +36,6 @@ My research connects reliable learning and model evaluation with human–AI inte
 #### Human–AI Interaction and LLM Judges
 
 - **When Outputs Become Outcomes** — first author; submitted to CHI 2027. Distinguishes agreement with an assessment, acceptance of a judge's authority, and subsequent action in livestream games and academic reviewing; observational, interview, and presentation-comparison methods examine source attribution and human mediation. Advisor: Prof. Qilei Li.
-
-#### Collaborative Multi-Agent Reinforcement Learning Research
-
-- **Cooperation maintenance** — submitted to AAAI 2027. Co-authored work on gradient routing and optimizer-dependent maintenance of learned cooperation. Advisor: Prof. Qilei Li.
 
 ### Applied Machine Learning
 
