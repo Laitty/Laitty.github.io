@@ -206,9 +206,9 @@ cv:
         highlights:
           - "Led the design of a federated learning survey covering healthcare, finance, and IoT case studies."
           - "Designed the Frequency-Adaptive Semantic Distillation framework with semantic topology and dynamic frequency-based weighting."
-          - "FedSAP (submitted to AAAI 2027): structured adaptive partitioning for federated learning on multi-domain heterogeneous edge devices."
-          - "Margin-oriented semantic-appearance interaction correction (submitted to AAAI 2027): personalized federated vision-language models beyond domain-level adaptation."
-          - "After Cooperation Is Learned (submitted to AAAI 2027): gradient routing and optimizer-dependent maintenance of learned cooperation in multi-agent reinforcement learning."
+          - "FedSAP: structured adaptive partitioning for federated learning on multi-domain heterogeneous edge devices."
+          - "Margin-oriented semantic-appearance interaction correction: personalized federated vision-language models beyond domain-level adaptation."
+          - "After Cooperation Is Learned: gradient routing and optimizer-dependent maintenance of learned cooperation in multi-agent reinforcement learning."
 
       - title: Dental Orthodontic Case Retrieval
         position: Research Collaborator
