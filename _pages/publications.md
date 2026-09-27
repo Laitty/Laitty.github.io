@@ -25,9 +25,9 @@ My research connects reliable learning and model evaluation with human–AI inte
 #### Federated and Heterogeneous Learning
 
 - **Data heterogeneity survey** — _Expert Systems_ (2026). Led the survey framework on federated learning under non-IID and heterogeneous data, covering healthcare, finance, and IoT case studies; also designed frequency-adaptive semantic distillation with semantic topology and dynamic frequency-based weighting. Advisors: Prof. Qilei Li and Prof. David Camacho.
-- **FedSAP** — structured adaptive partitioning for federated learning on multi-domain heterogeneous edge devices. Advisor: Prof. Qilei Li.
-- **Margin-oriented semantic–appearance interaction correction** — correction beyond domain-level adaptation for personalized federated vision–language models. Advisor: Prof. Qilei Li.
-- **After Cooperation Is Learned** — gradient routing and optimizer-dependent maintenance of learned cooperation in multi-agent reinforcement learning. Advisor: Prof. Qilei Li.
+- **FedSAP** — submitted to AAAI 2027; structured adaptive partitioning for federated learning on multi-domain heterogeneous edge devices. Advisor: Prof. Qilei Li.
+- **Margin-oriented semantic–appearance interaction correction** — submitted to AAAI 2027; correction beyond domain-level adaptation for personalized federated vision–language models. Advisor: Prof. Qilei Li.
+- **After Cooperation Is Learned** — submitted to AAAI 2027; gradient routing and optimizer-dependent maintenance of learned cooperation in multi-agent reinforcement learning. Advisor: Prof. Qilei Li.
 - **FedSocratic** — submitted to ICLR 2027. Verifiable questioning for federated language models. Advisors: Prof. Qilei Li and Prof. David Camacho.
 
 #### Unlearning, Context Effects, and Model Evaluation
@@ -47,7 +47,7 @@ My research connects reliable learning and model evaluation with human–AI inte
 - **TRACE** — accepted at ACM MM 2026. Report supervision during training supports concept-based breast ultrasound diagnosis with image-only inference. The work connects BI-RADS concepts, structured clinical descriptions, and concept-edit distillation. Advisors: Prof. Qilei Li and Prof. Zhenyuan Ning.
 - **Spike and EEG detection:** RT-DETR and spatiotemporal graph methods for juvenile and adult rat electrophysiology data, in collaboration with Peking University; algorithm development and signal analysis for symptom studies.
 - **LLM-based TCM symptom-text augmentation:** independent undergraduate honors thesis combining dataset curation, prompting, and fine-tuning. Thesis experiments reduced text length by up to 44.1%, increased terminology tokens 4.4-fold, and achieved diagnostic accuracy of up to 81.3%. Advisor: Prof. Yi Yang.
-- **Dental orthodontic case retrieval:** an ongoing intelligent case-retrieval project.
+- **Dental orthodontic case retrieval:** an ongoing intelligent case-retrieval project in collaboration with Fujian Medical University.
 
 #### Industrial Inspection and Physical Inverse Design
 

@@ -118,6 +118,8 @@ cv:
     Academic Service:
       - name: Reviewer
         summary: ICASSP 2027, ACM MM 2026, IJCNN 2026
+      - name: IEEE Member
+        summary: 2025–present
 
     Research:
       - title: "TRACE: Interpretable Breast Ultrasound Classification"
@@ -204,9 +206,20 @@ cv:
         highlights:
           - "Led the design of a federated learning survey covering healthcare, finance, and IoT case studies."
           - "Designed the Frequency-Adaptive Semantic Distillation framework with semantic topology and dynamic frequency-based weighting."
-          - "FedSAP: structured adaptive partitioning for federated learning on multi-domain heterogeneous edge devices."
-          - "Margin-oriented semantic-appearance interaction correction: personalized federated vision-language models beyond domain-level adaptation."
-          - "After Cooperation Is Learned: gradient routing and optimizer-dependent maintenance of learned cooperation in multi-agent reinforcement learning."
+          - "FedSAP (submitted to AAAI 2027): structured adaptive partitioning for federated learning on multi-domain heterogeneous edge devices."
+          - "Margin-oriented semantic-appearance interaction correction (submitted to AAAI 2027): personalized federated vision-language models beyond domain-level adaptation."
+          - "After Cooperation Is Learned (submitted to AAAI 2027): gradient routing and optimizer-dependent maintenance of learned cooperation in multi-agent reinforcement learning."
+
+      - title: Dental Orthodontic Case Retrieval
+        position: Research Collaborator
+        highlights:
+          - "Ongoing intelligent case-retrieval project in collaboration with Fujian Medical University."
+
+      - title: Computational Social Science and Sports Media
+        start_date: "2023-09"
+        end_date: "2023-12"
+        highlights:
+          - "Used AI video generation, Python, Tableau, FreeD 3D, volumetric imaging, and AIGC to study sports media and player competitiveness."
 
       - title: Metasurface Inverse Design
         position: Second Author
