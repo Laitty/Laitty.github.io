@@ -55,7 +55,7 @@ In research, I work across model design, dataset preparation, training, and expe
 
 - **Data Science Intern, Sichuan DeepGraph Intelligent Technology** (Sep. 2024 - Feb. 2025): cleaned and preprocessed data in Python, queried complex datasets with Ultipa XAI — a financial graph database serving financial institutions — and assisted with data-analysis algorithm optimization.
 - **Data Engineer Intern, Lanzhou Bronze Ding Intelligent Technology** (Mar. 2024 - Sep. 2024): organized 20+ datasets and labeled 10k+ entries using Python and SQL; deployed MySQL and Hadoop; produced seven analysis reports with Matplotlib and Seaborn.
-- **Quantitative Research PTA, Guotai Junan Futures** (Mar. 2024 - Apr. 2024): developed a Python futures trading system, debugged C++ and Python CTP-API implementations with Simnow, and implemented TWAP and VWAP algorithms with TA-Lib.
+- **Quantitative Research Intern, Guotai Junan Futures** (Mar. 2024 - Apr. 2024): developed a Python futures trading system, debugged C++ and Python CTP-API implementations with Simnow, and implemented TWAP and VWAP algorithms with TA-Lib.
 - **Tax and Business Consulting Intern, Zhongzheng Tiantong CPA Tax Department** (Jul. 2023 - Sep. 2023): processed data with Python and SQL, prepared Tableau reports, and analyzed client financials, risks, and market trends.
 - **Product Data Engineer Intern, Feitian Technologies** (Jul. 2022 - Jan. 2023): supported product databases and intelligent password-system testing with Python, SQL, and C/C++; completed 30+ performance tests and prepared 10+ blockchain report summaries.
 
