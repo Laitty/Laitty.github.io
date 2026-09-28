@@ -7,7 +7,7 @@ nav: false
 subtitle: >
   MS in Artificial Intelligence Systems Management at Carnegie Mellon University
 hero_eyebrow: Carnegie Mellon University
-hero_lede: Reliable learning, model evaluation, and applied machine learning — from healthcare and industrial inspection to energy systems.
+hero_lede: Connecting reliable AI research with practical systems and a diverse background in data engineering, quantitative research, product development, and analytics.
 
 profile:
   align: right
