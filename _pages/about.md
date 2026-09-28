@@ -71,7 +71,7 @@ In research, I work across model design, dataset preparation, training, and expe
 ## Skills and Honors
 
 - **Technical skills:** Python (PyTorch, TensorFlow), Java, SQL, C/C++, HTML, CSS, JavaScript; Tableau, ECharts; Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, Spark.
-- **Languages:** English and Mandarin.
+- **Languages:** Mandarin (native); English.
 - **Honors:** Lanzhou University academic, internship, and international exchange scholarships; undergraduate honors thesis (2025); three-time University Basketball Championship (2022-23, 2023-24, 2024-25).
 
 ## Interests

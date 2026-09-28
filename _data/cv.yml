@@ -300,8 +300,9 @@ cv:
         keywords: Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, Spark
 
     Languages:
-      - name: English
       - name: Mandarin
+        summary: native
+      - name: English
 
     Honors:
       - title: Lanzhou University Scholarships
