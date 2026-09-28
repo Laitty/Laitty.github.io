@@ -7,7 +7,7 @@ nav: false
 subtitle: >
   MS in Artificial Intelligence Systems Management at Carnegie Mellon University
 hero_eyebrow: Carnegie Mellon University
-hero_lede: Connecting reliable AI research with practical systems and a diverse background in data engineering, quantitative research, product development, and analytics.
+hero_lede: Connecting reliable AI research with applied AI systems, grounded in experience across data engineering, data science and analytics, quantitative research, and product development.
 
 profile:
   align: right
