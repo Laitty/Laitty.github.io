@@ -61,7 +61,7 @@ In research, I work across model design, dataset preparation, training, and expe
 
 ## Research Appointment
 
-- **Research Assistant, Shenzhen University** (Oct. 2025 - May 2026): nuclear sensor online monitoring and energy-system AI, including **Mamba-In** (under review at EAAI) and the critical-heat-flux review in preparation for _Energy_.
+- **Research Assistant, Shenzhen University** (Oct. 2025 - May 2026): nuclear sensor online monitoring and energy-system AI, including **Mamba-In** (co-first author; under review at EAAI) and the critical-heat-flux review in preparation for _Energy_.
 
 ## Academic Service
 
