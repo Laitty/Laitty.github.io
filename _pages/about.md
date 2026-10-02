@@ -50,13 +50,6 @@ In research, I work across model design, dataset preparation, training, and expe
 
 \* (Co-)First author. The full author lists and research summaries are on the [Research & Projects]({{ '/publications/' | relative_url }}) page.
 
-## Preprints {#preprints}
-
-- **[FedSAP: Federated Learning with Structured Adaptive Partitioning for Multi-Domain Heterogeneous Edge Devices](https://arxiv.org/abs/2610.01638)**. arXiv:2610.01638, 2026.
-- **[After Cooperation Is Learned: Gradient Routing and Optimizer-Dependent Maintenance in Multi-Agent Reinforcement Learning](https://arxiv.org/abs/2610.01630)**. arXiv:2610.01630, 2026.
-- **[Beyond Domain-Level Adaptation: Margin-Oriented Semantic-Appearance Interaction Correction for Personalized Federated Vision-Language Models](https://arxiv.org/abs/2610.01625)**. arXiv:2610.01625, 2026.
-- **[ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting](https://arxiv.org/abs/2603.20869)\***. arXiv:2603.20869, 2026.
-
 ## Professional Experience
 
 - **Data Science Intern, Sichuan DeepGraph Intelligent Technology** (Sep. 2024 - Feb. 2025): cleaned and preprocessed data in Python, queried complex datasets with Ultipa XAI — a financial graph database serving financial institutions — and assisted with data-analysis algorithm optimization.
