@@ -398,6 +398,7 @@ filtered_bibtex_keywords:
     poster,
     preview,
     selected,
+    category,
     slides,
     supp,
     video,

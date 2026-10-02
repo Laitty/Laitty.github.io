@@ -2,7 +2,7 @@
 layout: page
 permalink: /publications/
 title: "Research & Projects"
-description: Publications, research areas, and selected projects.
+description: Publications, preprints, research areas, and selected projects.
 nav: true
 nav_order: 2
 visitor_map: true
@@ -12,7 +12,15 @@ visitor_map: true
 
 <div class="publications">
 
-{% bibliography %}
+{% bibliography --query @*[category=publication] %}
+
+</div>
+
+## Preprints
+
+<div class="publications">
+
+{% bibliography --query @*[category=preprint] %}
 
 </div>
 

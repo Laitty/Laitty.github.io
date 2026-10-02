@@ -71,21 +71,6 @@ cv:
         doi: "10.1111/exsy.70271"
         summary: "Expert Systems, 2026."
 
-      - title: "ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting"
-        authors:
-          - "Lai*, T."
-          - "Yue*, W."
-          - "Zhou, J."
-          - "Hao, C."
-          - "Chang, L."
-          - "Mao, Q."
-          - "Niu, Z."
-          - "Li, Q."
-        date: "2026"
-        url: https://arxiv.org/abs/2603.20869
-        doi: "10.48550/arXiv.2603.20869"
-        summary: "arXiv preprint, 2026."
-
       - title: "Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter"
         authors:
           - "Zhou, Y."
