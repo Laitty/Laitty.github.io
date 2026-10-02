@@ -71,44 +71,6 @@ cv:
         doi: "10.1111/exsy.70271"
         summary: "Expert Systems, 2026."
 
-      - title: "FedSAP: Federated Learning with Structured Adaptive Partitioning for Multi-Domain Heterogeneous Edge Devices"
-        authors:
-          - "Yue, W."
-          - "Lai, T."
-          - "Li, H."
-          - "Mao, Q."
-          - "Li, Q."
-        date: "2026"
-        url: https://arxiv.org/abs/2610.01638
-        doi: "10.48550/arXiv.2610.01638"
-        summary: "arXiv preprint, 2026."
-
-      - title: "After Cooperation Is Learned: Gradient Routing and Optimizer-Dependent Maintenance in Multi-Agent Reinforcement Learning"
-        authors:
-          - "Hao, C."
-          - "Yue, W."
-          - "Lai, T."
-          - "Li, H."
-          - "Zhou, J."
-          - "Mao, Q."
-          - "Li, Q."
-        date: "2026"
-        url: https://arxiv.org/abs/2610.01630
-        doi: "10.48550/arXiv.2610.01630"
-        summary: "arXiv preprint, 2026."
-
-      - title: "Beyond Domain-Level Adaptation: Margin-Oriented Semantic-Appearance Interaction Correction for Personalized Federated Vision-Language Models"
-        authors:
-          - "Yue, W."
-          - "Mao, Q."
-          - "Lai, T."
-          - "Abdelmoniem, A. M."
-          - "Li, Q."
-        date: "2026"
-        url: https://arxiv.org/abs/2610.01625
-        doi: "10.48550/arXiv.2610.01625"
-        summary: "arXiv preprint, 2026."
-
       - title: "ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting"
         authors:
           - "Lai*, T."
