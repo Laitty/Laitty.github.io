@@ -503,7 +503,7 @@ html[data-theme="dark"] .apple-btn-primary {
   width: min(16vw, 96px);
   aspect-ratio: 1;
   transform: translateY(-50%);
-  opacity: 0.13;
+  opacity: 0.24;
 }
 
 .pub-affil-mark img {
@@ -515,8 +515,8 @@ html[data-theme="dark"] .apple-btn-primary {
 
 html[data-theme="dark"] .pub-affil-mark,
 html[data-theme-setting="dark"] .pub-affil-mark {
-  opacity: 0.17;
-  filter: brightness(0) invert(0.82);
+  opacity: 0.3;
+  filter: brightness(0) invert(0.88);
 }
 
 @media (max-width: 640px) {
@@ -537,7 +537,7 @@ html[data-theme-setting="dark"] .pub-affil-mark {
   .pub-affil-mark {
     right: 0.45rem;
     width: min(20vw, 72px);
-    opacity: 0.11;
+    opacity: 0.2;
   }
 }
 
