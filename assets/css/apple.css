@@ -425,8 +425,41 @@ html[data-theme="dark"] .apple-btn-primary {
 .post article ul > li,
 .apple-article ul > li {
   margin: 0 0 0.85rem;
-  padding: 1.05rem 1.15rem;
+  padding: 1.05rem 4.6rem 1.05rem 1.15rem;
   border-radius: 16px;
+}
+
+.proj-affils {
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  right: 0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.22rem;
+  opacity: 0.24;
+}
+
+.proj-affil {
+  display: block;
+  width: 2.4rem;
+  height: 2.4rem;
+  object-fit: contain;
+}
+
+.proj-affils:has(.is-collab) .proj-affil {
+  width: 2.05rem;
+  height: 2.05rem;
+}
+
+html[data-theme="dark"] .proj-affils,
+html[data-theme-setting="dark"] .proj-affils {
+  opacity: 0.34;
+  filter: brightness(1.2);
 }
 
 .bibliography li,
@@ -547,6 +580,22 @@ html[data-theme-setting="dark"] .pub-affil-mark {
     right: 0.45rem;
     width: min(20vw, 72px);
     opacity: 0.2;
+  }
+
+  .apple-page article ul > li,
+  .post article ul > li,
+  .apple-article ul > li {
+    padding-right: 3.6rem !important;
+  }
+
+  .proj-affils {
+    right: 0.4rem;
+  }
+
+  .proj-affil,
+  .proj-affils:has(.is-collab) .proj-affil {
+    width: 1.75rem;
+    height: 1.75rem;
   }
 }
 
@@ -836,12 +885,16 @@ html[data-theme="dark"] footer {
     margin-top: 2.3rem;
     font-size: 1.55rem;
   }
-  .apple-page article ul > li,
-  .apple-article ul > li,
   .bibliography li,
   .publications li {
     padding: 0.28rem 0.95rem !important;
     border-radius: 12px;
+  }
+  .apple-page article ul > li,
+  .post article ul > li,
+  .apple-article ul > li {
+    padding: 0.85rem 3.6rem 0.85rem 0.95rem !important;
+    border-radius: 14px;
   }
   .travel-globe-card {
     margin: 0.85rem 0 1.8rem;
