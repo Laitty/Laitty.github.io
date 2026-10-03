@@ -54,12 +54,12 @@ function initLiquidName() {
 
   const layout = phone
     ? [
-        ...lai.map((ch, i) => ({ ch, nx: 0.3 + i * 0.2, ny: 0.34, s: 0.22, tier: "core" })),
-        ...given.map((ch, i) => ({ ch, nx: 0.08 + i * 0.14, ny: 0.7, s: 0.15, tier: "row" })),
+        ...lai.map((ch, i) => ({ ch, nx: 0.3 + i * 0.2, ny: 0.3, s: 0.22, tier: "core" })),
+        ...given.map((ch, i) => ({ ch, nx: 0.08 + i * 0.14, ny: 0.66, s: 0.15, tier: "row" })),
       ]
     : [
-        ...lai.map((ch, i) => ({ ch, nx: 0.28 + i * 0.22, ny: 0.34, s: 0.3, tier: "core" })),
-        ...given.map((ch, i) => ({ ch, nx: 0.12 + i * 0.126, ny: 0.58, s: 0.16, tier: "row" })),
+        ...lai.map((ch, i) => ({ ch, nx: 0.28 + i * 0.22, ny: 0.3, s: 0.3, tier: "core" })),
+        ...given.map((ch, i) => ({ ch, nx: 0.12 + i * 0.126, ny: 0.54, s: 0.16, tier: "row" })),
       ];
 
   const glyphs = layout.map((g, i) => ({
