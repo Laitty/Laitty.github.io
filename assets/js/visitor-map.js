@@ -174,12 +174,23 @@
       .filter((place) => place.count && Number.isFinite(place.lat) && Number.isFinite(place.lng))
       .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
 
+    const pinSizeForCount = (count) => {
+      const n = Number(count) || 0;
+      if (n <= 1) return 6;
+      if (n <= 3) return 7.5;
+      if (n <= 5) return 9;
+      if (n <= 10) return 10.5;
+      if (n <= 50) return 12;
+      if (n <= 100) return 13.5;
+      return 15;
+    };
+
     ranked.forEach((place) => {
       const pin = document.createElement("span");
       pin.className = "visitor-map-pin";
       pin.style.left = `${((place.lng + 180) / 360) * 100}%`;
       pin.style.top = `${((90 - place.lat) / 180) * 100}%`;
-      const size = Math.min(18, 7 + Math.sqrt(place.count) * 2.2);
+      const size = pinSizeForCount(place.count);
       const dot = document.createElement("span");
       dot.className = "visitor-map-dot";
       dot.style.width = `${size}px`;
