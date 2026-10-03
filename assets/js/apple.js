@@ -47,8 +47,6 @@ function initLiquidName() {
   canvas.className = "apple-liquid-canvas";
   canvas.setAttribute("aria-hidden", "true");
   hero.prepend(canvas);
-  const tartanMark = hero.querySelector(".apple-tartan-mark");
-  if (tartanMark) hero.insertBefore(tartanMark, canvas);
   const ctx = canvas.getContext("2d", { alpha: true });
 
   const lai = ["L", "a", "i"];

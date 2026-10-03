@@ -4,15 +4,6 @@ layout: default
 <div class="post apple-page">
   <header class="apple-hero">
     <div class="apple-orbs" aria-hidden="true"></div>
-    <div class="apple-tartan-mark" aria-hidden="true">
-      <img
-        src="{{ '/assets/img/cmu-tartan-official.png' | relative_url }}"
-        alt=""
-        width="285"
-        height="285"
-        decoding="async"
-      >
-    </div>
     <p class="apple-eyebrow">{{ page.hero_eyebrow | default: "Carnegie Mellon University" }}</p>
     <h1 class="apple-hero-title">
       {% if site.title == 'blank' %}
@@ -26,6 +17,15 @@ layout: default
       <p class="apple-hero-lede">{{ page.hero_lede }}</p>
     {% endif %}
     <div class="apple-hero-actions">
+      <div class="apple-tartan-mark" aria-hidden="true">
+        <img
+          src="{{ '/assets/img/cmu-mascot-mark.png' | relative_url }}"
+          alt=""
+          width="500"
+          height="540"
+          decoding="async"
+        >
+      </div>
       <a class="apple-btn apple-btn-primary" href="#about">About me</a>
       <a class="apple-btn apple-btn-ghost" href="{{ '/publications/' | relative_url }}">Explore research</a>
     </div>
