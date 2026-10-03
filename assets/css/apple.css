@@ -441,7 +441,8 @@ html[data-theme="dark"] .apple-btn-primary {
   align-items: center;
   justify-content: flex-end;
   gap: 0.22rem;
-  opacity: 0.24;
+  opacity: 0.34;
+  filter: brightness(0.88) contrast(1.08);
 }
 
 .proj-affil {
@@ -456,10 +457,15 @@ html[data-theme="dark"] .apple-btn-primary {
   height: 2.7rem;
 }
 
+.proj-affil[src*="cmu."] {
+  width: 3.45rem;
+  height: 3.45rem;
+}
+
 html[data-theme="dark"] .proj-affils,
 html[data-theme-setting="dark"] .proj-affils {
-  opacity: 0.34;
-  filter: brightness(1.2);
+  opacity: 0.44;
+  filter: brightness(0.95) contrast(1.06);
 }
 
 .bibliography li,
@@ -596,6 +602,11 @@ html[data-theme-setting="dark"] .pub-affil-mark {
   .proj-affils:has(.is-collab) .proj-affil {
     width: 2.35rem;
     height: 2.35rem;
+  }
+
+  .proj-affil[src*="cmu."] {
+    width: 2.6rem;
+    height: 2.6rem;
   }
 }
 
