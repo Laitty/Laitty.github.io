@@ -434,7 +434,8 @@ html[data-theme="dark"] .apple-btn-primary {
   align-items: center;
   justify-content: flex-end;
   gap: 0.22rem;
-  opacity: 0.24;
+  opacity: 0.34;
+  filter: brightness(0.88) contrast(1.08);
 }
 
 .proj-affil {
@@ -451,8 +452,8 @@ html[data-theme="dark"] .apple-btn-primary {
 
 html[data-theme="dark"] .proj-affils,
 html[data-theme-setting="dark"] .proj-affils {
-  opacity: 0.34;
-  filter: brightness(1.2);
+  opacity: 0.44;
+  filter: brightness(0.95) contrast(1.06);
 }
 
 .bibliography li,
