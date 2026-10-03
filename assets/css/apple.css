@@ -988,8 +988,8 @@ html[data-theme-setting="dark"] .scene-tooltip {
 .visitor-map-dot {
   display: block;
   border-radius: 50%;
-  background: rgba(142, 152, 168, 0.88);
-  box-shadow: 0 0 0 3px rgba(142, 152, 168, 0.18);
+  background: rgba(232, 168, 56, 0.9);
+  box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.28);
 }
 
 .visitor-map-tip {
