@@ -188,8 +188,6 @@ html[data-theme="dark"] .apple-orbs {
   aspect-ratio: 500 / 540;
   transform: translate(-50%, -50%);
   opacity: 0.24;
-  -webkit-mask-image: radial-gradient(circle at center, #000 58%, transparent 88%);
-  mask-image: radial-gradient(circle at center, #000 58%, transparent 88%);
 }
 
 .apple-tartan-mark img {
