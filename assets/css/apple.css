@@ -11,15 +11,15 @@
   --apple-card: rgba(255, 255, 255, 0.72);
   --apple-line: rgba(0, 0, 0, 0.08);
   --apple-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
-  --apple-glass-sm-bg: radial-gradient(120% 90% at 92% 0%, rgba(206, 230, 255, 0.2) 0%, rgba(255, 255, 255, 0.42) 34%, rgba(255, 255, 255, 0.9) 68%);
+  --apple-glass-sm-bg: radial-gradient(120% 90% at 92% 0%, rgba(180, 196, 214, 0.18) 0%, rgba(255, 255, 255, 0.42) 34%, rgba(255, 255, 255, 0.9) 68%);
   --apple-glass-sm-border: rgba(226, 234, 242, 0.58);
-  --apple-glass-sm-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), inset -20px 14px 28px rgba(0, 113, 227, 0.035), 0 8px 20px rgba(0, 0, 0, 0.03);
+  --apple-glass-sm-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), inset -20px 14px 28px rgba(120, 136, 156, 0.04), 0 8px 20px rgba(0, 0, 0, 0.03);
   --apple-glass-sm-blur: blur(16px) saturate(150%);
   --apple-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --global-theme-color: #0071e3;
   --global-hover-color: #0077ed;
   --global-hover-text-color: #ffffff;
-  --global-code-bg-color: rgba(0, 113, 227, 0.08);
+  --global-code-bg-color: rgba(120, 136, 156, 0.1);
 }
 
 html[data-theme="dark"],
@@ -34,13 +34,13 @@ html[data-theme-setting="dark"] {
   --apple-card: rgba(28, 28, 30, 0.72);
   --apple-line: rgba(255, 255, 255, 0.1);
   --apple-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-  --apple-glass-sm-bg: radial-gradient(120% 90% at 92% 0%, rgba(72, 122, 180, 0.2) 0%, rgba(40, 44, 52, 0.28) 40%, rgba(255, 255, 255, 0.07) 72%);
+  --apple-glass-sm-bg: radial-gradient(120% 90% at 92% 0%, rgba(148, 163, 180, 0.14) 0%, rgba(40, 44, 52, 0.28) 40%, rgba(255, 255, 255, 0.07) 72%);
   --apple-glass-sm-border: rgba(180, 196, 214, 0.14);
-  --apple-glass-sm-shadow: inset 0 1px 0 rgba(200, 220, 255, 0.1), inset -18px 14px 26px rgba(41, 151, 255, 0.05), 0 10px 24px rgba(0, 0, 0, 0.22);
+  --apple-glass-sm-shadow: inset 0 1px 0 rgba(210, 216, 224, 0.1), inset -18px 14px 26px rgba(120, 136, 156, 0.05), 0 10px 24px rgba(0, 0, 0, 0.22);
   --apple-glass-sm-blur: blur(16px) saturate(140%);
   --global-theme-color: #2997ff;
   --global-hover-color: #64b5ff;
-  --global-code-bg-color: rgba(41, 151, 255, 0.12);
+  --global-code-bg-color: rgba(148, 163, 180, 0.14);
 }
 
 html {
@@ -125,7 +125,7 @@ h1, h2, h3, .post-title, .apple-hero-title {
   border: 1px solid rgba(255, 255, 255, 0.58);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.78),
-    inset 0 -24px 40px rgba(0, 113, 227, 0.05),
+    inset 0 -24px 40px rgba(120, 136, 156, 0.05),
     0 22px 54px rgba(0, 0, 0, 0.06);
 }
 
@@ -438,10 +438,10 @@ html[data-theme="dark"] .apple-btn-primary {
   .bibliography li:hover,
   .publications li:hover {
     transform: translateY(-2px);
-    border-color: rgba(214, 228, 240, 0.72);
+    border-color: rgba(196, 206, 218, 0.72);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.86),
-      inset -18px 16px 26px rgba(0, 113, 227, 0.05),
+      inset -18px 16px 26px rgba(120, 136, 156, 0.05),
       0 14px 30px rgba(0, 0, 0, 0.05);
   }
 }
@@ -549,9 +549,9 @@ html[data-theme="dark"] footer {
   margin: 1.1rem 0 2.4rem;
   overflow: hidden;
   border-radius: 22px;
-  background: linear-gradient(180deg, rgba(232, 243, 255, 0.44), rgba(196, 224, 252, 0.12));
-  border: 1px solid rgba(170, 206, 245, 0.46);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62), inset 0 -12px 22px rgba(0, 113, 227, 0.06), 0 8px 20px rgba(0, 113, 227, 0.045);
+  background: linear-gradient(180deg, rgba(228, 232, 238, 0.44), rgba(196, 204, 214, 0.12));
+  border: 1px solid rgba(180, 196, 214, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62), inset 0 -12px 22px rgba(120, 136, 156, 0.06), 0 8px 20px rgba(120, 136, 156, 0.045);
   backdrop-filter: var(--apple-glass-sm-blur);
   -webkit-backdrop-filter: var(--apple-glass-sm-blur);
 }
@@ -560,7 +560,7 @@ html[data-theme="dark"] footer {
   position: relative;
   width: 100%;
   height: min(62vh, 560px);
-  background: radial-gradient(circle at 50% 42%, rgba(215, 230, 246, 0.42), rgba(238, 243, 248, 0.12));
+  background: radial-gradient(circle at 50% 42%, rgba(214, 220, 228, 0.42), rgba(238, 241, 244, 0.12));
 }
 
 .travel-globe {
@@ -625,7 +625,7 @@ html[data-theme="dark"] footer {
   width: 1.35rem;
   height: 3px;
   border-radius: 99px;
-  background: linear-gradient(90deg, #0071e3 0%, #e8a838 100%);
+  background: linear-gradient(90deg, #8e98a8 0%, #e8a838 100%);
 }
 
 .travel-globe-hint {
@@ -766,9 +766,9 @@ html[data-theme="dark"] footer {
 
 html[data-theme="dark"] .travel-globe-card,
 html[data-theme-setting="dark"] .travel-globe-card {
-  background: linear-gradient(180deg, rgba(38, 58, 88, 0.4), rgba(18, 28, 44, 0.16));
-  border-color: rgba(90, 150, 220, 0.2);
-  box-shadow: inset 0 1px 0 rgba(160, 200, 255, 0.12), inset 0 -12px 22px rgba(41, 151, 255, 0.07), 0 10px 24px rgba(0, 0, 0, 0.22);
+  background: linear-gradient(180deg, rgba(52, 56, 64, 0.42), rgba(24, 26, 30, 0.16));
+  border-color: rgba(180, 196, 214, 0.16);
+  box-shadow: inset 0 1px 0 rgba(210, 216, 224, 0.1), inset 0 -12px 22px rgba(120, 136, 156, 0.06), 0 10px 24px rgba(0, 0, 0, 0.22);
 }
 
 html[data-theme="dark"] .travel-globe-stage,
@@ -809,9 +809,9 @@ html[data-theme-setting="dark"] .travel-tip-sub {
   margin: 0.4rem 0 2.6rem;
   overflow: visible;
   border-radius: 22px;
-  background: linear-gradient(180deg, rgba(232, 243, 255, 0.44), rgba(196, 224, 252, 0.12));
-  border: 1px solid rgba(170, 206, 245, 0.46);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62), inset 0 -12px 22px rgba(0, 113, 227, 0.06), 0 8px 20px rgba(0, 113, 227, 0.045);
+  background: linear-gradient(180deg, rgba(228, 232, 238, 0.44), rgba(196, 204, 214, 0.12));
+  border: 1px solid rgba(180, 196, 214, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62), inset 0 -12px 22px rgba(120, 136, 156, 0.06), 0 8px 20px rgba(120, 136, 156, 0.045);
 }
 
 .visitor-map-stage {
@@ -847,14 +847,14 @@ html[data-theme-setting="dark"] .travel-tip-sub {
   width: 2rem;
   height: 2rem;
   padding: 0;
-  border: 1px solid rgba(170, 206, 245, 0.7);
+  border: 1px solid rgba(180, 196, 214, 0.7);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.92);
-  color: #0071e3;
+  color: #6f7b8a;
   font-size: 1.05rem;
   line-height: 1;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.12);
+  box-shadow: 0 4px 12px rgba(120, 136, 156, 0.12);
 }
 
 .visitor-map-control:hover {
@@ -887,8 +887,8 @@ html[data-theme-setting="dark"] .travel-tip-sub {
 .visitor-map-dot {
   display: block;
   border-radius: 50%;
-  background: rgba(0, 113, 227, 0.82);
-  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.16);
+  background: rgba(142, 152, 168, 0.88);
+  box-shadow: 0 0 0 3px rgba(142, 152, 168, 0.18);
 }
 
 .visitor-map-tip {
@@ -931,8 +931,8 @@ html[data-theme-setting="dark"] .travel-tip-sub {
 
 html[data-theme="dark"] .visitor-map-card,
 html[data-theme-setting="dark"] .visitor-map-card {
-  background: linear-gradient(180deg, rgba(38, 58, 88, 0.4), rgba(18, 28, 44, 0.16));
-  border-color: rgba(90, 150, 220, 0.2);
+  background: linear-gradient(180deg, rgba(52, 56, 64, 0.42), rgba(24, 26, 30, 0.16));
+  border-color: rgba(180, 196, 214, 0.16);
 }
 
 html[data-theme="dark"] .visitor-map-stage,
@@ -943,8 +943,8 @@ html[data-theme-setting="dark"] .visitor-map-stage {
 html[data-theme="dark"] .visitor-map-control,
 html[data-theme-setting="dark"] .visitor-map-control {
   background: rgba(28, 28, 30, 0.92);
-  border-color: rgba(90, 150, 220, 0.35);
-  color: #8ec8ff;
+  border-color: rgba(180, 196, 214, 0.28);
+  color: #c8ced6;
 }
 
 html[data-theme="dark"] .visitor-map-land,
