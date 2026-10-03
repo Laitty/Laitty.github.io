@@ -184,7 +184,7 @@ html[data-theme="dark"] .apple-orbs {
   z-index: 0;
   left: 50%;
   top: 50%;
-  width: min(42vw, 250px);
+  width: min(32vw, 180px);
   aspect-ratio: 500 / 540;
   transform: translate(-50%, -50%);
   opacity: 0.16;
@@ -685,7 +685,7 @@ html[data-theme="dark"] footer {
     opacity: 0.95;
   }
   .apple-tartan-mark {
-    width: min(58vw, 190px);
+    width: min(42vw, 140px);
     opacity: 0.18;
   }
   .apple-hero {
