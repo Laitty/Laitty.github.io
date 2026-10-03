@@ -1,6 +1,17 @@
 ---
 ---
 <div class="row">
+  {% if entry.affiliation %}
+    <div class="pub-affil-mark" aria-hidden="true">
+      <img
+        src="{{ '/assets/img/affiliations/' | append: entry.affiliation | append: '.png' | relative_url }}"
+        alt=""
+        width="150"
+        height="150"
+        decoding="async"
+      >
+    </div>
+  {% endif %}
   {% if site.enable_publication_thumbnails %}
     <div class="col col-sm-2 abbr">
       {%- if entry.abbr -%}

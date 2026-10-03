@@ -453,9 +453,92 @@ html[data-theme="dark"] .apple-btn-primary {
 
 .bibliography .title,
 .publications .title {
-  font-size: 1.08rem;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 6.5rem;
+  margin: 0 0 0.42rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.022em;
+  line-height: 1.38;
+}
+
+.bibliography .author,
+.publications .author {
+  display: block;
+  padding-right: 6.5rem;
+  margin-bottom: 0.18rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.bibliography .periodical,
+.publications .periodical {
+  display: block;
+  padding-right: 6.5rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.bibliography .links,
+.publications .links {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.35rem;
+}
+
+.bibliography li > .row,
+.publications li > .row {
+  position: relative;
+  z-index: 1;
+}
+
+.pub-affil-mark {
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  right: 0.7rem;
+  top: 50%;
+  width: min(16vw, 96px);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  opacity: 0.13;
+}
+
+.pub-affil-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+html[data-theme="dark"] .pub-affil-mark,
+html[data-theme-setting="dark"] .pub-affil-mark {
+  opacity: 0.17;
+  filter: brightness(0) invert(0.82);
+}
+
+@media (max-width: 640px) {
+  .bibliography .title,
+  .publications .title,
+  .bibliography .author,
+  .publications .author,
+  .bibliography .periodical,
+  .publications .periodical {
+    padding-right: 4.6rem;
+  }
+
+  .bibliography .title,
+  .publications .title {
+    font-size: 1rem;
+  }
+
+  .pub-affil-mark {
+    right: 0.45rem;
+    width: min(20vw, 72px);
+    opacity: 0.11;
+  }
 }
 
 footer.fixed-bottom,

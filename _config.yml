@@ -378,6 +378,7 @@ filtered_bibtex_keywords:
   [
     abbr,
     abstract,
+    affiliation,
     additional_info,
     altmetric,
     annotation,
