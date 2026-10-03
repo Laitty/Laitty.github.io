@@ -431,8 +431,8 @@ html[data-theme="dark"] .apple-btn-primary {
 
 .bibliography li,
 .publications li {
-  margin-bottom: 1.1rem !important;
-  padding: 1.15rem 1.2rem !important;
+  margin-bottom: 0.95rem !important;
+  padding: 0.85rem 1.2rem !important;
   border-radius: 16px;
 }
 
@@ -457,11 +457,11 @@ html[data-theme="dark"] .apple-btn-primary {
   width: 100%;
   box-sizing: border-box;
   padding-right: 6.5rem;
-  margin: 0 0 0.42rem;
+  margin: 0 0 0.28rem;
   font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: -0.022em;
-  line-height: 1.38;
+  line-height: 1.35;
 }
 
 .bibliography .author,
@@ -831,7 +831,7 @@ html[data-theme="dark"] footer {
   .apple-article ul > li,
   .bibliography li,
   .publications li {
-    padding: 0.9rem 0.95rem !important;
+    padding: 0.72rem 0.95rem !important;
     border-radius: 14px;
   }
   .travel-globe-card {
