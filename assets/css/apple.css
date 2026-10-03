@@ -431,9 +431,9 @@ html[data-theme="dark"] .apple-btn-primary {
 
 .bibliography li,
 .publications li {
-  margin-bottom: 0.75rem !important;
-  padding: 0.52rem 1.2rem !important;
-  border-radius: 16px;
+  margin-bottom: 0.65rem !important;
+  padding: 0.34rem 1.2rem !important;
+  border-radius: 14px;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -457,20 +457,20 @@ html[data-theme="dark"] .apple-btn-primary {
   width: 100%;
   box-sizing: border-box;
   padding-right: 6.5rem;
-  margin: 0 0 0.14rem;
-  font-size: 1.05rem;
+  margin: 0 0 0.08rem;
+  font-size: clamp(0.82rem, 1.6vw, 1rem);
   font-weight: 600;
   letter-spacing: -0.022em;
-  line-height: 1.35;
+  line-height: 1.25;
 }
 
 .bibliography .author,
 .publications .author {
   display: block;
   padding-right: 6.5rem;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.06rem;
   font-size: 0.92rem;
-  line-height: 1.45;
+  line-height: 1.35;
 }
 
 .bibliography .periodical,
@@ -478,14 +478,22 @@ html[data-theme="dark"] .apple-btn-primary {
   display: block;
   padding-right: 6.5rem;
   font-size: 0.9rem;
-  line-height: 1.45;
+  line-height: 1.35;
 }
 
 .bibliography .links,
 .publications .links {
   position: relative;
   z-index: 1;
-  margin-top: 0.22rem;
+  margin-top: 0.12rem;
+}
+
+.bibliography .links .btn,
+.publications .links .btn {
+  padding: 0.1rem 0.42rem;
+  border-radius: 0.35rem;
+  line-height: 1.3;
+  font-size: 0.875rem;
 }
 
 .bibliography li > .row,
@@ -531,7 +539,7 @@ html[data-theme-setting="dark"] .pub-affil-mark {
 
   .bibliography .title,
   .publications .title {
-    font-size: 1rem;
+    font-size: clamp(0.8rem, 3.4vw, 0.95rem);
   }
 
   .pub-affil-mark {
@@ -835,8 +843,8 @@ html[data-theme="dark"] footer {
   .apple-article ul > li,
   .bibliography li,
   .publications li {
-    padding: 0.42rem 0.95rem !important;
-    border-radius: 14px;
+    padding: 0.28rem 0.95rem !important;
+    border-radius: 12px;
   }
   .travel-globe-card {
     margin: 0.85rem 0 1.8rem;
