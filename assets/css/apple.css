@@ -564,8 +564,9 @@ html[data-theme-setting="dark"] .proj-affils {
 
 html[data-theme="dark"] .pub-affil-mark,
 html[data-theme-setting="dark"] .pub-affil-mark {
-  opacity: 0.3;
-  filter: brightness(0) invert(0.88);
+  /* Keep affiliation seal hue (LZU navy); no invert-to-gray. */
+  opacity: 0.38;
+  filter: brightness(1.08);
 }
 
 @media (max-width: 640px) {
