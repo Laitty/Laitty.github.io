@@ -786,8 +786,8 @@ html[data-theme="dark"] footer {
   width: 1.35rem;
   height: 3px;
   border-radius: 99px;
-  /* Match globe arc stops: blue hold → mid cross → gold landing */
-  background: linear-gradient(90deg, #0071e3 0%, #0071e3 42%, #2f8fd4 58%, #c4a04a 74%, #e8a838 100%);
+  /* 3.5 blue : 1.5 transition : 5 gold */
+  background: linear-gradient(90deg, #0071e3 0%, #0071e3 35%, #e8a838 50%, #e8a838 100%);
 }
 
 .travel-globe-hint {
