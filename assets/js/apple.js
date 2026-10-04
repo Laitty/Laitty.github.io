@@ -41,7 +41,6 @@ function initLiquidName() {
   let mx = 0;
   let my = 0;
   let emitCool = 0;
-  let idleCool = 0;
 
   const canvas = document.createElement("canvas");
   canvas.className = "apple-liquid-canvas";
@@ -220,24 +219,6 @@ function initLiquidName() {
       if (emitCool > (phone ? 0.04 : 0.022)) {
         emitAt(mx, my, phone ? 2 : 3);
         emitCool = 0;
-      }
-    }
-
-    if (phone && !pointerOn) {
-      idleCool += 0.016;
-      if (idleCool > 0.2) {
-        emitAt(anchor.x + anchor.w * (0.18 + Math.random() * 0.64), anchor.y + anchor.h * 0.62, 2);
-        const born = field[field.length - 1];
-        if (born) {
-          born.vy = -1.15 - Math.random() * 0.9;
-          born.vx *= 0.35;
-        }
-        const born2 = field[field.length - 2];
-        if (born2) {
-          born2.vy = -1.15 - Math.random() * 0.9;
-          born2.vx *= 0.35;
-        }
-        idleCool = 0;
       }
     }
 
