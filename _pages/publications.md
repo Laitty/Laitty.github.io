@@ -28,6 +28,8 @@ visitor_map: true
 
 My research connects reliable learning and model evaluation with human–AI interaction and applied machine learning.
 
+<p class="proj-affil-note">Affiliation logos: rightmost = my home institution; any to the left = primary collaborator(s).</p>
+
 ### Learning Systems and Human–AI Interaction
 
 #### Federated and Heterogeneous Learning

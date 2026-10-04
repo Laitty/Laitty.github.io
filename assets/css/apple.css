@@ -442,6 +442,13 @@ html[data-theme="dark"] .apple-btn-primary {
   border-radius: 16px;
 }
 
+.proj-affil-note {
+  margin: 0.15rem 0 1.1rem;
+  color: var(--apple-muted);
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
 .proj-affils {
   pointer-events: none;
   position: absolute;
