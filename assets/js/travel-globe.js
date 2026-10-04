@@ -68,31 +68,26 @@
           gap: arc.gap ?? (i * 0.13) % 1,
         }));
 
-    // Takeoff blue → landing gold. A plain 2-stop RGB lerp races to gold
-    // (high R/G luminance) by ~mid-arc, so routes read as almost all gold.
-    // Hold blue through the first half, cross in the third quarter, gold at end.
+    // Takeoff blue → landing gold along arc t∈[0,1].
+    // User ratio 3.5 blue : 1.5 transition : 5 gold (parts of 10):
+    //   [0, 0.35] solid blue · [0.35, 0.50] blend · [0.50, 1] solid gold.
     const ARC_TAKEOFF = [0x00, 0x71, 0xe3];
     const ARC_LANDING = [0xe8, 0xa8, 0x38];
-    const ARC_COLOR_STOPS = [
-      { t: 0, c: ARC_TAKEOFF },
-      { t: 0.42, c: ARC_TAKEOFF },
-      { t: 0.58, c: [0x2f, 0x8f, 0xd4] },
-      { t: 0.74, c: [0xc4, 0xa0, 0x4a] },
-      { t: 1, c: ARC_LANDING },
-    ];
+    const ARC_BLUE_END = 0.35;
+    const ARC_GOLD_START = 0.5;
     const mixFlightArcColor = (t) => {
       const x = Math.min(1, Math.max(0, t));
-      let i = 0;
-      while (i < ARC_COLOR_STOPS.length - 2 && x > ARC_COLOR_STOPS[i + 1].t) i += 1;
-      const a = ARC_COLOR_STOPS[i];
-      const b = ARC_COLOR_STOPS[i + 1];
-      const span = b.t - a.t || 1;
-      const u = (x - a.t) / span;
-      const s = u * u * (3 - 2 * u);
-      const r = Math.round(a.c[0] + (b.c[0] - a.c[0]) * s);
-      const g = Math.round(a.c[1] + (b.c[1] - a.c[1]) * s);
-      const bl = Math.round(a.c[2] + (b.c[2] - a.c[2]) * s);
-      return `rgb(${r},${g},${bl})`;
+      let s;
+      if (x <= ARC_BLUE_END) s = 0;
+      else if (x >= ARC_GOLD_START) s = 1;
+      else {
+        const u = (x - ARC_BLUE_END) / (ARC_GOLD_START - ARC_BLUE_END);
+        s = u * u * (3 - 2 * u);
+      }
+      const r = Math.round(ARC_TAKEOFF[0] + (ARC_LANDING[0] - ARC_TAKEOFF[0]) * s);
+      const g = Math.round(ARC_TAKEOFF[1] + (ARC_LANDING[1] - ARC_TAKEOFF[1]) * s);
+      const b = Math.round(ARC_TAKEOFF[2] + (ARC_LANDING[2] - ARC_TAKEOFF[2]) * s);
+      return `rgb(${r},${g},${b})`;
     };
 
     const dayMap = "https://cdn.jsdelivr.net/npm/three-globe@2.44.1/example/img/earth-blue-marble.jpg";
