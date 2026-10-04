@@ -119,7 +119,7 @@
       .arcColor((d) =>
         d.kind === "pulse"
           ? "rgba(255, 255, 255, 0.42)"
-          : ["#8e98a8", "#e8a838"]
+          : ["#0071e3", "#e8a838"]
       )
       .arcStroke((d) => (d.kind === "pulse" ? 0.28 : 0.46))
       .arcAltitude((d) => d.alt || 0.12)

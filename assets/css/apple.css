@@ -803,7 +803,7 @@ html[data-theme="dark"] footer {
   width: 1.35rem;
   height: 3px;
   border-radius: 99px;
-  background: linear-gradient(90deg, #8e98a8 0%, #e8a838 100%);
+  background: linear-gradient(90deg, #0071e3 0%, #e8a838 100%);
 }
 
 .travel-globe-hint {
