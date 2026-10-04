@@ -71,7 +71,8 @@
     // Takeoff blue → landing gold along arc t∈[0,1].
     // User ratio 3.5 blue : 1.5 transition : 5 gold (parts of 10):
     //   [0, 0.35] solid blue · [0.35, 0.50] blend · [0.50, 1] solid gold.
-    const ARC_TAKEOFF = [0x00, 0x71, 0xe3];
+    // Takeoff stays muted #8e98a8 (not Apple #0071e3); the fix is blend weights.
+    const ARC_TAKEOFF = [0x8e, 0x98, 0xa8];
     const ARC_LANDING = [0xe8, 0xa8, 0x38];
     const ARC_BLUE_END = 0.35;
     const ARC_GOLD_START = 0.5;
