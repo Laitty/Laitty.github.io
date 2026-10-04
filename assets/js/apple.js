@@ -308,12 +308,27 @@ function initLiquidName() {
         continue;
       }
       const [r, g, b] = colors[p.hue];
+      // Phone: no glass blur wall — soften chroma/alpha so Tartan accents match desktop.
+      let pr = r;
+      let pg = g;
+      let pb = b;
+      let bodyA = 0.22 + 0.7 * fade;
+      let hiA = 0.4 * fade;
+      if (phone) {
+        const neut = dark() ? 196 : 72;
+        const k = 0.58;
+        pr = Math.round(r * k + neut * (1 - k));
+        pg = Math.round(g * k + neut * (1 - k));
+        pb = Math.round(b * k + neut * (1 - k));
+        bodyA = 0.12 + 0.42 * fade;
+        hiA = 0.16 * fade;
+      }
       ctx.beginPath();
-      ctx.fillStyle = `rgba(${r},${g},${b},${0.22 + 0.7 * fade})`;
+      ctx.fillStyle = `rgba(${pr},${pg},${pb},${bodyA})`;
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fill();
       ctx.beginPath();
-      ctx.fillStyle = `rgba(255,255,255,${0.4 * fade})`;
+      ctx.fillStyle = `rgba(255,255,255,${hiA})`;
       ctx.arc(p.x - p.r * 0.22, p.y - p.r * 0.25, Math.max(0.5, p.r * 0.3), 0, Math.PI * 2);
       ctx.fill();
     }
