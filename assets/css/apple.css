@@ -192,7 +192,7 @@ html[data-theme="dark"] .apple-orbs {
   left: 50%;
   top: 62%;
   width: min(32vw, 180px);
-  aspect-ratio: 500 / 540;
+  aspect-ratio: 562 / 600;
   transform: translate(-50%, -50%);
   opacity: 0.24;
 }
@@ -204,10 +204,23 @@ html[data-theme="dark"] .apple-orbs {
   object-fit: contain;
 }
 
+.apple-tartan-mark .apple-tartan-dark {
+  display: none;
+}
+
+html[data-theme="dark"] .apple-tartan-mark .apple-tartan-light,
+html[data-theme-setting="dark"] .apple-tartan-mark .apple-tartan-light {
+  display: none;
+}
+
+html[data-theme="dark"] .apple-tartan-mark .apple-tartan-dark,
+html[data-theme-setting="dark"] .apple-tartan-mark .apple-tartan-dark {
+  display: block;
+}
+
 html[data-theme="dark"] .apple-tartan-mark,
 html[data-theme-setting="dark"] .apple-tartan-mark {
   opacity: 0.3;
-  filter: brightness(1.14) saturate(1.08);
 }
 
 @keyframes apple-drift {
@@ -845,6 +858,7 @@ html[data-theme="dark"] footer {
     padding-right: max(16px, env(safe-area-inset-right));
   }
   .apple-orbs {
+    z-index: 0;
     inset: -28% -18% auto;
     height: 22rem;
     opacity: 0.95;
@@ -863,8 +877,15 @@ html[data-theme="dark"] footer {
     max-width: none;
     font-size: clamp(2.15rem, 11vw, 3.1rem);
   }
+  /* Keep the wash, but don't trap the ink/particle layer under backdrop-filter. */
+  .apple-hero::after {
+    z-index: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
   .apple-liquid-canvas {
     z-index: 2;
+    transform: translateZ(0);
   }
   .apple-eyebrow,
   .apple-hero-sub,
