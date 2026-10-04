@@ -179,10 +179,10 @@
       if (n <= 1) return 6;
       if (n <= 3) return 7.5;
       if (n <= 5) return 9;
-      if (n <= 10) return 10.5;
-      if (n <= 50) return 12;
-      if (n <= 100) return 13.5;
-      return 15;
+      if (n <= 10) return 10;
+      if (n <= 50) return 11;
+      if (n <= 100) return 12;
+      return 13.5;
     };
 
     ranked.forEach((place) => {
