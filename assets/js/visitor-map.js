@@ -286,15 +286,28 @@
     }
   };
 
-  const save = (url, places) =>
-    fetch(url, {
+  // Refuse empty PUTs that would wipe a non-empty remote (accidental heal/race).
+  const save = async (url, places, remoteSnapshot = null) => {
+    const packed = pack(places);
+    if (!packed.length) {
+      let remote = remoteSnapshot;
+      if (!Array.isArray(remote)) remote = await readStore(url);
+      if (Array.isArray(remote) && remote.length) return null;
+    }
+    return fetch(url, {
       method: "PUT",
       cache: "no-store",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ places: pack(places) }),
+      body: JSON.stringify({ places: packed }),
     });
+  };
 
-  const saveAll = (places) => Promise.all(stores.map((url) => save(url, places).catch(() => null)));
+  const saveAll = (places, remotes = null) =>
+    Promise.all(
+      stores.map((url, index) =>
+        save(url, places, remotes ? remotes[index] : null).catch(() => null)
+      )
+    );
 
   const counterUrl = (action, key) =>
     `${counter}/${action}/${namespace}/${encodeURIComponent(counterKey(key))}`;
@@ -342,11 +355,12 @@
   const heal = async (places) => {
     const fresh = await Promise.all(stores.map(readStore));
     const merged = merge([places, ...fresh.filter(Array.isArray)]);
+    if (!merged.length) return merged;
     await Promise.all(
       stores.map((url, index) => {
         const remote = fresh[index];
         if (!remote || !behind(remote, merged)) return null;
-        return save(url, merged).catch(() => null);
+        return save(url, merged, remote).catch(() => null);
       })
     );
     return merged;
@@ -358,7 +372,8 @@
     for (let attempt = 0; attempt < 5; attempt += 1) {
       const remotes = await Promise.all(stores.map(readStore));
       pending = merge([pending, ...remotes.filter(Array.isArray)]);
-      const responses = await saveAll(pending);
+      if (!pending.length) return { places: pending, stored: false };
+      const responses = await saveAll(pending, remotes);
       stored = responses.some((response) => response && response.ok);
       if (!stored) continue;
       const check = (await Promise.all(stores.map(readStore))).filter(Array.isArray);

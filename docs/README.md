@@ -10,6 +10,7 @@ These guides cover the `al-folio` v1.x starter and its pluginized runtime.
 - [FAQ](FAQ.md): common deployment, upgrade, plugin, and troubleshooting questions.
 - [Troubleshooting](TROUBLESHOOTING.md): build, deployment, styling, and content debugging.
 - [Analytics](ANALYTICS.md): analytics provider setup.
+- [Visitor map](visitor-map.md): site-specific visitor-map stores, daily GitHub Actions backup, and privacy notes.
 - [SEO](SEO.md): search-engine and social preview setup.
 
 ## Maintainer Guides

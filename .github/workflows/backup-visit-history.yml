@@ -1,0 +1,65 @@
+name: Backup visit history
+
+# Free durability for the visitor map: pull ExtendsClass (+ Abacus) into the
+# committed seed at assets/json/visit-history.json. No secrets required —
+# the bins are already public read/write URLs used by the live client.
+on:
+  schedule:
+    # Daily ~05:17 UTC (offset from :00 to reduce shared-cron contention)
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: backup-visit-history
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    # Personal-site workflow: only run on this repo, not on al-folio clones.
+    if: github.repository == 'Laitty/Laitty.github.io'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Merge remotes into seed
+        id: backup
+        run: |
+          set -euo pipefail
+          python3 bin/backup_visit_history.py
+          if git diff --quiet -- assets/json/visit-history.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Seed unchanged."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Seed updated."
+          fi
+
+      - name: Commit if changed
+        if: steps.backup.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/json/visit-history.json
+          git commit -m "chore: backup visit history seed [skip ci]"
+          # GITHUB_TOKEN pushes do not retrigger other workflows; rebase if
+          # another bot commit landed on main meanwhile.
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "Pushed on attempt ${attempt}."
+              exit 0
+            fi
+            echo "Push rejected (main moved); rebasing onto origin/main and retrying."
+            git pull --rebase origin main
+          done
+          echo "::error::Could not push visit-history backup after 3 attempts."
+          exit 1

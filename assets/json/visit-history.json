@@ -2,14 +2,14 @@
   "places": [
     {
       "key": "34.1,-118.2",
-      "n": 3,
+      "n": 4,
       "lat": 34.1,
       "lng": -118.2,
       "label": "Los Angeles, United States"
     },
     {
       "key": "37.3,-121.9",
-      "n": 5,
+      "n": 9,
       "lat": 37.3,
       "lng": -121.9,
       "label": "San Jose, United States"
@@ -23,7 +23,7 @@
     },
     {
       "key": "40.4,-79.9",
-      "n": 3,
+      "n": 37,
       "lat": 40.4,
       "lng": -79.9,
       "label": "Pittsburgh, United States"
@@ -44,7 +44,7 @@
     },
     {
       "key": "51.5,-0.1",
-      "n": 1,
+      "n": 3,
       "lat": 51.5,
       "lng": -0.1,
       "label": "London, United Kingdom"
@@ -97,6 +97,13 @@
       "lat": 22.3,
       "lng": 114.2,
       "label": "Hong Kong, China"
+    },
+    {
+      "key": "39.0,-77.5",
+      "n": 1,
+      "lat": 39.0,
+      "lng": -77.5,
+      "label": "Ashburn, United States"
     }
   ]
 }
