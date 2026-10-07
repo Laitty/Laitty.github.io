@@ -29,11 +29,11 @@ GitHub Actions (daily)
 
 ## Stores
 
-| Store | Role | Durability |
-| ----- | ---- | ---------- |
-| ExtendsClass bins | Live map data (dual mirror) | Best-effort free JSON storage; can wipe or rate-limit |
-| Abacus | Per-key visit counters | Independent of ExtendsClass; no full key listing API |
-| `assets/json/visit-history.json` | Git-backed seed / restore | Survives remote wipe; updated by Actions cron |
+| Store                            | Role                        | Durability                                            |
+| -------------------------------- | --------------------------- | ----------------------------------------------------- |
+| ExtendsClass bins                | Live map data (dual mirror) | Best-effort free JSON storage; can wipe or rate-limit |
+| Abacus                           | Per-key visit counters      | Independent of ExtendsClass; no full key listing API  |
+| `assets/json/visit-history.json` | Git-backed seed / restore   | Survives remote wipe; updated by Actions cron         |
 
 Bin URLs are public (same as in `head.liquid`). No GitHub Actions secrets are required for backup.
 
