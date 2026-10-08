@@ -35,12 +35,12 @@ GitHub Actions (daily)
 
 ## Stores
 
-| Store                            | Role                         | Durability                                            |
-| -------------------------------- | ---------------------------- | ----------------------------------------------------- |
-| Cloudflare Worker                | Sole write path + dual heal  | Free tier; requires deploy + secrets                  |
-| ExtendsClass bins                | Live map data (dual mirror)  | Best-effort; browser GET only; Worker PUTs            |
-| Abacus                           | Per-key visit counters       | HIT only from Worker; browser may GET                 |
-| `assets/json/visit-history.json` | Git-backed seed / restore    | Survives remote wipe; updated by Actions cron         |
+| Store                            | Role                        | Durability                                    |
+| -------------------------------- | --------------------------- | --------------------------------------------- |
+| Cloudflare Worker                | Sole write path + dual heal | Free tier; requires deploy + secrets          |
+| ExtendsClass bins                | Live map data (dual mirror) | Best-effort; browser GET only; Worker PUTs    |
+| Abacus                           | Per-key visit counters      | HIT only from Worker; browser may GET         |
+| `assets/json/visit-history.json` | Git-backed seed / restore   | Survives remote wipe; updated by Actions cron |
 
 Public GET URLs may remain in `head.liquid` for the map. Write URLs live only in Worker secrets (`tools/visitor-api/`).
 
