@@ -2,11 +2,10 @@ name = "laitty-visitor-api"
 main = "src/index.js"
 compatibility_date = "2026-03-07"
 
-# After `wrangler kv namespace create VISITOR_HISTORY`, paste the id:
-# [[kv_namespaces]]
-# binding = "VISITOR_HISTORY"
-# id = "REPLACE_WITH_KV_NAMESPACE_ID"
-
+# Non-secret config. Put secrets with:
+#   wrangler secret put WRITE_TOKEN
+#   wrangler secret put EXTENDSCLASS_A
+#   wrangler secret put EXTENDSCLASS_B
 [vars]
-# Non-secret config only. Put WRITE_TOKEN via `wrangler secret put WRITE_TOKEN`.
-ALLOW_PUBLIC_GET = "true"
+ABACUS_BASE = "https://abacus.jasoncameron.dev"
+ABACUS_NAMESPACE = "laitty-github-io-visits"

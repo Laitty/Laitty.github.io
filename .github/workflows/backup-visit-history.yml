@@ -1,8 +1,9 @@
 name: Backup visit history
 
-# Free durability for the visitor map: pull ExtendsClass (+ Abacus) into the
-# committed seed at assets/json/visit-history.json. No secrets required —
-# the bins are already public read/write URLs used by the live client.
+# Free durability for the visitor map: GET ExtendsClass (+ Abacus) into the
+# committed seed at assets/json/visit-history.json. Reads stay public; writes
+# go through the Cloudflare Worker (see tools/visitor-api/). This job does
+# not PUT bins unless you add --heal-via-worker + repo secrets.
 on:
   schedule:
     # Daily ~05:17 UTC (offset from :00 to reduce shared-cron contention)

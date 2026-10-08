@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """Merge remote visitor-map stores into the committed seed JSON.
 
-Mirrors the client merge/heal rules in assets/js/visitor-map.js:
+Mirrors the client merge rules in assets/js/visitor-map.js:
   - take the richer (higher) count per place key
   - optionally lift counts from Abacus for known keys
   - refuse to overwrite a non-empty seed with an empty merge
-  - optionally PUT-heal ExtendsClass bins that are behind
+  - by default GET-only (no public ExtendsClass PUT)
+  - optional heal via Cloudflare Worker PUT /history (owner secret)
 
 Usage:
     python3 bin/backup_visit_history.py
-    python3 bin/backup_visit_history.py --no-heal-remote
+    python3 bin/backup_visit_history.py --heal-via-worker
     python3 bin/backup_visit_history.py --dry-run
 """
 
@@ -17,6 +18,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -37,6 +39,10 @@ COUNTER = "https://abacus.jasoncameron.dev"
 NAMESPACE = "laitty-github-io-visits"
 USER_AGENT = "laitty-visit-history-backup/1.0 (+https://github.com/Laitty/Laitty.github.io)"
 HAS_CURL = shutil.which("curl") is not None
+
+
+def _env(name: str) -> str:
+    return (os.environ.get(name) or "").strip()
 
 
 def _curl_json(method: str, url: str, body: bytes | None = None, timeout: float = 30.0) -> tuple[int, bytes]:
@@ -104,22 +110,61 @@ def fetch_json(url: str, timeout: float = 30.0, *, allow_404: bool = False) -> o
         return None
 
 
-def put_json(url: str, payload: dict, timeout: float = 30.0) -> bool:
+def put_json(
+    url: str,
+    payload: dict,
+    timeout: float = 30.0,
+    *,
+    bearer: str | None = None,
+) -> bool:
     body = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    headers = {
+        "User-Agent": USER_AGENT,
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+    if bearer:
+        headers["Authorization"] = f"Bearer {bearer}"
     try:
         if HAS_CURL:
-            status, _ = _curl_json("PUT", url, body=body, timeout=timeout)
+            # Bearer needs custom headers; reuse curl path with optional auth.
+            cmd = [
+                "curl",
+                "-sS",
+                "-X",
+                "PUT",
+                "-A",
+                USER_AGENT,
+                "-H",
+                "Accept: application/json",
+                "-H",
+                "Content-Type: application/json",
+                "--max-time",
+                str(int(timeout)),
+                "-w",
+                "\n%{http_code}",
+            ]
+            if bearer:
+                cmd.extend(["-H", f"Authorization: Bearer {bearer}"])
+            tmp_path = None
+            tmp = tempfile.NamedTemporaryFile(delete=False)
+            tmp.write(body)
+            tmp.close()
+            tmp_path = tmp.name
+            try:
+                cmd.extend(["--data-binary", f"@{tmp_path}", url])
+                proc = subprocess.run(cmd, capture_output=True, check=False)
+            finally:
+                Path(tmp_path).unlink(missing_ok=True)
+            if proc.returncode != 0:
+                raise RuntimeError(
+                    proc.stderr.decode("utf-8", errors="replace") or f"curl exit {proc.returncode}"
+                )
+            out = proc.stdout
+            nl = out.rfind(b"\n")
+            status = int(out[nl + 1 :].decode("ascii").strip() or "0")
             return 200 <= status < 300
-        req = urllib.request.Request(
-            url,
-            data=body,
-            headers={
-                "User-Agent": USER_AGENT,
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            },
-            method="PUT",
-        )
+        req = urllib.request.Request(url, data=body, headers=headers, method="PUT")
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             return 200 <= resp.status < 300
     except Exception as exc:  # noqa: BLE001
@@ -191,11 +236,6 @@ def merge(lists: list[list[dict]]) -> list[dict]:
     return list(by_key.values())
 
 
-def behind(remote: list[dict], full: list[dict]) -> bool:
-    counts = {p["key"]: int(p.get("n") or 0) for p in remote}
-    return any(counts.get(p["key"], 0) < int(p.get("n") or 0) for p in full)
-
-
 def counter_key(key: str) -> str:
     return str(key).replace(",", "_")
 
@@ -258,30 +298,37 @@ def write_seed(path: Path, places: list[dict], dry_run: bool) -> bool:
     return True
 
 
-def heal_remotes(places: list[dict], remotes: list[list[dict] | None], dry_run: bool) -> None:
-    packed = {"places": pack(places)}
-    if not places:
-        print("skip remote heal: merged registry is empty")
+def heal_via_worker(places: list[dict], dry_run: bool) -> None:
+    """Owner-only heal: PUT /history on the Cloudflare Worker with WRITE_TOKEN."""
+    api = _env("VISITOR_API_URL").rstrip("/")
+    token = _env("VISITOR_WRITE_TOKEN")
+    if not api or not token:
+        print(
+            "skip worker heal: set VISITOR_API_URL and VISITOR_WRITE_TOKEN",
+            file=sys.stderr,
+        )
         return
-    for url, remote in zip(STORES, remotes):
-        if remote is None:
-            print(f"skip heal {url}: fetch failed")
-            continue
-        if not behind(remote, places):
-            print(f"ok: {url} already current")
-            continue
-        if dry_run:
-            print(f"dry-run: would PUT heal {url}")
-            continue
-        ok = put_json(url, packed)
-        print(f"{'healed' if ok else 'failed heal'}: {url}")
+    if not places:
+        print("skip worker heal: merged registry is empty")
+        return
+    url = f"{api}/history"
+    packed = {"places": pack(places)}
+    if dry_run:
+        print(f"dry-run: would PUT heal via Worker {url}")
+        return
+    ok = put_json(url, packed, bearer=token)
+    print(f"{'healed via worker' if ok else 'failed worker heal'}: {url}")
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT, help="seed JSON path")
     parser.add_argument("--no-abacus", action="store_true", help="skip Abacus count reconcile")
-    parser.add_argument("--no-heal-remote", action="store_true", help="do not PUT ExtendsClass bins")
+    parser.add_argument(
+        "--heal-via-worker",
+        action="store_true",
+        help="PUT merge to Cloudflare Worker /history (needs VISITOR_API_URL + VISITOR_WRITE_TOKEN)",
+    )
     parser.add_argument("--dry-run", action="store_true", help="print actions without writing")
     args = parser.parse_args()
 
@@ -310,12 +357,13 @@ def main() -> int:
         merged = seed
 
     changed = write_seed(args.out, merged, args.dry_run)
-    if not args.no_heal_remote:
-        heal_remotes(merged, remotes, args.dry_run)
+    if args.heal_via_worker:
+        heal_via_worker(merged, args.dry_run)
 
     print(
         f"summary: places={len(merged)} seed_changed={changed} "
-        f"remotes_ok={len(fetched)}/{len(STORES)} abacus={not args.no_abacus}"
+        f"remotes_ok={len(fetched)}/{len(STORES)} abacus={not args.no_abacus} "
+        f"heal_via_worker={args.heal_via_worker}"
     )
     return 0
 
