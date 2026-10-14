@@ -2,7 +2,7 @@
 
 Free-tier Worker that **owns all writes** to ExtendsClass + Abacus. The browser never sees ExtendsClass write URLs or tokens; it only calls `POST /visit` on this Worker.
 
-Until you deploy and paste the Worker URL into `_includes/head.liquid` (`visitorApi`), the live site is **read-only**: map still loads from the seed + public GET mirrors, but new visits are not recorded (fail closed — no public `PUT`).
+Until you deploy and paste the Worker URL into `_includes/head.liquid` (`visitorApi`), the live site **keeps recording** via the public ExtendsClass bins (same as before). After `visitorApi` is set, the browser only `POST`s `/visit` to this Worker.
 
 ## Architecture
 
