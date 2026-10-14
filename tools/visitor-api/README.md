@@ -2,7 +2,7 @@
 
 Free-tier Worker that **owns all writes** to ExtendsClass + Abacus. The browser never sees ExtendsClass write URLs or tokens; it only calls `POST /visit` on this Worker.
 
-Until you deploy and paste the Worker URL into `_includes/head.liquid` (`visitorApi`), the live site **keeps recording** via the public ExtendsClass bins (same as before). After `visitorApi` is set, the browser only `POST`s `/visit` to this Worker.
+Live endpoint: `https://laitty-visitor-api.laitty.workers.dev`. The site `POST`s `/visit` here; ExtendsClass bin URLs stay in Worker secrets.
 
 ## Architecture
 

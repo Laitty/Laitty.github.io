@@ -11,7 +11,7 @@ Site-specific notes for the cumulative visitor map on the publications page. Thi
    - **Optional** — `GET {visitorApi}/history` when the Cloudflare Worker is configured
    - **Counters** — Abacus GET under namespace `laitty-github-io-visits` (read-only reconcile)
 3. Location is coarse IP geolocation via [geojs](https://www.geojs.io/) in the browser (Worker can fall back to Cloudflare `request.cf`). Coordinates are rounded to 0.1° (~11 km).
-4. **Writes:** if `visitorApi` is set, the browser only `POST`s `{visitorApi}/visit` (Worker holds secrets and dual-`PUT`s the bins). If `visitorApi` is empty, the live site keeps recording the old way: Abacus `hit` + browser `PUT` to both ExtendsClass bins (so visits do not pause before Worker deploy).
+4. **Writes:** the browser only `POST`s `https://laitty-visitor-api.laitty.workers.dev/visit`. The Worker uses Cloudflare edge geo (not a caller-chosen city), increments that place by one, and dual-`PUT`s two unlisted ExtendsClass bins whose URLs are Worker secrets. Unauthorized `PUT /history` is rejected. Bin URLs are not on the page.
 
 ```
 Browser
