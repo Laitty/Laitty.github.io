@@ -1,6 +1,8 @@
 name = "laitty-visitor-api"
 main = "src/index.js"
 compatibility_date = "2026-03-07"
+account_id = "8efeb5b0bb2e3cd04ef91ce13ae7eebe"
+workers_dev = true
 
 # Non-secret config. Put secrets with:
 #   wrangler secret put WRITE_TOKEN

@@ -6,13 +6,9 @@
     initTheme();
   </script> <link rel="stylesheet" href="/assets/al_email_protect/css/email-protect.css"> <link rel="stylesheet" href="/assets/css/apple.css?v=063a9aa1add28fdc42e4eb7b04ffbcc2"> <script defer src="/assets/js/apple.js?v=6e4e92257e918cf9828c00daa943d12d"></script> <script defer src="https://cdn.jsdelivr.net/npm/globe.gl@2.41.4/dist/globe.gl.min.js"></script> <script defer src="/assets/js/travel-globe.js?v=0a19202e8125e3d69f6079542f319f77"></script> <script>
   window.visitorHistory = {
-    // After `wrangler deploy`, paste the Worker URL here (no trailing slash).
-    // Empty = keep recording via ExtendsClass (same as before). Set to lock writes to the Worker.
-    visitorApi: "",
-    stores: [
-      "https://extendsclass.com/api/json-storage/bin/feeabdc",
-      "https://extendsclass.com/api/json-storage/bin/ddfbcda"
-    ],
+    // Writes go only to the Cloudflare Worker (bin URLs are Worker secrets, not on the page).
+    visitorApi: "https://laitty-visitor-api.laitty.workers.dev",
+    stores: [],
     history: "/assets/json/visit-history.json",
     counter: "https://abacus.jasoncameron.dev",
     namespace: "laitty-github-io-visits"
