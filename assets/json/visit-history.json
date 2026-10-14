@@ -118,6 +118,13 @@
       "lat": 40.8,
       "lng": -74.0,
       "label": "New York, United States"
+    },
+    {
+      "key": "18.5,-66.1",
+      "n": 2,
+      "lat": 18.5,
+      "lng": -66.1,
+      "label": "San Juan, PR"
     }
   ]
 }
