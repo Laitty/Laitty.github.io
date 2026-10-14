@@ -392,7 +392,7 @@
     const [local, api, ...remotes] = await Promise.all([
       readLocal(),
       readApiHistory(),
-      ...stores.map(readStore),
+      ...(visitorApi ? [] : stores.map(readStore)),
     ]);
     return { local, api, remotes };
   };

@@ -33,6 +33,8 @@ jobs:
 
       - name: Merge remotes into seed
         id: backup
+        env:
+          VISITOR_API_URL: ${{ secrets.VISITOR_API_URL }}
         run: |
           set -euo pipefail
           python3 bin/backup_visit_history.py

@@ -333,7 +333,14 @@ def main() -> int:
     args = parser.parse_args()
 
     seed = load_seed(args.out)
-    remotes_raw = [fetch_json(f"{url}?t=backup") for url in STORES]
+    api = _env("VISITOR_API_URL").rstrip("/")
+    if api:
+        worker_raw = fetch_json(f"{api}/history?t=backup")
+        remotes_raw = [worker_raw]
+        print(f"backup source: Worker GET {api}/history")
+    else:
+        remotes_raw = [fetch_json(f"{url}?t=backup") for url in STORES]
+        print("backup source: public ExtendsClass bins (set VISITOR_API_URL to use Worker)")
     remotes = [normalize(raw) if raw is not None else None for raw in remotes_raw]
     fetched = [r for r in remotes if r is not None]
     failed = sum(1 for r in remotes if r is None)

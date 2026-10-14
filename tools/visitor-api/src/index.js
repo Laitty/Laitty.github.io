@@ -194,6 +194,17 @@ async function hitAbacus(env, key) {
 }
 
 function pointFromBody(body, request) {
+  // Prefer Cloudflare edge geo so a caller cannot pick an arbitrary city.
+  const cf = request.cf || {};
+  const cfLat = Number(cf.latitude);
+  const cfLng = Number(cf.longitude);
+  if (Number.isFinite(cfLat) && Number.isFinite(cfLng)) {
+    const roundedLat = Number(cfLat.toFixed(1));
+    const roundedLng = Number(cfLng.toFixed(1));
+    const label = [cf.city, cf.country].filter(Boolean).join(", ") || "Visit";
+    return { key: `${roundedLat},${roundedLng}`, lat: roundedLat, lng: roundedLng, label };
+  }
+
   if (body && typeof body === "object") {
     const lat = Number(body.lat);
     const lng = Number(body.lng);
@@ -205,22 +216,12 @@ function pointFromBody(body, request) {
       const roundedLat = Number(lat.toFixed(1));
       const roundedLng = Number(lng.toFixed(1));
       return {
-        key: key || `${roundedLat},${roundedLng}`,
+        key: `${roundedLat},${roundedLng}`,
         lat: roundedLat,
         lng: roundedLng,
         label: (typeof body.label === "string" && body.label) || "Visit",
       };
     }
-  }
-
-  const cf = request.cf || {};
-  const lat = Number(cf.latitude);
-  const lng = Number(cf.longitude);
-  if (Number.isFinite(lat) && Number.isFinite(lng)) {
-    const roundedLat = Number(lat.toFixed(1));
-    const roundedLng = Number(lng.toFixed(1));
-    const label = [cf.city, cf.country].filter(Boolean).join(", ") || "Visit";
-    return { key: `${roundedLat},${roundedLng}`, lat: roundedLat, lng: roundedLng, label };
   }
 
   return { key: "unknown", lat: null, lng: null, label: "Unknown" };
