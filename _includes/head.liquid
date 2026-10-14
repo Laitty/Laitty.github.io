@@ -218,7 +218,7 @@
 <script>
   window.visitorHistory = {
     // After `wrangler deploy`, paste the Worker URL here (no trailing slash).
-    // Empty = read-only map (no public ExtendsClass PUT; visits pause until set).
+    // Empty = keep recording via ExtendsClass (same as before). Set to lock writes to the Worker.
     visitorApi: "",
     stores: [
       "https://extendsclass.com/api/json-storage/bin/feeabdc",

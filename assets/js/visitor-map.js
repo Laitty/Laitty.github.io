@@ -5,7 +5,7 @@
   const visitorApi = (config.visitorApi || "").replace(/\/$/, "");
   const counter = (config.counter || "").replace(/\/$/, "");
   const namespace = config.namespace || "";
-  // Read path needs at least one source. Writes require visitorApi (fail closed).
+  // Read path needs at least one source. Writes: Worker if visitorApi is set, else ExtendsClass.
   if (!stores.length && !historyUrl && !visitorApi) return;
 
   const root = document.getElementById("visitor-map");
@@ -248,6 +248,25 @@
     return [...byKey.values()];
   };
 
+  const pack = (places) =>
+    places.map((place) => {
+      const lat = Number(place.lat);
+      const lng = Number(place.lng);
+      const located = Number.isFinite(lat) && Number.isFinite(lng);
+      return {
+        key: place.key,
+        n: Number(place.n) || 0,
+        lat: located ? Number(lat.toFixed(1)) : null,
+        lng: located ? Number(lng.toFixed(1)) : null,
+        label: place.label || "Visit",
+      };
+    });
+
+  const behind = (remote, full) => {
+    const counts = new Map(remote.map((place) => [place.key, Number(place.n) || 0]));
+    return full.some((place) => (counts.get(place.key) || 0) < place.n);
+  };
+
   const readLocal = async () => {
     if (!historyUrl) return [];
     try {
@@ -295,7 +314,17 @@
     }
   };
 
-  // Abacus GET only — HIT writes go through the Worker.
+  const hitCount = async (key) => {
+    if (!counter || !namespace) return null;
+    try {
+      const response = await fetch(counterUrl("hit", key), { cache: "no-store" });
+      if (!response.ok) return null;
+      return Number((await response.json()).value) || 0;
+    } catch {
+      return null;
+    }
+  };
+
   const syncCounts = async (places) => {
     if (!counter || !namespace) return places;
     return Promise.all(
@@ -305,6 +334,58 @@
         return { ...place, n: Math.max(Number(place.n) || 0, value) };
       })
     );
+  };
+
+  const save = async (url, places, remoteSnapshot = null) => {
+    const packed = pack(places);
+    if (!packed.length) {
+      let remote = remoteSnapshot;
+      if (!Array.isArray(remote)) remote = await readStore(url);
+      if (Array.isArray(remote) && remote.length) return null;
+    }
+    return fetch(url, {
+      method: "PUT",
+      cache: "no-store",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ places: packed }),
+    });
+  };
+
+  const saveAll = (places, remotes = null) =>
+    Promise.all(stores.map((url, index) => save(url, places, remotes ? remotes[index] : null).catch(() => null)));
+
+  const persist = async (places) => {
+    let pending = places;
+    let stored = false;
+    for (let attempt = 0; attempt < 5; attempt += 1) {
+      const remotes = await Promise.all(stores.map(readStore));
+      pending = merge([pending, ...remotes.filter(Array.isArray)]);
+      if (!pending.length) return { places: pending, stored: false };
+      const responses = await saveAll(pending, remotes);
+      stored = responses.some((response) => response && response.ok);
+      if (!stored) continue;
+      const check = (await Promise.all(stores.map(readStore))).filter(Array.isArray);
+      if (check.length && !check.some((remote) => behind(remote, pending))) {
+        return { places: pending, stored: true };
+      }
+      pending = merge([pending, ...check]);
+    }
+    return { places: pending, stored };
+  };
+
+  const heal = async (places) => {
+    if (visitorApi) return places;
+    const fresh = await Promise.all(stores.map(readStore));
+    const merged = merge([places, ...fresh.filter(Array.isArray)]);
+    if (!merged.length) return merged;
+    await Promise.all(
+      stores.map((url, index) => {
+        const remote = fresh[index];
+        if (!remote || !behind(remote, merged)) return null;
+        return save(url, merged, remote).catch(() => null);
+      })
+    );
+    return merged;
   };
 
   const gather = async () => {
@@ -349,11 +430,7 @@
     return normalize(data);
   };
 
-  // Fail closed: without visitorApi, map stays read-only (no public ExtendsClass PUT).
-  const record = async (places) => {
-    if (!Array.isArray(places) || counted()) return places;
-    if (!visitorApi) return places;
-
+  const locate = async () => {
     let point = { key: "unknown", lat: null, lng: null, label: "Unknown" };
     try {
       const geo = await fetch("https://get.geojs.io/v1/ip/geo.json").then((response) => response.json());
@@ -368,9 +445,13 @@
         };
       }
     } catch {
-      /* Worker may still geolocate via CF; unknown is acceptable */
+      /* a failed location lookup still counts the visit */
     }
+    return point;
+  };
 
+  const recordViaWorker = async (places) => {
+    const point = await locate();
     try {
       const saved = await postVisit(point);
       if (!saved) return places;
@@ -379,6 +460,37 @@
     } catch {
       return places;
     }
+  };
+
+  const recordDirect = async (places) => {
+    const point = await locate();
+    const hit = await hitCount(point.key);
+    const existing = places.find((place) => place.key === point.key);
+    const n = hit != null ? hit : (Number(existing && existing.n) || 0) + 1;
+    const nextPlace = {
+      ...point,
+      n: Math.max(n, Number(existing && existing.n) || 0),
+      label: (existing && existing.label) || point.label,
+    };
+    const next = existing
+      ? places.map((place) => (place.key === point.key ? { ...place, ...nextPlace } : place))
+      : [...places, nextPlace];
+
+    try {
+      const saved = await persist(next);
+      if (hit == null && !saved.stored) return places;
+      markCounted();
+      return saved.places;
+    } catch {
+      if (hit == null) return places;
+      markCounted();
+      return next;
+    }
+  };
+
+  const record = async (places) => {
+    if (!Array.isArray(places) || counted()) return places;
+    return visitorApi ? recordViaWorker(places) : recordDirect(places);
   };
 
   let shown = [];
@@ -402,12 +514,12 @@
 
   const watch = async (withCounts) => {
     let places = await loadRegistry();
-    if (withCounts) places = await syncCounts(places);
+    if (withCounts) places = await heal(await syncCounts(places));
     publish(places);
   };
 
   loadRegistry()
-    .then((places) => (dots ? syncCounts(places) : places))
+    .then((places) => (dots ? syncCounts(places).then(heal) : places))
     .then(record)
     .then(publish)
     .catch(async () => {
