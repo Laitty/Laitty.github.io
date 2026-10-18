@@ -804,17 +804,22 @@ html[data-theme="dark"] footer {
   list-style: none;
 }
 
+.apple-page article ul.travel-globe-stats > li,
+.post article ul.travel-globe-stats > li,
+.apple-article ul.travel-globe-stats > li,
 .travel-globe-stats li {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0;
   min-height: 3.6rem;
   padding: 0.45rem 0.4rem;
   text-align: center;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.38);
   border: 1px solid rgba(226, 234, 242, 0.7);
+  box-shadow: none;
 }
 
 .travel-globe-stat-value {
@@ -834,9 +839,14 @@ html[data-theme="dark"] footer {
 }
 
 @media (min-width: 641px) {
+  .apple-page article ul.travel-globe-stats > li,
+  .post article ul.travel-globe-stats > li,
+  .apple-article ul.travel-globe-stats > li,
   .travel-globe-stats li {
     flex-direction: row;
     flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
     gap: 0.35rem;
     min-height: 2.55rem;
     padding: 0.4rem 0.5rem;
@@ -988,6 +998,16 @@ html[data-theme="dark"] footer {
   .travel-globe-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     padding: 0 0.85rem 0.9rem;
+  }
+
+  .apple-page article ul.travel-globe-stats > li,
+  .post article ul.travel-globe-stats > li,
+  .apple-article ul.travel-globe-stats > li,
+  .travel-globe-stats li {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0.45rem 0.4rem !important;
   }
 }
 
