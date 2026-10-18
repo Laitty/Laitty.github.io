@@ -819,10 +819,11 @@ html[data-theme="dark"] footer {
 
 .travel-globe-stat-value {
   color: var(--apple-text);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-weight: 650;
   line-height: 1.2;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .travel-globe-stat-label {
