@@ -182,6 +182,19 @@
     fit(globe);
     setStatus("");
 
+    const statsEl = mount.closest(".travel-globe-card")?.querySelector(".travel-globe-stats");
+    const stats = flights.stats;
+    if (statsEl && stats) {
+      const km = Number(stats.km).toLocaleString("en-US");
+      const mins = String(stats.minutes).padStart(2, "0");
+      statsEl.innerHTML = [
+        `<li><strong>${stats.cities}</strong> cities · <strong>${stats.airports}</strong> airports</li>`,
+        `<li><strong>${stats.hours}h ${mins}m</strong> airborne</li>`,
+        `<li><strong>${km}</strong> km</li>`,
+        `<li><strong>${stats.flights}</strong> flights</li>`,
+      ].join("");
+    }
+
     const pause = () => {
       globe.controls().autoRotate = false;
     };

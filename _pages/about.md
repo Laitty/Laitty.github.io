@@ -94,4 +94,10 @@ In research, I work across model design, dataset preparation, training, and expe
     <span class="travel-chip travel-chip-flight">Blue takeoff → Gold landing</span>
     <span class="travel-globe-hint">Drag to spin · pinch or scroll to zoom</span>
   </div>
+  <ul class="travel-globe-stats">
+    <li><strong>41</strong> cities · <strong>46</strong> airports</li>
+    <li><strong>313h 44m</strong> airborne</li>
+    <li><strong>220,042</strong> km</li>
+    <li><strong>123</strong> flights</li>
+  </ul>
 </div>

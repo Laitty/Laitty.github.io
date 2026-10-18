@@ -812,6 +812,22 @@ html[data-theme="dark"] footer {
   color: var(--apple-muted);
 }
 
+.travel-globe-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.1rem;
+  margin: 0;
+  padding: 0 1rem 1rem;
+  list-style: none;
+  color: var(--apple-muted);
+  font-size: 0.8rem;
+}
+
+.travel-globe-stats strong {
+  color: var(--apple-text);
+  font-weight: 600;
+}
+
 #travel-globe .scene-tooltip,
 .scene-tooltip {
   color: #1d1d1f !important;
@@ -951,6 +967,10 @@ html[data-theme="dark"] footer {
   .travel-globe-hint {
     margin-left: 0;
     width: 100%;
+  }
+  .travel-globe-stats {
+    padding: 0 0.85rem 0.9rem;
+    font-size: 0.76rem;
   }
 }
 
