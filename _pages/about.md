@@ -96,16 +96,16 @@ In research, I work across model design, dataset preparation, training, and expe
   </div>
   <ul class="travel-globe-stats">
     <li>
-      <span class="travel-globe-stat-value">41 · 46</span>
-      <span class="travel-globe-stat-label">Cities · airports</span>
+      <span class="travel-globe-stat-value">41 / 46</span>
+      <span class="travel-globe-stat-label">Cities / airports</span>
     </li>
     <li>
       <span class="travel-globe-stat-value">313h 44m</span>
-      <span class="travel-globe-stat-label">Hours</span>
+      <span class="travel-globe-stat-label">Flight time</span>
     </li>
     <li>
-      <span class="travel-globe-stat-value">220,042 km</span>
-      <span class="travel-globe-stat-label">Distance</span>
+      <span class="travel-globe-stat-value">220,042</span>
+      <span class="travel-globe-stat-label">Kilometers</span>
     </li>
     <li>
       <span class="travel-globe-stat-value">123</span>

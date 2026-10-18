@@ -188,9 +188,9 @@
       const km = Number(stats.km).toLocaleString("en-US");
       const mins = String(stats.minutes).padStart(2, "0");
       const items = [
-        [`${stats.cities} · ${stats.airports}`, "Cities · airports"],
-        [`${stats.hours}h ${mins}m`, "Hours"],
-        [`${km} km`, "Distance"],
+        [`${stats.cities} / ${stats.airports}`, "Cities / airports"],
+        [`${stats.hours}h ${mins}m`, "Flight time"],
+        [km, "Kilometers"],
         [String(stats.flights), "Flights"],
       ];
       statsEl.innerHTML = items
