@@ -182,17 +182,23 @@
     fit(globe);
     setStatus("");
 
-    const statsEl = mount.closest(".travel-globe-card")?.querySelector(".travel-globe-stats");
+    const statsEl = mount.closest(".travel-globe-card") && mount.closest(".travel-globe-card").querySelector(".travel-globe-stats");
     const stats = flights.stats;
     if (statsEl && stats) {
       const km = Number(stats.km).toLocaleString("en-US");
       const mins = String(stats.minutes).padStart(2, "0");
-      statsEl.innerHTML = [
-        `<li><strong>${stats.cities}</strong> cities · <strong>${stats.airports}</strong> airports</li>`,
-        `<li><strong>${stats.hours}h ${mins}m</strong> airborne</li>`,
-        `<li><strong>${km}</strong> km</li>`,
-        `<li><strong>${stats.flights}</strong> flights</li>`,
-      ].join("");
+      const items = [
+        [`${stats.cities} · ${stats.airports}`, "Cities · airports"],
+        [`${stats.hours}h ${mins}m`, "Hours"],
+        [`${km} km`, "Distance"],
+        [String(stats.flights), "Flights"],
+      ];
+      statsEl.innerHTML = items
+        .map(
+          ([value, label]) =>
+            `<li><span class="travel-globe-stat-value">${value}</span><span class="travel-globe-stat-label">${label}</span></li>`
+        )
+        .join("");
     }
 
     const pause = () => {

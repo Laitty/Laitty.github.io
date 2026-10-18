@@ -95,9 +95,21 @@ In research, I work across model design, dataset preparation, training, and expe
     <span class="travel-globe-hint">Drag to spin · pinch or scroll to zoom</span>
   </div>
   <ul class="travel-globe-stats">
-    <li><strong>41</strong> cities · <strong>46</strong> airports</li>
-    <li><strong>313h 44m</strong> airborne</li>
-    <li><strong>220,042</strong> km</li>
-    <li><strong>123</strong> flights</li>
+    <li>
+      <span class="travel-globe-stat-value">41 · 46</span>
+      <span class="travel-globe-stat-label">Cities · airports</span>
+    </li>
+    <li>
+      <span class="travel-globe-stat-value">313h 44m</span>
+      <span class="travel-globe-stat-label">Hours</span>
+    </li>
+    <li>
+      <span class="travel-globe-stat-value">220,042 km</span>
+      <span class="travel-globe-stat-label">Distance</span>
+    </li>
+    <li>
+      <span class="travel-globe-stat-value">123</span>
+      <span class="travel-globe-stat-label">Flights</span>
+    </li>
   </ul>
 </div>
