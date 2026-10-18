@@ -188,7 +188,7 @@
       const km = Number(stats.km).toLocaleString("en-US");
       const mins = String(stats.minutes).padStart(2, "0");
       const items = [
-        [`${stats.cities} / ${stats.airports}`, "Cities / airports"],
+        [`${stats.cities} / ${stats.airports}`, "Cities / Airports"],
         [`${stats.hours}h ${mins}m`, "Flight time"],
         [km, "Kilometers"],
         [String(stats.flights), "Flights"],

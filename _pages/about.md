@@ -97,7 +97,7 @@ In research, I work across model design, dataset preparation, training, and expe
   <ul class="travel-globe-stats">
     <li>
       <span class="travel-globe-stat-value">41 / 46</span>
-      <span class="travel-globe-stat-label">Cities / airports</span>
+      <span class="travel-globe-stat-label">Cities / Airports</span>
     </li>
     <li>
       <span class="travel-globe-stat-value">313h 44m</span>
