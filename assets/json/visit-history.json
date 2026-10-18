@@ -125,6 +125,13 @@
       "lat": 18.5,
       "lng": -66.1,
       "label": "San Juan, PR"
+    },
+    {
+      "key": "40.4,-80",
+      "n": 1,
+      "lat": 40.4,
+      "lng": -80.0,
+      "label": "Pittsburgh, US"
     }
   ]
 }
