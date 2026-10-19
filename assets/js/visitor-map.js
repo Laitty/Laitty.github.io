@@ -15,207 +15,204 @@
   let draw = () => {};
 
   if (root && stage) {
+    const land = document.createElement("img");
+    land.className = "visitor-map-land";
+    land.alt = "";
+    land.draggable = false;
+    land.src = root.dataset.map;
+    dots = document.createElement("div");
+    dots.className = "visitor-map-dots";
+    const world = document.createElement("div");
+    world.className = "visitor-map-world";
+    world.append(land, dots);
+    stage.append(world);
 
-  const land = document.createElement("img");
-  land.className = "visitor-map-land";
-  land.alt = "";
-  land.draggable = false;
-  land.src = root.dataset.map;
-  dots = document.createElement("div");
-  dots.className = "visitor-map-dots";
-  const world = document.createElement("div");
-  world.className = "visitor-map-world";
-  world.append(land, dots);
-  stage.append(world);
+    const controls = document.createElement("div");
+    controls.className = "visitor-map-controls";
+    const addControl = (label, text) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "visitor-map-control";
+      button.setAttribute("aria-label", label);
+      button.textContent = text;
+      controls.append(button);
+      return button;
+    };
+    const zoomInButton = addControl("Zoom in", "+");
+    const zoomOutButton = addControl("Zoom out", "−");
+    const resetButton = addControl("Reset map", "⤢");
+    stage.append(controls);
 
-  const controls = document.createElement("div");
-  controls.className = "visitor-map-controls";
-  const addControl = (label, text) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "visitor-map-control";
-    button.setAttribute("aria-label", label);
-    button.textContent = text;
-    controls.append(button);
-    return button;
-  };
-  const zoomInButton = addControl("Zoom in", "+");
-  const zoomOutButton = addControl("Zoom out", "−");
-  const resetButton = addControl("Reset map", "⤢");
-  stage.append(controls);
+    let scale = 1;
+    let originX = 0;
+    let originY = 0;
+    const minScale = 1;
+    const maxScale = 8;
 
-  let scale = 1;
-  let originX = 0;
-  let originY = 0;
-  const minScale = 1;
-  const maxScale = 8;
-
-  const clamp = () => {
-    const width = stage.clientWidth;
-    const height = stage.clientHeight;
-    originX = Math.min(0, Math.max(width - width * scale, originX));
-    originY = Math.min(0, Math.max(height - height * scale, originY));
-  };
-
-  const apply = () => {
-    world.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
-    dots.style.setProperty("--visitor-pin-scale", String(1 / scale));
-  };
-
-  const zoomAt = (clientX, clientY, nextScale) => {
-    const rect = stage.getBoundingClientRect();
-    const px = clientX - rect.left;
-    const py = clientY - rect.top;
-    const clamped = Math.min(maxScale, Math.max(minScale, nextScale));
-    const ratio = clamped / scale;
-    originX = px - (px - originX) * ratio;
-    originY = py - (py - originY) * ratio;
-    scale = clamped;
-    clamp();
-    apply();
-  };
-
-  const zoomAtCenter = (nextScale) => {
-    const rect = stage.getBoundingClientRect();
-    zoomAt(rect.left + rect.width / 2, rect.top + rect.height / 2, nextScale);
-  };
-
-  stage.addEventListener(
-    "wheel",
-    (event) => {
-      event.preventDefault();
-      const factor = event.deltaY < 0 ? 1.14 : 1 / 1.14;
-      zoomAt(event.clientX, event.clientY, scale * factor);
-    },
-    { passive: false }
-  );
-
-  const pointers = new Map();
-  let drag = null;
-  let pinchDistance = 0;
-
-  const endPointer = (event) => {
-    pointers.delete(event.pointerId);
-    if (pointers.size < 2) pinchDistance = 0;
-    if (pointers.size === 0) {
-      drag = null;
-      stage.classList.remove("is-panning");
-    }
-  };
-
-  stage.addEventListener("pointerdown", (event) => {
-    if (event.target.closest(".visitor-map-controls")) return;
-    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
-    try {
-      stage.setPointerCapture(event.pointerId);
-    } catch (error) {
-      /* capture is unavailable for some synthetic pointers */
-    }
-    if (pointers.size === 1) {
-      drag = { x: event.clientX, y: event.clientY, ox: originX, oy: originY };
-    } else if (pointers.size >= 2) {
-      drag = null;
-      const [a, b] = [...pointers.values()];
-      pinchDistance = Math.hypot(a.x - b.x, a.y - b.y);
-    }
-  });
-
-  stage.addEventListener("pointermove", (event) => {
-    if (!pointers.has(event.pointerId)) return;
-    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
-    if (pointers.size >= 2 && pinchDistance > 0) {
-      const [a, b] = [...pointers.values()];
-      const distance = Math.hypot(a.x - b.x, a.y - b.y);
-      zoomAt((a.x + b.x) / 2, (a.y + b.y) / 2, scale * (distance / pinchDistance));
-      pinchDistance = distance;
-      return;
-    }
-    if (!drag || scale <= 1) return;
-    const dx = event.clientX - drag.x;
-    const dy = event.clientY - drag.y;
-    if (Math.hypot(dx, dy) > 2) stage.classList.add("is-panning");
-    originX = drag.ox + dx;
-    originY = drag.oy + dy;
-    clamp();
-    apply();
-  });
-
-  stage.addEventListener("pointerup", endPointer);
-  stage.addEventListener("pointercancel", endPointer);
-  stage.addEventListener("dblclick", (event) => {
-    if (event.target.closest(".visitor-map-controls")) return;
-    scale = 1;
-    originX = 0;
-    originY = 0;
-    apply();
-  });
-  window.addEventListener("resize", () => {
-    clamp();
-    apply();
-  });
-
-  zoomInButton.addEventListener("click", () => zoomAtCenter(scale * 1.35));
-  zoomOutButton.addEventListener("click", () => zoomAtCenter(scale / 1.35));
-  resetButton.addEventListener("click", () => {
-    scale = 1;
-    originX = 0;
-    originY = 0;
-    apply();
-  });
-
-  draw = (places) => {
-    dots.replaceChildren();
-    const ranked = places
-      .map((place) => ({
-        ...place,
-        count: Number(place.n) || 0,
-        lat: Number(place.lat),
-        lng: Number(place.lng),
-        label: place.label || "Visit",
-      }))
-      .filter((place) => place.count && Number.isFinite(place.lat) && Number.isFinite(place.lng))
-      .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
-
-    const pinSizeForCount = (count) => {
-      const n = Number(count) || 0;
-      if (n <= 1) return 4.5;
-      if (n <= 3) return 6;
-      if (n <= 5) return 7.5;
-      if (n <= 10) return 8.5;
-      if (n <= 50) return 9.5;
-      if (n <= 100) return 10.5;
-      return 12;
+    const clamp = () => {
+      const width = stage.clientWidth;
+      const height = stage.clientHeight;
+      originX = Math.min(0, Math.max(width - width * scale, originX));
+      originY = Math.min(0, Math.max(height - height * scale, originY));
     };
 
-    ranked.forEach((place) => {
-      const pin = document.createElement("span");
-      pin.className = "visitor-map-pin";
-      pin.style.left = `${((place.lng + 180) / 360) * 100}%`;
-      pin.style.top = `${((90 - place.lat) / 180) * 100}%`;
-      const size = pinSizeForCount(place.count);
-      const dot = document.createElement("span");
-      dot.className = "visitor-map-dot";
-      dot.style.width = `${size}px`;
-      dot.style.height = `${size}px`;
-      const tip = document.createElement("span");
-      tip.className = "visitor-map-tip";
-      const city = document.createElement("span");
-      city.textContent = place.label;
-      const count = document.createElement("strong");
-      count.textContent = `${place.count} ${place.count === 1 ? "visit" : "visits"}`;
-      tip.append(city, count);
-      pin.append(dot, tip);
-      pin.setAttribute("aria-label", `${place.label}, ${place.count}`);
-      dots.append(pin);
+    const apply = () => {
+      world.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
+      dots.style.setProperty("--visitor-pin-scale", String(1 / scale));
+    };
+
+    const zoomAt = (clientX, clientY, nextScale) => {
+      const rect = stage.getBoundingClientRect();
+      const px = clientX - rect.left;
+      const py = clientY - rect.top;
+      const clamped = Math.min(maxScale, Math.max(minScale, nextScale));
+      const ratio = clamped / scale;
+      originX = px - (px - originX) * ratio;
+      originY = py - (py - originY) * ratio;
+      scale = clamped;
+      clamp();
+      apply();
+    };
+
+    const zoomAtCenter = (nextScale) => {
+      const rect = stage.getBoundingClientRect();
+      zoomAt(rect.left + rect.width / 2, rect.top + rect.height / 2, nextScale);
+    };
+
+    stage.addEventListener(
+      "wheel",
+      (event) => {
+        event.preventDefault();
+        const factor = event.deltaY < 0 ? 1.14 : 1 / 1.14;
+        zoomAt(event.clientX, event.clientY, scale * factor);
+      },
+      { passive: false }
+    );
+
+    const pointers = new Map();
+    let drag = null;
+    let pinchDistance = 0;
+
+    const endPointer = (event) => {
+      pointers.delete(event.pointerId);
+      if (pointers.size < 2) pinchDistance = 0;
+      if (pointers.size === 0) {
+        drag = null;
+        stage.classList.remove("is-panning");
+      }
+    };
+
+    stage.addEventListener("pointerdown", (event) => {
+      if (event.target.closest(".visitor-map-controls")) return;
+      pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      try {
+        stage.setPointerCapture(event.pointerId);
+      } catch (error) {
+        /* capture is unavailable for some synthetic pointers */
+      }
+      if (pointers.size === 1) {
+        drag = { x: event.clientX, y: event.clientY, ox: originX, oy: originY };
+      } else if (pointers.size >= 2) {
+        drag = null;
+        const [a, b] = [...pointers.values()];
+        pinchDistance = Math.hypot(a.x - b.x, a.y - b.y);
+      }
     });
 
-    const total = places.reduce((sum, place) => sum + (Number(place.n) || 0), 0);
-    if (note) {
-      note.textContent = total
-        ? `${total} cumulative ${total === 1 ? "visit" : "visits"}`
-        : "Cumulative visits will show up here.";
-    }
-  };
+    stage.addEventListener("pointermove", (event) => {
+      if (!pointers.has(event.pointerId)) return;
+      pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      if (pointers.size >= 2 && pinchDistance > 0) {
+        const [a, b] = [...pointers.values()];
+        const distance = Math.hypot(a.x - b.x, a.y - b.y);
+        zoomAt((a.x + b.x) / 2, (a.y + b.y) / 2, scale * (distance / pinchDistance));
+        pinchDistance = distance;
+        return;
+      }
+      if (!drag || scale <= 1) return;
+      const dx = event.clientX - drag.x;
+      const dy = event.clientY - drag.y;
+      if (Math.hypot(dx, dy) > 2) stage.classList.add("is-panning");
+      originX = drag.ox + dx;
+      originY = drag.oy + dy;
+      clamp();
+      apply();
+    });
+
+    stage.addEventListener("pointerup", endPointer);
+    stage.addEventListener("pointercancel", endPointer);
+    stage.addEventListener("dblclick", (event) => {
+      if (event.target.closest(".visitor-map-controls")) return;
+      scale = 1;
+      originX = 0;
+      originY = 0;
+      apply();
+    });
+    window.addEventListener("resize", () => {
+      clamp();
+      apply();
+    });
+
+    zoomInButton.addEventListener("click", () => zoomAtCenter(scale * 1.35));
+    zoomOutButton.addEventListener("click", () => zoomAtCenter(scale / 1.35));
+    resetButton.addEventListener("click", () => {
+      scale = 1;
+      originX = 0;
+      originY = 0;
+      apply();
+    });
+
+    draw = (places) => {
+      dots.replaceChildren();
+      const ranked = places
+        .map((place) => ({
+          ...place,
+          count: Number(place.n) || 0,
+          lat: Number(place.lat),
+          lng: Number(place.lng),
+          label: place.label || "Visit",
+        }))
+        .filter((place) => place.count && Number.isFinite(place.lat) && Number.isFinite(place.lng))
+        .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+
+      const pinSizeForCount = (count) => {
+        const n = Number(count) || 0;
+        if (n <= 1) return 4.5;
+        if (n <= 3) return 6;
+        if (n <= 5) return 7;
+        if (n <= 10) return 7.5;
+        if (n <= 50) return 8.2;
+        if (n <= 100) return 9.5;
+        return 11;
+      };
+
+      ranked.forEach((place) => {
+        const pin = document.createElement("span");
+        pin.className = "visitor-map-pin";
+        pin.style.left = `${((place.lng + 180) / 360) * 100}%`;
+        pin.style.top = `${((90 - place.lat) / 180) * 100}%`;
+        const size = pinSizeForCount(place.count);
+        const dot = document.createElement("span");
+        dot.className = "visitor-map-dot";
+        dot.style.width = `${size}px`;
+        dot.style.height = `${size}px`;
+        const tip = document.createElement("span");
+        tip.className = "visitor-map-tip";
+        const city = document.createElement("span");
+        city.textContent = place.label;
+        const count = document.createElement("strong");
+        count.textContent = `${place.count} ${place.count === 1 ? "visit" : "visits"}`;
+        tip.append(city, count);
+        pin.append(dot, tip);
+        pin.setAttribute("aria-label", `${place.label}, ${place.count}`);
+        dots.append(pin);
+      });
+
+      const total = places.reduce((sum, place) => sum + (Number(place.n) || 0), 0);
+      if (note) {
+        note.textContent = total ? `${total} cumulative ${total === 1 ? "visit" : "visits"}` : "Cumulative visits will show up here.";
+      }
+    };
   }
 
   const counterKey = (key) => String(key).replace(/,/g, "_");
@@ -225,9 +222,9 @@
     return Array.isArray(places) ? places : [];
   };
 
-  const merge = (lists) => {
+  const mergeByKey = (places) => {
     const byKey = new Map();
-    lists.flat().forEach((place) => {
+    places.forEach((place) => {
       if (!place || !place.key) return;
       const lat = Number(place.lat);
       const lng = Number(place.lng);
@@ -247,6 +244,50 @@
     });
     return [...byKey.values()];
   };
+
+  const cityStem = (label) =>
+    String(label || "")
+      .split(",")[0]
+      .trim()
+      .toLowerCase();
+
+  const collapseNearby = (places, mode) => {
+    const out = [];
+    places.forEach((place) => {
+      const lat = Number(place.lat);
+      const lng = Number(place.lng);
+      const stem = cityStem(place.label);
+      const twin = out.find(
+        (prev) =>
+          stem &&
+          cityStem(prev.label) === stem &&
+          Number.isFinite(lat) &&
+          Number.isFinite(lng) &&
+          Math.abs(Number(prev.lat) - lat) <= 0.2 &&
+          Math.abs(Number(prev.lng) - lng) <= 0.2
+      );
+      const extra = Number(place.n) || 0;
+      if (!twin) {
+        out.push({ ...place, n: extra });
+        return;
+      }
+      const keepNewer = extra > (Number(twin.n) || 0);
+      twin.n = mode === "max" ? Math.max(Number(twin.n) || 0, extra) : (Number(twin.n) || 0) + extra;
+      if (keepNewer) {
+        twin.key = place.key;
+        twin.lat = place.lat;
+        twin.lng = place.lng;
+        twin.label = place.label || twin.label;
+      }
+    });
+    return out;
+  };
+
+  const merge = (lists) =>
+    collapseNearby(
+      lists.flatMap((list) => collapseNearby(mergeByKey(Array.isArray(list) ? list : []), "sum")),
+      "max"
+    );
 
   const pack = (places) =>
     places.map((place) => {
@@ -299,8 +340,7 @@
     }
   };
 
-  const counterUrl = (action, key) =>
-    `${counter}/${action}/${namespace}/${encodeURIComponent(counterKey(key))}`;
+  const counterUrl = (action, key) => `${counter}/${action}/${namespace}/${encodeURIComponent(counterKey(key))}`;
 
   const readCount = async (key) => {
     if (!counter || !namespace) return null;
@@ -389,11 +429,7 @@
   };
 
   const gather = async () => {
-    const [local, api, ...remotes] = await Promise.all([
-      readLocal(),
-      readApiHistory(),
-      ...(visitorApi ? [] : stores.map(readStore)),
-    ]);
+    const [local, api, ...remotes] = await Promise.all([readLocal(), readApiHistory(), ...(visitorApi ? [] : stores.map(readStore))]);
     return { local, api, remotes };
   };
 
@@ -472,9 +508,7 @@
       n: Math.max(n, Number(existing && existing.n) || 0),
       label: (existing && existing.label) || point.label,
     };
-    const next = existing
-      ? places.map((place) => (place.key === point.key ? { ...place, ...nextPlace } : place))
-      : [...places, nextPlace];
+    const next = existing ? places.map((place) => (place.key === point.key ? { ...place, ...nextPlace } : place)) : [...places, nextPlace];
 
     try {
       const saved = await persist(next);

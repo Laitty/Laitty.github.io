@@ -66,9 +66,9 @@ function pack(places) {
   });
 }
 
-function merge(lists) {
+function mergeByKey(places) {
   const byKey = new Map();
-  for (const place of lists.flat()) {
+  for (const place of places) {
     if (!place || !place.key) continue;
     const lat = Number(place.lat);
     const lng = Number(place.lng);
@@ -89,6 +89,52 @@ function merge(lists) {
   return [...byKey.values()];
 }
 
+function merge(lists) {
+  return collapseNearby(
+    lists.flatMap((list) => collapseNearby(mergeByKey(Array.isArray(list) ? list : []), "sum")),
+    "max"
+  );
+}
+
+function cityStem(label) {
+  return String(label || "")
+    .split(",")[0]
+    .trim()
+    .toLowerCase();
+}
+
+function collapseNearby(places, mode) {
+  const out = [];
+  for (const place of places) {
+    const lat = Number(place.lat);
+    const lng = Number(place.lng);
+    const stem = cityStem(place.label);
+    const twin = out.find(
+      (prev) =>
+        stem &&
+        cityStem(prev.label) === stem &&
+        Number.isFinite(lat) &&
+        Number.isFinite(lng) &&
+        Math.abs(Number(prev.lat) - lat) <= 0.2 &&
+        Math.abs(Number(prev.lng) - lng) <= 0.2
+    );
+    const extra = Number(place.n) || 0;
+    if (!twin) {
+      out.push({ ...place, n: extra });
+      continue;
+    }
+    const keepNewer = extra > (Number(twin.n) || 0);
+    twin.n = mode === "max" ? Math.max(Number(twin.n) || 0, extra) : (Number(twin.n) || 0) + extra;
+    if (keepNewer) {
+      twin.key = place.key;
+      twin.lat = place.lat;
+      twin.lng = place.lng;
+      twin.label = place.label || twin.label;
+    }
+  }
+  return out;
+}
+
 function authorized(request, env) {
   const token = env.WRITE_TOKEN;
   if (!token) return false;
@@ -98,11 +144,7 @@ function authorized(request, env) {
 }
 
 function clientIp(request) {
-  return (
-    request.headers.get("CF-Connecting-IP") ||
-    request.headers.get("X-Forwarded-For")?.split(",")[0]?.trim() ||
-    "unknown"
-  );
+  return request.headers.get("CF-Connecting-IP") || request.headers.get("X-Forwarded-For")?.split(",")[0]?.trim() || "unknown";
 }
 
 function rateLimited(ip) {
@@ -302,17 +344,23 @@ export default {
       const point = pointFromBody(body, request);
       const hit = await hitAbacus(env, point.key);
       const existingPlaces = await loadMerged(env);
-      const existing = existingPlaces.find((place) => place.key === point.key);
-      const n =
-        hit != null ? hit : (Number(existing && existing.n) || 0) + 1;
-      const nextPlace = {
-        ...point,
-        n: Math.max(n, Number(existing && existing.n) || 0),
-        label: (existing && existing.label) || point.label,
-      };
-      const places = existing
-        ? existingPlaces.map((place) => (place.key === point.key ? { ...place, ...nextPlace } : place))
-        : [...existingPlaces, nextPlace];
+      const existing =
+        existingPlaces.find((place) => place.key === point.key) ||
+        existingPlaces.find(
+          (place) =>
+            cityStem(place.label) &&
+            cityStem(place.label) === cityStem(point.label) &&
+            Number.isFinite(Number(place.lat)) &&
+            Number.isFinite(Number(place.lng)) &&
+            Math.abs(Number(place.lat) - Number(point.lat)) <= 0.2 &&
+            Math.abs(Number(place.lng) - Number(point.lng)) <= 0.2
+        );
+      const n = existing ? (hit != null ? Math.max(hit, Number(existing.n) || 0) : (Number(existing.n) || 0) + 1) : hit != null ? hit : 1;
+      const nextPlace = existing ? { ...existing, n, label: existing.label || point.label } : { ...point, n, label: point.label };
+      const places = collapseNearby(
+        existing ? existingPlaces.map((place) => (place.key === existing.key ? { ...place, ...nextPlace } : place)) : [...existingPlaces, nextPlace],
+        "sum"
+      );
 
       // Dual-mirror heal: always write the merged registry to both bins.
       const written = await writeAllStores(env, places);
