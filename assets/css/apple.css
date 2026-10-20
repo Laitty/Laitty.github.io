@@ -223,7 +223,7 @@ html[data-theme-setting="dark"] .apple-tartan-mark {
 
 .apple-eyebrow {
   position: relative;
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.28rem;
   color: var(--apple-muted);
   font-size: 0.92rem;
   font-weight: 600;
@@ -237,7 +237,7 @@ html[data-theme-setting="dark"] .apple-tartan-mark {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 auto 0.7rem;
+  margin: 0 auto 0.45rem;
   max-width: 18ch;
   font-size: clamp(2.8rem, 7vw, 5.4rem);
   line-height: 1.02;
