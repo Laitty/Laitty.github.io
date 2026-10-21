@@ -600,16 +600,19 @@ html[data-theme-setting="dark"] .proj-affils {
   position: absolute;
   z-index: 0;
   top: 50%;
-  right: calc(0.7rem + min(16vw, 96px) + 0.28rem);
-  height: min(16vw, 96px);
-  width: min(28vw, 168px);
+  right: calc(0.7rem + min(16vw, 96px) + 0.8rem);
   transform: translateY(-50%);
   opacity: 0.24;
 }
 
 .pub-venue-mark.is-icassp2026 {
-  height: min(19vw, 114px);
-  width: min(36vw, 214px);
+  height: min(18vw, 106px);
+  width: min(34vw, 199px);
+}
+
+.pub-venue-mark.is-acmmm2026 {
+  height: 2.55rem;
+  width: 13.5rem;
 }
 
 .pub-venue-mark img {
@@ -621,25 +624,21 @@ html[data-theme-setting="dark"] .proj-affils {
 }
 
 li:has(.proj-affils) .pub-venue-mark {
-  right: calc(0.55rem + 3.15rem + 0.28rem);
-  height: 3.15rem;
-  width: 5.4rem;
+  right: calc(0.55rem + 3.15rem + 0.8rem);
 }
 
 li:has(.proj-affils) .pub-venue-mark.is-icassp2026 {
-  height: 3.75rem;
-  width: 7.05rem;
+  height: 3.55rem;
+  width: 6.7rem;
 }
 
 li:has(.proj-affils .is-collab) .pub-venue-mark {
-  right: calc(0.55rem + 2.7rem + 2.7rem + 0.22rem + 0.28rem);
-  height: 2.7rem;
-  width: 5.1rem;
+  right: calc(0.55rem + 2.7rem + 2.7rem + 0.22rem + 0.8rem);
 }
 
 li:has(.proj-affils .is-collab) .pub-venue-mark.is-icassp2026 {
-  height: 3.2rem;
-  width: 6rem;
+  height: 3.05rem;
+  width: 5.75rem;
 }
 
 .pub-affil-mark img {
@@ -680,37 +679,36 @@ html[data-theme-setting="dark"] .pub-venue-mark {
   }
 
   .pub-venue-mark {
-    right: calc(0.45rem + min(20vw, 72px) + 0.22rem);
-    height: min(20vw, 72px);
-    width: min(34vw, 120px);
+    right: calc(0.45rem + min(20vw, 72px) + 0.65rem);
     opacity: 0.2;
   }
 
   .pub-venue-mark.is-icassp2026 {
-    height: min(24vw, 86px);
-    width: min(40vw, 162px);
+    height: min(22vw, 80px);
+    width: min(38vw, 150px);
+  }
+
+  .pub-venue-mark.is-acmmm2026 {
+    height: 1.9rem;
+    width: 10rem;
   }
 
   li:has(.proj-affils) .pub-venue-mark {
-    right: calc(0.4rem + 2.35rem + 0.22rem);
-    height: 2.35rem;
-    width: 4.2rem;
+    right: calc(0.4rem + 2.35rem + 0.65rem);
   }
 
   li:has(.proj-affils) .pub-venue-mark.is-icassp2026 {
-    height: 2.8rem;
-    width: 5.25rem;
+    height: 2.65rem;
+    width: 5rem;
   }
 
   li:has(.proj-affils .is-collab) .pub-venue-mark {
-    right: calc(0.4rem + 2.35rem + 2.35rem + 0.22rem + 0.22rem);
-    height: 2.35rem;
-    width: 4.2rem;
+    right: calc(0.4rem + 2.35rem + 2.35rem + 0.22rem + 0.65rem);
   }
 
   li:has(.proj-affils .is-collab) .pub-venue-mark.is-icassp2026 {
-    height: 2.8rem;
-    width: 5.25rem;
+    height: 2.65rem;
+    width: 5rem;
   }
 
   .apple-page article ul > li,
