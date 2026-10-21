@@ -593,14 +593,17 @@ html[data-theme-setting="dark"] .proj-affils {
   opacity: 0.24;
 }
 
+.pub-venue-mark.is-icassp2026,
+.pub-venue-mark.is-acmmm2026 {
+  width: 13.5rem;
+}
+
 .pub-venue-mark.is-icassp2026 {
-  height: min(18vw, 106px);
-  width: min(34vw, 199px);
+  height: calc(13.5rem / 1.88);
 }
 
 .pub-venue-mark.is-acmmm2026 {
-  height: 2.55rem;
-  width: 13.5rem;
+  height: calc(13.5rem / 5.31);
 }
 
 .pub-venue-mark img {
@@ -615,18 +618,8 @@ li:has(.proj-affils) .pub-venue-mark {
   right: calc(0.55rem + 3.15rem + 0.8rem);
 }
 
-li:has(.proj-affils) .pub-venue-mark.is-icassp2026 {
-  height: 3.55rem;
-  width: 6.7rem;
-}
-
 li:has(.proj-affils .is-collab) .pub-venue-mark {
   right: calc(0.55rem + 2.7rem + 2.7rem + 0.22rem + 0.8rem);
-}
-
-li:has(.proj-affils .is-collab) .pub-venue-mark.is-icassp2026 {
-  height: 3.05rem;
-  width: 5.75rem;
 }
 
 .pub-affil-mark img {
@@ -671,32 +664,25 @@ html[data-theme-setting="dark"] .pub-venue-mark {
     opacity: 0.2;
   }
 
+  .pub-venue-mark.is-icassp2026,
+  .pub-venue-mark.is-acmmm2026 {
+    width: 10rem;
+  }
+
   .pub-venue-mark.is-icassp2026 {
-    height: min(22vw, 80px);
-    width: min(38vw, 150px);
+    height: calc(10rem / 1.88);
   }
 
   .pub-venue-mark.is-acmmm2026 {
-    height: 1.9rem;
-    width: 10rem;
+    height: calc(10rem / 5.31);
   }
 
   li:has(.proj-affils) .pub-venue-mark {
     right: calc(0.4rem + 2.35rem + 0.65rem);
   }
 
-  li:has(.proj-affils) .pub-venue-mark.is-icassp2026 {
-    height: 2.65rem;
-    width: 5rem;
-  }
-
   li:has(.proj-affils .is-collab) .pub-venue-mark {
     right: calc(0.4rem + 2.35rem + 2.35rem + 0.22rem + 0.65rem);
-  }
-
-  li:has(.proj-affils .is-collab) .pub-venue-mark.is-icassp2026 {
-    height: 2.65rem;
-    width: 5rem;
   }
 
   .apple-page article ul > li,
