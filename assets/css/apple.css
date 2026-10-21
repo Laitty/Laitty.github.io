@@ -593,17 +593,15 @@ html[data-theme-setting="dark"] .proj-affils {
   opacity: 0.24;
 }
 
-.pub-venue-mark.is-icassp2026,
-.pub-venue-mark.is-acmmm2026 {
-  width: 13.5rem;
-}
-
 .pub-venue-mark.is-icassp2026 {
+  width: 13.5rem;
   height: calc(13.5rem / 1.88);
 }
 
 .pub-venue-mark.is-acmmm2026 {
-  height: calc(13.5rem / 5.31);
+  /* ICASSP's visible ink starts ~17% in; ACM MM starts on the edge. */
+  width: 11.8rem;
+  height: calc(11.8rem / 5.31);
 }
 
 .pub-venue-mark img {
@@ -664,17 +662,14 @@ html[data-theme-setting="dark"] .pub-venue-mark {
     opacity: 0.2;
   }
 
-  .pub-venue-mark.is-icassp2026,
-  .pub-venue-mark.is-acmmm2026 {
-    width: 10rem;
-  }
-
   .pub-venue-mark.is-icassp2026 {
+    width: 10rem;
     height: calc(10rem / 1.88);
   }
 
   .pub-venue-mark.is-acmmm2026 {
-    height: calc(10rem / 5.31);
+    width: 8.75rem;
+    height: calc(8.75rem / 5.31);
   }
 
   li:has(.proj-affils) .pub-venue-mark {
