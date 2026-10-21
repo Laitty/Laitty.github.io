@@ -816,10 +816,15 @@ html[data-theme="dark"] footer {
   color: var(--apple-muted);
 }
 
+.apple-page article ul.travel-globe-stats,
+.post article ul.travel-globe-stats,
+.apple-article ul.travel-globe-stats,
 .travel-globe-stats {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.5rem;
+  box-sizing: border-box;
+  width: 100%;
   margin: 0;
   padding: 0 1rem 1rem;
   list-style: none;
@@ -1019,6 +1024,9 @@ html[data-theme="dark"] footer {
     margin-left: 0;
     width: 100%;
   }
+  .apple-page article ul.travel-globe-stats,
+  .post article ul.travel-globe-stats,
+  .apple-article ul.travel-globe-stats,
   .travel-globe-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     padding: 0 0.85rem 0.9rem;
