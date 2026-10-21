@@ -17,6 +17,12 @@
   --apple-glass-sm-blur: blur(16px) saturate(150%);
   --travel-stat-bg: rgba(255, 255, 255, 0.42);
   --travel-stat-border: rgba(226, 234, 242, 0.72);
+  --pub-affil-right: 0.7rem;
+  --pub-affil-size: min(16vw, 96px);
+  --pub-venue-gap: 0.55rem;
+  --pub-venue-slot: 12.7rem;
+  --pub-copy-gap: 0.45rem;
+  --pub-copy-inset: calc(var(--pub-affil-right) + var(--pub-affil-size) + var(--pub-venue-gap) + var(--pub-venue-slot) + var(--pub-copy-gap));
   --apple-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --global-theme-color: var(--cmu-red);
   --global-hover-color: var(--cmu-red-hover);
@@ -447,18 +453,6 @@ html[data-theme="dark"] .apple-btn-primary {
   border-radius: 16px;
 }
 
-.apple-page article ul > li:has(.pub-venue-mark),
-.post article ul > li:has(.pub-venue-mark),
-.apple-article ul > li:has(.pub-venue-mark) {
-  padding-right: calc(0.55rem + 3.15rem + 0.8rem + 12.7rem + 0.4rem);
-}
-
-.apple-page article ul > li:has(.pub-venue-mark):has(.is-collab),
-.post article ul > li:has(.pub-venue-mark):has(.is-collab),
-.apple-article ul > li:has(.pub-venue-mark):has(.is-collab) {
-  padding-right: calc(0.55rem + 2.7rem + 2.7rem + 0.22rem + 0.8rem + 12.7rem + 0.4rem);
-}
-
 .proj-affil-note {
   margin: 0.15rem 0 1.1rem;
   color: var(--apple-muted);
@@ -545,15 +539,6 @@ html[data-theme-setting="dark"] .proj-affils {
   white-space: normal;
 }
 
-.bibliography li:has(.pub-venue-mark) .title,
-.bibliography li:has(.pub-venue-mark) .author,
-.bibliography li:has(.pub-venue-mark) .periodical,
-.publications li:has(.pub-venue-mark) .title,
-.publications li:has(.pub-venue-mark) .author,
-.publications li:has(.pub-venue-mark) .periodical {
-  padding-right: calc(0.7rem + min(16vw, 96px) + 0.8rem + 12.7rem + 0.4rem);
-}
-
 .bibliography .author,
 .publications .author {
   display: block;
@@ -596,35 +581,37 @@ html[data-theme-setting="dark"] .proj-affils {
   pointer-events: none;
   position: absolute;
   z-index: 1;
-  right: 0.7rem;
+  right: var(--pub-affil-right);
   top: 50%;
-  width: min(16vw, 96px);
+  width: var(--pub-affil-size);
   aspect-ratio: 1;
   transform: translateY(-50%);
   opacity: 0.24;
 }
 
-.pub-venue-mark {
+.pub-venue-slot {
   pointer-events: none;
   position: absolute;
   z-index: 0;
-  top: 50%;
-  right: calc(0.7rem + min(16vw, 96px) + 0.8rem);
-  transform: translateY(-50%);
+  top: 0.35rem;
+  bottom: 0.35rem;
+  right: calc(var(--pub-affil-right) + var(--pub-affil-size) + var(--pub-venue-gap));
+  width: var(--pub-venue-slot);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+
+.pub-venue-mark {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
   opacity: 0.24;
-}
-
-.pub-venue-mark.is-icassp2026,
-.pub-venue-mark.is-acmmm2026 {
-  width: 12.7rem;
-}
-
-.pub-venue-mark.is-icassp2026 {
-  height: calc(12.7rem / 1.88);
-}
-
-.pub-venue-mark.is-acmmm2026 {
-  height: calc(12.7rem / 5.31);
 }
 
 .pub-venue-mark img {
@@ -632,15 +619,45 @@ html[data-theme-setting="dark"] .proj-affils {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: right center;
+  object-position: center;
 }
 
-li:has(.proj-affils) .pub-venue-mark {
-  right: calc(0.55rem + 3.15rem + 0.8rem);
+.bibliography li:has(.pub-venue-mark) > .row > [class*="col-"],
+.publications li:has(.pub-venue-mark) > .row > [class*="col-"] {
+  padding-right: var(--pub-copy-inset);
+  box-sizing: border-box;
 }
 
-li:has(.proj-affils .is-collab) .pub-venue-mark {
-  right: calc(0.55rem + 2.7rem + 2.7rem + 0.22rem + 0.8rem);
+.bibliography li:has(.pub-venue-mark) .title,
+.bibliography li:has(.pub-venue-mark) .author,
+.bibliography li:has(.pub-venue-mark) .periodical,
+.bibliography li:has(.pub-venue-mark) .links,
+.bibliography li:has(.pub-venue-mark) .hidden,
+.bibliography li:has(.pub-venue-mark) .abstract,
+.bibliography li:has(.pub-venue-mark) .bibtex,
+.publications li:has(.pub-venue-mark) .title,
+.publications li:has(.pub-venue-mark) .author,
+.publications li:has(.pub-venue-mark) .periodical,
+.publications li:has(.pub-venue-mark) .links,
+.publications li:has(.pub-venue-mark) .hidden,
+.publications li:has(.pub-venue-mark) .abstract,
+.publications li:has(.pub-venue-mark) .bibtex {
+  padding-right: 0;
+  max-width: 100%;
+}
+
+.apple-page article ul > li:has(.pub-venue-mark),
+.post article ul > li:has(.pub-venue-mark),
+.apple-article ul > li:has(.pub-venue-mark) {
+  --pub-affil-right: 0.55rem;
+  --pub-affil-size: 3.15rem;
+  padding-right: var(--pub-copy-inset);
+}
+
+.apple-page article ul > li:has(.pub-venue-mark):has(.is-collab),
+.post article ul > li:has(.pub-venue-mark):has(.is-collab),
+.apple-article ul > li:has(.pub-venue-mark):has(.is-collab) {
+  --pub-affil-size: calc(2.7rem + 2.7rem + 0.22rem);
 }
 
 .pub-affil-mark img {
@@ -660,6 +677,14 @@ html[data-theme-setting="dark"] .pub-venue-mark {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --pub-affil-right: 0.45rem;
+    --pub-affil-size: min(20vw, 72px);
+    --pub-venue-gap: 0.45rem;
+    --pub-venue-slot: 9.4rem;
+    --pub-copy-gap: 0.3rem;
+  }
+
   .bibliography .title,
   .publications .title,
   .bibliography .author,
@@ -669,50 +694,14 @@ html[data-theme-setting="dark"] .pub-venue-mark {
     padding-right: 4.6rem;
   }
 
-  .bibliography li:has(.pub-venue-mark) .title,
-  .bibliography li:has(.pub-venue-mark) .author,
-  .bibliography li:has(.pub-venue-mark) .periodical,
-  .publications li:has(.pub-venue-mark) .title,
-  .publications li:has(.pub-venue-mark) .author,
-  .publications li:has(.pub-venue-mark) .periodical {
-    padding-right: calc(0.45rem + min(20vw, 72px) + 0.65rem + 9.4rem + 0.3rem);
-  }
-
   .bibliography .title,
   .publications .title {
     font-size: 1rem;
   }
 
-  .pub-affil-mark {
-    right: 0.45rem;
-    width: min(20vw, 72px);
-    opacity: 0.2;
-  }
-
+  .pub-affil-mark,
   .pub-venue-mark {
-    right: calc(0.45rem + min(20vw, 72px) + 0.65rem);
     opacity: 0.2;
-  }
-
-  .pub-venue-mark.is-icassp2026,
-  .pub-venue-mark.is-acmmm2026 {
-    width: 9.4rem;
-  }
-
-  .pub-venue-mark.is-icassp2026 {
-    height: calc(9.4rem / 1.88);
-  }
-
-  .pub-venue-mark.is-acmmm2026 {
-    height: calc(9.4rem / 5.31);
-  }
-
-  li:has(.proj-affils) .pub-venue-mark {
-    right: calc(0.4rem + 2.35rem + 0.65rem);
-  }
-
-  li:has(.proj-affils .is-collab) .pub-venue-mark {
-    right: calc(0.4rem + 2.35rem + 2.35rem + 0.22rem + 0.65rem);
   }
 
   .apple-page article ul > li,
@@ -724,13 +713,15 @@ html[data-theme-setting="dark"] .pub-venue-mark {
   .apple-page article ul > li:has(.pub-venue-mark),
   .post article ul > li:has(.pub-venue-mark),
   .apple-article ul > li:has(.pub-venue-mark) {
-    padding-right: calc(0.4rem + 2.35rem + 0.65rem + 9.4rem + 0.3rem) !important;
+    --pub-affil-right: 0.4rem;
+    --pub-affil-size: 2.35rem;
+    padding-right: var(--pub-copy-inset) !important;
   }
 
   .apple-page article ul > li:has(.pub-venue-mark):has(.is-collab),
   .post article ul > li:has(.pub-venue-mark):has(.is-collab),
   .apple-article ul > li:has(.pub-venue-mark):has(.is-collab) {
-    padding-right: calc(0.4rem + 2.35rem + 2.35rem + 0.22rem + 0.65rem + 9.4rem + 0.3rem) !important;
+    --pub-affil-size: calc(2.35rem + 2.35rem + 0.22rem);
   }
 
   .proj-affils {
@@ -1121,12 +1112,14 @@ html[data-theme="dark"] footer {
   .apple-page article ul > li:has(.pub-venue-mark),
   .post article ul > li:has(.pub-venue-mark),
   .apple-article ul > li:has(.pub-venue-mark) {
-    padding-right: calc(0.4rem + 2.35rem + 0.65rem + 9.4rem + 0.3rem) !important;
+    --pub-affil-right: 0.4rem;
+    --pub-affil-size: 2.35rem;
+    padding-right: var(--pub-copy-inset) !important;
   }
   .apple-page article ul > li:has(.pub-venue-mark):has(.is-collab),
   .post article ul > li:has(.pub-venue-mark):has(.is-collab),
   .apple-article ul > li:has(.pub-venue-mark):has(.is-collab) {
-    padding-right: calc(0.4rem + 2.35rem + 2.35rem + 0.22rem + 0.65rem + 9.4rem + 0.3rem) !important;
+    --pub-affil-size: calc(2.35rem + 2.35rem + 0.22rem);
   }
   .travel-globe-card {
     margin: 0.85rem 0 1.8rem;
