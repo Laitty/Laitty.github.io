@@ -97,8 +97,8 @@ cv:
         end_date: "2026-05"
         highlights:
           - "Nuclear sensor online monitoring and energy-system AI."
-          - "Mamba-In (co-first author) is under review at EAAI."
-          - "Critical-heat-flux review in preparation for Energy."
+          - "Mamba-In (co-first author)."
+          - "Critical-heat-flux review proposal sent; contacting Energy for an invitation."
 
     Academic Service:
       - name: Reviewer
@@ -119,13 +119,12 @@ cv:
         location: Shenzhen, China
         position: Research Assistant, Shenzhen University
         highlights:
-          - "Review in preparation; planned submission to Energy."
+          - "Review proposal sent; contacting Energy for an invitation."
 
       - title: "Mamba-In: An Informer-based Industrial Long-Term Time-Series Prediction for High-Reliability Sensor Online Monitoring in Nuclear Applications"
         location: Shenzhen, China
         position: Research Assistant, Shenzhen University
         highlights:
-          - "Under review at EAAI."
           - "Combines a Mamba branch and an Informer-style ProbSparse attention branch for long-horizon multivariate virtual sensing, residual-based fault detection, and signal reconstruction."
 
       - title: "ReLaMix: Forecasting with Delayed Observations"
