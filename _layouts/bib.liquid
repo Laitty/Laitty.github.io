@@ -1,17 +1,6 @@
 ---
 ---
 <div class="row">
-  {% if entry.venue_logo %}
-    <div class="pub-venue-mark" aria-hidden="true">
-      <img
-        src="{{ '/assets/img/venues/' | append: entry.venue_logo | append: '.png' | relative_url }}"
-        alt=""
-        width="400"
-        height="160"
-        decoding="async"
-      >
-    </div>
-  {% endif %}
   {% if entry.affiliation %}
     <div class="pub-affil-mark" aria-hidden="true">
       <img
