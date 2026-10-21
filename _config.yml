@@ -400,6 +400,7 @@ filtered_bibtex_keywords:
     preview,
     selected,
     category,
+    venue_logo,
     slides,
     supp,
     video,

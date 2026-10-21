@@ -583,16 +583,28 @@ html[data-theme-setting="dark"] .proj-affils {
   z-index: 1;
 }
 
-.pub-affil-mark {
+.pub-venue-mark {
   pointer-events: none;
   position: absolute;
   z-index: 0;
-  right: 0.7rem;
+  right: 5.4rem;
   top: 50%;
-  width: min(16vw, 96px);
-  aspect-ratio: 1;
+  height: 4.6rem;
+  width: min(48%, 17rem);
   transform: translateY(-50%);
   opacity: 0.24;
+}
+
+.pub-venue-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right center;
+}
+
+li:not(:has(.pub-affil-mark)):not(:has(.proj-affils)) .pub-venue-mark {
+  right: 0.7rem;
 }
 
 .pub-affil-mark img {
@@ -603,7 +615,9 @@ html[data-theme-setting="dark"] .proj-affils {
 }
 
 html[data-theme="dark"] .pub-affil-mark,
-html[data-theme-setting="dark"] .pub-affil-mark {
+html[data-theme-setting="dark"] .pub-affil-mark,
+html[data-theme="dark"] .pub-venue-mark,
+html[data-theme-setting="dark"] .pub-venue-mark {
   /* Keep affiliation seal hue (LZU navy); no invert-to-gray. */
   opacity: 0.38;
   filter: brightness(1.08);
@@ -627,6 +641,13 @@ html[data-theme-setting="dark"] .pub-affil-mark {
   .pub-affil-mark {
     right: 0.45rem;
     width: min(20vw, 72px);
+    opacity: 0.2;
+  }
+
+  .pub-venue-mark {
+    right: 3.7rem;
+    height: 3.15rem;
+    width: min(56%, 11.5rem);
     opacity: 0.2;
   }
 
