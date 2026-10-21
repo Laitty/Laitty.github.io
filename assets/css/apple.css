@@ -454,6 +454,18 @@ html[data-theme="dark"] .apple-btn-primary {
   border-radius: 16px;
 }
 
+.apple-page article ul > li:has(.pub-venue-mark),
+.post article ul > li:has(.pub-venue-mark),
+.apple-article ul > li:has(.pub-venue-mark) {
+  padding-right: calc(0.55rem + 3.15rem + 0.8rem + 12.7rem + 0.4rem);
+}
+
+.apple-page article ul > li:has(.pub-venue-mark):has(.is-collab),
+.post article ul > li:has(.pub-venue-mark):has(.is-collab),
+.apple-article ul > li:has(.pub-venue-mark):has(.is-collab) {
+  padding-right: calc(0.55rem + 2.7rem + 2.7rem + 0.22rem + 0.8rem + 12.7rem + 0.4rem);
+}
+
 .proj-affil-note {
   margin: 0.15rem 0 1.1rem;
   color: var(--apple-muted);
@@ -545,6 +557,15 @@ html[data-theme-setting="dark"] .proj-affils {
   white-space: normal;
 }
 
+.bibliography li:has(.pub-venue-mark) .title,
+.bibliography li:has(.pub-venue-mark) .author,
+.bibliography li:has(.pub-venue-mark) .periodical,
+.publications li:has(.pub-venue-mark) .title,
+.publications li:has(.pub-venue-mark) .author,
+.publications li:has(.pub-venue-mark) .periodical {
+  padding-right: calc(0.7rem + min(16vw, 96px) + 0.8rem + 12.7rem + 0.4rem);
+}
+
 .bibliography .author,
 .publications .author {
   display: block;
@@ -607,15 +628,15 @@ html[data-theme-setting="dark"] .proj-affils {
 
 .pub-venue-mark.is-icassp2026,
 .pub-venue-mark.is-acmmm2026 {
-  width: 13.5rem;
+  width: 12.7rem;
 }
 
 .pub-venue-mark.is-icassp2026 {
-  height: calc(13.5rem / 1.88);
+  height: calc(12.7rem / 1.88);
 }
 
 .pub-venue-mark.is-acmmm2026 {
-  height: calc(13.5rem / 5.31);
+  height: calc(12.7rem / 5.31);
 }
 
 .pub-venue-mark img {
@@ -660,6 +681,15 @@ html[data-theme-setting="dark"] .pub-venue-mark {
     padding-right: 4.6rem;
   }
 
+  .bibliography li:has(.pub-venue-mark) .title,
+  .bibliography li:has(.pub-venue-mark) .author,
+  .bibliography li:has(.pub-venue-mark) .periodical,
+  .publications li:has(.pub-venue-mark) .title,
+  .publications li:has(.pub-venue-mark) .author,
+  .publications li:has(.pub-venue-mark) .periodical {
+    padding-right: calc(0.45rem + min(20vw, 72px) + 0.65rem + 9.4rem + 0.3rem);
+  }
+
   .bibliography .title,
   .publications .title {
     font-size: 1rem;
@@ -678,15 +708,15 @@ html[data-theme-setting="dark"] .pub-venue-mark {
 
   .pub-venue-mark.is-icassp2026,
   .pub-venue-mark.is-acmmm2026 {
-    width: 10rem;
+    width: 9.4rem;
   }
 
   .pub-venue-mark.is-icassp2026 {
-    height: calc(10rem / 1.88);
+    height: calc(9.4rem / 1.88);
   }
 
   .pub-venue-mark.is-acmmm2026 {
-    height: calc(10rem / 5.31);
+    height: calc(9.4rem / 5.31);
   }
 
   li:has(.proj-affils) .pub-venue-mark {
@@ -701,6 +731,18 @@ html[data-theme-setting="dark"] .pub-venue-mark {
   .post article ul > li,
   .apple-article ul > li {
     padding-right: 4.6rem !important;
+  }
+
+  .apple-page article ul > li:has(.pub-venue-mark),
+  .post article ul > li:has(.pub-venue-mark),
+  .apple-article ul > li:has(.pub-venue-mark) {
+    padding-right: calc(0.4rem + 2.35rem + 0.65rem + 9.4rem + 0.3rem) !important;
+  }
+
+  .apple-page article ul > li:has(.pub-venue-mark):has(.is-collab),
+  .post article ul > li:has(.pub-venue-mark):has(.is-collab),
+  .apple-article ul > li:has(.pub-venue-mark):has(.is-collab) {
+    padding-right: calc(0.4rem + 2.35rem + 2.35rem + 0.22rem + 0.65rem + 9.4rem + 0.3rem) !important;
   }
 
   .proj-affils {
@@ -1100,6 +1142,16 @@ html[data-theme="dark"] footer {
   .apple-article ul > li {
     padding: 0.85rem 4.6rem 0.85rem 0.95rem !important;
     border-radius: 14px;
+  }
+  .apple-page article ul > li:has(.pub-venue-mark),
+  .post article ul > li:has(.pub-venue-mark),
+  .apple-article ul > li:has(.pub-venue-mark) {
+    padding-right: calc(0.4rem + 2.35rem + 0.65rem + 9.4rem + 0.3rem) !important;
+  }
+  .apple-page article ul > li:has(.pub-venue-mark):has(.is-collab),
+  .post article ul > li:has(.pub-venue-mark):has(.is-collab),
+  .apple-article ul > li:has(.pub-venue-mark):has(.is-collab) {
+    padding-right: calc(0.4rem + 2.35rem + 2.35rem + 0.22rem + 0.65rem + 9.4rem + 0.3rem) !important;
   }
   .travel-globe-card {
     margin: 0.85rem 0 1.8rem;
