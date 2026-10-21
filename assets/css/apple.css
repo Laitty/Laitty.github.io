@@ -335,7 +335,7 @@ html[data-theme-setting="dark"] .apple-hero-title {
   max-width: 38rem;
   color: var(--apple-text);
   font-size: 1.12rem;
-  line-height: 1.5;
+  line-height: 1.42;
 }
 
 .apple-hero-actions {
