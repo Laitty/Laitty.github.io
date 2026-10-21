@@ -1076,8 +1076,28 @@ html[data-theme="dark"] footer {
   .apple-hero-sub { font-size: 1.08rem; }
   .apple-hero-lede {
     font-size: 1.02rem;
-    margin-top: -0.5rem;
-    margin-bottom: 1.7rem;
+    line-height: 1.2;
+    margin-top: -0.55rem;
+    margin-bottom: 1.75rem;
+  }
+  .pub-venue-mark {
+    right: calc(0.5rem + min(18vw, 84px) + 0.7rem);
+  }
+  .pub-venue-mark.is-icassp2026,
+  .pub-venue-mark.is-acmmm2026 {
+    width: 10.4rem;
+  }
+  .pub-venue-mark.is-icassp2026 {
+    height: calc(10.4rem / 1.88);
+  }
+  .pub-venue-mark.is-acmmm2026 {
+    height: calc(10.4rem / 5.31);
+  }
+  li:has(.proj-affils) .pub-venue-mark {
+    right: calc(0.45rem + 2.6rem + 0.7rem);
+  }
+  li:has(.proj-affils .is-collab) .pub-venue-mark {
+    right: calc(0.45rem + 2.5rem + 2.5rem + 0.22rem + 0.7rem);
   }
   .apple-btn {
     min-height: 2.6rem;
@@ -1138,6 +1158,33 @@ html[data-theme="dark"] footer {
     background: var(--travel-stat-bg) !important;
     border: 1px solid var(--travel-stat-border) !important;
     box-shadow: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .pub-venue-mark {
+    right: calc(0.45rem + min(20vw, 72px) + 0.65rem);
+  }
+
+  .pub-venue-mark.is-icassp2026,
+  .pub-venue-mark.is-acmmm2026 {
+    width: 9.4rem;
+  }
+
+  .pub-venue-mark.is-icassp2026 {
+    height: calc(9.4rem / 1.88);
+  }
+
+  .pub-venue-mark.is-acmmm2026 {
+    height: calc(9.4rem / 5.31);
+  }
+
+  li:has(.proj-affils) .pub-venue-mark {
+    right: calc(0.4rem + 2.35rem + 0.65rem);
+  }
+
+  li:has(.proj-affils .is-collab) .pub-venue-mark {
+    right: calc(0.4rem + 2.35rem + 2.35rem + 0.22rem + 0.65rem);
   }
 }
 

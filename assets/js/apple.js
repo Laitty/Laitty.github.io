@@ -51,17 +51,18 @@ function initLiquidName() {
   const lai = ["L", "a", "i"];
   const given = ["T", "i", "a", "n", "y", "o", "u"];
 
-  const layout = phone
-    ? [
-        ...lai.map((ch, i) => ({ ch, nx: 0.3 + i * 0.2, ny: 0.26, s: 0.22, tier: "core" })),
-        ...given.map((ch, i) => ({ ch, nx: 0.08 + i * 0.14, ny: 0.58, s: 0.15, tier: "row" })),
-      ]
-    : [
-        ...lai.map((ch, i) => ({ ch, nx: 0.28 + i * 0.22, ny: 0.26, s: 0.3, tier: "core" })),
-        ...given.map((ch, i) => ({ ch, nx: 0.12 + i * 0.126, ny: 0.46, s: 0.16, tier: "row" })),
-      ];
+  const layoutFor = (isPhone) =>
+    isPhone
+      ? [
+          ...lai.map((ch, i) => ({ ch, nx: 0.3 + i * 0.2, ny: 0.26, s: 0.22, tier: "core" })),
+          ...given.map((ch, i) => ({ ch, nx: 0.08 + i * 0.14, ny: 0.56, s: 0.15, tier: "row" })),
+        ]
+      : [
+          ...lai.map((ch, i) => ({ ch, nx: 0.28 + i * 0.22, ny: 0.26, s: 0.3, tier: "core" })),
+          ...given.map((ch, i) => ({ ch, nx: 0.12 + i * 0.126, ny: 0.46, s: 0.16, tier: "row" })),
+        ];
 
-  const glyphs = layout.map((g, i) => ({
+  const glyphs = layoutFor(phone).map((g, i) => ({
     ...g,
     rot: (i % 2 === 0 ? -1 : 1) * (0.04 + (i % 5) * 0.015),
     phase: i * 0.72,
@@ -102,8 +103,21 @@ function initLiquidName() {
 
   let anchor = { x: 0, y: 0, w: 1, h: 1 };
 
+  const applyLayout = (next) => {
+    next.forEach((g, i) => {
+      glyphs[i].nx = g.nx;
+      glyphs[i].ny = g.ny;
+      glyphs[i].s = g.s;
+      glyphs[i].tier = g.tier;
+    });
+  };
+
   const fit = () => {
-    phone = isPhone();
+    const nextPhone = isPhone();
+    if (nextPhone !== phone) {
+      phone = nextPhone;
+      applyLayout(layoutFor(phone));
+    }
     dpr = Math.min(window.devicePixelRatio || 1, phone ? 1.5 : 2);
     const box = hero.getBoundingClientRect();
     hw = Math.max(1, Math.floor(box.width));
