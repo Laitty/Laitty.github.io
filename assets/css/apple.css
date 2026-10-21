@@ -201,7 +201,7 @@ html[data-theme="dark"] .apple-orbs {
   position: absolute;
   z-index: 0;
   left: 50%;
-  top: 88%;
+  top: 66%;
   width: min(32vw, 180px);
   aspect-ratio: 562 / 600;
   transform: translate(-50%, -50%);
@@ -324,8 +324,8 @@ html[data-theme-setting="dark"] .apple-hero-title {
 
 .apple-hero-lede {
   position: relative;
-  margin: 0 auto 2.2rem;
-  margin-top: -0.1rem;
+  margin: 0 auto 2.35rem;
+  margin-top: -0.65rem;
   max-width: 38rem;
   color: var(--apple-text);
   font-size: 1.12rem;
@@ -1037,7 +1037,7 @@ html[data-theme="dark"] footer {
     opacity: 0.95;
   }
   .apple-tartan-mark {
-    top: 90%;
+    top: 68%;
     width: min(42vw, 140px);
     opacity: 0.26;
   }
@@ -1076,6 +1076,7 @@ html[data-theme="dark"] footer {
   .apple-hero-sub { font-size: 1.08rem; }
   .apple-hero-lede {
     font-size: 1.02rem;
+    margin-top: -0.5rem;
     margin-bottom: 1.7rem;
   }
   .apple-btn {
