@@ -1,5 +1,6 @@
-# Search engines, scholarly indexers, and common LLM retrieval crawlers may crawl.
-# SEO harvesters remain disallowed.
+# Search engines and scholarly indexers may crawl.
+# Training crawlers, SEO harvesters, and bulk scrapers are asked to stay out.
+# GitHub Pages cannot enforce this server-side; this file is the site policy.
 
 User-agent: Googlebot
 Allow: /
@@ -25,60 +26,75 @@ Allow: /
 User-agent: YandexBot
 Allow: /
 
-# Common LLM search, retrieval, and collection
+# AI training and bulk extraction
 User-agent: GPTBot
-Allow: /
+Disallow: /
 
 User-agent: ChatGPT-User
-Allow: /
+Disallow: /
 
 User-agent: OAI-SearchBot
-Allow: /
+Disallow: /
 
 User-agent: Google-Extended
-Allow: /
+Disallow: /
 
 User-agent: Applebot-Extended
-Allow: /
+Disallow: /
 
 User-agent: anthropic-ai
-Allow: /
+Disallow: /
 
 User-agent: ClaudeBot
-Allow: /
+Disallow: /
 
 User-agent: Claude-Web
-Allow: /
+Disallow: /
 
 User-agent: Claude-SearchBot
-Allow: /
+Disallow: /
 
 User-agent: Claude-User
-Allow: /
+Disallow: /
 
 User-agent: CCBot
-Allow: /
+Disallow: /
 
 User-agent: Bytespider
-Allow: /
+Disallow: /
 
 User-agent: Amazonbot
-Allow: /
+Disallow: /
 
 User-agent: meta-externalagent
-Allow: /
+Disallow: /
 
 User-agent: FacebookBot
-Allow: /
+Disallow: /
 
 User-agent: cohere-ai
-Allow: /
+Disallow: /
 
 User-agent: PerplexityBot
-Allow: /
+Disallow: /
 
 User-agent: YouBot
-Allow: /
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
+User-agent: Webzio-Extended
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
 
 # SEO / archive harvesters
 User-agent: AhrefsBot
@@ -105,20 +121,9 @@ Disallow: /
 User-agent: BUbiNG
 Disallow: /
 
-User-agent: Diffbot
-Disallow: /
-
-User-agent: ImagesiftBot
-Disallow: /
-
-User-agent: Timpibot
-Disallow: /
-
-User-agent: Webzio-Extended
-Disallow: /
-
 User-agent: *
 Allow: /
 Crawl-delay: 10
+Disallow: /llms.txt
 
 Sitemap: https://laitty.github.io/sitemap.xml
