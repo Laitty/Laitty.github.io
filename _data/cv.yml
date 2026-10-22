@@ -12,6 +12,8 @@ cv:
         studyType: MS
         start_date: "2026-08"
         end_date: "2027-12"
+        highlights:
+          - "GPA: 4/4"
 
       - institution: Lanzhou University
         location: Lanzhou, China
