@@ -443,15 +443,14 @@ html[data-theme="dark"] .apple-btn-primary {
 .post article ul > li,
 .apple-article ul > li {
   margin: 0 0 0.85rem;
-  padding: 1.05rem 5.6rem 1.05rem 1.15rem;
+  padding: 1.05rem 1.15rem;
   border-radius: 16px;
 }
 
-.proj-affil-note {
-  margin: 0.15rem 0 1.1rem;
-  color: var(--apple-muted);
-  font-size: 0.86rem;
-  line-height: 1.4;
+.apple-page article ul > li:has(.proj-affils),
+.post article ul > li:has(.proj-affils),
+.apple-article ul > li:has(.proj-affils) {
+  padding-right: 5.6rem;
 }
 
 .proj-affils {
@@ -672,6 +671,12 @@ html[data-theme-setting="dark"] .pub-venue-mark {
   .apple-page article ul > li,
   .post article ul > li,
   .apple-article ul > li {
+    padding-right: 1.15rem !important;
+  }
+
+  .apple-page article ul > li:has(.proj-affils),
+  .post article ul > li:has(.proj-affils),
+  .apple-article ul > li:has(.proj-affils) {
     padding-right: 4.6rem !important;
   }
 
@@ -1072,8 +1077,13 @@ html[data-theme="dark"] footer {
   .apple-page article ul > li,
   .post article ul > li,
   .apple-article ul > li {
-    padding: 0.85rem 4.6rem 0.85rem 0.95rem !important;
+    padding: 0.85rem 0.95rem !important;
     border-radius: 14px;
+  }
+  .apple-page article ul > li:has(.proj-affils),
+  .post article ul > li:has(.proj-affils),
+  .apple-article ul > li:has(.proj-affils) {
+    padding-right: 4.6rem !important;
   }
   .travel-globe-card {
     margin: 0.85rem 0 1.8rem;
