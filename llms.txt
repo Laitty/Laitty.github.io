@@ -1,38 +1,16 @@
 ---
 layout: null
 permalink: /llms.txt
+sitemap: false
 ---
 # Tianyou (Theo) Lai
 
-> MS student in Artificial Intelligence Systems Management at Carnegie Mellon University.
-> Research in reliable learning, model evaluation, federated learning, unlearning, and applied machine learning.
+User-Agent: *
+Content-Usage: train-ai=n search=y ai-input=n
 
-- Name: Tianyou (Theo) Lai
+Training, fine-tuning, and bulk scraping of this site are not permitted.
+Index the public pages with conventional search engines. Cite papers by their DOI or arXiv id.
+
 - Site: https://laitty.github.io/
-- Google Scholar: https://scholar.google.com/citations?user=ssb7e7MAAAAJ
-- GitHub: https://github.com/laitty
-- LinkedIn: https://www.linkedin.com/in/tianyoulai
-- ResearchGate: https://www.researchgate.net/profile/Tianyou-Lai
-
-## Pages
-
-- [About](https://laitty.github.io/): biography, education, and appointments
-- [Research & Projects](https://laitty.github.io/publications/): publications, preprints, and research experience
-- [Sitemap](https://laitty.github.io/sitemap.xml)
-
-## Publications
-
-- TRACE: Training-time Report-guided and Clinically Ordered Concept Editing (ACM MM 2026). https://arxiv.org/abs/2608.20809 https://doi.org/10.1145/3767308.3836433
-- FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection (ICASSP 2026). https://doi.org/10.1109/ICASSP55912.2026.11462834
-- A Review of Federated Learning under Data Heterogeneity (Expert Systems, 2026). https://doi.org/10.1111/exsy.70271
-- Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter (AIP Advances, 2025). https://doi.org/10.1063/5.0281453
-- A Modularity-Enhanced Echo State Network for Nonlinear Wind Energy Predicting (Energies, 2025). https://doi.org/10.3390/en18071858
-
-## Preprints
-
-- Which Differences Matter? Controlled Tests of Rule Transfer, Joint Reliability, and Information Use in Decision Models. https://arxiv.org/abs/2610.30045
-- Correct Choices, Failed Sequences: Choice2Seq Benchmarks Correctness Retention Across Output Interfaces. https://arxiv.org/abs/2610.16191
-- FedSAP: Federated Learning with Structured Adaptive Partitioning for Multi-Domain Heterogeneous Edge Devices. https://arxiv.org/abs/2610.01638
-- After Cooperation Is Learned: Gradient Routing and Optimizer-Dependent Maintenance in Multi-Agent Reinforcement Learning. https://arxiv.org/abs/2610.01630
-- Beyond Domain-Level Adaptation: Margin-Oriented Semantic-Appearance Interaction Correction for Personalized Federated Vision-Language Models. https://arxiv.org/abs/2610.01625
-- ReLaMix: Residual Latency-Aware Mixing for Delay-Robust Financial Time-Series Forecasting. https://arxiv.org/abs/2603.20869
+- Research: https://laitty.github.io/publications/
+- Scholar: https://scholar.google.com/citations?user=ssb7e7MAAAAJ
