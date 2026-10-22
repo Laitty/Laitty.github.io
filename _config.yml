@@ -6,11 +6,12 @@ title: Tianyou (Theo) Lai # the website title (if blank, full name will be used 
 first_name: Tianyou (Theo)
 middle_name: ""
 last_name: Lai
+author: Tianyou (Theo) Lai
 contact_note:
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Tianyou (Theo) Lai is an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University, with research interests in Artificial Intelligence, Machine Learning, LLM, Data Science, and AI for Science.
+  Tianyou (Theo) Lai is an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University, with research in reliable learning, model evaluation, federated learning, unlearning, and applied machine learning.
 footer_text: ""
-keywords: Tianyou Lai, Theo Lai, Artificial Intelligence, Machine Learning, LLM, Data Science, AI for Science, time-series forecasting, signal processing, federated learning, academic website
+keywords: Tianyou Lai, Tianyou (Theo) Lai, Theo Lai, Laitty, Carnegie Mellon University, CMU, Lanzhou University, Artificial Intelligence, Machine Learning, LLM, federated learning, model unlearning, TRACE, FREDNet, Choice2Seq, academic website
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: ♊️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 apple_touch_icon: # image name in /assets/img/ (or a rooted path / absolute URL) used for iOS home-screen bookmarks; needs a real 180x180 PNG, since Safari ignores the emoji favicon above. Left empty, iOS falls back to a screenshot of the page.
@@ -96,7 +97,7 @@ footer_fixed: true
 search_enabled: true
 socials_in_search: true
 posts_in_search: false
-bib_search: false
+bib_search: true
 
 # Dimensions
 max_width: 980px
@@ -106,9 +107,9 @@ max_width: 980px
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
 # see https://schema.org/docs/faq.html for more information
-serve_og_meta: false # Include Open Graph meta tags in the HTML head
-serve_schema_org: false # Include Schema.org in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+serve_og_meta: true # Include Open Graph meta tags in the HTML head
+serve_schema_org: true # Include Schema.org in the HTML head
+og_image: /assets/img/og-image.png # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
@@ -309,7 +310,7 @@ jekyll-minifier:
   # breaking every spacing/positioning utility (e.g. .fixed-top -> broken navbar). Disable it.
   compress_css: false
   # JS minification is delegated to jekyll-terser (compress_javascript above is false).
-  exclude: ["robots.txt"]
+  exclude: ["robots.txt", "llms.txt"]
 
 # -----------------------------------------------------------------------------
 # Terser

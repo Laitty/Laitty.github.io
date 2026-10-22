@@ -2,6 +2,8 @@
 layout: about
 title: About
 permalink: /
+description: >-
+  Tianyou (Theo) Lai, MS student in Artificial Intelligence Systems Management at Carnegie Mellon University. Research in reliable learning, model evaluation, federated learning, and applied machine learning.
 travel_globe: true
 nav: false
 subtitle: >
