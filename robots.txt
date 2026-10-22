@@ -1,9 +1,8 @@
 ---
 permalink: /robots.txt
 ---
-# Search engines and scholarly indexers may crawl.
-# Training crawlers, SEO harvesters, and bulk scrapers are asked to stay out.
-# GitHub Pages cannot enforce this server-side; this file is the site policy.
+# Search engines, scholarly indexers, and common LLM retrieval crawlers may crawl.
+# SEO harvesters remain disallowed.
 
 User-agent: Googlebot
 Allow: /
@@ -29,75 +28,60 @@ Allow: /
 User-agent: YandexBot
 Allow: /
 
-# AI training and bulk extraction
+# Common LLM search, retrieval, and collection
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 
 User-agent: OAI-SearchBot
-Disallow: /
+Allow: /
 
 User-agent: Google-Extended
-Disallow: /
+Allow: /
 
 User-agent: Applebot-Extended
-Disallow: /
+Allow: /
 
 User-agent: anthropic-ai
-Disallow: /
+Allow: /
 
 User-agent: ClaudeBot
-Disallow: /
+Allow: /
 
 User-agent: Claude-Web
-Disallow: /
+Allow: /
 
 User-agent: Claude-SearchBot
-Disallow: /
+Allow: /
 
 User-agent: Claude-User
-Disallow: /
+Allow: /
 
 User-agent: CCBot
-Disallow: /
+Allow: /
 
 User-agent: Bytespider
-Disallow: /
+Allow: /
 
 User-agent: Amazonbot
-Disallow: /
+Allow: /
 
 User-agent: meta-externalagent
-Disallow: /
+Allow: /
 
 User-agent: FacebookBot
-Disallow: /
+Allow: /
 
 User-agent: cohere-ai
-Disallow: /
+Allow: /
 
 User-agent: PerplexityBot
-Disallow: /
+Allow: /
 
 User-agent: YouBot
-Disallow: /
-
-User-agent: Diffbot
-Disallow: /
-
-User-agent: ImagesiftBot
-Disallow: /
-
-User-agent: Timpibot
-Disallow: /
-
-User-agent: Webzio-Extended
-Disallow: /
-
-User-agent: PetalBot
-Disallow: /
+Allow: /
 
 # SEO / archive harvesters
 User-agent: AhrefsBot
@@ -124,9 +108,20 @@ Disallow: /
 User-agent: BUbiNG
 Disallow: /
 
+User-agent: Diffbot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
+User-agent: Webzio-Extended
+Disallow: /
+
 User-agent: *
 Allow: /
 Crawl-delay: 10
-Disallow: /llms.txt
 
 Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml
