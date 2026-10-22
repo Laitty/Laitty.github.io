@@ -2,8 +2,7 @@
 layout: page
 permalink: /publications/
 title: "Research & Projects"
-description: >-
-  Publications and preprints by Tianyou (Theo) Lai, including TRACE (ACM MM 2026), FREDNet (ICASSP 2026), Choice2Seq, and Which Differences Matter?
+description: Publications, preprints, research areas, and selected projects.
 nav: true
 nav_order: 2
 visitor_map: true
