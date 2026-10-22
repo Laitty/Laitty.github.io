@@ -3,6 +3,12 @@
 > MS student in Artificial Intelligence Systems Management at Carnegie Mellon University.
 > Research in reliable learning, model evaluation, federated learning, unlearning, and applied machine learning.
 
+User-Agent: *
+Content-Usage: train-ai=y search=y ai-input=y
+
+Common LLM search, retrieval, and collection of this site are permitted.
+Cite papers by their DOI or arXiv id.
+
 - Name: Tianyou (Theo) Lai
 - Site: https://laitty.github.io/
 - Google Scholar: https://scholar.google.com/citations?user=ssb7e7MAAAAJ
