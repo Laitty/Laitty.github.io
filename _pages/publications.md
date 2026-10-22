@@ -20,7 +20,7 @@ visitor_map: true
 
 <div class="publications">
 
-{% bibliography --query @*[category=preprint] %}
+{% bibliography --query @*[category=preprint] --sort none %}
 
 </div>
 
