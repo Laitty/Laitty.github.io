@@ -467,6 +467,36 @@ html[data-theme="dark"] .apple-btn-primary {
   line-height: 1.4;
 }
 
+.proj-advisor {
+  display: block;
+  margin-top: 0.42rem;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 0.9em;
+  font-weight: 400;
+  letter-spacing: 0.012em;
+  color: var(--apple-muted);
+  line-height: 1.4;
+}
+
+.proj-meta {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--apple-muted);
+}
+
+.item-label {
+  font-weight: 600;
+  color: var(--apple-text);
+}
+
+.item-label::after {
+  content: " —";
+  font-weight: 500;
+  color: var(--apple-muted);
+  margin-right: 0.28em;
+}
+
 .proj-affils {
   pointer-events: none;
   position: absolute;

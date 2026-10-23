@@ -38,9 +38,9 @@ In research, I work across model design, dataset preparation, training, and expe
 
 ## Education
 
-- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/cmu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**Carnegie Mellon University** - MS in Artificial Intelligence Systems Management, Aug. 2026 - Dec. 2027 (expected); GPA: 4/4
-- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/lzu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**Lanzhou University** - BS in Data Science & Big Data Technology, Sep. 2021 - Jul. 2025; GPA: 87.34/100
-- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/ut.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**The University of Texas at Austin** - Exchange Program in Software Engineering, Jan. 2024 - Feb. 2024; GPA: 4/4
+- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/cmu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**Carnegie Mellon University** — MS in Artificial Intelligence Systems Management, Aug. 2026 – Dec. 2027 (expected); GPA: 4/4
+- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/lzu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**Lanzhou University** — BS in Data Science & Big Data Technology, Sep. 2021 – Jul. 2025; GPA: 87.34/100
+- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/ut.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**The University of Texas at Austin** — Exchange Program in Software Engineering, Jan. 2024 – Feb. 2024; GPA: 4/4
 
 ## Publications {#publications}
 
@@ -54,32 +54,32 @@ In research, I work across model design, dataset preparation, training, and expe
 
 ## Professional Experience
 
-- **Data Science Intern, Sichuan DeepGraph Intelligent Technology** (Sep. 2024 - Feb. 2025): cleaned and preprocessed data in Python, queried complex datasets with Ultipa XAI — a financial graph database serving financial institutions — and assisted with data-analysis algorithm optimization.
-- **Data Engineer Intern, Lanzhou Bronze Ding Intelligent Technology** (Mar. 2024 - Sep. 2024): organized 20+ datasets and labeled 10k+ entries using Python and SQL; deployed MySQL and Hadoop; produced seven analysis reports with Matplotlib and Seaborn.
-- **Quantitative Research Intern, Guotai Junan Futures** (Mar. 2024 - Apr. 2024): developed a Python futures trading system, debugged C++ and Python CTP-API implementations with Simnow, and implemented TWAP and VWAP algorithms with TA-Lib.
-- **Tax and Business Consulting Intern, Zhongzheng Tiantong CPA Tax Department** (Jul. 2023 - Sep. 2023): processed data with Python and SQL, prepared Tableau reports, and analyzed client financials, risks, and market trends.
-- **Product Data Engineer Intern, Feitian Technologies** (Jul. 2022 - Jan. 2023): supported product databases and intelligent password-system testing with Python, SQL, and C/C++; completed 30+ performance tests and prepared 10+ blockchain report summaries.
+- **Data Science Intern, Sichuan DeepGraph Intelligent Technology** <span class="proj-meta">(Sep. 2024 – Feb. 2025)</span> — cleaned and preprocessed data in Python, queried complex datasets with Ultipa XAI — a financial graph database serving financial institutions — and assisted with data-analysis algorithm optimization.
+- **Data Engineer Intern, Lanzhou Bronze Ding Intelligent Technology** <span class="proj-meta">(Mar. 2024 – Sep. 2024)</span> — organized 20+ datasets and labeled 10k+ entries using Python and SQL; deployed MySQL and Hadoop; produced seven analysis reports with Matplotlib and Seaborn.
+- **Quantitative Research Intern, Guotai Junan Futures** <span class="proj-meta">(Mar. 2024 – Apr. 2024)</span> — developed a Python futures trading system, debugged C++ and Python CTP-API implementations with Simnow, and implemented TWAP and VWAP algorithms with TA-Lib.
+- **Tax and Business Consulting Intern, Zhongzheng Tiantong CPA Tax Department** <span class="proj-meta">(Jul. 2023 – Sep. 2023)</span> — processed data with Python and SQL, prepared Tableau reports, and analyzed client financials, risks, and market trends.
+- **Product Data Engineer Intern, Feitian Technologies** <span class="proj-meta">(Jul. 2022 – Jan. 2023)</span> — supported product databases and intelligent password-system testing with Python, SQL, and C/C++; completed 30+ performance tests and prepared 10+ blockchain report summaries.
 
 ## Research Appointment
 
-- **Research Assistant, Shenzhen University** (Oct. 2025 - May 2026): nuclear sensor online monitoring and energy-system AI, including **Mamba-In** (co-first author). The critical-heat-flux review begun in this appointment is ongoing (proposal sent; contacting _Energy_ for an invitation).
+- **Research Assistant, Shenzhen University** <span class="proj-meta">(Oct. 2025 – May 2026)</span> — nuclear sensor online monitoring and energy-system AI, including **Mamba-In** (co-first author). The critical-heat-flux review begun in this appointment is ongoing (proposal sent; contacting _Energy_ for an invitation).
 
 ## Academic Service
 
-- **Reviewer:** ICASSP 2027, ACM MM 2026, IJCNN 2026, Open Journal of Signal Processing.
-- **IEEE Member**, 2025–present.
+- <span class="item-label">Reviewer</span> ICASSP 2027, ACM MM 2026, IJCNN 2026, Open Journal of Signal Processing.
+- <span class="item-label">IEEE Member</span> 2025–present.
 
 ## Skills and Honors
 
-- **Technical skills:** Python (PyTorch, TensorFlow), Java, SQL, C/C++, HTML, CSS, JavaScript; Tableau, ECharts; Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, Spark.
-- **Languages:** Mandarin (native); English.
-- **Honors:** Lanzhou University academic, internship, and international exchange scholarships; undergraduate honors thesis (2025); three-time University Basketball Championship (2022-23, 2023-24, 2024-25).
+- <span class="item-label">Technical skills</span> Python (PyTorch, TensorFlow), Java, SQL, C/C++, HTML, CSS, JavaScript; Tableau, ECharts; Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, Spark.
+- <span class="item-label">Languages</span> Mandarin (native); English.
+- <span class="item-label">Honors</span> Lanzhou University academic, internship, and international exchange scholarships; undergraduate honors thesis (2025); three-time University Basketball Championship (2022–23, 2023–24, 2024–25).
 
 ## Interests
 
-- **Basketball:** currently taking a break from playing while recovering from knee surgery.
-- **Billiards:** enjoying both the hot streaks and the cold spells.
-- **Fun facts:** I have visited nearly every province in China and explored Europe on two trips of two weeks each. I have also completed several 5 km+ hiking and mountaineering trips, though a knee injury cost me the chance to attempt a 7 km peak. My travel wish list keeps growing.
+- <span class="item-label">Basketball</span> currently taking a break from playing while recovering from knee surgery.
+- <span class="item-label">Billiards</span> enjoying both the hot streaks and the cold spells.
+- <span class="item-label">Fun facts</span> I have visited nearly every province in China and explored Europe on two trips of two weeks each. I have also completed several 5 km+ hiking and mountaineering trips, though a knee injury cost me the chance to attempt a 7 km peak. My travel wish list keeps growing.
 
 <div class="travel-globe-card">
   <div class="travel-globe-stage">
