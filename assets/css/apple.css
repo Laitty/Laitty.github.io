@@ -478,6 +478,11 @@ html[data-theme="dark"] .apple-btn-primary {
   color: var(--apple-muted);
 }
 
+.proj-venue {
+  font-style: italic;
+  font-weight: 650;
+}
+
 .item-label {
   font-weight: 600;
   color: var(--apple-text);
