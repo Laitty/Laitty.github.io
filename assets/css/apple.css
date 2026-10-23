@@ -419,6 +419,40 @@ html[data-theme="dark"] .apple-btn-primary {
   font-size: clamp(1.7rem, 3vw, 2.15rem);
 }
 
+.post-header .post-description {
+  margin-top: 0.1rem;
+  margin-bottom: 0.2rem;
+  color: var(--apple-muted);
+}
+
+.post-header + article > h2:first-child {
+  margin-top: 0.65rem;
+  margin-bottom: 0.15rem;
+}
+
+article > h2:has(+ .publications) {
+  margin-bottom: 0.12rem;
+}
+
+.publications {
+  margin-top: 0;
+}
+
+.post h2.bibliography,
+.apple-page h2.bibliography,
+.publications h2.bibliography {
+  margin-top: 0.85rem;
+  margin-bottom: 0.3rem;
+  padding-top: 0.15rem;
+  font-size: 1.15rem;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+
+.publications > h2.bibliography:first-child {
+  margin-top: 0;
+}
+
 .apple-page ul,
 .post ul {
   padding-left: 0;
