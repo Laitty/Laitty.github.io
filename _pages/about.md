@@ -38,7 +38,7 @@ In research, I work across model design, dataset preparation, training, and expe
 
 ## Education
 
-- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/cmu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**Carnegie Mellon University** — MS in Artificial Intelligence Systems Management, Aug. 2026 – Dec. 2027 (expected); GPA: 4/4
+- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/cmu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span><span class="edu-oneline">**Carnegie Mellon University** — MS in Artificial Intelligence Systems Management, Aug. 2026 – Dec. 2027 (expected); GPA: 4/4</span>
 - <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/lzu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**Lanzhou University** — BS in Data Science & Big Data Technology, Sep. 2021 – Jul. 2025; GPA: 87.34/100
 - <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/ut.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**The University of Texas at Austin** — Exchange Program in Software Engineering, Jan. 2024 – Feb. 2024; GPA: 4/4
 
