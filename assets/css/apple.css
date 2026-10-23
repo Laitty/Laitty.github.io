@@ -427,6 +427,26 @@ html[data-theme="dark"] .apple-btn-primary {
 
 .post-header + article > h2:first-child {
   margin-top: 0.65rem;
+  margin-bottom: 0.4rem;
+}
+
+article > h2:has(+ .publications) {
+  margin-bottom: 0.4rem;
+}
+
+.publications {
+  margin-top: 0.15rem;
+}
+
+.post h2.bibliography,
+.apple-page h2.bibliography,
+.publications h2.bibliography {
+  margin-top: 0.45rem;
+  margin-bottom: 0.3rem;
+  padding-top: 0.2rem;
+  font-size: 1.15rem;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
 }
 
 .apple-page ul,
