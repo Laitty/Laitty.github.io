@@ -54,10 +54,10 @@ In research, I work across model design, dataset preparation, training, and expe
 
 ## Professional Experience
 
-- **Data Science Intern, Sichuan DeepGraph Intelligent Technology** <span class="proj-meta">(Sep. 2024 – Feb. 2025)</span> — Cleaned and preprocessed data in Python, queried complex datasets in Ultipa XAI, a financial graph database used by institutions, and helped optimize data-analysis algorithms for production queries.
+- **Data Science Intern, Sichuan DeepGraph Intelligent Technology** <span class="proj-meta">(Sep. 2024 – Feb. 2025)</span> — Cleaned and preprocessed data in Python, queried complex datasets in Ultipa XAI, a financial graph database used by institutions, and helped optimize data-analysis algorithms.
 - **Data Engineer Intern, Lanzhou Bronze Ding Intelligent Technology** <span class="proj-meta">(Mar. 2024 – Sep. 2024)</span> — Organized 20+ datasets and labeled 10k+ entries with Python and SQL, deployed MySQL and Hadoop, and produced seven analysis reports in Matplotlib and Seaborn.
 - **Quantitative Research Intern, Guotai Junan Futures** <span class="proj-meta">(Mar. 2024 – Apr. 2024)</span> — Developed a Python futures trading system, debugged C++ and Python CTP-API implementations on Simnow, and implemented TWAP and VWAP execution algorithms in TA-Lib.
-- **Tax and Business Consulting Intern, Zhongzheng Tiantong CPA Tax Department** <span class="proj-meta">(Jul. 2023 – Sep. 2023)</span> — Processed data with Python and SQL, prepared Tableau reports, and analyzed client financials, risks, and market trends for consulting deliverables.
+- **Tax and Business Consulting Intern, Zhongzheng Tiantong CPA Tax Department** <span class="proj-meta">(Jul. 2023 – Sep. 2023)</span> — Processed data with Python and SQL, prepared Tableau reports, and analyzed client financials, risks, and market trends for tax and business consulting.
 - **Product Data Engineer Intern, Feitian Technologies** <span class="proj-meta">(Jul. 2022 – Jan. 2023)</span> — Supported product databases and intelligent password-system testing with Python, SQL, and C/C++, completing 30+ performance tests and 10+ blockchain report summaries.
 
 ## Research Appointment
