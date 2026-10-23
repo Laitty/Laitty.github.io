@@ -490,6 +490,16 @@ html[data-theme="dark"] .apple-btn-primary {
   font-weight: 650;
 }
 
+a.proj-venue {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
+a.proj-venue:hover {
+  color: var(--cmu-red);
+}
+
 .item-label {
   font-weight: 600;
   color: var(--apple-text);
