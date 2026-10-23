@@ -458,6 +458,7 @@ html[data-theme="dark"] .apple-btn-primary {
 .post article ul > li:has(.proj-affils),
 .apple-article ul > li:has(.proj-affils) {
   padding-right: 5.6rem;
+  text-wrap: pretty;
 }
 
 .proj-affil-note {
