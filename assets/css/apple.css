@@ -640,10 +640,8 @@ html[data-theme-setting="dark"] .proj-affils {
   z-index: 1;
   right: 0.55rem;
   top: 50%;
-  height: 68%;
-  width: auto;
-  max-height: 3.6rem;
-  aspect-ratio: 1;
+  width: 3.6rem;
+  height: 3.6rem;
   transform: translateY(-50%);
   opacity: 0.24;
 }
@@ -712,7 +710,8 @@ html[data-theme-setting="dark"] .pub-venue-mark {
 
   .pub-affil-mark {
     right: 0.4rem;
-    max-height: 2.85rem;
+    width: 2.85rem;
+    height: 2.85rem;
     opacity: 0.2;
   }
 
@@ -1124,7 +1123,8 @@ html[data-theme="dark"] footer {
     margin-bottom: 1.75rem;
   }
   .pub-affil-mark {
-    max-height: 3.2rem;
+    width: 3.2rem;
+    height: 3.2rem;
   }
 
   .pub-venue-mark {
