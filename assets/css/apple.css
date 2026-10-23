@@ -452,13 +452,13 @@ html[data-theme="dark"] .apple-btn-primary {
   margin: 0 0 0.85rem;
   padding: 1.05rem 1.15rem;
   border-radius: 16px;
+  text-wrap: pretty;
 }
 
 .apple-page article ul > li:has(.proj-affils),
 .post article ul > li:has(.proj-affils),
 .apple-article ul > li:has(.proj-affils) {
   padding-right: 5.6rem;
-  text-wrap: pretty;
 }
 
 .proj-affil-note {
