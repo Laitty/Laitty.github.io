@@ -587,7 +587,7 @@ html[data-theme-setting="dark"] .proj-affils {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  padding-right: 6.5rem;
+  padding-right: 5rem;
   margin: 0 0 0.12rem;
   font-size: 1rem;
   font-weight: 600;
@@ -599,7 +599,7 @@ html[data-theme-setting="dark"] .proj-affils {
 .bibliography .author,
 .publications .author {
   display: block;
-  padding-right: 6.5rem;
+  padding-right: 5rem;
   margin-bottom: 0.06rem;
   font-size: 0.92rem;
   line-height: 1.35;
@@ -608,7 +608,7 @@ html[data-theme-setting="dark"] .proj-affils {
 .bibliography .periodical,
 .publications .periodical {
   display: block;
-  padding-right: 6.5rem;
+  padding-right: 5rem;
   font-size: 0.9rem;
   line-height: 1.35;
 }
@@ -638,9 +638,11 @@ html[data-theme-setting="dark"] .proj-affils {
   pointer-events: none;
   position: absolute;
   z-index: 1;
-  right: 0.7rem;
+  right: 0.55rem;
   top: 50%;
-  width: min(16vw, 96px);
+  height: 68%;
+  width: auto;
+  max-height: 3.6rem;
   aspect-ratio: 1;
   transform: translateY(-50%);
   opacity: 0.24;
@@ -651,7 +653,7 @@ html[data-theme-setting="dark"] .proj-affils {
   position: absolute;
   z-index: 0;
   top: 50%;
-  right: calc(0.7rem + min(16vw, 96px) + 0.8rem);
+  right: calc(0.55rem + 3.6rem + 0.7rem);
   transform: translateY(-50%);
   opacity: 0.24;
 }
@@ -700,7 +702,7 @@ html[data-theme-setting="dark"] .pub-venue-mark {
   .publications .author,
   .bibliography .periodical,
   .publications .periodical {
-    padding-right: 4.6rem;
+    padding-right: 3.9rem;
   }
 
   .bibliography .title,
@@ -709,13 +711,13 @@ html[data-theme-setting="dark"] .pub-venue-mark {
   }
 
   .pub-affil-mark {
-    right: 0.45rem;
-    width: min(20vw, 72px);
+    right: 0.4rem;
+    max-height: 2.85rem;
     opacity: 0.2;
   }
 
   .pub-venue-mark {
-    right: calc(0.45rem + min(20vw, 72px) + 0.65rem);
+    right: calc(0.4rem + 2.85rem + 0.55rem);
     opacity: 0.2;
   }
 
@@ -1121,8 +1123,12 @@ html[data-theme="dark"] footer {
     margin-top: -0.55rem;
     margin-bottom: 1.75rem;
   }
+  .pub-affil-mark {
+    max-height: 3.2rem;
+  }
+
   .pub-venue-mark {
-    right: calc(0.5rem + min(18vw, 84px) + 0.7rem);
+    right: calc(0.5rem + 3.2rem + 0.65rem);
   }
   .pub-venue-mark.is-icassp2026,
   .pub-venue-mark.is-acmmm2026 {
@@ -1198,25 +1204,6 @@ html[data-theme="dark"] footer {
     background: var(--travel-stat-bg) !important;
     border: 1px solid var(--travel-stat-border) !important;
     box-shadow: none !important;
-  }
-}
-
-@media (max-width: 640px) {
-  .pub-venue-mark {
-    right: calc(0.45rem + min(20vw, 72px) + 0.65rem);
-  }
-
-  .pub-venue-mark.is-icassp2026,
-  .pub-venue-mark.is-acmmm2026 {
-    width: 9.4rem;
-  }
-
-  .pub-venue-mark.is-icassp2026 {
-    height: calc(9.4rem / 1.88);
-  }
-
-  .pub-venue-mark.is-acmmm2026 {
-    height: calc(9.4rem / 5.31);
   }
 }
 
