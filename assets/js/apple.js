@@ -34,6 +34,7 @@ function initLiquidName() {
     vInf: 0,
     rot: 0,
     vRot: 0,
+    resting: true,
   }));
   let pointerOn = false;
   let px = 0;
@@ -46,7 +47,7 @@ function initLiquidName() {
   canvas.className = "apple-liquid-canvas";
   canvas.setAttribute("aria-hidden", "true");
   hero.prepend(canvas);
-  const ctx = canvas.getContext("2d", { alpha: true });
+  const ctx = canvas.getContext("2d", { alpha: true, desynchronized: true });
 
   const lai = ["L", "a", "i"];
   const given = ["T", "i", "a", "n", "y", "o", "u"];
@@ -91,17 +92,51 @@ function initLiquidName() {
   ];
 
   const field = [];
-  const cap = phone ? 70 : 120;
+  const capFor = () => (phone ? 56 : 72);
   let hw = 1;
   let hh = 1;
   let dpr = 1;
   let time = 0;
+  let sprites = [];
+  let spriteKey = "";
+  let raf = 0;
+  let lastDark = null;
 
   const dark = () =>
     document.documentElement.getAttribute("data-theme") === "dark" ||
     document.documentElement.getAttribute("data-theme-setting") === "dark";
+  const inkRgb = () => (dark() ? [236, 238, 242] : [22, 24, 28]);
 
   let anchor = { x: 0, y: 0, w: 1, h: 1 };
+
+  const bakeSprites = () => {
+    const rgb = inkRgb();
+    const min = Math.min(hw, hh);
+    const key = `${phone}|${hw}|${hh}|${rgb.join(",")}`;
+    if (key === spriteKey && sprites.length === glyphs.length) return;
+    spriteKey = key;
+    lastDark = dark();
+    sprites = glyphs.map((g) => {
+      const size = Math.max(10, phone ? g.s * anchor.w : g.s * min);
+      const pad = Math.ceil(size * 0.38);
+      const w = Math.ceil(size + pad * 2);
+      const h = Math.ceil(size + pad * 2);
+      const layer = document.createElement("canvas");
+      const scale = Math.min(dpr, 1.5);
+      layer.width = Math.max(1, Math.floor(w * scale));
+      layer.height = Math.max(1, Math.floor(h * scale));
+      const gctx = layer.getContext("2d");
+      gctx.setTransform(scale, 0, 0, scale, 0, 0);
+      gctx.font = `italic 600 ${size}px "Snell Roundhand", "Apple Chancery", "Kaiti SC", "KaiTi", "Palatino Linotype", serif`;
+      gctx.textAlign = "center";
+      gctx.textBaseline = "middle";
+      gctx.shadowColor = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},0.42)`;
+      gctx.shadowBlur = Math.max(6, size * 0.12);
+      gctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},1)`;
+      gctx.fillText(g.ch, w / 2, h / 2);
+      return { layer, w, h, size };
+    });
+  };
 
   const applyLayout = (next) => {
     next.forEach((g, i) => {
@@ -118,7 +153,7 @@ function initLiquidName() {
       phone = nextPhone;
       applyLayout(layoutFor(phone));
     }
-    dpr = Math.min(window.devicePixelRatio || 1, phone ? 1.5 : 2);
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     const box = hero.getBoundingClientRect();
     hw = Math.max(1, Math.floor(box.width));
     hh = Math.max(1, Math.floor(box.height));
@@ -140,6 +175,7 @@ function initLiquidName() {
       st.cx = titleRect.left + span.offsetLeft + span.offsetWidth / 2;
       st.cy = titleRect.top + span.offsetTop + span.offsetHeight * 0.78;
     });
+    bakeSprites();
   };
 
   const stepSpring = (value, velocity, target, stiffness, damping) => {
@@ -169,6 +205,7 @@ function initLiquidName() {
         hue: Math.floor(Math.random() * colors.length),
       });
     }
+    const cap = capFor();
     if (field.length > cap) field.splice(0, field.length - cap);
   };
 
@@ -179,7 +216,7 @@ function initLiquidName() {
     const p = localPoint(event);
     mx = p.x;
     my = p.y;
-    emitAt(mx, my, phone ? 10 : 16);
+    emitAt(mx, my, 8);
   });
   title.addEventListener("pointermove", (event) => {
     pointerOn = true;
@@ -197,7 +234,7 @@ function initLiquidName() {
     const p = localPoint(event);
     mx = p.x;
     my = p.y;
-    emitAt(mx, my, phone ? 14 : 10);
+    emitAt(mx, my, 10);
   });
   const release = () => {
     pointerOn = false;
@@ -205,9 +242,8 @@ function initLiquidName() {
   title.addEventListener("pointerup", release);
   title.addEventListener("pointercancel", release);
 
-  const inkRgb = () => (dark() ? [236, 238, 242] : [22, 24, 28]);
-
   const tick = () => {
+    if (lastDark !== dark()) bakeSprites();
     time += 0.016;
     const radius = phone ? 108 : 168;
     springs.forEach((st) => {
@@ -225,24 +261,33 @@ function initLiquidName() {
       const turning = Math.abs(targetRot) > Math.abs(st.rot);
       [st.rot, st.vRot] = stepSpring(st.rot, st.vRot, targetRot, turning ? 460 : 230, turning ? 32 : 22.4);
       const eased = st.influence;
+      const idle = !pointerOn && eased < 0.004 && Math.abs(st.rot) < 0.08 && Math.abs(st.vInf) < 0.4;
+      if (idle) {
+        if (!st.resting) {
+          st.span.style.transform = "";
+          st.span.classList.remove("is-hot");
+          st.resting = true;
+        }
+        return;
+      }
+      st.resting = false;
       st.span.style.transform = `translate3d(${st.rot * 0.28}px, ${-30 * eased}px, 0) scale(${1 + 0.64 * eased}) rotate(${st.rot}deg)`;
       st.span.classList.toggle("is-hot", eased > 0.72);
     });
     if (pointerOn) {
       emitCool += 0.016;
-      if (emitCool > (phone ? 0.04 : 0.022)) {
-        emitAt(mx, my, phone ? 2 : 3);
+      if (emitCool > 0.04) {
+        emitAt(mx, my, 2);
         emitCool = 0;
       }
     }
 
     ctx.clearRect(0, 0, hw, hh);
-    const rgb = inkRgb();
-    const min = Math.min(hw, hh);
 
-    glyphs.forEach((g) => {
-      const size = phone ? g.s * anchor.w : g.s * min;
-      const pad = size * 0.72;
+    glyphs.forEach((g, i) => {
+      const sprite = sprites[i];
+      if (!sprite) return;
+      const pad = sprite.size * 0.72;
       const driftX = Math.sin(time * 0.28 + g.phase) * (phone ? 2 : 5);
       const driftY = Math.cos(time * 0.22 + g.phase) * (phone ? 1.5 : 4);
       const rawX = phone ? anchor.x + g.nx * anchor.w + driftX : g.nx * hw + driftX;
@@ -255,26 +300,14 @@ function initLiquidName() {
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate(g.rot + Math.sin(time * 0.2 + g.phase) * 0.02);
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.font = `italic 600 ${size}px "Snell Roundhand", "Apple Chancery", "Kaiti SC", "KaiTi", "Palatino Linotype", serif`;
-      if (phone) {
-        ctx.shadowColor = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha * 0.45})`;
-        ctx.shadowBlur = Math.max(6, size * 0.14);
-        ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
-        ctx.fillText(g.ch, 0, 0);
-      } else {
-        ctx.filter = "blur(5px)";
-        ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha * 0.35})`;
-        ctx.fillText(g.ch, size * 0.02, size * 0.025);
-        ctx.filter = "blur(0.4px)";
-        ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
-        ctx.fillText(g.ch, 0, 0);
-      }
+      ctx.globalAlpha = alpha;
+      ctx.drawImage(sprite.layer, -sprite.w / 2, -sprite.h / 2, sprite.w, sprite.h);
       ctx.restore();
     });
 
     const colors = dark() ? paletteDark : palette;
+    const neut = dark() ? 196 : 72;
+    const k = 0.58;
     for (let i = field.length - 1; i >= 0; i -= 1) {
       const p = field[i];
       p.age += 0.016;
@@ -303,38 +336,34 @@ function initLiquidName() {
         continue;
       }
       const [r, g, b] = colors[p.hue];
-      // Phone: no glass blur wall — soften chroma/alpha so Tartan accents match desktop.
-      let pr = r;
-      let pg = g;
-      let pb = b;
-      let bodyA = 0.22 + 0.7 * fade;
-      let hiA = 0.4 * fade;
-      if (phone) {
-        const neut = dark() ? 196 : 72;
-        const k = 0.58;
-        pr = Math.round(r * k + neut * (1 - k));
-        pg = Math.round(g * k + neut * (1 - k));
-        pb = Math.round(b * k + neut * (1 - k));
-        bodyA = 0.12 + 0.42 * fade;
-        hiA = 0.16 * fade;
-      }
+      const pr = Math.round(r * k + neut * (1 - k));
+      const pg = Math.round(g * k + neut * (1 - k));
+      const pb = Math.round(b * k + neut * (1 - k));
       ctx.beginPath();
-      ctx.fillStyle = `rgba(${pr},${pg},${pb},${bodyA})`;
+      ctx.fillStyle = `rgba(${pr},${pg},${pb},${0.14 + 0.46 * fade})`;
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.fillStyle = `rgba(255,255,255,${hiA})`;
-      ctx.arc(p.x - p.r * 0.22, p.y - p.r * 0.25, Math.max(0.5, p.r * 0.3), 0, Math.PI * 2);
       ctx.fill();
     }
 
-    requestAnimationFrame(tick);
+    raf = requestAnimationFrame(tick);
+  };
+
+  const play = () => {
+    if (!raf && !document.hidden) raf = requestAnimationFrame(tick);
+  };
+  const pause = () => {
+    cancelAnimationFrame(raf);
+    raf = 0;
   };
 
   window.addEventListener("resize", fit);
   if (window.visualViewport) window.visualViewport.addEventListener("resize", fit);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) pause();
+    else play();
+  });
   fit();
-  requestAnimationFrame(tick);
+  play();
 }
 
 function splitName(title) {
