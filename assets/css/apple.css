@@ -482,6 +482,47 @@ article > h2:has(+ .publications) {
   text-wrap: pretty;
 }
 
+.apple-page article ul ul,
+.post article ul ul,
+.apple-article ul ul {
+  margin: 0.55rem 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.apple-page article ul ul > li,
+.post article ul ul > li,
+.apple-article ul ul > li {
+  position: relative;
+  margin: 0 0 0.4rem !important;
+  padding: 0 0 0 0.95rem !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-radius: 0 !important;
+  transform: none !important;
+  color: var(--apple-muted);
+  font-size: 0.96em;
+  line-height: 1.5;
+}
+
+.apple-page article ul ul > li:last-child,
+.post article ul ul > li:last-child,
+.apple-article ul ul > li:last-child {
+  margin-bottom: 0 !important;
+}
+
+.apple-page article ul ul > li::before,
+.post article ul ul > li::before,
+.apple-article ul ul > li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--apple-muted);
+}
+
 .apple-page article ul > li:has(.proj-affils),
 .post article ul > li:has(.proj-affils),
 .apple-article ul > li:has(.proj-affils) {
@@ -593,6 +634,14 @@ html[data-theme-setting="dark"] .proj-affils {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .apple-page article ul ul > li:hover,
+  .post article ul ul > li:hover,
+  .apple-article ul ul > li:hover {
+    transform: none;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
   .apple-page article ul > li:hover,
   .post article ul > li:hover,
   .apple-article ul > li:hover,
@@ -771,6 +820,12 @@ html[data-theme-setting="dark"] .pub-venue-mark {
   .post article ul > li,
   .apple-article ul > li {
     padding-right: 1.15rem !important;
+  }
+
+  .apple-page article ul ul > li,
+  .post article ul ul > li,
+  .apple-article ul ul > li {
+    padding: 0 0 0 0.95rem !important;
   }
 
   .apple-page article ul > li:has(.proj-affils),
@@ -1258,6 +1313,13 @@ html[data-theme="dark"] footer {
   .apple-article ul > li {
     padding: 0.85rem 0.95rem !important;
     border-radius: 14px;
+  }
+
+  .apple-page article ul ul > li,
+  .post article ul ul > li,
+  .apple-article ul ul > li {
+    padding: 0 0 0 0.95rem !important;
+    border-radius: 0 !important;
   }
   .apple-page article ul > li:has(.proj-affils),
   .post article ul > li:has(.proj-affils),
