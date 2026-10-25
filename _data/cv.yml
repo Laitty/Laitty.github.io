@@ -232,9 +232,9 @@ cv:
         start_date: "2024-09"
         end_date: "2025-02"
         highlights:
-          - "Cleaned and preprocessed data in Python to support analysis and modeling."
-          - "Queried and computed complex datasets using Ultipa XAI, a financial graph database serving financial institutions."
-          - "Assisted in developing and optimizing data analysis algorithms."
+          - "Built Python cleaning and consistency checks to prepare datasets for analysis and model development."
+          - "Queried financial datasets and graph relationships in Ultipa XAI to support modeling and data-analysis algorithm optimization."
+          - "Assisted OpenStack deployment for these analytical workflows."
 
       - company: Lanzhou Bronze Ding Intelligent Technology
         position: Data Engineer Intern
@@ -242,9 +242,9 @@ cv:
         start_date: "2024-03"
         end_date: "2024-09"
         highlights:
-          - "Collected, cleaned, and processed data using Python and SQL, organizing 20+ datasets and labeling 10k+ entries."
-          - "Deployed databases and distributed frameworks including MySQL and Hadoop."
-          - "Produced 7 data analysis reports with Matplotlib and Seaborn visualizations."
+          - "Curated 20+ datasets and labeled 10,000+ records using Python and SQL."
+          - "Produced seven Matplotlib/Seaborn reports to visualize data, check processed outputs, and document results."
+          - "Deployed MySQL and Hadoop/Spark on a private cloud for large-scale storage and batch processing."
 
       - company: Guotai Junan Futures
         position: Quantitative Research Intern
@@ -252,9 +252,9 @@ cv:
         start_date: "2024-03"
         end_date: "2024-04"
         highlights:
-          - "Developed a futures trading system in Python with lock and close functions."
-          - "Used Simnow for real-time debugging of C++ and Python versions interfacing with CTP-API."
-          - "Implemented TWAP and VWAP algorithms in Python and integrated TA-Lib for indicator generation and data filtering."
+          - "Extended a Python trading system with position locking, closing, and batch orders across instruments and exchanges."
+          - "Integrated and debugged C++/Python CTP-API in Simnow for futures trading."
+          - "Implemented TWAP/VWAP execution and generated and filtered technical indicators with TA-Lib."
 
       - company: Zhongzheng Tiantong CPA Tax Department
         position: Tax and Business Consulting Intern
@@ -262,9 +262,8 @@ cv:
         start_date: "2023-07"
         end_date: "2023-09"
         highlights:
-          - "Collected, cleaned, and processed raw data using Python and SQL."
-          - "Visualized and reported insights with Tableau."
-          - "Analyzed client strategies and market conditions, providing reports on financials, risks, and trends."
+          - "Cleaned financial and market data using Python/SQL."
+          - "Prepared Excel/Tableau visual analyses of client financial performance, business risk, and market trends from publicly available cases for tax and business consulting."
 
       - company: Feitian Technologies
         position: Product Data Engineer Intern
@@ -272,10 +271,9 @@ cv:
         start_date: "2022-07"
         end_date: "2023-01"
         highlights:
-          - "Used Python and SQL for database tagging, updates, and data storage for hardware products."
-          - "Implemented and tested intelligent password systems."
-          - "Developed and refined C/C++ code through coding, code review, product testing, and functionality modifications."
-          - "Conducted over 30 performance tests and delivered 10+ blockchain report summaries."
+          - "Maintained hardware-product databases using Python/SQL."
+          - "Reviewed C/C++ code and tested features for an intelligent password system, supporting functional verification and hardware performance testing."
+          - "Conducted 30+ product performance tests and prepared summaries of 10+ blockchain reports."
 
     Skills:
       - name: Programming
