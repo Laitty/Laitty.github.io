@@ -54,12 +54,25 @@ The full author lists and research summaries are on the [Research & Projects]({{
 
 ## Professional Experience
 
-- **Research Assistant, Shenzhen University** <span class="proj-meta">(Hybrid, Oct. 2025 – May 2026)</span> — Cleaned and preprocessed nuclear-sensor time series for high-reliability online condition monitoring, preparing inputs for residual-based fault detection, signal reconstruction, and long-horizon forecasting. Built **Mamba-In** by combining Mamba sequence modeling with Informer-style ProbSparse attention. The CHF review begun in this appointment is ongoing: synthesizing AI prediction, uncertainty, validation, and engineering-use criteria (proposal sent; contacting _Energy_ for an invitation).
-- **Data Science Intern, Sichuan DeepGraph Intelligent Technology** <span class="proj-meta">(Chengdu, Sep. 2024 – Feb. 2025)</span> — Built Python cleaning and consistency checks to prepare datasets for analysis and model development. Queried financial datasets and graph relationships in Ultipa XAI to support modeling and data-analysis algorithm optimization, and assisted OpenStack deployment for these workflows.
-- **Data Engineer Intern, Lanzhou Bronze Ding Intelligent Technology** <span class="proj-meta">(Lanzhou, Mar. 2024 – Sep. 2024)</span> — Curated 20+ datasets and labeled 10,000+ records with Python and SQL, and produced seven Matplotlib/Seaborn reports to visualize data, check processed outputs, and document results. Deployed MySQL and Hadoop/Spark on a private cloud for large-scale storage and batch processing.
-- **Quantitative Research Intern, Guotai Junan Futures** <span class="proj-meta">(Remote, Mar. 2024 – Apr. 2024)</span> — Extended a Python trading system with position locking, closing, and batch orders across instruments and exchanges. Integrated and debugged C++/Python CTP-API in Simnow, implemented TWAP and VWAP execution, and generated and filtered technical indicators with TA-Lib.
-- **Tax and Business Consulting Intern, Zhongzheng Tiantong CPA Tax Department** <span class="proj-meta">(Beijing, Jul. 2023 – Sep. 2023)</span> — Cleaned financial and market data with Python and SQL, and prepared Excel/Tableau visual analyses of client financial performance, business risk, and market trends from publicly available cases for tax and business consulting.
-- **Product Data Engineer Intern, Feitian Technologies** <span class="proj-meta">(Beijing, Jul. 2022 – Jan. 2023)</span> — Maintained hardware-product databases with Python and SQL, reviewed C/C++ code, and tested features for an intelligent password system, supporting functional verification and hardware performance testing. Conducted 30+ product performance tests and prepared summaries of 10+ blockchain reports.
+- **Research Assistant, Shenzhen University** <span class="proj-meta">(Hybrid, Oct. 2025 – May 2026)</span>
+  - Cleaned and preprocessed nuclear-sensor time series for high-reliability online condition monitoring; prepared inputs for residual-based fault detection, signal reconstruction, and long-horizon forecasting.
+  - Built **Mamba-In** by combining Mamba sequence modeling with Informer-style ProbSparse attention.
+  - The CHF review begun in this appointment is ongoing: synthesizing AI prediction, uncertainty, validation, and engineering-use criteria (proposal sent; contacting _Energy_ for an invitation).
+- **Data Science Intern, Sichuan DeepGraph Intelligent Technology** <span class="proj-meta">(Chengdu, Sep. 2024 – Feb. 2025)</span>
+  - Built Python cleaning and consistency checks to prepare datasets for analysis and model development.
+  - Queried financial datasets and graph relationships in Ultipa XAI to support modeling and data-analysis algorithm optimization; assisted OpenStack deployment for these workflows.
+- **Data Engineer Intern, Lanzhou Bronze Ding Intelligent Technology** <span class="proj-meta">(Lanzhou, Mar. 2024 – Sep. 2024)</span>
+  - Curated 20+ datasets and labeled 10,000+ records with Python and SQL; produced seven Matplotlib/Seaborn reports to visualize data, check processed outputs, and document results.
+  - Deployed MySQL and Hadoop/Spark on a private cloud for large-scale storage and batch processing.
+- **Quantitative Research Intern, Guotai Junan Futures** <span class="proj-meta">(Remote, Mar. 2024 – Apr. 2024)</span>
+  - Extended a Python trading system with position locking, closing, and batch orders across instruments and exchanges.
+  - Integrated and debugged C++/Python CTP-API in Simnow; implemented TWAP/VWAP execution and generated and filtered technical indicators with TA-Lib.
+- **Tax and Business Consulting Intern, Zhongzheng Tiantong CPA Tax Department** <span class="proj-meta">(Beijing, Jul. 2023 – Sep. 2023)</span>
+  - Cleaned financial and market data with Python and SQL.
+  - Prepared Excel/Tableau visual analyses of client financial performance, business risk, and market trends from publicly available cases for tax and business consulting.
+- **Product Data Engineer Intern, Feitian Technologies** <span class="proj-meta">(Beijing, Jul. 2022 – Jan. 2023)</span>
+  - Maintained hardware-product databases with Python and SQL; reviewed C/C++ code and tested features for an intelligent password system, supporting functional verification and hardware performance testing.
+  - Conducted 30+ product performance tests and prepared summaries of 10+ blockchain reports.
 
 ## Academic Service
 
