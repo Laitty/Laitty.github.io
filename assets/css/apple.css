@@ -115,6 +115,44 @@ html[data-theme="dark"] nav.navbar.fixed-top {
   outline-offset: 2px;
 }
 
+#navbar .navbar-social {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.7rem;
+  margin-left: 0.85rem;
+  line-height: 1;
+}
+
+#navbar .navbar-social ul,
+#navbar .navbar-social .contact-icons {
+  display: flex;
+  align-items: center;
+  gap: inherit;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#navbar .navbar-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--apple-muted);
+  font-size: 1.02rem;
+  line-height: 1;
+  transition: color 0.2s var(--apple-ease);
+}
+
+#navbar .navbar-social a .ai {
+  font-size: 1em;
+}
+
+#navbar .navbar-social a:hover,
+#navbar .navbar-social a:focus-visible {
+  color: var(--apple-blue);
+}
+
 a {
   color: var(--apple-blue);
   text-decoration-thickness: 1px;
@@ -1205,6 +1243,16 @@ html[data-theme="dark"] footer {
 }
 
 @media (max-width: 734px) {
+  #navbar .navbar-social {
+    gap: 0.5rem;
+    margin-left: 0.45rem;
+    margin-right: 0.15rem;
+  }
+
+  #navbar .navbar-social a {
+    font-size: 0.98rem;
+  }
+
   body .container {
     padding-left: max(16px, env(safe-area-inset-left));
     padding-right: max(16px, env(safe-area-inset-right));

@@ -20,9 +20,8 @@
           {{- site.title -}}
         {% endif %}
       </a>
-      {% if page.permalink == '/' and site.enable_navbar_social %}
-        <!-- Social Icons -->
-        <div class="navbar-brand social">{% social_links %}</div>
+      {% if site.enable_navbar_social %}
+        <nav class="navbar-social" aria-label="Profiles">{% social_links %}</nav>
       {% endif %}
       <!-- Navbar Toggle -->
       <button
