@@ -76,9 +76,9 @@ My research connects reliable learning and model evaluation with human–AI inte
 - <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/lzu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**ReLaMix** — <a class="proj-venue" href="https://arxiv.org/abs/2603.20869">arXiv</a> preprint (2026). Residual bottleneck mixing for delayed financial observations, evaluated on second-resolution PAXGUSDT and BTCUSDT using non-overlapping temporal segments and delay-robustness benchmarks. <span class="proj-advisor">Advisor: Prof. Qilei Li</span>
 - <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/lzu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**Wind energy prediction** — <span class="proj-venue">Energies</span> (2025). Modular echo state networks, clustering, and training on turbine data, with a reported best R² of 0.9905. <span class="proj-advisor">Advisor: Prof. Zhili Zhao</span>
 
-#### Earlier Interdisciplinary Work
+### Early Research in Social Computing
 
-- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/lzu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**Computational social science and sports media** <span class="proj-meta">(Sep.–Dec. 2023)</span> — AI video generation, Python, Tableau, FreeD 3D, volumetric imaging, and AIGC used to study sports media and player competitiveness. <span class="proj-advisor">Advisor: Lecturer Dr. Jian Zhan</span>
+- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/lzu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**Social computing in sports media** <span class="proj-meta">(Sep.–Dec. 2023)</span> — AI video generation, Python, Tableau, FreeD 3D, volumetric imaging, and AIGC used to study sports media and player competitiveness. <span class="proj-advisor">Advisor: Lecturer Dr. Jian Zhan</span>
 
 ## Visit history
 
