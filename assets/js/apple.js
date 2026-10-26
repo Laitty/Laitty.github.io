@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     el.classList.add("apple-reveal");
   });
   initLiquidName();
+  initPosterViewer();
 });
 
 function initLiquidName() {
@@ -355,4 +356,58 @@ function splitName(title) {
     title.appendChild(span);
   }
   return letters;
+}
+
+function initPosterViewer() {
+  const triggers = document.querySelectorAll("a.js-poster-view");
+  if (!triggers.length) return;
+
+  const dialog = document.createElement("dialog");
+  dialog.className = "poster-dialog";
+  dialog.innerHTML = `
+    <div class="poster-dialog-bar">
+      <span class="poster-dialog-title">Poster</span>
+      <button type="button" class="poster-dialog-close" aria-label="Close poster">Close</button>
+    </div>
+    <iframe class="poster-dialog-frame" title="Poster" hidden></iframe>
+  `;
+  document.body.appendChild(dialog);
+
+  const frame = dialog.querySelector(".poster-dialog-frame");
+  const closeBtn = dialog.querySelector(".poster-dialog-close");
+
+  const closePoster = () => {
+    if (typeof dialog.close === "function" && dialog.open) dialog.close();
+    frame.hidden = true;
+    frame.removeAttribute("src");
+  };
+
+  const openPoster = (url) => {
+    frame.hidden = false;
+    frame.src = url;
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else window.location.assign(url);
+  };
+
+  document.addEventListener(
+    "click",
+    (event) => {
+      const link = event.target.closest("a.js-poster-view");
+      if (!link) return;
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+      event.preventDefault();
+      event.stopPropagation();
+      openPoster(link.href);
+    },
+    true
+  );
+
+  closeBtn.addEventListener("click", closePoster);
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) closePoster();
+  });
+  dialog.addEventListener("close", () => {
+    frame.hidden = true;
+    frame.removeAttribute("src");
+  });
 }

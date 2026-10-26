@@ -321,10 +321,11 @@
       {% endif %}
       {% if entry.poster %}
         {% if entry.poster contains '://' %}
-          <a href="{{ entry.poster }}" class="btn btn-sm z-depth-0" role="button">Poster</a>
+          {% assign poster_href = entry.poster %}
         {% else %}
-          <a href="{{ entry.poster | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">Poster</a>
+          {% assign poster_href = entry.poster | prepend: '/assets/pdf/' | relative_url %}
         {% endif %}
+        <a href="{{ poster_href }}" class="btn btn-sm z-depth-0 js-poster-view" role="button">Poster</a>
       {% endif %}
       {% if entry.slides %}
         {% if entry.slides contains '://' %}
