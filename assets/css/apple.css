@@ -1672,9 +1672,10 @@ html[data-theme-setting="dark"] .visitor-map-tip {
 }
 
 .poster-dialog {
-  width: min(96vw, 1120px);
-  height: min(90vh, 980px);
+  width: min(72vw, 760px);
+  height: min(64vh, 620px);
   max-width: none;
+  margin: auto;
   padding: 0;
   border: 1px solid var(--apple-glass-sm-border);
   border-radius: 18px;
@@ -1690,9 +1691,9 @@ html[data-theme-setting="dark"] .visitor-map-tip {
 }
 
 .poster-dialog::backdrop {
-  background: rgba(15, 15, 18, 0.46);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(15, 15, 18, 0.28);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .poster-dialog-bar {
@@ -1739,9 +1740,8 @@ html[data-theme-setting="dark"] .visitor-map-tip {
 
 @media (max-width: 734px) {
   .poster-dialog {
-    width: 100vw;
-    height: 100dvh;
-    max-height: none;
-    border-radius: 0;
+    width: calc(100vw - 1.6rem);
+    height: min(58vh, 480px);
+    border-radius: 16px;
   }
 }
