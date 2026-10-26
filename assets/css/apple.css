@@ -1640,3 +1640,78 @@ html[data-theme-setting="dark"] .visitor-map-tip {
   background: rgba(28, 28, 30, 0.94);
   color: #f5f5f7;
 }
+
+.poster-dialog {
+  width: min(96vw, 1120px);
+  height: min(90vh, 980px);
+  max-width: none;
+  padding: 0;
+  border: 1px solid var(--apple-glass-sm-border);
+  border-radius: 18px;
+  background: var(--apple-bg);
+  color: var(--apple-text);
+  box-shadow: var(--apple-shadow);
+  overflow: hidden;
+}
+
+.poster-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.poster-dialog::backdrop {
+  background: rgba(15, 15, 18, 0.46);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.poster-dialog-bar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.62rem 0.9rem;
+  border-bottom: 1px solid var(--apple-line);
+}
+
+.poster-dialog-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.poster-dialog-close {
+  margin: 0;
+  padding: 0.2rem 0.55rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--apple-muted);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.poster-dialog-close:hover,
+.poster-dialog-close:focus-visible {
+  color: var(--apple-text);
+}
+
+.poster-dialog-frame {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  border: 0;
+  background: #fff;
+}
+
+@media (max-width: 734px) {
+  .poster-dialog {
+    width: 100vw;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+  }
+}
