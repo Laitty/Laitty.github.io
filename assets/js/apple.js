@@ -165,7 +165,7 @@ function initLiquidName() {
         vx: Math.cos(ang) * speed,
         vy: Math.sin(ang) * speed - 0.5,
         r: 1.8 + Math.random() * 2.6,
-        life: 3.8 + Math.random() * 3.5,
+        life: 5.6 + Math.random() * 4.4,
         age: 0,
         hue: Math.floor(Math.random() * colors.length),
       });
@@ -298,7 +298,7 @@ function initLiquidName() {
       }
       p.vx *= 0.995;
       p.vy *= 0.995;
-      const fade = p.age > p.life - 1 ? Math.max(0, p.life - p.age) : 1;
+      const fade = p.age > p.life - 1.6 ? Math.max(0, (p.life - p.age) / 1.6) : 1;
       if (p.age > p.life || fade <= 0) {
         field.splice(i, 1);
         continue;
