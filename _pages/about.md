@@ -45,7 +45,7 @@ In research, I work across model design, dataset preparation, training, and expe
 - <span class="item-label">Applied AI</span>
   - **[TRACE](https://arxiv.org/abs/2608.20809)** — Report-guided concept editing for breast ultrasound, with image-only inference. ACM MM 2026.
   - **Dental orthodontic case retrieval** — Ongoing case retrieval for orthodontic records with Fujian Medical University.
-  - **Spike and EEG detection** — Spike and EEG analysis for rat electrophysiology with Peking University.
+  - **Oral Benchmark** — A benchmark for dental and orthodontic cases.
 
 ## Education
 
