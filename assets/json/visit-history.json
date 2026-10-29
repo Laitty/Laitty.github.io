@@ -23,7 +23,7 @@
     },
     {
       "key": "40.4,-79.9",
-      "n": 47,
+      "n": 49,
       "lat": 40.4,
       "lng": -79.9,
       "label": "Pittsburgh, United States"
@@ -132,6 +132,20 @@
       "lat": 39.7,
       "lng": -75.6,
       "label": "New Castle, US"
+    },
+    {
+      "key": "47.1,-119.3",
+      "n": 1,
+      "lat": 47.1,
+      "lng": -119.3,
+      "label": "Moses Lake, US"
+    },
+    {
+      "key": "40.9,-80.7",
+      "n": 1,
+      "lat": 40.9,
+      "lng": -80.7,
+      "label": "Columbiana, US"
     }
   ]
 }
