@@ -5,6 +5,11 @@
   const visitorApi = (config.visitorApi || "").replace(/\/$/, "");
   const counter = (config.counter || "").replace(/\/$/, "");
   const namespace = config.namespace || "";
+  const fetchSoon = (url, options = {}) => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 4000);
+    return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(timer));
+  };
   // Read path needs at least one source. Writes: Worker if visitorApi is set, else ExtendsClass.
   if (!stores.length && !historyUrl && !visitorApi) return;
 
@@ -332,7 +337,7 @@
   const readApiHistory = async () => {
     if (!visitorApi) return null;
     try {
-      const response = await fetch(`${visitorApi}/history?t=${Date.now()}`, { cache: "no-store" });
+      const response = await fetchSoon(`${visitorApi}/history?t=${Date.now()}`, { cache: "no-store" });
       if (!response.ok) return null;
       return normalize(await response.json());
     } catch {
@@ -345,7 +350,7 @@
   const readCount = async (key) => {
     if (!counter || !namespace) return null;
     try {
-      const response = await fetch(counterUrl("get", key), { cache: "no-store" });
+      const response = await fetchSoon(counterUrl("get", key), { cache: "no-store" });
       if (response.status === 404) return 0;
       if (!response.ok) return null;
       return Number((await response.json()).value) || 0;
@@ -357,7 +362,7 @@
   const hitCount = async (key) => {
     if (!counter || !namespace) return null;
     try {
-      const response = await fetch(counterUrl("hit", key), { cache: "no-store" });
+      const response = await fetchSoon(counterUrl("hit", key), { cache: "no-store" });
       if (!response.ok) return null;
       return Number((await response.json()).value) || 0;
     } catch {
@@ -455,7 +460,7 @@
   };
 
   const postVisit = async (point) => {
-    const response = await fetch(`${visitorApi}/visit`, {
+    const response = await fetchSoon(`${visitorApi}/visit`, {
       method: "POST",
       cache: "no-store",
       headers: { "Content-Type": "application/json" },
@@ -469,7 +474,7 @@
   const locate = async () => {
     let point = { key: "unknown", lat: null, lng: null, label: "Unknown" };
     try {
-      const geo = await fetch("https://get.geojs.io/v1/ip/geo.json").then((response) => response.json());
+      const geo = await fetchSoon("https://get.geojs.io/v1/ip/geo.json").then((response) => response.json());
       const lat = Number(geo.latitude);
       const lng = Number(geo.longitude);
       if (Number.isFinite(lat) && Number.isFinite(lng)) {
