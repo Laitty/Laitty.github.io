@@ -1,0 +1,8 @@
+---
+---
+{%- if entry.arxiv -%}
+  {%- capture title_href -%}https://arxiv.org/abs/{{ entry.arxiv }}{%- endcapture -%}
+{%- else -%}
+  {%- capture title_href -%}https://doi.org/{{ entry.doi }}{%- endcapture -%}
+{%- endif -%}
+<strong><a href="{{ title_href }}">{{ entry.title }}</a></strong>. {% if entry.journal %}<em>{{ entry.journal }}</em>, {{ entry.year }}{% else %}{{ entry.booktitle }} {{ entry.year }}{% endif %}.{% if entry.doi %} <a href="https://doi.org/{{ entry.doi }}">DOI: {{ entry.doi }}</a>.{% endif %}

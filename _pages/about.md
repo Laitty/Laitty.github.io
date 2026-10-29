@@ -36,6 +36,17 @@ I am Tianyou Lai (Theo), from Xicheng, Beijing, an MS student in Artificial Inte
 
 In research, I work across model design, dataset preparation, training, and experimental evaluation. In industry, I have interned in product data, consulting analytics, quantitative research, startup data science, and data engineering.
 
+## Recent Work
+
+- <span class="item-label">AI Evaluation</span>
+  - **ExposureBench** — Evaluates when web evidence should change a model's probability, and when disclosure makes the same update redundant.
+  - **[Choice2Seq](https://arxiv.org/abs/2610.16191)** — Tests whether a model that selects the correct answer can also construct it through sequential decisions.
+  - **[Which Differences Matter?](https://arxiv.org/abs/2610.30045)** — Tests which rule and information changes guide a decision model's answer.
+- <span class="item-label">Applied AI</span>
+  - **[TRACE](https://arxiv.org/abs/2608.20809)** — Report-guided concept editing for breast ultrasound, with image-only inference. ACM MM 2026.
+  - **Dental orthodontic case retrieval** — Ongoing case retrieval for orthodontic records with Fujian Medical University.
+  - **Spike and EEG detection** — Spike and EEG analysis for rat electrophysiology with Peking University.
+
 ## Education
 
 - <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/cmu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span><span class="edu-oneline">**Carnegie Mellon University** — MS in Artificial Intelligence Systems Management, Aug. 2026 – Dec. 2027 (expected); GPA: 4/4</span>
@@ -44,11 +55,7 @@ In research, I work across model design, dataset preparation, training, and expe
 
 ## Publications {#publications}
 
-- **[TRACE: Training-time Report-guided and Clinically Ordered Concept Editing](https://arxiv.org/abs/2608.20809)**. ACM International Conference on Multimedia (ACM MM) 2026. [DOI: 10.1145/3767308.3836433](https://doi.org/10.1145/3767308.3836433).
-- **[FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection](https://doi.org/10.1109/ICASSP55912.2026.11462834)**. IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP) 2026. [DOI: 10.1109/ICASSP55912.2026.11462834](https://doi.org/10.1109/ICASSP55912.2026.11462834).
-- **[A Review of Federated Learning under Data Heterogeneity](https://doi.org/10.1111/exsy.70271)**. _Expert Systems_, 2026. [DOI: 10.1111/exsy.70271](https://doi.org/10.1111/exsy.70271).
-- **[Deep Learning-Based Inverse Design of Broadband Metasurface Polarization Converter](https://doi.org/10.1063/5.0281453)**. _AIP Advances_, 2025. [DOI: 10.1063/5.0281453](https://doi.org/10.1063/5.0281453).
-- **[A Modularity-Enhanced Echo State Network for Nonlinear Wind Energy Predicting](https://doi.org/10.3390/en18071858)**. _Energies_, 2025. [DOI: 10.3390/en18071858](https://doi.org/10.3390/en18071858).
+{% bibliography --query @*[category=publication] --group_by none --bibliography_list_tag ul --template about_cite %}
 
 The full author lists and research summaries are on the [Research & Projects]({{ '/publications/' | relative_url }}) page.
 

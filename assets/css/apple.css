@@ -527,6 +527,13 @@ article > h2:has(+ .publications) {
   text-wrap: pretty;
 }
 
+.apple-page article ul.bibliography > li,
+.apple-article ul.bibliography > li {
+  margin: 0 0 0.85rem !important;
+  padding: 1.05rem 1.15rem !important;
+  border-radius: 16px;
+}
+
 .apple-page article ul ul,
 .post article ul ul,
 .apple-article ul ul {
@@ -1384,6 +1391,11 @@ html[data-theme="dark"] footer {
   .apple-page article ul > li,
   .post article ul > li,
   .apple-article ul > li {
+    padding: 0.85rem 0.95rem !important;
+    border-radius: 14px;
+  }
+  .apple-page article ul.bibliography > li,
+  .apple-article ul.bibliography > li {
     padding: 0.85rem 0.95rem !important;
     border-radius: 14px;
   }
