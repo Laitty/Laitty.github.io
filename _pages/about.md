@@ -81,7 +81,8 @@ The full author lists and research summaries are on the [Research & Projects]({{
   - IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP) 2027
   - ACM International Conference on Multimedia (ACM MM) 2026
   - International Joint Conference on Neural Networks (IJCNN) 2026
-- <span class="item-label">Journal reviewer</span> IEEE Open Journal of Signal Processing (OJSP)
+- <span class="item-label">Journal reviewer</span>
+  - IEEE Open Journal of Signal Processing (OJSP)
 - <span class="item-label">IEEE Member</span> 2025–present.
 
 ## Skills and Honors
