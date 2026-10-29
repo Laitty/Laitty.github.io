@@ -77,7 +77,7 @@ The full author lists and research summaries are on the [Research & Projects]({{
 ## Academic Service
 
 - <span class="item-label">Conference reviewer</span>
-  - The Web Conference (WWW) 2027
+  - ACM The Web Conference (WWW) 2027
   - IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP) 2027
   - ACM International Conference on Multimedia (ACM MM) 2026
   - International Joint Conference on Neural Networks (IJCNN) 2026
