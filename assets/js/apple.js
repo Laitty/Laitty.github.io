@@ -158,13 +158,17 @@ function initLiquidName() {
     const colors = dark() ? paletteDark : palette;
     for (let i = 0; i < burst; i += 1) {
       const ang = Math.random() * Math.PI * 2;
-      const speed = 1.45 + Math.random() * 2.8;
+      const r = 1.45 + Math.random() * 3.55;
+      const heft = (r - 1.45) / 3.55;
+      const speed = (1.85 + Math.random() * 3.05) * (1.22 - 0.58 * heft);
       field.push({
         x: x + (Math.random() - 0.5) * 6,
         y: y + (Math.random() - 0.5) * 6,
         vx: Math.cos(ang) * speed,
         vy: Math.sin(ang) * speed - 0.5,
-        r: 1.8 + Math.random() * 2.6,
+        r,
+        drag: 0.9965 - heft * 0.0055,
+        grav: 0.013 + heft * 0.008,
         life: 5.6 + Math.random() * 4.4,
         age: 0,
         hue: Math.floor(Math.random() * colors.length),
@@ -279,7 +283,7 @@ function initLiquidName() {
     for (let i = field.length - 1; i >= 0; i -= 1) {
       const p = field[i];
       p.age += 0.016;
-      p.vy += 0.016;
+      p.vy += p.grav;
       p.x += p.vx;
       p.y += p.vy;
       if (p.x < p.r) {
@@ -296,8 +300,8 @@ function initLiquidName() {
         p.y = hh - p.r;
         p.vy = -Math.abs(p.vy) * 0.86;
       }
-      p.vx *= 0.995;
-      p.vy *= 0.995;
+      p.vx *= p.drag;
+      p.vy *= p.drag;
       const fade = p.age > p.life - 1.6 ? Math.max(0, (p.life - p.age) / 1.6) : 1;
       if (p.age > p.life || fade <= 0) {
         field.splice(i, 1);
