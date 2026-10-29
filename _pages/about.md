@@ -76,7 +76,8 @@ The full author lists and research summaries are on the [Research & Projects]({{
 
 ## Academic Service
 
-- <span class="item-label">Reviewer</span> ACM WWW 2027, ICASSP 2027, ACM MM 2026, IJCNN 2026, IEEE Open Journal of Signal Processing.
+- <span class="item-label">Conference reviewer</span> ACM WWW 2027, ICASSP 2027, ACM MM 2026, IJCNN 2026.
+- <span class="item-label">Journal reviewer</span> IEEE Open Journal of Signal Processing.
 - <span class="item-label">IEEE Member</span> 2025–present.
 
 ## Skills and Honors
