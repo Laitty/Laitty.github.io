@@ -48,7 +48,7 @@ cv:
         date: "2026"
         doi: "10.1145/3767308.3836433"
         url: https://arxiv.org/abs/2608.20809
-        summary: "ACM International Conference on Multimedia (ACM MM) 2026, accepted; to appear."
+        summary: "ACM International Conference on Multimedia (ACM MM) 2026."
 
       - title: "FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection"
         authors:
@@ -117,7 +117,7 @@ cv:
         end_date: Present
         highlights:
           - "Contributed to BI-RADS-aligned image recognition and structured descriptions in collaboration with Southern Medical University."
-          - "The framework uses radiology reports during training and requires only images at inference; ACM MM 2026, accepted."
+          - "The framework uses radiology reports during training and requires only images at inference; ACM MM 2026."
 
       - title: "Artificial Intelligence for Critical Heat Flux in Energy Systems: From Predictive Accuracy to Engineering Use"
         location: Shenzhen, China
