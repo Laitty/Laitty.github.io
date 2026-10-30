@@ -38,7 +38,7 @@ In research, I work across model design, dataset preparation, training, and expe
 
 ## Recent Work
 
-- <span class="item-label">AI Evaluation</span>
+- <span class="item-label">AI Evaluation and Analysis</span>
   - **ExposureBench** — Evaluates when web evidence should change a model's probability, and when disclosure makes the same update redundant.
   - **[Choice2Seq](https://arxiv.org/abs/2610.16191)** — Tests whether a model that selects the correct answer can also construct it through sequential decisions.
   - **[Which Differences Matter?](https://arxiv.org/abs/2610.30045)** — Tests which rule and information changes guide a decision model's answer.
