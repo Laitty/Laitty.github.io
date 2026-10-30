@@ -93,7 +93,7 @@
     },
     {
       "key": "22.3,114.2",
-      "n": 3,
+      "n": 4,
       "lat": 22.3,
       "lng": 114.2,
       "label": "Hong Kong, China"
@@ -146,6 +146,13 @@
       "lat": 40.9,
       "lng": -80.7,
       "label": "Columbiana, US"
+    },
+    {
+      "key": "40,-83",
+      "n": 1,
+      "lat": 40.0,
+      "lng": -83.0,
+      "label": "Columbus, US"
     }
   ]
 }
