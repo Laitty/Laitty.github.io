@@ -440,7 +440,13 @@ html[data-theme="dark"] .apple-btn-primary {
   line-height: 1.65;
 }
 
-#about {
+#about,
+.apple-page h2,
+.apple-page h3,
+.post h2,
+.post h3,
+article h2,
+article h3 {
   scroll-margin-top: 5.2rem;
 }
 
@@ -1726,4 +1732,81 @@ html[data-theme-setting="dark"] .visitor-map-tip {
     height: min(58vh, 480px);
     border-radius: 16px;
   }
+}
+
+.section-rail {
+  display: none;
+}
+
+@media (min-width: 1340px) {
+  .section-rail {
+    display: block;
+    position: fixed;
+    z-index: 20;
+    top: calc(50% + 0.6rem);
+    left: calc(50vw - 490px - 11rem);
+    width: 9.4rem;
+    max-height: calc(100vh - 8.5rem);
+    margin: 0;
+    padding: 0.2rem 0;
+    overflow: auto;
+    transform: translateY(-50%);
+    scrollbar-width: none;
+  }
+
+  .section-rail::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.section-rail ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.section-rail a {
+  position: relative;
+  display: block;
+  padding: 0.32rem 0.15rem 0.32rem 0.8rem;
+  color: var(--apple-muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  text-wrap: pretty;
+}
+
+.section-rail a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.48rem;
+  bottom: 0.48rem;
+  width: 1.5px;
+  border-radius: 1px;
+  background: transparent;
+}
+
+.section-rail a:hover,
+.section-rail a:focus-visible {
+  color: var(--apple-text);
+}
+
+.section-rail a.is-current {
+  color: var(--apple-text);
+}
+
+.section-rail a.is-current::before {
+  background: var(--cmu-red);
+}
+
+.section-rail li.is-sub a {
+  padding-left: 1.25rem;
+  font-size: 0.68rem;
+}
+
+.section-rail li.is-sub a::before {
+  left: 0.45rem;
 }
