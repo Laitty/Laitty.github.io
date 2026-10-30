@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   initLiquidName();
   initPosterViewer();
+  initSectionRail();
 });
 
 function initLiquidName() {
@@ -360,6 +361,86 @@ function splitName(title) {
     title.appendChild(span);
   }
   return letters;
+}
+
+function initSectionRail() {
+  const root = document.querySelector(".apple-article") || document.querySelector("article") || document.querySelector(".post");
+  if (!root) return;
+
+  const heads = [...root.querySelectorAll("h2, h3")].filter((heading) => {
+    if (heading.classList.contains("bibliography")) return false;
+    return heading.textContent.trim().length > 0;
+  });
+  if (heads.length < 2) return;
+
+  const used = new Set([...document.querySelectorAll("[id]")].map((node) => node.id));
+  heads.forEach((heading) => {
+    if (heading.id) return;
+    const base = heading.textContent
+      .trim()
+      .toLowerCase()
+      .replace(/&/g, " and ")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "") || "section";
+    let id = base;
+    let n = 2;
+    while (used.has(id)) {
+      id = `${base}-${n}`;
+      n += 1;
+    }
+    used.add(id);
+    heading.id = id;
+  });
+
+  const nav = document.createElement("nav");
+  nav.className = "section-rail";
+  nav.setAttribute("aria-label", "On this page");
+  const list = document.createElement("ol");
+  heads.forEach((heading) => {
+    const item = document.createElement("li");
+    if (heading.tagName === "H3") item.className = "is-sub";
+    const link = document.createElement("a");
+    link.href = `#${heading.id}`;
+    link.textContent = heading.textContent.trim();
+    item.appendChild(link);
+    list.appendChild(item);
+  });
+  nav.appendChild(list);
+  document.body.appendChild(nav);
+
+  const links = [...nav.querySelectorAll("a")];
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const setCurrent = (id) => {
+    links.forEach((link) => {
+      const on = link.getAttribute("href") === `#${id}`;
+      link.classList.toggle("is-current", on);
+      if (on) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+  };
+
+  const mark = () => {
+    const line = 128;
+    let current = heads[0];
+    heads.forEach((heading) => {
+      if (heading.getBoundingClientRect().top <= line) current = heading;
+    });
+    setCurrent(current.id);
+  };
+
+  links.forEach((link, index) => {
+    link.addEventListener("click", (event) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      heads[index].scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      history.replaceState(null, "", link.getAttribute("href"));
+      setCurrent(heads[index].id);
+    });
+  });
+
+  mark();
+  window.addEventListener("scroll", mark, { passive: true });
 }
 
 function initPosterViewer() {
