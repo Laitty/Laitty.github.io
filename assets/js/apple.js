@@ -392,16 +392,26 @@ function initSectionRail() {
     heading.id = id;
   });
 
+  const entries = heads.map((heading) => ({
+    el: heading,
+    id: heading.id,
+    label: heading.textContent.trim(),
+    sub: heading.tagName === "H3",
+  }));
+  if (root.id === "about") {
+    entries.unshift({ el: root, id: "about", label: "About me", sub: false });
+  }
+
   const nav = document.createElement("nav");
   nav.className = "section-rail";
   nav.setAttribute("aria-label", "On this page");
   const list = document.createElement("ol");
-  heads.forEach((heading) => {
+  entries.forEach((entry) => {
     const item = document.createElement("li");
-    if (heading.tagName === "H3") item.className = "is-sub";
+    if (entry.sub) item.className = "is-sub";
     const link = document.createElement("a");
-    link.href = `#${heading.id}`;
-    link.textContent = heading.textContent.trim();
+    link.href = `#${entry.id}`;
+    link.textContent = entry.label;
     item.appendChild(link);
     list.appendChild(item);
   });
@@ -422,9 +432,9 @@ function initSectionRail() {
 
   const mark = () => {
     const line = 128;
-    let current = heads[0];
-    heads.forEach((heading) => {
-      if (heading.getBoundingClientRect().top <= line) current = heading;
+    let current = entries[0];
+    entries.forEach((entry) => {
+      if (entry.el.getBoundingClientRect().top <= line) current = entry;
     });
     setCurrent(current.id);
   };
@@ -433,9 +443,9 @@ function initSectionRail() {
     link.addEventListener("click", (event) => {
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
-      heads[index].scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      entries[index].el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
       history.replaceState(null, "", link.getAttribute("href"));
-      setCurrent(heads[index].id);
+      setCurrent(entries[index].id);
     });
   });
 
