@@ -23,7 +23,7 @@
     },
     {
       "key": "40.4,-79.9",
-      "n": 52,
+      "n": 54,
       "lat": 40.4,
       "lng": -79.9,
       "label": "Pittsburgh, United States"
@@ -149,7 +149,7 @@
     },
     {
       "key": "40,-83",
-      "n": 1,
+      "n": 2,
       "lat": 40.0,
       "lng": -83.0,
       "label": "Columbus, US"
