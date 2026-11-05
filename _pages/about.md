@@ -61,7 +61,7 @@ The full author lists and research summaries are on the [Research & Projects]({{
 
 ## Professional Experience
 
-- **Research Assistant, Shenzhen University** <span class="proj-meta">(Hybrid, Oct. 2025 – May 2026)</span>
+- **Research Assistant, College of Physics and Optoelectronic Engineering, Shenzhen University** <span class="proj-meta">(Hybrid, Oct. 2025 – May 2026)</span>
   - Cleaned and preprocessed nuclear-sensor time series for high-reliability online condition monitoring; prepared inputs for residual-based fault detection, signal reconstruction, and long-horizon forecasting.
   - Built **Mamba-In** by combining Mamba sequence modeling with Informer-style ProbSparse attention.
   - The CHF review begun in this appointment is ongoing: synthesizing AI prediction, uncertainty, validation, and engineering-use criteria (proposal sent; contacting _Energy_ for an invitation).

@@ -93,7 +93,7 @@ cv:
         summary: "Energies, 18(7), 1858."
 
     Research Appointments:
-      - company: Shenzhen University
+      - company: College of Physics and Optoelectronic Engineering, Shenzhen University
         position: Research Assistant
         start_date: "2025-10"
         end_date: "2026-05"
@@ -129,7 +129,7 @@ cv:
 
       - title: "Mamba-In: An Informer-based Industrial Long-Term Time-Series Prediction for High-Reliability Sensor Online Monitoring in Nuclear Applications"
         location: Shenzhen, China
-        position: Research Assistant, Shenzhen University
+        position: Research Assistant, College of Physics and Optoelectronic Engineering, Shenzhen University
         highlights:
           - "Combines a Mamba branch and an Informer-style ProbSparse attention branch for long-horizon multivariate virtual sensing, residual-based fault detection, and signal reconstruction."
 
