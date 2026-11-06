@@ -49,10 +49,9 @@ In research, I work across the whole pipeline, from dataset preparation and mode
 ## Research Interests
 
 - <span class="item-label">Model evaluation</span> Whether a model's answers, probabilities, and decisions hold up under controlled tests. <span class="interest-works">ExposureBench · Choice2Seq · Which Differences Matter?</span>
+- <span class="item-label">Applied machine learning</span> Medical and dental AI, industrial defect detection, and forecasting for finance and energy. <span class="interest-works">Oral Benchmark · TRACE · FREDNet · ReLaMix</span>
 - <span class="item-label">Machine unlearning</span> What unlearning actually removes, and what a model can still reason about afterward. <span class="interest-works">Reasoning after Unlearning · Multimodal unlearning</span>
 - <span class="item-label">Human–AI interaction</span> How model outputs turn into decisions that people accept and act on. <span class="interest-works">When Outputs Become Outcomes</span>
-- <span class="item-label">Federated learning</span> Learning across heterogeneous clients and devices, from personalized vision–language models to multi-agent cooperation. <span class="interest-works">FedSAP · MOSAIC · After Cooperation Is Learned</span>
-- <span class="item-label">Applied machine learning</span> Medical and dental AI, industrial defect detection, and forecasting for finance and energy. <span class="interest-works">Oral Benchmark · TRACE · FREDNet · ReLaMix</span>
 
 ## Education
 
