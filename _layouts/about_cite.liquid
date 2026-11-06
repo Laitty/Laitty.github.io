@@ -1,9 +1,10 @@
 ---
 ---
-{%- if entry.arxiv -%}
-  {%- capture title_href -%}https://arxiv.org/abs/{{ entry.arxiv }}{%- endcapture -%}
-{%- else -%}
+{%- comment -%} Link the published version once a DOI exists; fall back to arXiv before that. {%- endcomment -%}
+{%- if entry.doi -%}
   {%- capture title_href -%}https://doi.org/{{ entry.doi }}{%- endcapture -%}
+{%- else -%}
+  {%- capture title_href -%}https://arxiv.org/abs/{{ entry.arxiv }}{%- endcapture -%}
 {%- endif -%}
 {%- if entry.journal -%}
   {%- assign venue = entry.journal -%}

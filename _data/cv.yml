@@ -47,7 +47,6 @@ cv:
           - "Li, Q."
         date: "2026"
         doi: "10.1145/3767308.3836433"
-        url: https://arxiv.org/abs/2608.20809
         summary: "ACM International Conference on Multimedia (ACM MM) 2026."
 
       - title: "FREDNet: A Frequency and Decomposed-Spatial Network for Industrial Defect Signal Detection"

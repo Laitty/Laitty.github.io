@@ -260,8 +260,14 @@
     {% capture periodical %}{{ entrytype }}{% if entrytype_text != "" and entryyear != "" %}, {% endif %}{{ entrymonth }}{{ entryyear }}{% endcapture %}
     <div class="periodical">
       {{ periodical | strip }}
+      {% comment %}
+        A published paper links its arXiv version only until its DOI is live. The arxiv
+        field stays in papers.bib so bin/sync_scholar_pubs.py keeps matching the paper.
+      {% endcomment %}
       {% if entry.arxiv and entry.journal != 'arXiv' %}
-        <a class="proj-venue" href="https://arxiv.org/abs/{{ entry.arxiv }}">arXiv</a>
+        {% unless entry.doi %}
+          <a class="proj-venue" href="https://arxiv.org/abs/{{ entry.arxiv }}">arXiv</a>
+        {% endunless %}
       {% endif %}
     </div>
     <div class="periodical">

@@ -45,7 +45,7 @@ In research, I work across the whole pipeline, from dataset preparation and mode
   - **[Choice2Seq](https://arxiv.org/abs/2610.16191)** — Tests whether a model that selects the correct answer can also construct it through sequential decisions.
   - **[Which Differences Matter?](https://arxiv.org/abs/2610.30045)** — Tests which changes to rules and information actually steer a decision model's answer.
 - <span class="item-label">Applied AI</span>
-  - **[TRACE](https://arxiv.org/abs/2608.20809)** — Report-guided concept editing for breast-ultrasound diagnosis that needs only the image at inference (ACM MM 2026).
+  - **[TRACE](https://doi.org/10.1145/3767308.3836433)** — Report-guided concept editing for breast-ultrasound diagnosis that needs only the image at inference (ACM MM 2026).
   - **Dental orthodontic case retrieval** — Ongoing case-retrieval project for orthodontic records, with Fujian Medical University.
   - **Oral Benchmark** — A benchmark built from dental and orthodontic cases.
 
