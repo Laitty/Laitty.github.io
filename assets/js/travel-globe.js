@@ -140,15 +140,9 @@
       .showGraticules(false)
       .polygonsData(regions.features)
       .polygonGeoJsonGeometry((d) => d.geometry)
-      .polygonCapColor((d) =>
-        d.properties.visited ? "rgba(232, 168, 56, 0.62)" : "rgba(255,255,255,0.06)"
-      )
-      .polygonSideColor((d) =>
-        d.properties.visited ? "rgba(232, 168, 56, 0.28)" : "rgba(255,255,255,0.05)"
-      )
-      .polygonStrokeColor((d) =>
-        d.properties.visited ? "rgba(255, 236, 190, 0.95)" : "rgba(255,255,255,0.22)"
-      )
+      .polygonCapColor((d) => (d.properties.visited ? "rgba(232, 168, 56, 0.62)" : "rgba(255,255,255,0.06)"))
+      .polygonSideColor((d) => (d.properties.visited ? "rgba(232, 168, 56, 0.28)" : "rgba(255,255,255,0.05)"))
+      .polygonStrokeColor((d) => (d.properties.visited ? "rgba(255, 236, 190, 0.95)" : "rgba(255,255,255,0.22)"))
       .polygonAltitude((d) => (d.properties.visited ? 0.012 : 0.003))
       .polygonLabel((d) => {
         const extra = d.properties.parent ? `<div class="travel-tip-sub">${d.properties.parent}</div>` : "";
@@ -159,22 +153,14 @@
       .arcStartLng("startLng")
       .arcEndLat("endLat")
       .arcEndLng("endLng")
-      .arcColor((d) =>
-        d.kind === "pulse"
-          ? "rgba(255, 255, 255, 0.42)"
-          : mixFlightArcColor
-      )
+      .arcColor((d) => (d.kind === "pulse" ? "rgba(255, 255, 255, 0.42)" : mixFlightArcColor))
       .arcStroke((d) => (d.kind === "pulse" ? 0.28 : 0.46))
       .arcAltitude((d) => d.alt || 0.12)
       .arcDashLength((d) => (d.kind === "pulse" ? 0.035 : 1))
       .arcDashGap((d) => (d.kind === "pulse" ? 1.2 : 0))
       .arcDashInitialGap((d) => (d.kind === "pulse" ? d.gap : 0))
       .arcDashAnimateTime((d) => (d.kind === "pulse" ? 2800 : 0))
-      .arcLabel((d) =>
-        d.kind === "track"
-          ? `<div class="travel-tip"><div class="travel-tip-name">${d.from} → ${d.to}</div></div>`
-          : ""
-      )
+      .arcLabel((d) => (d.kind === "track" ? `<div class="travel-tip"><div class="travel-tip-name">${d.from} → ${d.to}</div></div>` : ""))
       .pointsData(flights.airports)
       .pointLat("lat")
       .pointLng("lng")
@@ -215,8 +201,7 @@
       ];
       statsEl.innerHTML = items
         .map(
-          ([value, label]) =>
-            `<li><span class="travel-globe-stat-value">${value}</span><span class="travel-globe-stat-label">${label}</span></li>`
+          ([value, label]) => `<li><span class="travel-globe-stat-value">${value}</span><span class="travel-globe-stat-label">${label}</span></li>`
         )
         .join("");
     }

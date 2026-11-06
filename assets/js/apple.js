@@ -100,8 +100,7 @@ function initLiquidName() {
   let time = 0;
 
   const dark = () =>
-    document.documentElement.getAttribute("data-theme") === "dark" ||
-    document.documentElement.getAttribute("data-theme-setting") === "dark";
+    document.documentElement.getAttribute("data-theme") === "dark" || document.documentElement.getAttribute("data-theme-setting") === "dark";
 
   let anchor = { x: 0, y: 0, w: 1, h: 1 };
 
@@ -402,12 +401,13 @@ function initSectionRail() {
   const used = new Set([...document.querySelectorAll("[id]")].map((node) => node.id));
   heads.forEach((heading) => {
     if (heading.id) return;
-    const base = heading.textContent
-      .trim()
-      .toLowerCase()
-      .replace(/&/g, " and ")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "") || "section";
+    const base =
+      heading.textContent
+        .trim()
+        .toLowerCase()
+        .replace(/&/g, " and ")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "") || "section";
     let id = base;
     let n = 2;
     while (used.has(id)) {

@@ -11,4 +11,9 @@
 {%- else -%}
   {%- assign venue = entry.booktitle -%}
 {%- endif -%}
-<strong><a href="{{ title_href }}">{{ entry.title }}</a></strong>. <em>{{ venue }}</em>, {{ entry.year }}.{% if entry.doi %} <a class="cite-doi" href="https://doi.org/{{ entry.doi }}">DOI: {{ entry.doi }}</a>{% endif %}
+<strong
+  ><a href="{{ title_href }}">{{ entry.title }}</a></strong
+>. <em>{{ venue }}</em>, {{ entry.year }}.
+{%- if entry.doi %}
+  <a class="cite-doi" href="https://doi.org/{{ entry.doi }}">DOI: {{ entry.doi }}</a>
+{%- endif %}

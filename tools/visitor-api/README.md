@@ -64,11 +64,11 @@ Deploy prints a URL like `https://laitty-visitor-api.<your-subdomain>.workers.de
 
 ## Endpoints
 
-| Method | Path | Auth | Behavior |
-| ------ | ---- | ---- | -------- |
-| `GET` | `/history` | none | Merge-read both ExtendsClass bins → `{ places }` |
-| `POST` | `/visit` | none (CORS + light IP rate limit) | Hit Abacus, merge place, dual-`PUT` bins |
-| `PUT` | `/history` | `Authorization: Bearer WRITE_TOKEN` | Admin merge; refuse empty wipe of non-empty data |
+| Method | Path       | Auth                                | Behavior                                         |
+| ------ | ---------- | ----------------------------------- | ------------------------------------------------ |
+| `GET`  | `/history` | none                                | Merge-read both ExtendsClass bins → `{ places }` |
+| `POST` | `/visit`   | none (CORS + light IP rate limit)   | Hit Abacus, merge place, dual-`PUT` bins         |
+| `PUT`  | `/history` | `Authorization: Bearer WRITE_TOKEN` | Admin merge; refuse empty wipe of non-empty data |
 
 CORS allows `https://laitty.github.io` and local Jekyll/Docker origins (`localhost:4000`, `:8080`).
 
