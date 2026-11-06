@@ -18,6 +18,14 @@ profile:
   # Email now sits under the intro (see the intro-contact line below), rendered by
   # al_email_protect so the page never contains the plain address.
 
+technical_skills:
+  - kind: Programming
+    items: [Python, PyTorch, TensorFlow, Java, SQL, C/C++, HTML, CSS, JavaScript]
+  - kind: Visualization
+    items: [Tableau, ECharts]
+  - kind: Infrastructure
+    items: [Linux, Docker, Kubernetes, OpenStack, Ceph, Hadoop, HDFS, Hive, Spark]
+
 selected_papers: false
 social: true # includes social icons at the bottom of the page
 
@@ -42,10 +50,10 @@ In research, I work across the whole pipeline, from dataset preparation and mode
 
 - <span class="item-label">AI Evaluation and Analysis</span>
   - **ExposureBench** — Evaluates when web evidence should change a model's probability, and when disclosure makes that update redundant.
-  - **[Choice2Seq](https://arxiv.org/abs/2610.16191)** — Tests whether a model that selects the correct answer can also construct it through sequential decisions.
-  - **[Which Differences Matter?](https://arxiv.org/abs/2610.30045)** — Tests which changes to rules and information actually steer a decision model's answer.
+  - **[Choice2Seq](https://arxiv.org/abs/2610.16191)** — Tests whether a model that selects the correct answer can also construct it through sequential decisions. <span class="proj-venue is-preprint">arXiv</span>
+  - **[Which Differences Matter?](https://arxiv.org/abs/2610.30045)** — Tests which changes to rules and information actually steer a decision model's answer. <span class="proj-venue is-preprint">arXiv</span>
 - <span class="item-label">Applied AI</span>
-  - **[TRACE](https://doi.org/10.1145/3767308.3836433)** — Report-guided concept editing for breast-ultrasound diagnosis that needs only the image at inference (ACM MM 2026).
+  - **[TRACE](https://doi.org/10.1145/3767308.3836433)** — Report-guided concept editing for breast-ultrasound diagnosis that needs only the image at inference. <span class="proj-venue">ACM MM 2026</span>
   - **Dental orthodontic case retrieval** — Ongoing case-retrieval project for orthodontic records, with Fujian Medical University.
   - **Oral Benchmark** — A benchmark built from dental and orthodontic cases.
 
@@ -96,7 +104,7 @@ Full author lists, preprints, and project summaries are on the [Research & Proje
 
 ## Skills and Honors
 
-- <span class="item-label">Technical skills</span> Programming: Python (PyTorch, TensorFlow), Java, SQL, C/C++, HTML, CSS, JavaScript. Visualization: Tableau, ECharts. Infrastructure: Linux, Docker, Kubernetes, OpenStack, Ceph, Hadoop, HDFS, Hive, Spark.
+- <span class="item-label">Technical skills</span>{% for group in page.technical_skills %}<span class="skill-row"><span class="skill-kind">{{ group.kind }}</span>{% for skill in group.items %}<span class="skill">{{ skill }}</span>{% endfor %}</span>{% endfor %}
 - <span class="item-label">Languages</span> Mandarin (native); English.
 - <span class="item-label">Honors</span> Lanzhou University academic, internship, and international-exchange scholarships; undergraduate honors thesis (2025); three-time university basketball champion (2022–23, 2023–24, 2024–25).
 

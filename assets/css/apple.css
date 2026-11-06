@@ -1890,14 +1890,18 @@ html[data-theme-setting="dark"] .visitor-map-tip {
   display: none;
 }
 
-@media (min-width: 1440px) {
+/* The rail lives in the margin left of the 980px column. It used to need 1440px;
+   now it shrinks to fit the free margin (down to 8.5rem) so it still shows in a
+   browser window that is not full width, keeping a 1.6rem gap to the content. */
+@media (min-width: 1300px) {
   .section-rail {
+    --rail-w: clamp(8.5rem, calc((100vw - 980px) / 2 - 2.6rem), 12rem);
     display: block;
     position: fixed;
     z-index: 20;
     top: calc(50% + 0.6rem);
-    left: calc(50vw - 490px - 13.4rem);
-    width: 12rem;
+    left: max(0.75rem, calc(50vw - 490px - 1.6rem - var(--rail-w)));
+    width: var(--rail-w);
     max-height: calc(100vh - 8.5rem);
     margin: 0;
     padding: 0.2rem 0;
@@ -1961,4 +1965,277 @@ html[data-theme-setting="dark"] .visitor-map-tip {
 
 .section-rail li.is-sub a::before {
   left: 0.45rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Visual polish: ambient colour, heading accents, labels, badges, timeline,
+   skill chips, and a header card for inner pages.
+   --------------------------------------------------------------------------- */
+
+/* Soft CMU-coloured light behind the page, so the frosted cards have
+   something to frost instead of sitting on flat grey. */
+html {
+  background: var(--apple-bg);
+}
+
+body {
+  background: transparent !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(48rem 36rem at 4% 6%, rgba(196, 18, 48, 0.1), transparent 70%),
+    radial-gradient(46rem 34rem at 98% 24%, rgba(4, 54, 115, 0.09), transparent 70%),
+    radial-gradient(40rem 32rem at 8% 80%, rgba(0, 143, 145, 0.075), transparent 70%),
+    radial-gradient(44rem 32rem at 94% 96%, rgba(253, 181, 21, 0.11), transparent 70%);
+}
+
+html[data-theme="dark"] body::before,
+html[data-theme-setting="dark"] body::before {
+  background:
+    radial-gradient(48rem 36rem at 4% 6%, rgba(224, 58, 79, 0.15), transparent 70%),
+    radial-gradient(46rem 34rem at 98% 24%, rgba(90, 140, 255, 0.11), transparent 70%),
+    radial-gradient(40rem 32rem at 8% 80%, rgba(72, 196, 198, 0.08), transparent 70%),
+    radial-gradient(44rem 32rem at 94% 96%, rgba(253, 196, 72, 0.07), transparent 70%);
+}
+
+/* Section headings: a short red-to-gold bar. Year headings inside paper lists keep their own style. */
+.apple-article h2:not(.bibliography)::before,
+.post article > h2::before {
+  content: "";
+  display: block;
+  width: 2.6rem;
+  height: 4px;
+  margin-bottom: 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--cmu-red), #fdb515);
+}
+
+.post article > h3::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.6rem;
+  border-radius: 50%;
+  vertical-align: 0.14em;
+  background: var(--cmu-red);
+  box-shadow: 0 0 0 4px rgba(196, 18, 48, 0.12);
+}
+
+.post article > h4 {
+  font-size: 0.76rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+/* Group labels that head a nested list become small tinted pills. */
+li:has(> ul) > .item-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.16rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(196, 18, 48, 0.08);
+  color: var(--cmu-red);
+  font-size: 0.74rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+html[data-theme="dark"] li:has(> ul) > .item-label,
+html[data-theme-setting="dark"] li:has(> ul) > .item-label {
+  background: rgba(224, 58, 79, 0.17);
+  color: #ff8d99;
+}
+
+/* Venues read as badges: gold for published venues, blue for arXiv. */
+span.proj-venue,
+a.proj-venue {
+  display: inline-block;
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8em;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  vertical-align: 0.06em;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+span.proj-venue {
+  background: rgba(253, 181, 21, 0.2);
+  color: #7a4f00;
+}
+
+a.proj-venue,
+span.proj-venue.is-preprint {
+  background: rgba(4, 54, 115, 0.08);
+  color: #043673;
+}
+
+a.proj-venue:hover,
+a.proj-venue:focus-visible {
+  background: rgba(196, 18, 48, 0.1);
+  color: var(--cmu-red);
+  text-decoration: none;
+}
+
+html[data-theme="dark"] span.proj-venue,
+html[data-theme-setting="dark"] span.proj-venue {
+  background: rgba(253, 196, 72, 0.16);
+  color: #f6cd6a;
+}
+
+html[data-theme="dark"] a.proj-venue,
+html[data-theme-setting="dark"] a.proj-venue,
+html[data-theme="dark"] span.proj-venue.is-preprint,
+html[data-theme-setting="dark"] span.proj-venue.is-preprint {
+  background: rgba(120, 168, 232, 0.16);
+  color: #a9c8ff;
+}
+
+/* Professional experience as a timeline: a red rail with one node per role. */
+.apple-article #professional-experience + ul {
+  position: relative;
+  padding-left: 1.7rem;
+}
+
+.apple-article #professional-experience + ul::before {
+  content: "";
+  position: absolute;
+  top: 1.6rem;
+  bottom: 1.6rem;
+  left: 0.55rem;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--cmu-red), rgba(196, 18, 48, 0.12));
+}
+
+.apple-article #professional-experience + ul > li::before {
+  content: "";
+  position: absolute;
+  top: 1.55rem;
+  left: calc(-1.7rem + 0.55rem + 1px - 6px);
+  box-sizing: border-box;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2.5px solid var(--cmu-red);
+  background: var(--apple-bg);
+  box-shadow: 0 0 0 4px rgba(196, 18, 48, 0.1);
+}
+
+/* Technical skills as chips, grouped by kind. */
+li:has(> .skill-row) > .item-label::after {
+  content: none;
+}
+
+.skill-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+}
+
+.skill-kind {
+  flex: 0 0 7.2rem;
+  color: var(--apple-muted);
+  font-size: 0.74rem;
+  font-weight: 650;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.skill {
+  padding: 0.08rem 0.62rem;
+  border: 1px solid rgba(29, 29, 31, 0.09);
+  border-radius: 999px;
+  background: rgba(29, 29, 31, 0.045);
+  color: var(--apple-text);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+html[data-theme="dark"] .skill,
+html[data-theme-setting="dark"] .skill {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Contact line as one frosted pill. */
+.intro-contact {
+  display: inline-flex;
+  margin-top: 0.1rem;
+  padding: 0.38rem 0.95rem;
+  border: 1px solid var(--apple-glass-sm-border);
+  border-radius: 999px;
+  background: var(--apple-glass-sm-bg);
+  box-shadow: var(--apple-glass-sm-shadow);
+}
+
+/* Inner pages (Research & Projects, 404): the title sits on a small glass card
+   that echoes the homepage hero. */
+.post > .post-header {
+  position: relative;
+  overflow: hidden;
+  margin: 0 -12px 2.4rem;
+  padding: 2.3rem 1.8rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 10% 18%, rgba(196, 18, 48, 0.16), transparent 42%),
+    radial-gradient(circle at 90% 8%, rgba(4, 54, 115, 0.14), transparent 40%),
+    radial-gradient(circle at 72% 110%, rgba(253, 181, 21, 0.16), transparent 45%),
+    rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 18px 44px rgba(0, 0, 0, 0.05);
+}
+
+.post > .post-header .post-title {
+  margin-bottom: 0.35rem;
+}
+
+html[data-theme="dark"] .post > .post-header,
+html[data-theme-setting="dark"] .post > .post-header {
+  border-color: rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(circle at 10% 18%, rgba(224, 58, 79, 0.22), transparent 42%),
+    radial-gradient(circle at 90% 8%, rgba(90, 140, 255, 0.18), transparent 40%),
+    radial-gradient(circle at 72% 110%, rgba(253, 196, 72, 0.12), transparent 45%),
+    rgba(28, 28, 30, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 18px 44px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 734px) {
+  .apple-article #professional-experience + ul {
+    padding-left: 1.3rem;
+  }
+
+  .apple-article #professional-experience + ul::before {
+    left: 0.35rem;
+  }
+
+  .apple-article #professional-experience + ul > li::before {
+    top: 1.3rem;
+    left: calc(-1.3rem + 0.35rem + 1px - 6px);
+  }
+
+  .skill-kind {
+    flex-basis: 100%;
+  }
+
+  .post > .post-header {
+    margin: 0 0 1.8rem;
+    padding: 1.7rem 1.2rem 1.5rem;
+    border-radius: 20px;
+  }
 }
