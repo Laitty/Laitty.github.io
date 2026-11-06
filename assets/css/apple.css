@@ -315,6 +315,16 @@ html[data-theme-setting="dark"] .apple-tartan-mark {
   width: 0.28em;
 }
 
+/* Split name: wrap only between words, with the word gap as flex spacing so each line stays centred. */
+.apple-title-wrap .apple-hero-title {
+  column-gap: 0.28em;
+}
+
+.apple-word {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
 .apple-ch.is-hot {
   z-index: 4;
 }
@@ -666,6 +676,11 @@ a.proj-venue:hover {
   font-weight: 500;
   color: var(--apple-muted);
   margin-right: 0.28em;
+}
+
+/* A label that heads a nested list sits on its own line; a trailing dash there points at nothing. */
+li:has(> ul) > .item-label::after {
+  content: none;
 }
 
 .proj-affils {
@@ -1055,6 +1070,22 @@ html[data-theme="dark"] footer {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .apple-orbs {
+    animation: none;
+  }
+
+  .apple-reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }
 

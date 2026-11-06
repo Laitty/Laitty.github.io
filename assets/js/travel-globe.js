@@ -9,15 +9,34 @@
     status.hidden = !text;
   };
 
-  const waitForGlobe = () =>
+  // The library, the 1.4 MB earth texture and the region polygons together are
+  // most of the homepage's weight, and the globe sits at the very bottom.
+  // Fetch them only once the card is about a screen away.
+  const GLOBE_LIB = "https://cdn.jsdelivr.net/npm/globe.gl@2.41.4/dist/globe.gl.min.js";
+
+  const whenNear = (el) =>
+    new Promise((resolve) => {
+      if (!("IntersectionObserver" in window)) return resolve();
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          io.disconnect();
+          resolve();
+        },
+        { rootMargin: "900px 0px" }
+      );
+      io.observe(el);
+    });
+
+  const loadGlobe = () =>
     new Promise((resolve, reject) => {
-      let n = 0;
-      const tick = () => {
-        if (typeof Globe === "function") return resolve();
-        if (++n > 80) return reject(new Error("Globe library failed to load"));
-        setTimeout(tick, 50);
-      };
-      tick();
+      if (typeof Globe === "function") return resolve();
+      const script = document.createElement("script");
+      script.src = GLOBE_LIB;
+      script.async = true;
+      script.onload = () => (typeof Globe === "function" ? resolve() : reject(new Error("Globe library failed to load")));
+      script.onerror = () => reject(new Error("Globe library failed to load"));
+      document.head.appendChild(script);
     });
 
   const fit = (globe) => {
@@ -27,8 +46,9 @@
   };
 
   const init = async () => {
-    await waitForGlobe();
-    const [regions, flights] = await Promise.all([
+    await whenNear(mount);
+    const [, regions, flights] = await Promise.all([
+      loadGlobe(),
       fetch(mount.dataset.regions).then((r) => r.json()),
       fetch(mount.dataset.flights).then((r) => r.json()),
     ]);
@@ -218,6 +238,14 @@
     window.addEventListener("resize", () => fit(globe));
     if (window.visualViewport) {
       window.visualViewport.addEventListener("resize", () => fit(globe));
+    }
+
+    // Halt the WebGL render loop while the globe is scrolled out of view.
+    if ("IntersectionObserver" in window && typeof globe.pauseAnimation === "function") {
+      new IntersectionObserver((entries) => {
+        if (entries[entries.length - 1].isIntersecting) globe.resumeAnimation();
+        else globe.pauseAnimation();
+      }).observe(mount);
     }
   };
 

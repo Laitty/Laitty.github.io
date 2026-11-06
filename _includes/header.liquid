@@ -21,7 +21,7 @@
         {% endif %}
       </a>
       {% if site.enable_navbar_social %}
-        <nav class="navbar-social" aria-label="Profiles">{% social_links %}</nav>
+        <nav class="navbar-social" aria-label="Profiles">{% include social_links_protected.liquid %}</nav>
       {% endif %}
       <!-- Navbar Toggle -->
       <button

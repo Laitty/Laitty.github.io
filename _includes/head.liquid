@@ -4,6 +4,29 @@
 <meta name="googlebot" content="index, follow">
 <meta name="bingbot" content="index, follow">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+{% if page.permalink == '/' %}
+  {% comment %} A Person record lets search engines tie the name, affiliation, and profiles together for name searches. {% endcomment %}
+  {% assign socials = site.data.socials %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Tianyou Lai",
+      "alternateName": ["Theo Lai", "Tianyou (Theo) Lai"],
+      "url": {{ '/' | absolute_url | jsonify }},
+      "jobTitle": "MS student in Artificial Intelligence Systems Management",
+      "affiliation": { "@type": "CollegeOrUniversity", "name": "Carnegie Mellon University", "url": "https://www.cmu.edu/" },
+      "alumniOf": [{ "@type": "CollegeOrUniversity", "name": "Lanzhou University", "url": "https://www.lzu.edu.cn/" }],
+      "knowsAbout": ["Reliable machine learning", "Model evaluation", "Federated learning", "Machine unlearning", "Applied machine learning"],
+      "sameAs": [
+        "https://scholar.google.com/citations?user={{ socials.scholar_userid }}",
+        "https://github.com/{{ socials.github_username }}",
+        "https://www.linkedin.com/in/{{ socials.linkedin_username }}",
+        "https://www.researchgate.net/profile/{{ socials.research_gate_profile }}"
+      ]
+    }
+  </script>
+{% endif %}
 
 <!-- Security: Content Security Policy -->
 <!-- Permissive CSP suitable for academic websites. Allows external images, videos, and common embed services. -->
@@ -209,7 +232,7 @@
 <script defer src="{{ '/assets/js/apple.js' | relative_url | bust_file_cache }}"></script>
 
 {% if page.travel_globe %}
-  <script defer src="https://cdn.jsdelivr.net/npm/globe.gl@2.41.4/dist/globe.gl.min.js"></script>
+  {% comment %} travel-globe.js fetches globe.gl (~350 KB) and the earth texture only when the globe card nears the viewport. {% endcomment %}
   <script defer src="{{ '/assets/js/travel-globe.js' | relative_url | bust_file_cache }}"></script>
 {% endif %}
 

@@ -1,0 +1,10 @@
+{% comment %}
+  Social icons with the email entry rewritten by al_email_protect, so the built HTML holds no
+  address and no mailto: (clicking the icon copies the address instead). al_email_protect 1.0.1
+  folds the anchor's other attributes into its class value, which drops the icon's title and
+  leaves the link without an accessible name; put it back as real attributes.
+{% endcomment %}
+{% capture social_html %}{% social_links %}{% endcapture %}
+{% capture folded_title %}al-email-protect title='Email'"{% endcapture %}
+{% capture restored_title %}al-email-protect" title="Copy email address" aria-label="Copy email address"{% endcapture %}
+{{ social_html | al_email_protect_html | replace: folded_title, restored_title }}

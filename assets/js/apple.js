@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const nodes = document.querySelectorAll(
-    ".apple-hero, .apple-article h2, .apple-article ul > li, .bibliography > ol > li, .publications li, .social"
-  );
+  const nodes = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ? []
+    : document.querySelectorAll(".apple-hero, .apple-article h2, .apple-article ul > li, .bibliography > ol > li, .publications li, .social");
   nodes.forEach((el, i) => {
     el.style.animationDelay = `${Math.min(i * 0.05, 0.6)}s`;
     el.classList.add("apple-reveal");
@@ -334,32 +334,58 @@ function initLiquidName() {
       ctx.fill();
     }
 
+    if (heroVisible) requestAnimationFrame(tick);
+    else running = false;
+  };
+
+  // Stop drawing once the hero scrolls out of view, so the canvas does not
+  // keep burning CPU (and battery) while the rest of the page is being read.
+  let heroVisible = true;
+  let running = false;
+  const start = () => {
+    if (running || !heroVisible) return;
+    running = true;
     requestAnimationFrame(tick);
   };
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver((entries) => {
+      heroVisible = entries[entries.length - 1].isIntersecting;
+      start();
+    }).observe(hero);
+  }
 
   window.addEventListener("resize", fit);
   if (window.visualViewport) window.visualViewport.addEventListener("resize", fit);
   fit();
-  requestAnimationFrame(tick);
+  start();
 }
 
 function splitName(title) {
-  const text = title.textContent;
-  title.setAttribute("aria-label", text.trim());
+  // Collapse the template's indentation and newlines first; otherwise every
+  // whitespace character becomes an invisible flex item that pushes the name
+  // off-centre and forces early line breaks.
+  const text = title.textContent.replace(/\s+/g, " ").trim();
   title.textContent = "";
+  // Screen readers get the name once as plain text; the animated letters are hidden from them.
+  const spoken = document.createElement("span");
+  spoken.className = "sr-only";
+  spoken.textContent = text;
+  title.appendChild(spoken);
   const letters = [];
-  for (const ch of text) {
-    const span = document.createElement("span");
-    if (ch === " ") {
-      span.className = "apple-ch is-space";
-      span.textContent = "\u00a0";
-    } else {
+  // Group letters by word so the flex row only wraps between words, never mid-word.
+  text.split(" ").forEach((word) => {
+    const group = document.createElement("span");
+    group.className = "apple-word";
+    group.setAttribute("aria-hidden", "true");
+    for (const ch of word) {
+      const span = document.createElement("span");
       span.className = "apple-ch";
       span.textContent = ch;
       if (/[A-Za-z]/.test(ch)) letters.push(span);
+      group.appendChild(span);
     }
-    title.appendChild(span);
-  }
+    title.appendChild(group);
+  });
   return letters;
 }
 
@@ -449,8 +475,18 @@ function initSectionRail() {
     });
   });
 
+  let markQueued = false;
+  const queueMark = () => {
+    if (markQueued) return;
+    markQueued = true;
+    requestAnimationFrame(() => {
+      markQueued = false;
+      mark();
+    });
+  };
+
   mark();
-  window.addEventListener("scroll", mark, { passive: true });
+  window.addEventListener("scroll", queueMark, { passive: true });
 }
 
 function initPosterViewer() {

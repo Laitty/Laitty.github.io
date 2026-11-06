@@ -154,42 +154,42 @@
           {% endif %}
         {%- endif -%}
       {% endfor %}
-      {% if append_self %}
-        {% assign author = entry.author_array[self_index] %}
+      {%- comment -%} Every tag below trims its whitespace, so no space lands before ", <em>…" or ", and N more authors". {%- endcomment -%}
+      {%- if append_self -%}
+        {%- assign author = entry.author_array[self_index] -%}
         {%- assign author_last_html = author.last | regex_replace: '([*∗†‡§¶‖&^]+)', '<sup>\1</sup>' -%}
-        ,
-        <em>
+        , <em>
           {{- author.first }}
           {{ author_last_html -}}
         </em>
-      {% endif %}
+      {%- endif -%}
       {%- assign more_authors = author_array_size | minus: author_array_limit -%}
-      {% if append_self %}
-        {% assign more_authors = more_authors | minus: 1 %}
-      {% endif %}
+      {%- if append_self -%}
+        {%- assign more_authors = more_authors | minus: 1 -%}
+      {%- endif -%}
 
       {%- assign more_authors_hide = more_authors | append: ' more author' -%}
-      {% if more_authors > 0 %}
+      {%- if more_authors > 0 -%}
         {%- if more_authors > 1 -%}
-          {% assign more_authors_hide = more_authors_hide | append: 's' %}
+          {%- assign more_authors_hide = more_authors_hide | append: 's' -%}
         {%- endif -%}
-        {% assign more_authors_show = '' %}
-        {% assign more_first = true %}
+        {%- assign more_authors_show = '' -%}
+        {%- assign more_first = true -%}
         {%- for author in entry.author_array offset: author_array_limit -%}
-          {% assign hidden_index = forloop.index0 | plus: author_array_limit %}
-          {% assign skip_self = false %}
-          {% if append_self %}
-            {% if hidden_index == self_index %}
-              {% assign skip_self = true %}
-            {% endif %}
-          {% endif %}
-          {% unless skip_self %}
-            {% unless more_first %}
-              {% assign more_authors_show = more_authors_show | append: ', ' %}
-            {% endunless %}
-            {% assign more_first = false %}
-            {% assign more_authors_show = more_authors_show | append: author.first | append: ' ' | append: author.last %}
-          {% endunless %}
+          {%- assign hidden_index = forloop.index0 | plus: author_array_limit -%}
+          {%- assign skip_self = false -%}
+          {%- if append_self -%}
+            {%- if hidden_index == self_index -%}
+              {%- assign skip_self = true -%}
+            {%- endif -%}
+          {%- endif -%}
+          {%- unless skip_self -%}
+            {%- unless more_first -%}
+              {%- assign more_authors_show = more_authors_show | append: ', ' -%}
+            {%- endunless -%}
+            {%- assign more_first = false -%}
+            {%- assign more_authors_show = more_authors_show | append: author.first | append: ' ' | append: author.last -%}
+          {%- endunless -%}
         {%- endfor -%}
         {%- assign more_authors_show = more_authors_show | regex_replace: '([*∗†‡§¶‖&^]+)', '<sup>\1</sup>' -%}
         , and
