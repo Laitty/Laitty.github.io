@@ -2220,6 +2220,14 @@ html[data-theme-setting="dark"] .skill {
   background: rgba(255, 255, 255, 0.07);
 }
 
+/* Research interests: the representative projects sit on their own quiet line under each theme. */
+.interest-works {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--apple-muted);
+  font-size: 0.86em;
+}
+
 /* Contact line as one frosted pill. */
 .intro-contact {
   display: inline-flex;

@@ -46,16 +46,13 @@ In research, I work across the whole pipeline, from dataset preparation and mode
 
 <p class="intro-contact"><i class="fa-solid fa-envelope" aria-hidden="true"></i>{% al_email_protect_link site.data.socials.email %}<span class="intro-contact-hint"></span></p>
 
-## Recent Work
+## Research Interests
 
-- <span class="item-label">AI Evaluation and Analysis</span>
-  - **ExposureBench** — Evaluates when web evidence should change a model's probability, and when disclosure makes that update redundant.
-  - **[Choice2Seq](https://arxiv.org/abs/2610.16191)** — Tests whether a model that selects the correct answer can also construct it through sequential decisions. <span class="proj-venue is-preprint">arXiv</span>
-  - **[Which Differences Matter?](https://arxiv.org/abs/2610.30045)** — Tests which changes to rules and information actually steer a decision model's answer. <span class="proj-venue is-preprint">arXiv</span>
-- <span class="item-label">Applied AI</span>
-  - **Oral Benchmark** — A benchmark built from dental and orthodontic cases.
-  - **Dental orthodontic case retrieval** — Ongoing case-retrieval project for orthodontic records, with Fujian Medical University.
-  - **[TRACE](https://doi.org/10.1145/3767308.3836433)** — Report-guided concept editing for breast-ultrasound diagnosis that needs only the image at inference. <span class="proj-venue">ACM MM 2026</span>
+- <span class="item-label">Model evaluation</span> Whether a model's answers, probabilities, and decisions hold up under controlled tests. <span class="interest-works">ExposureBench · Choice2Seq · Which Differences Matter?</span>
+- <span class="item-label">Machine unlearning</span> What unlearning actually removes, and what a model can still reason about afterward. <span class="interest-works">Reasoning after Unlearning · Multimodal unlearning</span>
+- <span class="item-label">Human–AI interaction</span> How model outputs turn into decisions that people accept and act on. <span class="interest-works">When Outputs Become Outcomes</span>
+- <span class="item-label">Federated learning</span> Learning across heterogeneous clients and devices, from personalized vision–language models to multi-agent cooperation. <span class="interest-works">FedSAP · MOSAIC · After Cooperation Is Learned</span>
+- <span class="item-label">Applied machine learning</span> Medical and dental AI, industrial defect detection, and forecasting for finance and energy. <span class="interest-works">Oral Benchmark · TRACE · FREDNet · ReLaMix</span>
 
 ## Education
 
