@@ -15,8 +15,8 @@ profile:
   align: right
   image:
   image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>laityATcmu.edu</p>
+  # Email now sits under the intro (see the intro-contact line below), rendered by
+  # al_email_protect so the page never contains the plain address.
 
 selected_papers: false
 social: true # includes social icons at the bottom of the page
@@ -36,6 +36,8 @@ I am Tianyou Lai (Theo), from Beijing, an MS student in Artificial Intelligence 
 
 In research, I work across model design, dataset preparation, training, and experimental evaluation. In industry, I have interned in product data, consulting analytics, quantitative research, startup data science, and data engineering.
 
+<p class="intro-contact"><i class="fa-solid fa-envelope" aria-hidden="true"></i>{% al_email_protect_link site.data.socials.email %}<span class="intro-contact-hint"></span></p>
+
 ## Recent Work
 
 - <span class="item-label">AI Evaluation and Analysis</span>
@@ -49,9 +51,9 @@ In research, I work across model design, dataset preparation, training, and expe
 
 ## Education
 
-- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/cmu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span><span class="edu-oneline">**Carnegie Mellon University** — MS in Artificial Intelligence Systems Management, Aug. 2026 – Dec. 2027 (expected); GPA: 4/4</span>
-- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/lzu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**Lanzhou University** — BS in Data Science & Big Data Technology, Sep. 2021 – Jul. 2025; GPA: 87.34/100
-- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/ut.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**The University of Texas at Austin** — Exchange Program in Software Engineering, Jan. 2024 – Feb. 2024; GPA: 4/4
+- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/cmu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span><span class="edu-oneline">**Carnegie Mellon University** — MS in Artificial Intelligence Systems Management <span class="proj-meta">(Aug. 2026 – Dec. 2027, expected; GPA 4/4)</span></span>
+- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/lzu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**Lanzhou University** — BS in Data Science & Big Data Technology <span class="proj-meta">(Sep. 2021 – Jul. 2025; GPA 87.34/100)</span>
+- <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/ut.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**The University of Texas at Austin** — Exchange Program in Software Engineering <span class="proj-meta">(Jan. – Feb. 2024; GPA 4/4)</span>
 
 ## Publications {#publications}
 
