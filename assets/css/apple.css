@@ -124,6 +124,18 @@ html[data-theme="dark"] nav.navbar.fixed-top {
   outline-offset: 2px;
 }
 
+/* The theme pushes the light/dark toggle down 4px to suit its larger default nav
+   text; with this site's 0.78rem nav that left it ~3px below the ⌘K link. Centre
+   it on the row instead. */
+#navbar .toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+#navbar #light-toggle {
+  transform: none;
+}
+
 #navbar .navbar-social {
   display: flex;
   flex-shrink: 0;
