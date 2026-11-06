@@ -2089,8 +2089,7 @@ span.proj-venue {
   color: #7a4f00;
 }
 
-a.proj-venue,
-span.proj-venue.is-preprint {
+a.proj-venue {
   background: rgba(4, 54, 115, 0.08);
   color: #043673;
 }
@@ -2109,9 +2108,7 @@ html[data-theme-setting="dark"] span.proj-venue {
 }
 
 html[data-theme="dark"] a.proj-venue,
-html[data-theme-setting="dark"] a.proj-venue,
-html[data-theme="dark"] span.proj-venue.is-preprint,
-html[data-theme-setting="dark"] span.proj-venue.is-preprint {
+html[data-theme-setting="dark"] a.proj-venue {
   background: rgba(120, 168, 232, 0.16);
   color: #a9c8ff;
 }
@@ -2183,6 +2180,14 @@ html[data-theme="dark"] .skill,
 html[data-theme-setting="dark"] .skill {
   border-color: rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.07);
+}
+
+/* Research interests: the representative projects sit on their own quiet line under each theme. */
+.interest-works {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--apple-muted);
+  font-size: 0.86em;
 }
 
 /* Contact line as one frosted pill. */
