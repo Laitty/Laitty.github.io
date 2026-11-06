@@ -7,9 +7,9 @@ description: >-
 travel_globe: true
 nav: false
 subtitle: >
-  MS in Artificial Intelligence Systems Management at Carnegie Mellon University
+  MS in Artificial Intelligence Systems Management
 hero_eyebrow: Carnegie Mellon University
-hero_lede: Connecting reliable AI research with applied AI systems, grounded in experience across data engineering, data science and analytics, quantitative research, and product development.
+hero_lede: Connecting reliable AI research with applied systems, informed by industry work in data engineering, data science and analytics, quantitative research, and product development.
 
 profile:
   align: right
@@ -32,22 +32,22 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am Tianyou Lai (Theo), from Beijing, an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University. My research connects reliable learning systems, model evaluation, and human–AI interaction with applied machine learning in healthcare, industrial inspection, physical inverse design, forecasting, and energy systems.
+I am Tianyou (Theo) Lai, an MS student in Artificial Intelligence Systems Management at Carnegie Mellon University, originally from Beijing. My research connects reliable learning systems, model evaluation, and human–AI interaction with applied machine learning in healthcare, industrial inspection, metasurface inverse design, forecasting, and energy systems.
 
-In research, I work across model design, dataset preparation, training, and experimental evaluation. In industry, I have interned in product data, consulting analytics, quantitative research, startup data science, and data engineering.
+In research, I work across the whole pipeline, from dataset preparation and model design to training and experimental evaluation. In industry, I have interned in startup data science, data engineering, quantitative research, consulting analytics, and product data.
 
 <p class="intro-contact"><i class="fa-solid fa-envelope" aria-hidden="true"></i>{% al_email_protect_link site.data.socials.email %}<span class="intro-contact-hint"></span></p>
 
 ## Recent Work
 
 - <span class="item-label">AI Evaluation and Analysis</span>
-  - **ExposureBench** — Evaluates when web evidence should change a model's probability, and when disclosure makes the same update redundant.
+  - **ExposureBench** — Evaluates when web evidence should change a model's probability, and when disclosure makes that update redundant.
   - **[Choice2Seq](https://arxiv.org/abs/2610.16191)** — Tests whether a model that selects the correct answer can also construct it through sequential decisions.
-  - **[Which Differences Matter?](https://arxiv.org/abs/2610.30045)** — Tests which rule and information changes guide a decision model's answer.
+  - **[Which Differences Matter?](https://arxiv.org/abs/2610.30045)** — Tests which changes to rules and information actually steer a decision model's answer.
 - <span class="item-label">Applied AI</span>
-  - **[TRACE](https://arxiv.org/abs/2608.20809)** — Report-guided concept editing for breast ultrasound, with image-only inference. ACM MM 2026.
-  - **Dental orthodontic case retrieval** — Ongoing case retrieval for orthodontic records with Fujian Medical University.
-  - **Oral Benchmark** — A benchmark for dental and orthodontic cases.
+  - **[TRACE](https://arxiv.org/abs/2608.20809)** — Report-guided concept editing for breast-ultrasound diagnosis that needs only the image at inference (ACM MM 2026).
+  - **Dental orthodontic case retrieval** — Ongoing case-retrieval project for orthodontic records, with Fujian Medical University.
+  - **Oral Benchmark** — A benchmark built from dental and orthodontic cases.
 
 ## Education
 
@@ -59,26 +59,26 @@ In research, I work across model design, dataset preparation, training, and expe
 
 {% bibliography --query @*[category=publication] --group_by none --bibliography_list_tag ul --template about_cite %}
 
-The full author lists and research summaries are on the [Research & Projects]({{ '/publications/' | relative_url }}) page.
+Full author lists, preprints, and project summaries are on the [Research & Projects]({{ '/publications/' | relative_url }}) page.
 
 ## Professional Experience
 
 - **Research Assistant, College of Physics and Optoelectronic Engineering, Shenzhen University** <span class="proj-meta">(Hybrid, Oct. 2025 – May 2026)</span>
   - Cleaned and preprocessed nuclear-sensor time series for high-reliability online condition monitoring; prepared inputs for residual-based fault detection, signal reconstruction, and long-horizon forecasting.
-  - Built **Mamba-In** by combining Mamba sequence modeling with Informer-style ProbSparse attention.
-  - The CHF review begun in this appointment is ongoing: synthesizing AI prediction, uncertainty, validation, and engineering-use criteria (proposal sent; contacting _Energy_ for an invitation).
+  - Built **Mamba-In**, which combines Mamba sequence modeling with Informer-style ProbSparse attention for long-horizon sensor forecasting.
+  - Started an ongoing review of AI for critical heat flux (CHF) that synthesizes prediction, uncertainty, validation, and engineering-use criteria (proposal sent; contacting _Energy_ for an invitation).
 - **Data Science Intern, Sichuan DeepGraph Intelligent Technology** <span class="proj-meta">(Chengdu, Sep. 2024 – Feb. 2025)</span>
   - Built Python cleaning and consistency checks to prepare datasets for analysis and model development.
-  - Queried financial datasets and graph relationships in Ultipa XAI to support modeling and data-analysis algorithm optimization; assisted OpenStack deployment for these workflows.
+  - Queried financial datasets and graph relationships in Ultipa XAI to support modeling and the optimization of data-analysis algorithms; helped deploy these workflows on OpenStack.
 - **Data Engineer Intern, Lanzhou Bronze Ding Intelligent Technology** <span class="proj-meta">(Lanzhou, Mar. 2024 – Sep. 2024)</span>
   - Curated 20+ datasets and labeled 10,000+ records with Python and SQL; produced seven Matplotlib/Seaborn reports to visualize data, check processed outputs, and document results.
   - Deployed MySQL and Hadoop/Spark on a private cloud for large-scale storage and batch processing.
 - **Quantitative Research Intern, Guotai Junan Futures** <span class="proj-meta">(Remote, Mar. 2024 – Apr. 2024)</span>
   - Extended a Python trading system with position locking, closing, and batch orders across instruments and exchanges.
-  - Integrated and debugged C++/Python CTP-API in Simnow; implemented TWAP/VWAP execution and generated and filtered technical indicators with TA-Lib.
+  - Integrated and debugged the C++/Python CTP API in the SimNow environment; implemented TWAP/VWAP execution, and generated and filtered technical indicators with TA-Lib.
 - **Tax and Business Consulting Intern, Zhongzheng Tiantong CPA Tax Department** <span class="proj-meta">(Beijing, Jul. 2023 – Sep. 2023)</span>
   - Cleaned financial and market data with Python and SQL.
-  - Prepared Excel/Tableau visual analyses of client financial performance, business risk, and market trends from publicly available cases for tax and business consulting.
+  - Prepared Excel and Tableau analyses of client financial performance, business risk, and market trends, drawn from publicly available cases, to support tax and business consulting.
 - **Product Data Engineer Intern, Feitian Technologies** <span class="proj-meta">(Beijing, Jul. 2022 – Jan. 2023)</span>
   - Maintained hardware-product databases with Python and SQL; reviewed C/C++ code and tested features for an intelligent password system, supporting functional verification and hardware performance testing.
   - Conducted 30+ product performance tests and prepared summaries of 10+ blockchain reports.
@@ -96,15 +96,15 @@ The full author lists and research summaries are on the [Research & Projects]({{
 
 ## Skills and Honors
 
-- <span class="item-label">Technical skills</span> Python (PyTorch, TensorFlow), Java, SQL, C/C++, HTML, CSS, JavaScript; Tableau, ECharts; Linux, Ceph, HDFS, OpenStack, Docker, Kubernetes, Hadoop, Hive, Spark.
+- <span class="item-label">Technical skills</span> Programming: Python (PyTorch, TensorFlow), Java, SQL, C/C++, HTML, CSS, JavaScript. Visualization: Tableau, ECharts. Infrastructure: Linux, Docker, Kubernetes, OpenStack, Ceph, Hadoop, HDFS, Hive, Spark.
 - <span class="item-label">Languages</span> Mandarin (native); English.
-- <span class="item-label">Honors</span> Lanzhou University academic, internship, and international exchange scholarships; undergraduate honors thesis (2025); three-time University Basketball Championship (2022–23, 2023–24, 2024–25).
+- <span class="item-label">Honors</span> Lanzhou University academic, internship, and international-exchange scholarships; undergraduate honors thesis (2025); three-time university basketball champion (2022–23, 2023–24, 2024–25).
 
 ## Interests
 
-- <span class="item-label">Basketball</span> currently taking a break from playing while recovering from knee surgery.
+- <span class="item-label">Basketball</span> taking a break from playing while I recover from knee surgery.
 - <span class="item-label">Billiards</span> enjoying both the hot streaks and the cold spells.
-- <span class="item-label">Fun facts</span> I have visited nearly every province in China and explored Europe on two trips of two weeks each. I have also completed several 5 km+ hiking and mountaineering trips, though a knee injury cost me the chance to attempt a 7 km peak. My travel wish list keeps growing.
+- <span class="item-label">Fun facts</span> I have visited nearly every province in China and explored Europe on two two-week trips. I have also completed several high-altitude hikes and climbs above 5,000 m, though a knee injury cost me the chance to attempt a 7,000 m peak. My travel wish list keeps growing.
 
 <div class="travel-globe-card">
   <div class="travel-globe-stage">
