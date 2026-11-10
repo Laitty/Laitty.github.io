@@ -87,7 +87,7 @@ Full author lists and preprints are on the [Publications]({{ '/publications/' | 
   - Maintained hardware-product databases with Python and SQL; reviewed C/C++ code and tested features for an intelligent password system, supporting functional verification and hardware performance testing.
   - Conducted 30+ product performance tests and prepared summaries of 10+ blockchain reports.
 
-## Academic Service
+## Service, Skills, and Honors
 
 - <span class="item-label">Conference reviewer</span>
   - ACM The Web Conference (WWW) 2027
@@ -97,9 +97,6 @@ Full author lists and preprints are on the [Publications]({{ '/publications/' | 
 - <span class="item-label">Journal reviewer</span>
   - IEEE Open Journal of Signal Processing (OJSP)
 - <span class="item-label">IEEE Member</span> 2025–present.
-
-## Skills and Honors
-
 - <span class="item-label">Technical skills</span>{% for group in page.technical_skills %}<span class="skill-row"><span class="skill-kind">{{ group.kind }}</span>{% for skill in group.items %}<span class="skill">{{ skill }}</span>{% endfor %}</span>{% endfor %}
 - <span class="item-label">Languages</span> Mandarin (native); English.
 - <span class="item-label">Honors</span> Lanzhou University academic, internship, and international-exchange scholarships; undergraduate honors thesis (2025); three-time university basketball champion (2022–23, 2023–24, 2024–25).
