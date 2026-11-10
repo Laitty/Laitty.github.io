@@ -462,6 +462,9 @@ function initSectionRail() {
     entries.forEach((entry) => {
       if (entry.el.getBoundingClientRect().top <= line) current = entry;
     });
+    // A short last section never scrolls up to the line, so the bottom of the page marks it.
+    const page = document.documentElement;
+    if (window.scrollY > 0 && window.innerHeight + window.scrollY >= page.scrollHeight - 2) current = entries[entries.length - 1];
     setCurrent(current.id);
   };
 

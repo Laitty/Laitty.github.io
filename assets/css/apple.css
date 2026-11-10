@@ -2239,7 +2239,7 @@ html[data-theme-setting="dark"] .skill {
   box-shadow: var(--apple-glass-sm-shadow);
 }
 
-/* Inner pages (Research & Projects, 404): the title sits on a small glass card
+/* Inner pages (Publications, Projects, 404): the title sits on a small glass card
    that echoes the homepage hero. */
 .post > .post-header {
   position: relative;

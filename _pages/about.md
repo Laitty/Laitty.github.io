@@ -63,7 +63,7 @@ In research, I work across the whole pipeline, from dataset preparation and mode
 
 {% bibliography --query @*[category=publication] --group_by none --bibliography_list_tag ul --template about_cite %}
 
-Full author lists, preprints, and project summaries are on the [Research & Projects]({{ '/publications/' | relative_url }}) page.
+Full author lists and preprints are on the [Publications]({{ '/publications/' | relative_url }}) page, and project summaries are on the [Projects]({{ '/projects/' | relative_url }}) page.
 
 ## Professional Experience
 
@@ -143,4 +143,15 @@ Full author lists, preprints, and project summaries are on the [Research & Proje
       <span class="travel-globe-stat-label">Flights</span>
     </li>
   </ul>
+</div>
+
+## Visit History
+
+<div
+  id="visitor-map"
+  class="visitor-map-card"
+  data-map="{{ '/assets/img/visitor-world.svg' | relative_url }}"
+>
+  <div class="visitor-map-stage"></div>
+  <p class="visitor-map-note">Loading visit history…</p>
 </div>
