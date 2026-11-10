@@ -19,7 +19,8 @@ Cite papers by their DOI or arXiv id.
 ## Pages
 
 - [About](https://laitty.github.io/): biography, education, and appointments
-- [Research & Projects](https://laitty.github.io/publications/): publications, preprints, and research experience
+- [Publications](https://laitty.github.io/publications/): published papers and preprints
+- [Projects](https://laitty.github.io/projects/): research and project experience, grouped by theme
 - [Sitemap](https://laitty.github.io/sitemap.xml)
 
 ## Publications
