@@ -143,14 +143,3 @@ Full author lists and preprints are on the [Publications]({{ '/publications/' | 
     </li>
   </ul>
 </div>
-
-## Visit History
-
-<div
-  id="visitor-map"
-  class="visitor-map-card"
-  data-map="{{ '/assets/img/visitor-world.svg' | relative_url }}"
->
-  <div class="visitor-map-stage"></div>
-  <p class="visitor-map-note">Loading visit history…</p>
-</div>

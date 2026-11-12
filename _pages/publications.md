@@ -24,3 +24,14 @@ nav_order: 2
 {% bibliography --query @*[category=preprint] --sort none %}
 
 </div>
+
+## Visit History
+
+<div
+  id="visitor-map"
+  class="visitor-map-card"
+  data-map="{{ '/assets/img/visitor-world.svg' | relative_url }}"
+>
+  <div class="visitor-map-stage"></div>
+  <p class="visitor-map-note">Loading visit history…</p>
+</div>
