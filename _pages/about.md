@@ -92,7 +92,7 @@ Full author lists and preprints are on the [Publications]({{ '/publications/' | 
 - <span class="item-label">Conference reviewer</span>
   - ACM The Web Conference (WWW) 2027
   - IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP) 2027
-  - ACM International Conference on Multimedia (ACM MM) 2026
+  - ACM International Conference on Multimedia (ACM MM) 2026 <span class="proj-meta">(Main Track and Dataset Track)</span>
   - International Joint Conference on Neural Networks (IJCNN) 2026
 - <span class="item-label">Journal reviewer</span>
   - IEEE Open Journal of Signal Processing (OJSP)
