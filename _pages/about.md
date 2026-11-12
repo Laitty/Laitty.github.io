@@ -63,7 +63,7 @@ In research, I work across the whole pipeline, from dataset preparation and mode
 
 {% bibliography --query @*[category=publication && selected=true] --group_by none --bibliography_list_tag ul --template about_cite %}
 
-<sup>*</sup> Equal contribution (co-first author).
+<sup>*</sup> (co-)first author.
 
 Full author lists and preprints are on the [Publications]({{ '/publications/' | relative_url }}) page, and project summaries are on the [Projects]({{ '/projects/' | relative_url }}) page.
 
