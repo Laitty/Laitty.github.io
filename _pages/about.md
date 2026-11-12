@@ -92,12 +92,11 @@ Full author lists and preprints are on the [Publications]({{ '/publications/' | 
 - <span class="item-label">Conference reviewer</span>
   - ACM The Web Conference (WWW) 2027 <span class="proj-meta">(Main Track)</span>
   - IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP) 2027 <span class="proj-meta">(Main Track: Machine Learning for Signal Processing [ML]; Image, Video and Multidimensional Signal Processing [IV])</span>
-  - ACM International Conference on Multimedia (ACM MM) 2026 <span class="proj-meta">(Main Track and Dataset Track)</span>
+  - ACM International Conference on Multimedia (ACM MM) 2026 <span class="proj-meta">(Main Track & Dataset Track)</span>
   - International Joint Conference on Neural Networks (IJCNN) 2026 <span class="proj-meta">(Main Track)</span>
 - <span class="item-label">Journal reviewer</span>
   - IEEE Open Journal of Signal Processing (OJSP)
-- <span class="item-label">ACM Member</span> 2026–present.
-- <span class="item-label">IEEE Member</span> 2025–present.
+- <span class="item-label">Memberships</span> ACM (2026–present); IEEE (2025–present).
 - <span class="item-label">Technical skills</span>{% for group in page.technical_skills %}<span class="skill-row"><span class="skill-kind">{{ group.kind }}</span>{% for skill in group.items %}<span class="skill">{{ skill }}</span>{% endfor %}</span>{% endfor %}
 - <span class="item-label">Languages</span> Mandarin (native); English.
 - <span class="item-label">Honors</span> Lanzhou University academic, internship, and international-exchange scholarships; undergraduate honors thesis (2025); three-time university basketball champion (2022–23, 2023–24, 2024–25).
