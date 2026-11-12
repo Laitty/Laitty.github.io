@@ -7,6 +7,8 @@ nav: true
 nav_order: 2
 ---
 
+<sup>*</sup> Equal contribution (co-first authors).
+
 ## Published Papers
 
 <div class="publications">

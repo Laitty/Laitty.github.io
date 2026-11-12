@@ -59,9 +59,11 @@ In research, I work across the whole pipeline, from dataset preparation and mode
 - <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/lzu.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**Lanzhou University** — BS in Data Science & Big Data Technology <span class="proj-meta">(Sep. 2021 – Jul. 2025; GPA 87.34/100)</span>
 - <span class="proj-affils" aria-hidden="true"><img class="proj-affil is-home" src="{{ '/assets/img/affiliations/ut.png' | relative_url }}" alt="" width="96" height="96" decoding="async"></span>**The University of Texas at Austin** — Exchange Program in Software Engineering <span class="proj-meta">(Jan. – Feb. 2024; GPA 4/4)</span>
 
-## Publications {#publications}
+## Selected Publications {#publications}
 
-{% bibliography --query @*[category=publication] --group_by none --bibliography_list_tag ul --template about_cite %}
+{% bibliography --query @*[category=publication && selected=true] --group_by none --bibliography_list_tag ul --template about_cite %}
+
+<sup>*</sup> Equal contribution (co-first author).
 
 Full author lists and preprints are on the [Publications]({{ '/publications/' | relative_url }}) page, and project summaries are on the [Projects]({{ '/projects/' | relative_url }}) page.
 

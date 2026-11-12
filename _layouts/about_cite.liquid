@@ -11,8 +11,19 @@
 {%- else -%}
   {%- assign venue = entry.booktitle -%}
 {%- endif -%}
+{%- assign self_marked_last_name = site.scholar.last_name | first | append: '*' -%}
+{%- assign is_co_first = false -%}
+{%- for author in entry.author_array -%}
+  {%- if author.last == self_marked_last_name and site.scholar.first_name contains author.first -%}
+    {%- assign is_co_first = true -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
 <strong
-  ><a href="{{ title_href }}">{{ entry.title }}</a></strong
+  ><a href="{{ title_href }}">{{ entry.title }}</a>
+  {%- if is_co_first -%}
+    <sup title="Equal contribution">*</sup>
+  {%- endif -%}</strong
 >. <em>{{ venue }}</em>, {{ entry.year }}.
 {%- if entry.doi %}
   <a class="cite-doi" href="https://doi.org/{{ entry.doi }}">DOI: {{ entry.doi }}</a>
