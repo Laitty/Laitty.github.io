@@ -2047,8 +2047,9 @@ html[data-theme-setting="dark"] body::before {
   text-transform: uppercase;
 }
 
-/* Group labels that head a nested list become small tinted pills. */
-li:has(> ul) > .item-label {
+/* Nested-list labels and every service-section label share the same tinted pill. */
+li:has(> ul) > .item-label,
+#service-skills-and-honors + ul > li > .item-label {
   display: inline-flex;
   align-items: center;
   padding: 0.16rem 0.7rem;
@@ -2063,9 +2064,15 @@ li:has(> ul) > .item-label {
 }
 
 html[data-theme="dark"] li:has(> ul) > .item-label,
-html[data-theme-setting="dark"] li:has(> ul) > .item-label {
+html[data-theme-setting="dark"] li:has(> ul) > .item-label,
+html[data-theme="dark"] #service-skills-and-honors + ul > li > .item-label,
+html[data-theme-setting="dark"] #service-skills-and-honors + ul > li > .item-label {
   background: rgba(224, 58, 79, 0.17);
   color: #ff8d99;
+}
+
+#service-skills-and-honors + ul > li > .item-label::after {
+  content: none;
 }
 
 /* Venues read as badges: gold for published venues, blue for arXiv. */
