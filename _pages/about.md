@@ -97,6 +97,7 @@ Full author lists and preprints are on the [Publications]({{ '/publications/' | 
   - ACM International Conference on Multimedia (ACM MM) 2026 <span class="proj-meta">(Main Track & Dataset Track)</span>
   - International Joint Conference on Neural Networks (IJCNN) 2026 <span class="proj-meta">(Main Track)</span>
 - <span class="item-label">Journal reviewer</span>
+  - Expert Systems (Wiley)
   - IEEE Open Journal of Signal Processing (OJSP)
 - <span class="item-label">Memberships</span> ACM (2026–present); IEEE (2025–present).
 - <span class="item-label">Technical skills</span>{% for group in page.technical_skills %}<span class="skill-row"><span class="skill-kind">{{ group.kind }}</span>{% for skill in group.items %}<span class="skill">{{ skill }}</span>{% endfor %}</span>{% endfor %}
