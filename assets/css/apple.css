@@ -1859,10 +1859,14 @@ html[data-theme-setting="dark"] .visitor-map-tip {
   color: #f5f5f7;
 }
 
+/* Poster viewer: a large window on desktop, full screen on phones. The poster is an image
+   moved by one transform (see initPosterViewer in apple.js). */
 .poster-dialog {
-  width: min(72vw, 760px);
-  height: min(64vh, 620px);
+  width: min(96vw, 1680px);
+  height: min(94vh, 1240px);
+  height: min(94dvh, 1240px);
   max-width: none;
+  max-height: none;
   margin: auto;
   padding: 0;
   border: 1px solid var(--apple-glass-sm-border);
@@ -1871,6 +1875,7 @@ html[data-theme-setting="dark"] .visitor-map-tip {
   color: var(--apple-text);
   box-shadow: var(--apple-shadow);
   overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 .poster-dialog[open] {
@@ -1879,9 +1884,13 @@ html[data-theme-setting="dark"] .visitor-map-tip {
 }
 
 .poster-dialog::backdrop {
-  background: rgba(15, 15, 18, 0.28);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(10, 10, 14, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+html.poster-open {
+  overflow: hidden;
 }
 
 .poster-dialog-bar {
@@ -1890,47 +1899,185 @@ html[data-theme-setting="dark"] .visitor-map-tip {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.62rem 0.9rem;
+  padding: 0.5rem 0.6rem 0.5rem 1rem;
   border-bottom: 1px solid var(--apple-line);
 }
 
 .poster-dialog-title {
-  font-size: 0.88rem;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: -0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.poster-dialog-tools {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.poster-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.1rem;
+  height: 2.1rem;
+  margin: 0;
+  padding: 0 0.6rem;
+  border: 1px solid var(--apple-line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--apple-text) !important;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none !important;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.poster-tool:hover,
+.poster-tool:focus-visible {
+  background: rgba(127, 127, 127, 0.12);
+}
+
+.poster-tool[data-action="in"],
+.poster-tool[data-action="out"],
+.poster-dialog-close {
+  padding: 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.poster-tool-fit {
+  min-width: 3.7rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .poster-dialog-close {
-  margin: 0;
-  padding: 0.2rem 0.55rem;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  color: var(--apple-muted);
-  font: inherit;
-  font-size: 0.86rem;
-  font-weight: 500;
-  cursor: pointer;
+  margin-left: 0.15rem;
+  border-color: transparent;
 }
 
-.poster-dialog-close:hover,
-.poster-dialog-close:focus-visible {
-  color: var(--apple-text);
-}
-
-.poster-dialog-frame {
+.poster-stage {
+  position: relative;
   flex: 1;
-  width: 100%;
   min-height: 0;
-  border: 0;
-  background: #fff;
+  overflow: hidden;
+  background: #e8e8ed;
+  cursor: zoom-in;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-@media (max-width: 734px) {
+.poster-stage.is-zoomed {
+  cursor: grab;
+}
+
+.poster-stage.is-dragging {
+  cursor: grabbing;
+}
+
+.poster-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: none;
+  background: #fff;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  transform-origin: 0 0;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.poster-image.is-animating {
+  transition: transform 0.24s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.poster-stage.is-loading .poster-image {
+  visibility: hidden;
+}
+
+.poster-status {
+  position: absolute;
+  inset: 0;
+  display: none;
+  place-items: center;
+  margin: 0;
+  padding: 1rem;
+  color: var(--apple-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.poster-stage.is-loading .poster-status {
+  display: grid;
+}
+
+.poster-hint {
+  position: absolute;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  left: 50%;
+  margin: 0;
+  padding: 0.38rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(20, 20, 24, 0.74);
+  color: #fff;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: opacity 0.4s ease;
+}
+
+.poster-hint.is-visible {
+  opacity: 1;
+}
+
+html[data-theme="dark"] .poster-stage,
+html[data-theme-setting="dark"] .poster-stage {
+  background: #101013;
+}
+
+html[data-theme="dark"] .poster-image,
+html[data-theme-setting="dark"] .poster-image {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Phones, upright or sideways: the viewer takes the whole screen. */
+@media (max-width: 734px), (max-height: 520px) {
   .poster-dialog {
-    width: calc(100vw - 1.6rem);
-    height: min(58vh, 480px);
-    border-radius: 16px;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .poster-dialog-bar {
+    gap: 0.5rem;
+    padding: calc(0.4rem + env(safe-area-inset-top)) calc(0.45rem + env(safe-area-inset-right)) 0.4rem calc(0.85rem + env(safe-area-inset-left));
+  }
+
+  .poster-dialog-tools {
+    gap: 0.2rem;
+  }
+
+  .poster-tool {
+    min-width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .poster-tool-fit {
+    min-width: 3.5rem;
   }
 }
 

@@ -492,35 +492,195 @@ function initSectionRail() {
   window.addEventListener("scroll", queueMark, { passive: true });
 }
 
+// Poster viewer: shows a pre-rendered image of the poster (a light preview first, then the
+// sharp version) fitted to the window, with zoom and pan for mouse, trackpad and touch.
+// Browsers render PDFs inside a page badly or not at all on phones, so the PDF itself is
+// only offered through the "PDF" button and through the link (new tab / modifier clicks).
 function initPosterViewer() {
-  const triggers = document.querySelectorAll("a.js-poster-view");
-  if (!triggers.length) return;
+  if (!document.querySelector("a.js-poster-view")) return;
 
   const dialog = document.createElement("dialog");
   dialog.className = "poster-dialog";
+  dialog.setAttribute("aria-label", "Poster");
   dialog.innerHTML = `
     <div class="poster-dialog-bar">
       <span class="poster-dialog-title">Poster</span>
-      <button type="button" class="poster-dialog-close" aria-label="Close poster">Close</button>
+      <div class="poster-dialog-tools">
+        <button type="button" class="poster-tool" data-action="out" aria-label="Zoom out">&minus;</button>
+        <button type="button" class="poster-tool poster-tool-fit" data-action="fit" aria-label="Fit poster to window">Fit</button>
+        <button type="button" class="poster-tool" data-action="in" aria-label="Zoom in">+</button>
+        <a class="poster-tool poster-tool-pdf" target="_blank" rel="noopener" aria-label="Open the PDF in a new tab">PDF</a>
+        <button type="button" class="poster-tool poster-dialog-close" data-action="close" aria-label="Close poster">&times;</button>
+      </div>
     </div>
-    <iframe class="poster-dialog-frame" title="Poster" hidden></iframe>
+    <div class="poster-stage">
+      <img class="poster-image" alt="" draggable="false" decoding="async">
+      <p class="poster-status">Loading poster…</p>
+      <p class="poster-hint" aria-hidden="true"></p>
+    </div>
   `;
   document.body.appendChild(dialog);
 
-  const frame = dialog.querySelector(".poster-dialog-frame");
-  const closeBtn = dialog.querySelector(".poster-dialog-close");
+  const stage = dialog.querySelector(".poster-stage");
+  const img = dialog.querySelector(".poster-image");
+  const status = dialog.querySelector(".poster-status");
+  const hint = dialog.querySelector(".poster-hint");
+  const title = dialog.querySelector(".poster-dialog-title");
+  const fitBtn = dialog.querySelector(".poster-tool-fit");
+  const pdfLink = dialog.querySelector(".poster-tool-pdf");
+  const touchFirst = window.matchMedia("(hover: none)").matches;
 
-  const closePoster = () => {
-    if (typeof dialog.close === "function" && dialog.open) dialog.close();
-    frame.hidden = true;
-    frame.removeAttribute("src");
+  // Geometry: the image is laid out at the preview's pixel size and moved with one transform.
+  let iw = 0;
+  let ih = 0;
+  let detail = 2; // full-image pixels per preview pixel, measured once the sharp image loads
+  let fit = 1;
+  let scale = 1;
+  let tx = 0;
+  let ty = 0;
+  let token = 0;
+  let hintTimer = 0;
+  let lastPointer = "mouse";
+  let lastTap = { time: 0, x: 0, y: 0 };
+  const pointers = new Map();
+  let pinch = null;
+  let drag = null;
+
+  const box = () => stage.getBoundingClientRect();
+  const maxScale = () => Math.max(fit * 2.5, detail * 1.25);
+  const isZoomed = () => scale > fit * 1.01;
+
+  const render = (animate = false) => {
+    const { width: w, height: h } = box();
+    const sw = iw * scale;
+    const sh = ih * scale;
+    tx = sw <= w ? (w - sw) / 2 : Math.min(0, Math.max(w - sw, tx));
+    ty = sh <= h ? (h - sh) / 2 : Math.min(0, Math.max(h - sh, ty));
+    img.classList.toggle("is-animating", animate);
+    img.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale(${scale})`;
+    const pct = Math.round((scale / fit) * 100);
+    fitBtn.textContent = pct <= 101 ? "Fit" : `${pct}%`;
+    stage.classList.toggle("is-zoomed", isZoomed());
   };
 
-  const openPoster = (url) => {
-    frame.hidden = false;
-    frame.src = url;
-    if (typeof dialog.showModal === "function") dialog.showModal();
-    else window.location.assign(url);
+  const zoomTo = (next, px, py, animate = false) => {
+    if (!iw) return;
+    const { width: w, height: h } = box();
+    const x = px === undefined ? w / 2 : px;
+    const y = py === undefined ? h / 2 : py;
+    const target = Math.min(maxScale(), Math.max(fit, next));
+    tx = x - ((x - tx) * target) / scale;
+    ty = y - ((y - ty) * target) / scale;
+    scale = target;
+    render(animate);
+  };
+
+  const computeFit = () => {
+    const { width: w, height: h } = box();
+    const pad = w < 600 ? 10 : 28;
+    fit = Math.max(0.01, Math.min((w - pad * 2) / iw, (h - pad * 2) / ih));
+  };
+
+  const resetFit = (animate = false) => {
+    if (!iw) return;
+    computeFit();
+    scale = fit;
+    render(animate);
+  };
+
+  const local = (event) => {
+    const r = box();
+    return { x: event.clientX - r.left, y: event.clientY - r.top };
+  };
+
+  const toggleZoom = (x, y) => {
+    if (isZoomed()) resetFit(true);
+    else zoomTo(Math.max(fit * 2.5, Math.min(1, maxScale())), x, y, true);
+  };
+
+  const hideHint = () => {
+    clearTimeout(hintTimer);
+    hint.classList.remove("is-visible");
+  };
+
+  const showHint = () => {
+    hint.textContent = touchFirst ? "Pinch to zoom · double-tap to zoom in" : "Scroll to zoom · drag to move · double-click to zoom in";
+    hint.classList.add("is-visible");
+    hintTimer = setTimeout(hideHint, 3200);
+  };
+
+  const cleanup = () => {
+    token += 1;
+    hideHint();
+    pointers.clear();
+    pinch = null;
+    drag = null;
+    img.removeAttribute("src");
+    document.documentElement.classList.remove("poster-open");
+  };
+
+  const closePoster = () => {
+    if (dialog.open) dialog.close();
+    cleanup();
+  };
+
+  const openPoster = (link) => {
+    const preview = link.dataset.posterPreview;
+    if (!preview || typeof dialog.showModal !== "function") {
+      window.open(link.href, "_blank", "noopener");
+      return;
+    }
+    const run = ++token;
+    const label = link.dataset.posterTitle || "Poster";
+    title.textContent = label;
+    img.alt = label;
+    pdfLink.href = link.href;
+    iw = 0;
+    ih = 0;
+    detail = 2;
+    img.removeAttribute("src");
+    img.style.transform = "";
+    stage.classList.add("is-loading");
+    stage.classList.remove("is-zoomed");
+    status.textContent = "Loading poster…";
+    fitBtn.textContent = "Fit";
+    document.documentElement.classList.add("poster-open");
+    dialog.showModal();
+    dialog.querySelector(".poster-dialog-close").focus({ preventScroll: true });
+
+    const first = new Image();
+    first.decoding = "async";
+    first.onload = () => {
+      if (run !== token) return;
+      iw = first.naturalWidth;
+      ih = first.naturalHeight;
+      img.style.width = `${iw}px`;
+      img.style.height = `${ih}px`;
+      img.src = preview;
+      stage.classList.remove("is-loading");
+      resetFit();
+      showHint();
+      const full = link.dataset.posterFull;
+      if (!full) return;
+      const sharp = new Image();
+      sharp.decoding = "async";
+      // Swap only once the sharp image is decoded, so the poster never flashes blank.
+      sharp.onload = () => {
+        const swap = () => {
+          if (run !== token) return;
+          detail = sharp.naturalWidth / iw || detail;
+          img.src = full;
+        };
+        if (typeof sharp.decode === "function") sharp.decode().then(swap, swap);
+        else swap();
+      };
+      sharp.src = full;
+    };
+    first.onerror = () => {
+      if (run !== token) return;
+      status.textContent = "The poster image could not be loaded. Use the PDF button instead.";
+    };
+    first.src = preview;
   };
 
   document.addEventListener(
@@ -531,17 +691,154 @@ function initPosterViewer() {
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
       event.preventDefault();
       event.stopPropagation();
-      openPoster(link.href);
+      openPoster(link);
     },
     true
   );
 
-  closeBtn.addEventListener("click", closePoster);
   dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) closePoster();
+    if (event.target === dialog) {
+      closePoster();
+      return;
+    }
+    const control = event.target.closest("[data-action]");
+    const action = control ? control.dataset.action : "";
+    if (action === "close") closePoster();
+    else if (action === "fit") resetFit(true);
+    else if (action === "in") zoomTo(scale * 1.6, undefined, undefined, true);
+    else if (action === "out") zoomTo(scale / 1.6, undefined, undefined, true);
   });
+
+  // Esc closes the dialog natively; its "close" event can arrive a moment later, so it
+  // must not undo a poster that has been opened again in the meantime.
   dialog.addEventListener("close", () => {
-    frame.hidden = true;
-    frame.removeAttribute("src");
+    if (!dialog.open) cleanup();
   });
+
+  dialog.addEventListener("keydown", (event) => {
+    const step = 80;
+    const keys = {
+      "+": () => zoomTo(scale * 1.4, undefined, undefined, true),
+      "=": () => zoomTo(scale * 1.4, undefined, undefined, true),
+      "-": () => zoomTo(scale / 1.4, undefined, undefined, true),
+      0: () => resetFit(true),
+      ArrowLeft: () => ((tx += step), render(true)),
+      ArrowRight: () => ((tx -= step), render(true)),
+      ArrowUp: () => ((ty += step), render(true)),
+      ArrowDown: () => ((ty -= step), render(true)),
+    };
+    const run = keys[event.key];
+    if (!run || !iw) return;
+    event.preventDefault();
+    hideHint();
+    run();
+  });
+
+  stage.addEventListener(
+    "wheel",
+    (event) => {
+      if (!iw) return;
+      event.preventDefault();
+      hideHint();
+      const { x, y } = local(event);
+      // A mouse wheel moves in large whole steps (or in lines); a trackpad sends small fractional deltas.
+      const mouseWheel = event.deltaMode !== 0 || (event.deltaX === 0 && Number.isInteger(event.deltaY) && Math.abs(event.deltaY) >= 40);
+      if (event.ctrlKey) zoomTo(scale * Math.exp(-event.deltaY * 0.01), x, y);
+      else if (mouseWheel || !isZoomed()) zoomTo(scale * Math.exp(-event.deltaY * 0.002), x, y);
+      else {
+        tx -= event.deltaX;
+        ty -= event.deltaY;
+        render();
+      }
+    },
+    { passive: false }
+  );
+
+  stage.addEventListener("pointerdown", (event) => {
+    if (!iw || (event.pointerType === "mouse" && event.button !== 0)) return;
+    lastPointer = event.pointerType;
+    try {
+      stage.setPointerCapture(event.pointerId);
+    } catch (error) {
+      // The pointer is already gone; moves still arrive on the stage itself.
+    }
+    pointers.set(event.pointerId, local(event));
+    hideHint();
+    if (pointers.size === 2) {
+      const [a, b] = [...pointers.values()];
+      pinch = { dist: Math.hypot(a.x - b.x, a.y - b.y) || 1, scale, x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+      drag = null;
+    } else if (pointers.size === 1) {
+      const p = pointers.get(event.pointerId);
+      drag = { x: p.x, y: p.y, tx, ty, moved: false };
+    }
+  });
+
+  stage.addEventListener("pointermove", (event) => {
+    if (!pointers.has(event.pointerId)) return;
+    pointers.set(event.pointerId, local(event));
+    if (pinch && pointers.size >= 2) {
+      const [a, b] = [...pointers.values()];
+      const x = (a.x + b.x) / 2;
+      const y = (a.y + b.y) / 2;
+      tx += x - pinch.x;
+      ty += y - pinch.y;
+      pinch.x = x;
+      pinch.y = y;
+      zoomTo((pinch.scale * Math.hypot(a.x - b.x, a.y - b.y)) / pinch.dist, x, y);
+    } else if (drag) {
+      const p = pointers.get(event.pointerId);
+      if (Math.abs(p.x - drag.x) + Math.abs(p.y - drag.y) > 4) drag.moved = true;
+      if (!drag.moved) return;
+      stage.classList.add("is-dragging");
+      tx = drag.tx + (p.x - drag.x);
+      ty = drag.ty + (p.y - drag.y);
+      render();
+    }
+  });
+
+  const endPointer = (event) => {
+    if (!pointers.has(event.pointerId)) return;
+    const p = pointers.get(event.pointerId);
+    pointers.delete(event.pointerId);
+    if (pointers.size < 2) pinch = null;
+    if (pointers.size === 1) {
+      const [rest] = [...pointers.values()];
+      drag = { x: rest.x, y: rest.y, tx, ty, moved: true };
+      return;
+    }
+    if (pointers.size > 0) return;
+    stage.classList.remove("is-dragging");
+    const tapped = drag && !drag.moved && event.type === "pointerup";
+    drag = null;
+    if (!tapped || event.pointerType === "mouse") return;
+    const now = Date.now();
+    if (now - lastTap.time < 320 && Math.hypot(p.x - lastTap.x, p.y - lastTap.y) < 40) {
+      lastTap = { time: 0, x: 0, y: 0 };
+      toggleZoom(p.x, p.y);
+    } else {
+      lastTap = { time: now, x: p.x, y: p.y };
+    }
+  };
+  stage.addEventListener("pointerup", endPointer);
+  stage.addEventListener("pointercancel", endPointer);
+
+  stage.addEventListener("dblclick", (event) => {
+    if (!iw || lastPointer !== "mouse") return;
+    event.preventDefault();
+    const { x, y } = local(event);
+    toggleZoom(x, y);
+  });
+
+  // Keep the poster fitted (or the zoom clamped) when the window or phone orientation changes.
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(() => {
+      if (!dialog.open || !iw) return;
+      const wasFit = !isZoomed();
+      computeFit();
+      if (wasFit) scale = fit;
+      else scale = Math.min(maxScale(), Math.max(fit, scale));
+      render();
+    }).observe(stage);
+  }
 }

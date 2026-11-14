@@ -327,12 +327,22 @@
         <a href="{{ entry.code }}" class="btn btn-sm z-depth-0" role="button">Code</a>
       {% endif %}
       {% if entry.poster %}
+        {% assign poster_title = entry.title | split: ':' | first | strip | append: ' poster' %}
         {% if entry.poster contains '://' %}
-          {% assign poster_href = entry.poster %}
+          <a href="{{ entry.poster }}" class="btn btn-sm z-depth-0" role="button" target="_blank" rel="noopener">Poster</a>
         {% else %}
-          {% assign poster_href = entry.poster | prepend: '/assets/pdf/' | relative_url %}
+          {% comment %} The viewer shows pre-rendered images (assets/posters/<name>-1400.jpg, then -3000.jpg); the link itself still opens the PDF. {% endcomment %}
+          {% assign poster_base = entry.poster | remove: '.pdf' | prepend: '/assets/posters/' | relative_url %}
+          <a
+            href="{{ entry.poster | prepend: '/assets/pdf/' | relative_url }}"
+            class="btn btn-sm z-depth-0 js-poster-view"
+            role="button"
+            data-poster-preview="{{ poster_base }}-1400.jpg"
+            data-poster-full="{{ poster_base }}-3000.jpg"
+            data-poster-title="{{ poster_title | escape }}"
+            >Poster</a
+          >
         {% endif %}
-        <a href="{{ poster_href }}" class="btn btn-sm z-depth-0 js-poster-view" role="button">Poster</a>
       {% endif %}
       {% if entry.slides %}
         {% if entry.slides contains '://' %}
